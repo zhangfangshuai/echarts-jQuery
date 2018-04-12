@@ -3,7 +3,7 @@
  * Author: dameng
  * Date: 2017/11/15  09:05
  * Recode: zhangfs 2018/04/11 10:50
- * Note: Recode and Add error handler
+ * Note: Package and Add Handler
  */
 APP.html = "orders.html";
 $(function () {
@@ -14,7 +14,7 @@ $(function () {
         weekAgo = getDaysOffset(-7);
 
     for (let i of [1,2,3]) {  // trigger scroller
-        $('#appDateTime' + i).mobiscroll(APP.dateBar)
+        $('#appDateTime' + i).mobiscroll(APP.dateBar);
     }
 
     startingWeekYesterday(1);
@@ -22,7 +22,7 @@ $(function () {
     $('#appDateTime2').val(weekAgo);
 
     // 页面初始化
-    getCity(function(res, cityInit){
+    getCity(function(res, cityInit) {
         cityVal = cityInit;
         getorderAnalyze($('#appDateTime1').val(), odtype);
         getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType);
@@ -46,6 +46,28 @@ $(function () {
         triggerBubble(this.parentNode);
     });
 
+    // 车类型选择
+    $('.od-ct, .odc-ct').on('click', function() {
+        $('.'+this.classList[1]).removeClass('active');
+        $(this).addClass('active');
+        let _type = $(this).attr('data-type')
+        this.classList[1] == 'od-ct' ? getorderAnalyze($('#appDateTime1').val(), _type)
+                                     : getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), _type);
+    })
+
+    // 订单概况时间监控 单日期
+    $('.od-predate, .od-nextdate').on('click',function() {
+        let id = this.parentNode.children[1].children[0].id;
+        this.classList[1] == 'od-predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                          : $('#'+id).val(updateDate(this.parentNode, 1, true));
+        getorderAnalyze($('#'+id).val(), odtype);
+    });
+
+    $('#appDateTime2, #appDateTime3').on('change',function () {
+        getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType)
+    });
+
+
     // 订单概况
     function getorderAnalyze(date, type) {
         let data = {
@@ -56,15 +78,15 @@ $(function () {
         buildAjax('get', 'getorderAnalyze', data, true, false, function(res){
             let str = "";
             for (let d of res.data) {
-                var imgUrl = d.avg_rate == 0 ? '' : '<img src="../images/'+ (d.avg_rate > 0 ? 'icon_rise.png' : 'icon_decline') + '"  class="orderUp fr">';
+                var imgUrl = d.avg_rate == 0 ? '' : '<img src="../images/'+ (d.avg_rate > 0 ? 'icon_rise' : 'icon_decline') + '.png"  class="orderUp fr" alt="">';
                 str += "<li> <p>" + d.kpiname + "</p>" +
                     "<p>" + d.month_t + "</p>" +
                     "<p>" + d.month_avg + "</p>" +
                     "<p>" + d.month_last_t + "</p>" +
                     "<p>" + d.month_last_avg + "</p>" +
-                    "<p>" + d.avg_rate + "</p>" + "</li>";
+                    "<p>" + d.avg_rate + imgUrl + "</p>" + "</li>";
             }
-            $('.odVal').html(str);
+            $('#odVal').html(str);
         }, false);
     }
 
@@ -147,24 +169,4 @@ $(function () {
         }, false);
     };
 
-    // 车类型选择
-    $('.od-ct, .odc-ct').on('click', function() {
-        $('.'+this.classList[1]).removeClass('active');
-        $(this).addClass('active');
-        let _type = $(this).attr('data-type')
-        this.classList[1] == 'od-ct' ? getorderAnalyze($('#appDateTime1').val(), _type)
-                                     : getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), _type);
-    })
-
-    // 订单概况时间监控 单日期
-    $('.od-predate, .od-nextdate').on('click',function() {
-        let id = this.parentNode.children[1].children[0].id;
-        this.classList[1] == 'od-predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
-                                          : $('#'+id).val(updateDate(this.parentNode, 1, true));
-        getorderAnalyze($('#'+id).val(), odtype);
-    });
-
-    $('#appDateTime2, #appDateTime3').on('change',function () {
-        getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType)
-    });
 });

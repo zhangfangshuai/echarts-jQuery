@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>驾驶舱—车辆</title>
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
-    <!--<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
     <script src="//img.shouqiev.com/h5/libs/flexible.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/cssPublic.css">
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
@@ -21,77 +20,73 @@
     <script src="../libs/picker.js"></script>
 </head>
 <body>
-<!--slideBar and slideBg start-->
-<div class="slideBarBg"></div>
-<section class="slideBar clearfix">
-    <div class="nickName clearfix">
-        <div class="headIcon fl"></div>
-        <p class="nickName1 fl"></p>
-    </div>
-    <!--超出滚动-待定-->
-    <div class="slideCon">
-        <ul class="slideList">
-            <!--实时监控-->
-            <li class="list showWatching " data-menuId="2" data-value="charts.html">
-                <span class="iconList"></span>
-                <div class="type">实时监控</div>
-            </li>
-            <!--城市KPI考核-->
-            <li class="list showKpi" data-menuId="3" data-value="kpis.html">
-                <span class="iconList iconListKpi"></span>
-                <div class="type">城市KPI考核</div>
-            </li>
-            <!--用户分析 car-user-->
-            <li class="list showUser" data-menuId="4" data-value="car-user.html">
-                <span class="iconList iconListUser"></span>
-                <div class="type">用户分析</div>
-            </li>
-            <!--order-->
-            <li class="list showOrders" data-menuId="5" data-value="orders.html">
-                <span class="iconList iconListOrder"></span>
-                <div class="type">订单分析</div>
-            </li>
-            <!--网点分析 site-->
-            <li class="list showSite" data-menuId="6" data-value="site.html">
-                <span class="iconList iconListSite"></span>
-                <div class="type">网点分析</div>
-            </li>
-            <!--车辆分析 cars-->
-            <li class="list showCars active" data-menuId="7" data-value="cars.html">
-                <span class="iconList iconListCars"></span>
-                <div class="type">车辆分析</div>
-            </li>
-            <!--客服分析 新增 customer-service.html-->
-            <li class="list showCustomer" data-menuId="8" data-value="customer-service.html">
-                <span class="iconList iconListCustomer"></span>
-                <div class="type">客服分析</div>
-            </li>
-            <!--运营分析==车资 car-fare-->
-            <li class="list showFare" data-menuId="9" data-value="operation.html">
-                <span class="iconList iconListFare"></span>
-                <div class="type">运营分析</div>
-            </li>
-            <!--营收分析 car-operation-->
-            <li class="list showOperation" data-menuId="10" data-value="income.html">
-                <span class="iconList iconListOperation"></span>
-                <div class="type">营收分析</div>
-            </li>
+    <!--slideBar and slideBg start-->
+    <div class="slideBarBg"></div>
+    <section class="slideBar clearfix">
+        <div class="nickName clearfix">
+            <div class="headIcon fl"></div>
+            <p class="nickName1 fl"></p>
+        </div>
+        <!--超出滚动-待定-->
+        <div class="slideCon">
+            <ul class="slideList">
+                <!--实时监控-->
+                <li class="list showWatching " data-menuId="2" data-value="charts.html">
+                    <span class="iconList"></span>
+                    <div class="type">实时监控</div>
+                </li>
+                <!--城市KPI考核-->
+                <li class="list showKpi" data-menuId="3" data-value="kpis.html">
+                    <span class="iconList iconListKpi"></span>
+                    <div class="type">城市KPI考核</div>
+                </li>
+                <!--用户分析 car-user-->
+                <li class="list showUser" data-menuId="4" data-value="car-user.html">
+                    <span class="iconList iconListUser"></span>
+                    <div class="type">用户分析</div>
+                </li>
+                <!--order-->
+                <li class="list showOrders" data-menuId="5" data-value="orders.html">
+                    <span class="iconList iconListOrder"></span>
+                    <div class="type">订单分析</div>
+                </li>
+                <!--网点分析 site-->
+                <li class="list showSite" data-menuId="6" data-value="site.html">
+                    <span class="iconList iconListSite"></span>
+                    <div class="type">网点分析</div>
+                </li>
+                <!--车辆分析 cars-->
+                <li class="list showCars active" data-menuId="7" data-value="cars.html">
+                    <span class="iconList iconListCars"></span>
+                    <div class="type">车辆分析</div>
+                </li>
+                <!--客服分析 新增 customer-service.html-->
+                <li class="list showCustomer" data-menuId="8" data-value="customer-service.html">
+                    <span class="iconList iconListCustomer"></span>
+                    <div class="type">客服分析</div>
+                </li>
+                <!--运营分析==车资 car-fare-->
+                <li class="list showFare" data-menuId="9" data-value="operation.html">
+                    <span class="iconList iconListFare"></span>
+                    <div class="type">运营分析</div>
+                </li>
+                <!--营收分析 car-operation-->
+                <li class="list showOperation" data-menuId="10" data-value="income.html">
+                    <span class="iconList iconListOperation"></span>
+                    <div class="type">营收分析</div>
+                </li>
+            </ul>
+        </div>
+        <a href="../index.html" class="out">退出登陆</a>
+    </section>
+    <!--slideBar and slideBg end-->
 
-
-
-        </ul>
-    </div>
-    <a href="../index.html" class="out">退出登陆</a>
-</section>
-<!--slideBar and slideBg end-->
     <div class="box">
         <!--header start -->
         <header class="header clearfix">
             <div class="slideBtn"></div>
             <div class="logo"></div>
             <div class="location">
-                <!--<div class="showCity">北京-->
-                <!--</div>-->
                 <div class="content-block showCity">
                     <input id="demo3" type="text" readonly="" onfocus="this.blur();" />
                     <input id="value3" type="hidden" />
@@ -100,105 +95,73 @@
             </div>
         </header>
         <!--header end-->
-        <section class="orders section-box" section-id="40">
-            <!--车辆概况表格-->
-            <div class="formCommon clearfix">
-                <h2 class="orderTitle">车辆概况
 
-                    <!--<div class="content-block last">-->
-                    <!--<div class="trangle"></div>-->
-                    <!--<input id="last" class="lateTime" type="text" readonly="" onfocus="this.blur();" />-->
-                    <!--<input id="last-s" type="hidden" />-->
-                    <!--</div>-->
-                </h2>
-                <div class="timeBorder" style="margin-bottom: 0;">
-                    开始<input type="text" id="appDateTime2" class="appDateTime1" onfocus="this.blur();" style="margin-right: 0.7rem;">
-                    结束<input type="text" id="appDateTime3" class="appDateTime1" onfocus="this.blur();">
+        <!-- 车辆概况 -->
+        <section class="section-box" section-id="40">
+            <div class="wrap car">
+                <div class="cont-title">车辆概况</div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime2" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime3" class="ddp-2" onfocus="this.blur();">
                 </div>
-                <div class="container">
-                    <div class="scroller scrollerCar">
-                        <div class="headLine">
-                            <p class="orderOne" style="width: 5%;">日期 </p>
-                            <p class="orderTwo">总购置车辆</p>
-                            <p class="orderThree">可运营车辆</p>
-                            <p class="orderFour">平均上架车辆</p>
-                            <p class="orderFive">平均下架车辆</p>
-                            <p class="orderFive">平均低电下架</p>
-                            <p class="orderFive">平均运维下架</p>
-                            <p class="orderFive">平均事故下架</p>
-                            <p class="orderFive">平均维修下架</p>
-                            <p class="orderFive" style="width: 12%;">平均车机离线下架</p>
-                            <p class="orderFive" style="width: 12%;">平均物料缺失下架</p>
-                        </div>
-                        <ul class="orderList revenue">
-                            <!--<li class="anlysis">-->
-                                <!--<p class="orderOne" style="width: 5%;">日期 </p>-->
-                                <!--<p class="orderTwo">总购置车辆</p>-->
-                                <!--<p class="orderThree">可运营车辆</p>-->
-                                <!--<p class="orderFour">平均上架车辆</p>-->
-                                <!--<p class="orderFive">平均下架车辆</p>-->
-                                <!--<p class="orderFive">平均低电下架</p>-->
-                                <!--<p class="orderFive">平均运维下架</p>-->
-                                <!--<p class="orderFive">平均事故下架</p>-->
-                                <!--<p class="orderFive">平均维修下架</p>-->
-                                <!--<p class="orderFive" style="width: 12%;">平均车机离线下架</p>-->
-                                <!--<p class="orderFive" style="width: 12%;">平均物料缺失下架</p>-->
-                            <!--</li>-->
-                        </ul>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>总购置车辆</p>
+                        <p>可运营车辆</p>
+                        <p>平均上架车辆</p>
+                        <p>平均下架车辆</p>
+                        <p>平均低电下架</p>
+                        <p>平均运维下架</p>
+                        <p>平均事故下架</p>
+                        <p>平均维修下架</p>
+                        <p>平均车机离线下架</p>
+                        <p>平均物料缺失下架</p>
                     </div>
-
+                    <ul class="itemVal carVal"></ul>
                 </div>
-                <div class="page1 page">
-                    <div class="pre1 pre">
-                        <
+                <div class="pagenation">
+                    <div class="page-pre car-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage car-nowpage">1</span>/<span class="allpage car-allpage">1</span>
                     </div>
-                    <div class="page-mid1 page-mid">
-                        <span class="now1 now">1</span>/<span class="totle1 totle">1</span>
-                    </div>
-                    <div class="next1 next">
-                        >
-                    </div>
+                    <div class="page-next car-nextpage"> > </div>
                 </div>
-
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble carbasic-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble car-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
-
             </div>
         </section>
-        <!--堆叠图-->
-        <section class="cars clearfix">
-            <!--上架率-->
-            <div class="carDate carCommon clearfix section-box" section-id="41" style="height: 9rem;">
-                <div class="date">
-                    上架率
-                </div>
-                <div class="choose clearfix">
-                    <div class="chooseCom fl active" data-hourId="10">10点上架率</div>
-                    <div class="chooseCom fl" data-hourId="17">17点上架率</div>
-                    <div class="chooseCom fl" data-hourId="-1">全天上架率</div>
-                </div>
-                <div class="timeBorder" style="margin-bottom: 0;">
-                    开始<input type="text" id="appDateTime4" class="appDateTime1" onfocus="this.blur();" style="margin-right: 0.7rem;">
-                    结束<input type="text" id="appDateTime5" class="appDateTime1" onfocus="this.blur();">
-                </div>
-                <div id="dateCarChart1" ></div>
-                <div class="carDetail clearfix" style="margin-top: 0.3rem">
-                    <div class="carDetailList">
-                        <p class="carsListContent" style="text-align: center;width: 100%;">平均上架率 <span class="carDatas carDatas1"></span></p>
 
-                    </div>
-
+        <!--堆叠图 上架率-->
+        <section class="section-box" section-id="41">
+            <div class="wrap stacks">
+                <div class="cont-title">上架率</div>
+                <div class="threeColumnSelection">
+                    <div class="tcs col-1 active" data-hourId="10">10点上架率</div>
+                    <div class="tcs col-2" data-hourId="17">17点上架率</div>
+                    <div class="tcs col-3" data-hourId="-1">全天上架率</div>
+                </div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime4" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime5" class="ddp-2" onfocus="this.blur();">
+                </div>
+                <div class="echarts" id="dateCarChart1"></div>
+                <div class="noteList">
+                    <div class="note">平均上架率 <span class="car-notedata"></span> </div>
                 </div>
                 <div class="responsiblePerson-box">
                     <p class="phoneBubble sjl-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>
-            <!--车机离线-->
-            <div class="carDate carCommon clearfix section-box" section-id="42">
+        </section>
 
+
+        <!--车机离线-->
+        <section class="cars clearfix">
+            <div class="carDate carCommon clearfix section-box" section-id="42">
                 <img src=".././images/leftbottom.png" alt="" class="leftBotom">
                 <img src=".././images/leftup.png" alt="" class="rightbottom">
                 <div class="date">车机离线图
@@ -220,13 +183,7 @@
             <div class="formCommon clearfix section-box" section-id="43">
                 <img src=".././images/leftup.png" alt="" class="leftTop">
                 <img src=".././images/leftup.png" alt="" class="rightTop">
-                <h2 class="orderTitle">车机离线状况
-                    <!--<div class="content-block last">-->
-                    <!--<div class="trangle"></div>-->
-                    <!--<input id="last" class="lateTime" type="text" readonly="" onfocus="this.blur();" />-->
-                    <!--<input id="last-s" type="hidden" />-->
-                    <!--</div>-->
-                </h2>
+                <h2 class="orderTitle">车机离线状况</h2>
                 <div class="container">
                     <div class="scroller scrolleroff">
                         <div class="headLine">
@@ -234,26 +191,16 @@
                             <p class="orderFive">城市</p>
                             <p class="orderFive">车机离线数量</p>
                         </div>
-                        <ul class="orderList offline">
-                            <!--<li class="anlysis">-->
-                                <!--<p class="orderFive">单均收现</p>-->
-                                <!--<p class="orderFive">单均优惠</p>-->
-                                <!--<p class="orderFive">单均未结算</p>-->
-                            <!--</li>-->
-                        </ul>
+                        <ul class="orderList offline"></ul>
                     </div>
 
                 </div>
                 <div class="page2 page">
-                    <div class="pre2 pre">
-                        <
-                    </div>
+                    <div class="pre2 pre"> < </div>
                     <div class="page-mid2 page-mid">
                         <span class="now2 now">1</span>/<span class="totle2 totle"></span>
                     </div>
-                    <div class="next2 next">
-                        >
-                    </div>
+                    <div class="next2 next"> > </div>
                 </div>
                 <div class="responsiblePerson-box">
                     <p class="phoneBubble lxzk-phoneBubble"><a href=""></a></p>
@@ -262,14 +209,7 @@
             </div>
             <!--车辆停运详情-->
             <div class="formCommon clearfix" style="display: none">
-                <h2 class="orderTitle">车辆停运详情
-
-                    <!--<div class="content-block last">-->
-                    <!--<div class="trangle"></div>-->
-                    <!--<input id="last" class="lateTime" type="text" readonly="" onfocus="this.blur();" />-->
-                    <!--<input id="last-s" type="hidden" />-->
-                    <!--</div>-->
-                </h2>
+                <h2 class="orderTitle">车辆停运详情</h2>
                 <div class="timeBorder" style="margin-bottom: 0;">
                     开始<input type="text" id="appDateTime8" class="appDateTime1" onfocus="this.blur();" style="margin-right: 0.7rem;">
                     结束<input type="text" id="appDateTime9" class="appDateTime1" onfocus="this.blur();">
@@ -287,30 +227,17 @@
                             <p class="orderFive">上报原因</p>
                         </div>
                         <ul class="orderList outage">
-                            <li class="anlysis">
-                                <p class="orderOne" >上报时间 </p>
-                                <p class="orderTwo">车牌号</p>
-                                <p class="orderThree">停运天数</p>
-                                <p class="orderFour">停车场</p>
-                                <p class="orderFive">现停网点</p>
-                                <p class="orderFive">维修网点</p>
-                                <p class="orderFive">问题</p>
-                                <p class="orderFive">上报原因</p>
-                            </li>
+                            <li class="anlysis"></li>
                         </ul>
                     </div>
 
                 </div>
                 <div class="page2 page">
-                    <div class="pre2 pre">
-                        <
-                    </div>
+                    <div class="pre2 pre"> < </div>
                     <div class="page-mid2 page-mid">
                         <span class="now2 now">1</span>/<span class="totle2 totle">1</span>
                     </div>
-                    <div class="next2 next">
-                        >
-                    </div>
+                    <div class="next2 next"> > </div>
                 </div>
             </div>
         </section>

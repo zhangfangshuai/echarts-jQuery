@@ -1,3 +1,24 @@
+
+.car .scroll-cont .headLine, .carVal {
+    width: 27.8rem;
+    text-align: center;
+}
+
+.car .scroll-cont .headLine p, .carVal li p {
+    width: 9%;
+    text-align: center;
+}
+
+.car .scroll-cont .headLine p:first-child, .carVal li p:first-child { width: 5%; }
+.car .scroll-cont .headLine p:nth-child(10), .carVal li p:nth-child(10) { width: 12%; }
+.car .scroll-cont .headLine p:nth-child(11), .carVal li p:nth-child(11) { width: 12%; }
+
+#dateCarChart1 {
+    height: 5rem;
+}
+
+
+
 .box {
   width: 10rem;
   padding-top: 1.0666666667rem; }

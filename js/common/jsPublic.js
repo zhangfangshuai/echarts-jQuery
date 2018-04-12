@@ -263,7 +263,7 @@ function getPrincipal (city, idArr, page, s, f) {
                        n = res.data[i].liablename ? res.data[i].liablename : '暂无';
                    $('.section-box').eq(j).find('.phoneBubble a').html('TEL: ' + p);
                    res.data[i].sim ? $('.section-box').eq(j).find('.phoneBubble a').attr('href', 'tel:' + p)
-                                      : $('.section-box').eq(j).find('.phoneBubble a').removeAttr('href');
+                                   : $('.section-box').eq(j).find('.phoneBubble a').removeAttr('href');
                    $('.section-box').eq(j).find('.responsiblePerson').html('责任人: ' +  n);
                    break;
                }
@@ -331,7 +331,17 @@ function updateDate(_parent, num, limit) {
 
 /**
  * Created: zhangfs by Atom
- * Date: 2018/04/11 17:45
- * Func: 单日期选择控件日期联动
- * Note: 为了向上兼容，日期部分必须要有id属性，周几部分必须要有class属性
+ * Date: 2018/04/12 10:45
+ * Func: 实现jquery的html页面each遍历列表功能 - 未成形，不可用
  */
+function createDomEachElement(element, objArray){
+    for (let i in objArray) {
+        for (let j = 0; j < $('#'+element)[0].children[0].children.length; j++) {
+            let attr = $('#'+element)[0].children[0].children[j].innerHTML
+            $($('#'+element)[0].children[0].children[j]).html(objArray[i][attr]);
+        }
+        if (i != objArray.length) {
+            // $('#'+element)[0].appeng('li')
+        }
+    }
+}

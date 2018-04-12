@@ -56,8 +56,8 @@ $(function () {
         };
         buildAjax('get', 'getCustServerDetail', data, true, false, function(res){
             CS_CACHE = res.data.data;
-            $('.cs-allpage').html(Math.ceil(CS_CACHE.length / 10) == 0 ? 1 : Math.ceil(CS_CACHE.length / 10))
-            setCSUI( CS_CACHE.slice( 10 * ( p - 1 ), 10 * p) )
+            $('.cs-allpage').html(Math.ceil(CS_CACHE.length / 10) == 0 ? 1 : Math.ceil(CS_CACHE.length / 10));
+            setCSUI( CS_CACHE.slice( 10 * ( p - 1 ), 10 * p) );
         }, false)
     };
     let refCSUI = (p) => {
