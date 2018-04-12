@@ -1,0 +1,31 @@
+.cs .scroll-cont .headLine, .csVal {
+    width: 21.8rem;
+    text-align: center;
+}
+
+.cs .scroll-cont .headLine p, .csVal li p {
+    width: 10%;
+    text-align: center;
+}
+.cs .scroll-cont .headLine p:first-child, .csVal li p:first-child { width: 9%; }
+.cs .scroll-cont .headLine p:nth-child(3), .csVal li p:nth-child(3) { width: 15%; }
+.cs .scroll-cont .headLine p:nth-child(6), .csVal li p:nth-child(6) { width: 9%; }
+.cs .scroll-cont .headLine p:nth-child(7), .csVal li p:nth-child(7) { width: 9%; }
+.cs .scroll-cont .headLine p:nth-child(8), .csVal li p:nth-child(8) { width: 15%; }
+.cs .scroll-cont .headLine p:nth-child(9), .csVal li p:nth-child(9) { width: 9%; }
+.cs .scroll-cont .headLine p:nth-child(10), .csVal li p:nth-child(10) { width: 15%; }
+
+
+.dc .scroll-cont .headLine, .dcVal {
+    width: 19.8rem;
+    text-align: center;
+}
+
+.dc .scroll-cont .headLine p, .dcVal li p {
+    width: 14.28%;
+    text-align: center;
+}
+.dc .scroll-cont .headLine p:first-child, .dcVal li p:first-child { width: 10%; }
+.dc .scroll-cont .headLine p:nth-child(5), .dcVal li p:nth-child(5) { width: 16%; }
+.dc .scroll-cont .headLine p:nth-child(6), .dcVal li p:nth-child(6) { width: 16%; }
+.dc .scroll-cont .headLine p:nth-child(7), .dcVal li p:nth-child(7) { width: 16%; }

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>驾驶舱-KPI</title>
+    <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <!--<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
+    <script src="//img.shouqiev.com/h5/libs/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/cssPublic.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/LArea.css">
+    <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/kpis.css">
+    <link rel="stylesheet" type="text/css" href="../css/slideBar.css">
+    <!--<script src="https://api.shouqiev.com/js/lib/jquery-2.0.3.min.js"></script>-->
+    <script src="//h5.shouqiev.com/libs/jquery.min.js"></script>
+    <script src="../js/common/baseUrl.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/mobiscroll.datetime-2.5.1-zh.js"></script>
+    <script src="../libs/singleData.js"></script>
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/picker.js"></script>
+    <!--<script src="../js/watching/chartsPulic.js"></script>-->
+</head>
+<body>
+<!--slideBar and slideBg start-->
+<div class="slideBarBg"></div>
+<section class="slideBar clearfix">
+    <div class="nickName clearfix">
+        <div class="headIcon fl"></div>
+        <p class="nickName1 fl"></p>
+    </div>
+    <!--超出滚动-待定-->
+    <div class="slideCon">
+        <ul class="slideList">
+            <!--实时监控-->
+            <li class="list showWatching " data-menuId="2" data-value="charts.html">
+                <span class="iconList"></span>
+                <div class="type">实时监控</div>
+            </li>
+            <!--城市KPI考核-->
+            <li class="list showKpi active" data-menuId="3" data-value="kpis.html">
+                <span class="iconList iconListKpi"></span>
+                <div class="type">城市KPI考核</div>
+            </li>
+            <!--用户分析 car-user-->
+            <li class="list showUser" data-menuId="4" data-value="car-user.html">
+                <span class="iconList iconListUser"></span>
+                <div class="type">用户分析</div>
+            </li>
+            <!--order-->
+            <li class="list showOrders" data-menuId="5" data-value="orders.html">
+                <span class="iconList iconListOrder"></span>
+                <div class="type">订单分析</div>
+            </li>
+            <!--网点分析 site-->
+            <li class="list showSite" data-menuId="6" data-value="site.html">
+                <span class="iconList iconListSite"></span>
+                <div class="type">网点分析</div>
+            </li>
+            <!--车辆分析 cars-->
+            <li class="list showCars" data-menuId="7" data-value="cars.html">
+                <span class="iconList iconListCars"></span>
+                <div class="type">车辆分析</div>
+            </li>
+            <!--客服分析 新增 customer-service.html-->
+            <li class="list showCustomer" data-menuId="8" data-value="customer-service.html">
+                <span class="iconList iconListCustomer"></span>
+                <div class="type">客服分析</div>
+            </li>
+            <!--运营分析==车资 car-fare-->
+            <li class="list showFare" data-menuId="9" data-value="operation.html">
+                <span class="iconList iconListFare"></span>
+                <div class="type">运营分析</div>
+            </li>
+            <!--营收分析 car-operation-->
+            <li class="list showOperation" data-menuId="10" data-value="income.html">
+                <span class="iconList iconListOperation"></span>
+                <div class="type">营收分析</div>
+            </li>
+
+
+
+        </ul>
+    </div>
+    <a href="../index.html" class="out">退出登陆</a>
+</section>
+<!--slideBar and slideBg end-->
+    <div class="box">
+        <!--header start -->
+        <header class="header clearfix">
+            <div class="slideBtn"></div>
+            <div class="logo"></div>
+            <div class="location">
+                <!--<div class="showCity">北京-->
+                <!--</div>-->
+                <div class="content-block showCity">
+                    <input id="demo3" type="text" readonly="" onfocus="this.blur();" />
+                    <input id="value3" type="hidden" />
+                </div>
+                <div class="showCityIcon"></div>
+            </div>
+        </header>
+        <!--header end-->
+        <!--kpis start-->
+        <section class="kpis">
+            <!--分城市和全国显示-->
+            <div class="nationKpi">
+                <div id="nationMap"></div>
+                <div class="nationcityShow clearfix">
+                    <div class="nationcityKpiTitle">
+                        <p class="nationcityKpiTitleLeft">城市概览-<span class="nationcityTxt"></span></p>
+                        <!--<p class="nationcityKpiTitleRight">开城时间<span class="nationcityOpen">11</span></p>-->
+                    </div>
+                    <div class="nationcityKpiBottom clearfix">
+                        <div class="nationcityKpiCommon" style="margin-bottom: 0.32rem;">
+                            <p class="nationOne"></p>
+                            <p>开城日期</p>
+                        </div>
+                        <div class="nationcityKpiCommon" style="margin-bottom: 0.32rem;">
+                            <p class="nationTwo"></p>
+                            <p>累计注册用户</p>
+                        </div>
+                        <div class="nationcityKpiCommon" style="margin-bottom: 0.32rem;">
+                            <p class="nationThree"></p>
+                            <p>可用车用户</p>
+                        </div>
+                        <div class="nationcityKpiCommon">
+                            <p class="nationFour"></p>
+                            <p>运营车辆</p>
+                        </div>
+                        <div class="nationcityKpiCommon">
+                            <p class="nationFive"></p>
+                            <p>场站规模</p>
+                        </div>
+                        <div class="nationcityKpiCommon">
+                            <p class="nationSix"></p>
+                            <p>车均单</p>
+                        </div>
+                        <div class="goToCity">城市详情</div>
+                    </div>
+                </div>
+                <div class="nationKpiDetail" >
+                    <!--first-->
+                    <div class="nationStatus nationCommon">
+                        <h2 class="nationTitle">当月KPI-运营车辆车均单</h2>
+                        <div class="headLine">
+                            <p class="orderOne">城市 </p>
+                            <p class="orderTwo">目标值</p>
+                            <p class="orderThree">及格值</p>
+                            <p class="orderFour">当前值</p>
+                            <p class="orderFive">完成度</p>
+                        </div>
+                        <ul class="nationList nationList1">
+                            <!--<li class="anlysis">-->
+                            <!--<p class="orderOne">指标名称 </p>-->
+                            <!--<p class="orderTwo">月累计</p>-->
+                            <!--<p class="orderThree">昨日</p>-->
+                            <!--<p class="orderFour">同比</p>-->
+                            <!--<p class="orderFive">同比增幅-->
+                            <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                            <!--</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                    <!--second-->
+                    <div class="nationStatus nationCommon">
+                        <h2 class="nationTitle">当月KPI-月总收现金额</h2>
+                        <div class="headLine">
+                            <p class="orderOne">城市 </p>
+                            <p class="orderTwo">目标值</p>
+                            <p class="orderThree">及格值</p>
+                            <p class="orderFour">当前值</p>
+                            <p class="orderFive">完成度</p>
+                        </div>
+                        <ul class="nationList nationList2">
+                            <!--<li class="anlysis">-->
+                            <!--<p class="orderOne">指标名称 </p>-->
+                            <!--<p class="orderTwo">月累计</p>-->
+                            <!--<p class="orderThree">昨日</p>-->
+                            <!--<p class="orderFour">同比</p>-->
+                            <!--<p class="orderFive">同比增幅-->
+                            <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                            <!--</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                    <!--add on 3.21-->
+                    <div class="nationStatus nationCommon">
+                        <h2 class="nationTitle">当月KPI-运营车辆上架率</h2>
+                        <div class="headLine">
+                            <p class="orderOne">城市 </p>
+                            <p class="orderTwo">目标值</p>
+                            <p class="orderThree">及格值</p>
+                            <p class="orderFour">当前值</p>
+                            <p class="orderFive">完成度</p>
+                        </div>
+                        <ul class="nationList nationList3">
+                            <!--<li class="anlysis">-->
+                            <!--<p class="orderOne">指标名称 </p>-->
+                            <!--<p class="orderTwo">月累计</p>-->
+                            <!--<p class="orderThree">昨日</p>-->
+                            <!--<p class="orderFour">同比</p>-->
+                            <!--<p class="orderFive">同比增幅-->
+                            <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                            <!--</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cityKpi clearfix">
+                <div class="cityMap" id="cityMap">
+                </div>
+                <div class="cityMapCover"></div>
+                <div class="cityShow clearfix section-box" section-id="8">
+                    <div class="cityKpiTitle">
+                        <p class="cityKpiTitleLeft">城市概览-<span class="cityTxt"></span></p>
+                        <p class="cityKpiTitleRight">开城<span class="cityOpen"></span></p>
+                    </div>
+                    <div class="cityKpiBottom">
+                        <div class="cityKpiCommon">
+                            <p class="amount"></p>
+                            <p>运营车辆</p>
+                        </div>
+                        <div class="cityKpiCommon">
+                            <p class="scale"></p>
+                            <p>场站规模</p>
+                        </div>
+                        <div class="cityKpiCommon">
+                            <p class="number"></p>
+                            <p>车位数量</p>
+                        </div>
+                    </div>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble cityBasic-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+                <div class="monthKpi clearfix section-box" section-id="9">
+                    <div class="monthKpiTile">
+                        <p class="monthKpiTileLeft"><span class="tMonth">当月</span>KPI</p>
+                        <p class="monthKpiTileRight fr">截至11月14日</p>
+                    </div>
+                    <div class="monthKpiContainer clearfix">
+                        <div class="monthKpiContent clearfix">
+                            <!--<div class="monthKpiContentCommon">-->
+                                <!--<div class="chartsCommon" id="chart"></div>-->
+                                <!--<div class="chartsCommonCover"></div>-->
+                                <!--<div class="monthKpiContentBottom">-->
+                                    <!--<p class="monthKpiOne">2.4</p>-->
+                                    <!--<p class="monthKpiTwo">车均单</p>-->
+                                    <!--<p class="monthKpiThree">2。6</p>-->
+                                    <!--<p class="monthKpiFour">及格值</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble monKpi-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+            </div>
+            <!--always show-->
+            <div class="commonKpi section-box" section-id="10">
+                <div class="kpiStatus kpiCommon">
+                    <h2 class="kpiTitle">核心指标-车辆维度指标</h2>
+                    <div class="headLine">
+                        <p class="orderOne" style="width: 23%;">核心名称 </p>
+                        <p class="orderTwo">昨日</p>
+                        <p class="orderThree">前日</p>
+                        <p class="orderFour" style="width: 19%;">同比</p>
+                        <p class="orderFive" style="width: 18%;">同比增幅</p>
+                    </div>
+                    <ul class="kpiList kpiList1">
+                        <!--<li class="anlysis">-->
+                        <!--<p class="orderOne">指标名称 </p>-->
+                        <!--<p class="orderTwo">月累计</p>-->
+                        <!--<p class="orderThree">昨日</p>-->
+                        <!--<p class="orderFour">同比</p>-->
+                        <!--<p class="orderFive">同比增幅-->
+                        <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                        <!--</p>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble carKpi-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+            </div>
+            <!--always show-->
+            <div class="commonKpi section-box" section-id="11">
+                <div class="kpiStatus kpiCommon">
+                    <h2 class="kpiTitle">核心指标-网点维度指标</h2>
+                    <div class="headLine">
+                        <p class="orderOne" style="width: 23%;">核心名称 </p>
+                        <p class="orderTwo">昨日</p>
+                        <p class="orderThree">前日</p>
+                        <p class="orderFour" style="width: 19%;">同比</p>
+                        <p class="orderFive" style="width: 18%;">同比增幅</p>
+                    </div>
+                    <ul class="kpiList kpiList2">
+                        <!--<li class="anlysis">-->
+                        <!--<p class="orderOne">指标名称 </p>-->
+                        <!--<p class="orderTwo">月累计</p>-->
+                        <!--<p class="orderThree">昨日</p>-->
+                        <!--<p class="orderFour">同比</p>-->
+                        <!--<p class="orderFive">同比增幅-->
+                        <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                        <!--</p>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble siteKpi-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+            </div>
+            <!--always show-->
+            <div class="commonKpi section-box" section-id="12">
+                <div class="kpiStatus kpiCommon">
+                    <h2 class="kpiTitle">核心指标-用户维度指标</h2>
+                    <div class="headLine">
+                        <p class="orderOne" style="width: 23%;">核心名称 </p>
+                        <p class="orderTwo">昨日累计</p>
+                        <p class="orderThree">前日累计</p>
+                        <p class="orderFour" style="width: 19%;">同比</p>
+                        <p class="orderFive" style="width: 18%;">同比增幅</p>
+                    </div>
+                    <ul class="kpiList kpiList3">
+                        <!--<li class="anlysis">-->
+                        <!--<p class="orderOne">指标名称 </p>-->
+                        <!--<p class="orderTwo">月累计</p>-->
+                        <!--<p class="orderThree">昨日</p>-->
+                        <!--<p class="orderFour">同比</p>-->
+                        <!--<p class="orderFive">同比增幅-->
+                        <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                        <!--</p>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble userKpi-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+            </div>
+            <!--always show-->
+            <div class="commonKpi section-box" section-id="13">
+                <div class="kpiStatus kpiCommon">
+                    <h2 class="kpiTitle">核心指标-订单维度指标</h2>
+                    <div class="headLine">
+                        <p class="orderOne" style="width: 23%;">核心名称 </p>
+                        <p class="orderTwo">昨日累计</p>
+                        <p class="orderThree">前日累计</p>
+                        <p class="orderFour" style="width: 19%;">同比</p>
+                        <p class="orderFive" style="width: 18%;">同比增幅</p>
+                    </div>
+                    <ul class="kpiList kpiList4">
+                        <!--<li class="anlysis">-->
+                        <!--<p class="orderOne">指标名称 </p>-->
+                        <!--<p class="orderTwo">月累计</p>-->
+                        <!--<p class="orderThree">昨日</p>-->
+                        <!--<p class="orderFour">同比</p>-->
+                        <!--<p class="orderFive">同比增幅-->
+                        <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                        <!--</p>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble orderKpi-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+            </div>
+            <!--always show-->
+            <div class="commonKpi section-box" section-id="14">
+                <div class="kpiStatus kpiCommon">
+                    <h2 class="kpiTitle">核心指标-营收维度指标</h2>
+                    <div class="headLine">
+                        <p class="orderOne" style="width: 23%;">核心名称 </p>
+                        <p class="orderTwo">昨日累计</p>
+                        <p class="orderThree">前日累计</p>
+                        <p class="orderFour" style="width: 19%;">同比</p>
+                        <p class="orderFive" style="width: 18%;">同比增幅</p>
+                    </div>
+                    <ul class="kpiList kpiList5">
+                        <!--<li class="anlysis">-->
+                        <!--<p class="orderOne">指标名称 </p>-->
+                        <!--<p class="orderTwo">月累计</p>-->
+                        <!--<p class="orderThree">昨日</p>-->
+                        <!--<p class="orderFour">同比</p>-->
+                        <!--<p class="orderFive">同比增幅-->
+                        <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                        <!--</p>-->
+                        <!--</li>-->
+                    </ul>
+                    <div class="responsiblePerson-box">
+                        <p class="phoneBubble incomeKpi-phoneBubble"><a href=""></a></p>
+                        <p class="responsiblePerson"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../libs/echarts.min.js"></script>
+    <script src="../libs/china.js"></script>
+    <script src="../js/common/jsPublic.js?1"></script>
+    <script type="text/javascript" src='../js/kpis/kpis.js'></script>
+    <script src="https://img.shouqiev.com/h5/libs/common.js"></script>
+    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+</body>
+</html>

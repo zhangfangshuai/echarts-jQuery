@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>驾驶舱-运营</title>
+    <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <meta name="format-detection" content="telephone=yes">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <!--<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
+    <script src="//img.shouqiev.com/h5/libs/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/cssPublic.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/LArea.css">
+    <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/slideBar.css">
+    <link rel="stylesheet" type="text/css" href="../css/operation.css">
+    <script src="//h5.shouqiev.com/libs/jquery.min.js"></script>
+    <script src="../js/common/baseUrl.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/mobiscroll.datetime-2.5.1-zh.js"></script>
+    <script src="../libs/singleData.js"></script>
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/picker.js"></script>
+</head>
+<!--slideBar and slideBg start-->
+<div class="slideBarBg"></div>
+    <section class="slideBar clearfix">
+        <div class="nickName clearfix">
+            <div class="headIcon fl"></div>
+            <p class="nickName1 fl"></p>
+        </div>
+        <!--超出滚动-待定-->
+        <div class="slideCon">
+
+            <ul class="slideList">
+                <!--实时监控-->
+                <ul class="slideList">
+                    <!--实时监控-->
+                    <li class="list showWatching " data-menuId="2" data-value="charts.html">
+                        <span class="iconList"></span>
+                        <div class="type">实时监控</div>
+                    </li>
+                    <!--城市KPI考核-->
+                    <li class="list showKpi" data-menuId="3" data-value="kpis.html">
+                        <span class="iconList iconListKpi"></span>
+                        <div class="type">城市KPI考核</div>
+                    </li>
+                    <!--用户分析 car-user-->
+                    <li class="list showUser" data-menuId="4" data-value="car-user.html">
+                        <span class="iconList iconListUser"></span>
+                        <div class="type">用户分析</div>
+                    </li>
+                    <!--order-->
+                    <li class="list showOrders" data-menuId="5" data-value="orders.html">
+                        <span class="iconList iconListOrder"></span>
+                        <div class="type">订单分析</div>
+                    </li>
+                    <!--网点分析 site-->
+                    <li class="list showSite" data-menuId="6" data-value="site.html">
+                        <span class="iconList iconListSite"></span>
+                        <div class="type">网点分析</div>
+                    </li>
+                    <!--车辆分析 cars-->
+                    <li class="list showCars" data-menuId="7" data-value="cars.html">
+                        <span class="iconList iconListCars"></span>
+                        <div class="type">车辆分析</div>
+                    </li>
+                    <!--客服分析 新增 customer-service.html-->
+                    <li class="list showCustomer" data-menuId="8" data-value="customer-service.html">
+                        <span class="iconList iconListCustomer"></span>
+                        <div class="type">客服分析</div>
+                    </li>
+                    <!--运营分析==车资 car-fare-->
+                    <li class="list showFare active" data-menuId="9" data-value="operation.html">
+                        <span class="iconList iconListFare"></span>
+                        <div class="type">运营分析</div>
+                    </li>
+                    <!--营收分析 car-operation-->
+                    <li class="list showOperation" data-menuId="10" data-value="income.html">
+                        <span class="iconList iconListOperation"></span>
+                        <div class="type">营收分析</div>
+                    </li>
+            </ul>
+        </div>
+        <a href="../index.html" class="out">退出登陆</a>
+    </section>
+    <!--slideBar and slideBg end-->
+    <div class="box">
+        <!--header start -->
+        <header class="header clearfix">
+            <div class="slideBtn"></div>
+            <div class="logo"></div>
+            <div class="location">
+                <!--<div class="showCity">北京-->
+                <!--</div>-->
+                <div class="content-block showCity">
+                    <input id="demo3" type="text" readonly="" onfocus="this.blur();" />
+                    <input id="value3" type="hidden" />
+                </div>
+                <div class="showCityIcon"></div>
+            </div>
+        </header>
+        <!--header end-->
+
+        <!--保险/事故 accident-->
+        <section class="section-box" section-id="53">
+            <div class="wrap accident">
+                <div class="cont-title">保险/事故
+                    <div class="acdBubble"> TOP 10 </div>
+                </div>
+                <div class="carType-box">
+                    <p class="car-type accd-ct active" data-type='0'>全部</p>
+                    <p class="car-type accd-ct" data-type='1'>电车</p>
+                    <p class="car-type accd-ct" data-type='2'>燃油车</p>
+                </div>
+
+                <div class="headLine-four">
+                    <p class="itemOne">排名</p>
+                    <p class="itemTwo">车牌号</p>
+                    <p class="itemThree">订单出险率</p>
+                    <p class="itemFour">出险次数</p>
+                </div>
+                <ul class="itemVal acdVal"></ul>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble acd-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+        </section>
+
+        <!--违章概况 peccancy-->
+        <section class="section-box" section-id="55">
+            <div class="wrap peccancy">
+                <div class="cont-title">违章概况</div>
+                <div class="carType-box">
+                    <p class="car-type pec-ct active" data-type='0'>全部</p>
+                    <p class="car-type pec-ct" data-type='1'>电车</p>
+                    <p class="car-type pec-ct" data-type='2'>燃油车</p>
+                </div>
+                <div class="doubleDatePicker">
+                  开始<input type="text" id="appDateTime2" class="ddp-1" onfocus="this.blur();">
+                  结束<input type="text" id="appDateTime3" class="ddp-2" onfocus="this.blur();">
+                </div>
+
+                <div class="headLine">
+                  <p class="itemOne">日期</p>
+                  <p class="itemTwo">单均违章次数</p>
+                  <p class="itemThree">违章率</p>
+                  <p class="itemFour">未处理</p>
+                  <p class="itemFive">平均处理天数</p>
+                </div>
+                <ul class="itemVal pecVal"></ul>
+
+                <div class="pagenation">
+                    <div class="page-pre pec-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage pec-nowpage">1</span>/<span class="allpage pec-allpage">1</span>
+                    </div>
+                    <div class="page-next pec-nextpage"> > </div>
+                </div>
+
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble pec-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+        </section>
+
+        <!--车辆违章详情 peccancy detail-->
+        <section class="section-box" section-id="56">
+            <div class="wrap pecDetail">
+                <div class="cont-title">车辆违章详情</div>
+                <div class="carType-box">
+                    <p class="car-type pd-ct active" data-type='0'>全部</p>
+                    <p class="car-type pd-ct" data-type='1'>电车</p>
+                    <p class="car-type pd-ct" data-type='2'>燃油车</p>
+                </div>
+                <div class="singleDatePicker">
+                    <div class="preDateBtn preDateBtn1">前一天</div>
+                    <div class="showDate">
+                        <input type="text" id="appDateTime1" class="appDateTime" onfocus="this.blur();">
+                        <span class="showWeek1"></span>
+                    </div>
+                    <div class="nextDateBtn nextDateBtn1">后一天</div>
+                </div>
+
+                <div class="headLine">
+                    <p class="itemOne">车牌号</p>
+                    <p class="itemTwo">违章次数</p>
+                    <p class="itemThree">已处理</p>
+                    <p class="itemFour">未处理</p>
+                    <p class="itemFive">备注</p>
+                </div>
+                <ul class="itemVal pecDetailVal"></ul>
+
+                <div class="pagenation">
+                    <div class="page-pre pd-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage pd-nowpage">1</span>/<span class="allpage pd-allpage">1</span>
+                    </div>
+                    <div class="page-next pd-nextpage"> > </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble pd-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 推费概述 PushMoney -->
+        <section class="section-box" section-id="57">
+            <div class="wrap pushMoney">
+                <div class="cont-title">推费概况</div>
+                <div class="carType-box">
+                    <p class="car-type pm-ct active" data-type='0'>全部</p>
+                    <p class="car-type pm-ct" data-type='1'>电车</p>
+                    <p class="car-type pm-ct" data-type='2'>燃油车</p>
+                </div>
+                <div class="doubleDatePicker">
+                  开始<input type="text" id="appDateTime4" class="ddp-1" onfocus="this.blur();">
+                  结束<input type="text" id="appDateTime5" class="ddp-2" onfocus="this.blur();">
+                </div>
+
+                <div class="headLine">
+                    <p class="itemOne">日期</p>
+                    <p class="itemTwo">推费总额</p>
+                    <p class="itemThree">推费缴纳</p>
+                    <p class="itemFour">逾期未交</p>
+                    <p class="itemFive">缴纳比例</p>
+                </div>
+                <ul class="itemVal pmVal"></ul>
+
+                <div class="pagenation">
+                    <div class="page-pre pm-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage pm-nowpage">1</span>/<span class="allpage pm-allpage">1</span>
+                    </div>
+                    <div class="page-next pm-nextpage"> > </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble pm-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+  </div>
+  <script src="../libs/echarts.min.js"></script>
+  <script src="../js/common/jsPublic.js?1"></script>
+  <script src="../libs/china.js"></script>
+  <script type="text/javascript" src='../js/operation/operation.js'></script>
+  <script src="https://img.shouqiev.com/h5/libs/common.js"></script>
+  <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+</body>
+</html>

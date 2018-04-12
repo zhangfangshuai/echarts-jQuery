@@ -1,0 +1,54 @@
+/**
+ * Created with Atom.
+ * Author: zhangfs
+ * Date: 2018/03/25
+ * Time: 11:20
+ */
+
+.acdBubble {
+    position: absolute;
+    top: .3rem;
+    left: 5.8rem;
+    width: 1.35rem;
+    height: .5rem;
+    line-height: .5rem;
+    color: #ffffff;
+    font-size: .3rem;
+    background-color: #0DB95F;
+    border-radius: .1rem;
+}
+
+.acdBubble:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -.41rem;
+    width: 0px;
+    height: 0px;
+    border-left: solid .25rem transparent;
+    border-top: solid .35rem transparent;
+    border-bottom: solid .1rem transparent;
+    border-right: solid .3rem #0DB95F;
+}
+
+
+
+
+.accident .headLine-four .itemOne, .acdVal li p:nth-child(1) { width: 20%; text-align: center; }
+.accident .headLine-four .itemTwo, .acdVal li p:nth-child(2) { width: 29%; text-align: center; }
+.accident .headLine-four .itemThree, .acdVal li p:nth-child(3) { width: 28%; text-align: center; }
+.accident .headLine-four .itemFour, .acdVal li p:nth-child(4) { width: 23%; text-align: center; }
+
+.peccancy .headLine .itemOne { width: 16%; }
+.pecVal li p:nth-child(1) { width: 18%; }
+.peccancy .headLine .itemTwo { width: 25%; text-align: center;  }
+.pecVal li p:nth-child(2) { width: 23%; text-align: center;  }
+.peccancy .headLine .itemThree, .pecVal li p:nth-child(3) { width: 18%; text-align: center; }
+.peccancy .headLine .itemFour, .pecVal li p:nth-child(4) { width: 17%; text-align: center; }
+.peccancy .headLine .itemFive, .pecVal li p:nth-child(5) { width: 24%; text-align: center; }
+
+.pecDetail .headLine .itemOne, .pecDetailVal li p:nth-child(1) { width: 22%; }
+.pecDetail .headLine .itemTwo, .pecDetailVal li p:nth-child(2) { text-align: center; }
+.pecDetail .headLine .itemThree, .pecDetailVal li p:nth-child(3) { text-align: center; }
+.pecDetail .headLine .itemFour, .pecDetailVal li p:nth-child(4) { text-align: center; }
+.pecDetail .headLine .itemFive, .pecDetailVal li p:nth-child(5) { width: 18%; text-align: center; }

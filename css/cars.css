@@ -1,0 +1,685 @@
+.box {
+  width: 10rem;
+  padding-top: 1.0666666667rem; }
+  .box .header {
+    width: 10rem;
+    height: 1.0666666667rem;
+    background-image: linear-gradient(-180deg, #4C555E 0%, #252A30 80%);
+    box-shadow: 0 0.0533333333rem 0.1333333333rem 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999999; }
+    .box .header .slideBtn {
+      width: 0.5333333333rem;
+      height: 0.4266666667rem;
+      background: url("../images/icon_menu.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin-left: 0.2666666667rem;
+      margin-top: 0.32rem; }
+    .box .header .logo {
+      width: 1.3866666667rem;
+      height: 0.8533333333rem;
+      background: url("../images/logo_bar.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin: 0.1066666667rem 0 0 3.6266666667rem; }
+    .box .header .location {
+      width: 1.9rem;
+      height: 0.48rem;
+      margin: 0.2933333333rem 0 0 2rem;
+      display: flex; }
+      .box .header .location .showCity {
+        width: 1.4rem;
+        height: 0.48rem;
+        font-size: 0.3466666667rem;
+        color: #ABB7C1;
+        letter-spacing: 0; }
+      .box .header .location .showCityIcon {
+        width: 0.2666666667rem;
+        height: 0.3466666667rem;
+        margin: 0.0666666667rem 0 0 0.1066666667rem;
+        background: url("../images/icon_location.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+  .box .orders {
+    width: 10rem; }
+    .box .orders .orderCommon {
+      width: 9.3333333333rem;
+      background: #fff;
+      box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+      border-radius: 0.2133333333rem;
+      margin: 0.5333333333rem auto 0;
+      padding-bottom: 0.4rem; }
+      .box .orders .orderCommon .orderTitle {
+        text-align: center;
+        width: 100%;
+        height: 1.0133333333rem;
+        font-size: 0.3466666667rem;
+        color: #425C72;
+        letter-spacing: 0;
+        line-height: 1.0133333333rem;
+        font-weight: bold;
+        margin-bottom: 0.2666666667rem; }
+      .box .orders .orderCommon .headLine {
+        width: 9.0666666667rem;
+        height: 0.5333333333rem;
+        margin: 0 auto;
+        font-size: 0.3466666667rem;
+        color: #365873;
+        letter-spacing: 0;
+        border-bottom: 0.03rem solid #EAEFF3;
+        display: flex; }
+        .box .orders .orderCommon .headLine p {
+          width: 20%;
+          height: 0.5333333333rem;
+          line-height: 0.5333333333rem;
+          text-align: left; }
+      .box .orders .orderCommon .orderList {
+        width: 9.0666666667rem;
+        margin: 0 auto; }
+        .box .orders .orderCommon .orderList .anlysis {
+          width: 100%;
+          height: 0.5333333333rem;
+          line-height: 0.5333333333rem;
+          display: flex; }
+          .box .orders .orderCommon .orderList .anlysis p {
+            width: 20%;
+            text-align: left;
+            font-size: 0.2666666667rem;
+            color: #425C72;
+            letter-spacing: 0;
+            overflow-x: scroll; }
+          .box .orders .orderCommon .orderList .anlysis .orderUp {
+            width: 0.24rem;
+            height: 0.2666666667rem;
+            margin-right: 0.1333333333rem;
+            margin-top: 0.1333333333rem; }
+  .box .cars {
+    width: 10rem;
+    background: #F2F3F5;
+    padding-bottom: 1.3333333333rem; }
+    .box .cars .carCommon {
+      width: 9.4666666667rem;
+      height: 7.8933333333rem;
+      background: #FFFFFF;
+      box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+      border-radius: 0.2133333333rem;
+      margin: 0.5866666667rem auto 0;
+      position: relative; }
+      .box .cars .carCommon .leftBotom {
+        width: 0.32rem;
+        height: 0.32rem;
+        position: absolute;
+        left: -0.048rem;
+        bottom: -0.0746666667rem;
+        z-index: 10; }
+      .box .cars .carCommon .rightbottom {
+        width: 0.32rem;
+        height: 0.32rem;
+        position: absolute;
+        right: -0.048rem;
+        bottom: -0.0746666667rem;
+        z-index: 10;
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg); }
+      .box .cars .carCommon .date {
+        width: 100%;
+        height: 0.8rem;
+        margin: 0.2666666667rem auto 0;
+        position: relative;
+        text-align: center;
+        font-size: 0.3466666667rem;
+        color: #425C72;
+        letter-spacing: 0;
+        line-height: 0.8rem;
+        font-weight: bold; }
+        .box .cars .carCommon .date .first-s {
+          height: 100%;
+          width: 1.0666666667rem;
+          position: absolute;
+          right: 0.5333333333rem;
+          top: 0;
+          line-height: 0.8rem;
+          font-size: 0.2666666667rem;
+          color: #0DB95F; }
+          .box .cars .carCommon .date .first-s .trangle {
+            width: 0.16rem;
+            height: 0.08rem;
+            background: url("../images/Triangle 3.png");
+            -webkit-background-size: cover;
+            background-size: cover;
+            position: absolute;
+            right: -0.2666666667rem;
+            top: 50%;
+            margin-top: -0.0266666667rem; }
+          .box .cars .carCommon .date .first-s #first-s {
+            width: 100%;
+            height: 0.8rem;
+            line-height: 0.8rem;
+            text-align: right;
+            font-size: 0.2666666667rem;
+            color: #0DB95F; }
+      .box .cars .carCommon .carType {
+        width: 100%;
+        height: 0.5866666667rem;
+        display: -webkit-flex;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 0.2666666667rem !important;
+        position: relative;
+        font-size: 0.32rem;
+        color: #333;
+        line-height: 0.5866666667rem; }
+        .box .cars .carCommon .carType .carTypeCommon {
+          background: #F2F3F5;
+          border-radius: 0.1066666667rem;
+          width: 1.1733333333rem;
+          height: 0.5333333333rem;
+          font-size: 0.2933333333rem;
+          line-height: 0.5333333333rem;
+          color: #ABB7C1;
+          letter-spacing: 0;
+          text-align: center;
+          margin-right: 0.48rem; }
+        .box .cars .carCommon .carType .carTypeCommon:last-child {
+          margin-right: 0; }
+        .box .cars .carCommon .carType .carTypeCommon.active {
+          color: #0DB95F;
+          background: #DBF7E8; }
+        .box .cars .carCommon .carType .appDateTime {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 1.5666666667rem;
+          font-size: 0.32rem;
+          color: #0DB95F;
+          letter-spacing: 0;
+          height: 0.5866666667rem;
+          background: transparent; }
+        .box .cars .carCommon .carType .appDateTime1 {
+          width: 1.5666666667rem;
+          font-size: 0.32rem;
+          color: #0DB95F;
+          letter-spacing: 0;
+          height: 0.5866666667rem;
+          background: transparent; }
+      .box .cars .carCommon .choose {
+        width: 4.8rem;
+        height: 0.5866666667rem;
+        margin: 0 auto 0.2666666667rem; }
+        .box .cars .carCommon .choose .chooseCom {
+          width: 1.6rem;
+          height: 100%;
+          text-align: center;
+          line-height: 0.5866666667rem;
+          font-size: 0.2666666667rem;
+          color: #647888;
+          background: #F2F3F5; }
+        .box .cars .carCommon .choose .chooseCom.active {
+          color: #FFFFFF;
+          background: #09CA65; }
+        .box .cars .carCommon .choose .chooseCom:first-child {
+          border-radius: 2.6666666667rem 0 0 2.6666666667rem; }
+        .box .cars .carCommon .choose .chooseCom:last-child {
+          border-radius: 0 2.6666666667rem 2.6666666667rem 0; }
+      .box .cars .carCommon #dateCarChart1, .box .cars .carCommon #dateCarChart2, .box .cars .carCommon #dateCarChart3, .box .cars .carCommon #dateCarChart4 {
+        height: 4.9066666667rem;
+        width: 100%;
+        background: #ccc; }
+      .box .cars .carCommon .carDetail {
+        width: 100%; }
+        .box .cars .carCommon .carDetail .carDetailList {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          font-size: 0.2933333333rem;
+          color: #425C72;
+          letter-spacing: 0;
+          margin: 0.1066666667rem auto 0; }
+          .box .cars .carCommon .carDetail .carDetailList .carsListContent {
+            width: 3.2rem;
+            height: 0.4266666667rem;
+            line-height: 0.4266666667rem;
+            margin: 0 auto; }
+            .box .cars .carCommon .carDetail .carDetailList .carsListContent .carDatas {
+              color: #0DB95F; }
+  .box .formCommon {
+    width: 9.4666666667rem;
+    background: #fff;
+    box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+    border-radius: 0.2133333333rem;
+    margin: 0.16rem auto 0;
+    padding-bottom: 0.4rem;
+    position: relative; }
+    .box .formCommon .date {
+      width: 5.8666666667rem;
+      height: 0.8rem;
+      margin: 0.16rem auto;
+      background: #F2F3F5;
+      box-shadow: inset 0 0.0266666667rem 0.1066666667rem 0 #D5D9DD;
+      border-radius: 2.6666666667rem;
+      display: flex; }
+      .box .formCommon .date .showDate {
+        width: 2.4rem;
+        height: 0.8rem;
+        line-height: 0.8rem;
+        font-size: 0.32rem;
+        color: #0DB95F;
+        letter-spacing: 0;
+        margin-left: 0.6133333333rem; }
+        .box .formCommon .date .showDate .appDateTime {
+          width: 1.5666666667rem;
+          font-size: 0.32rem;
+          color: #0DB95F;
+          letter-spacing: 0;
+          height: 0.8rem;
+          background: transparent; }
+      .box .formCommon .date .preDateBtn {
+        height: 0.8rem;
+        line-height: 0.8rem;
+        font-size: 0.2666666667rem;
+        color: #647888;
+        letter-spacing: 0;
+        margin-left: 0.32rem; }
+      .box .formCommon .date .nextDateBtn {
+        height: 0.8rem;
+        line-height: 0.8rem;
+        font-size: 0.2666666667rem;
+        color: #647888;
+        letter-spacing: 0;
+        margin-left: 0.6133333333rem; }
+    .box .formCommon .leftTop {
+      width: 0.32rem;
+      height: 0.32rem;
+      position: absolute;
+      left: -0.048rem;
+      top: -0.0746666667rem;
+      z-index: 10; }
+    .box .formCommon .rightTop {
+      width: 0.32rem;
+      height: 0.32rem;
+      position: absolute;
+      right: -0.04rem;
+      top: -0.0586666667rem;
+      z-index: 10;
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(90deg); }
+    .box .formCommon .carType {
+      width: 100%;
+      height: 0.5866666667rem;
+      display: -webkit-flex;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0.1333333333rem !important;
+      position: relative;
+      font-size: 0.32rem;
+      color: #333;
+      line-height: 0.5866666667rem; }
+      .box .formCommon .carType .carTypeCommon {
+        background: #F2F3F5;
+        border-radius: 0.1066666667rem;
+        width: 1.1733333333rem;
+        height: 0.5333333333rem;
+        font-size: 0.2933333333rem;
+        line-height: 0.5333333333rem;
+        color: #ABB7C1;
+        letter-spacing: 0;
+        text-align: center;
+        margin-right: 0.48rem; }
+      .box .formCommon .carType .carTypeCommon:last-child {
+        margin-right: 0; }
+      .box .formCommon .carType .carTypeCommon.active {
+        color: #0DB95F;
+        background: #DBF7E8; }
+      .box .formCommon .carType .appDateTime {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 1.5666666667rem;
+        font-size: 0.32rem;
+        color: #0DB95F;
+        letter-spacing: 0;
+        height: 0.5866666667rem;
+        background: transparent; }
+      .box .formCommon .carType .appDateTime1 {
+        width: 1.5666666667rem;
+        font-size: 0.32rem;
+        color: #0DB95F;
+        letter-spacing: 0;
+        height: 0.5866666667rem;
+        background: transparent; }
+    .box .formCommon .orderTitle {
+      text-align: center;
+      width: 100%;
+      height: 1.0133333333rem;
+      font-size: 0.3466666667rem;
+      color: #425C72;
+      letter-spacing: 0;
+      line-height: 1.0133333333rem;
+      font-weight: bold;
+      margin-top: 0.2666666667rem;
+      position: relative; }
+      .box .formCommon .orderTitle .last {
+        height: 1.0133333333rem;
+        width: 1.0666666667rem;
+        position: absolute;
+        right: 0.5333333333rem;
+        top: 0;
+        line-height: 1.0133333333rem;
+        font-size: 0.2666666667rem;
+        color: #0DB95F; }
+        .box .formCommon .orderTitle .last .trangle {
+          width: 0.16rem;
+          height: 0.08rem;
+          background: url("../images/Triangle 3.png");
+          -webkit-background-size: cover;
+          background-size: cover;
+          position: absolute;
+          right: -0.2666666667rem;
+          top: 46%; }
+        .box .formCommon .orderTitle .last #last, .box .formCommon .orderTitle .last #finalone {
+          width: 100%;
+          height: 1.0133333333rem;
+          line-height: 1.0133333333rem;
+          text-align: right;
+          font-size: 0.2666666667rem;
+          color: #0DB95F; }
+    .box .formCommon .choose {
+      width: 4.8rem;
+      height: 0.5866666667rem;
+      margin: 0 auto 0.2666666667rem; }
+      .box .formCommon .choose .chooseCom {
+        width: 1.6rem;
+        height: 100%;
+        text-align: center;
+        line-height: 0.5866666667rem;
+        font-size: 0.2666666667rem;
+        color: #647888;
+        background: #F2F3F5; }
+      .box .formCommon .choose .chooseCom.active {
+        color: #FFFFFF;
+        background: #09CA65; }
+      .box .formCommon .choose .chooseCom:first-child {
+        border-radius: 2.6666666667rem 0 0 2.6666666667rem; }
+      .box .formCommon .choose .chooseCom:last-child {
+        border-radius: 0 2.6666666667rem 2.6666666667rem 0; }
+    .box .formCommon .container {
+      width: 9.2rem;
+      margin: 0 auto;
+      overflow-x: scroll; }
+      .box .formCommon .container .scroller {
+        width: 15.8rem; }
+        .box .formCommon .container .scroller .headLine {
+          height: 0.5333333333rem;
+          width: 15.6rem;
+          margin: 0 auto;
+          font-size: 0.3466666667rem;
+          color: #365873;
+          letter-spacing: 0;
+          border-bottom: 0.03rem solid #EAEFF3;
+          display: flex; }
+          .box .formCommon .container .scroller .headLine p {
+            width: 14.28%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            text-align: center; }
+        .box .formCommon .container .scroller .orderList {
+          width: 15.6rem;
+          margin: 0 auto; }
+          .box .formCommon .container .scroller .orderList .anlysis {
+            width: 100%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            display: flex; }
+            .box .formCommon .container .scroller .orderList .anlysis p {
+              width: 14.28%;
+              text-align: center;
+              font-size: 0.2666666667rem;
+              color: #425C72;
+              letter-spacing: 0;
+              overflow-x: scroll; }
+            .box .formCommon .container .scroller .orderList .anlysis .orderUp {
+              width: 0.24rem;
+              height: 0.2666666667rem;
+              margin-right: 0.1333333333rem;
+              margin-top: 0.1333333333rem; }
+      .box .formCommon .container .scrolleroff {
+        width: 9.2rem; }
+        .box .formCommon .container .scrolleroff .headLine {
+          height: 0.5333333333rem;
+          width: 9.18rem;
+          margin: 0 auto;
+          font-size: 0.3466666667rem;
+          color: #365873;
+          letter-spacing: 0;
+          border-bottom: 0.03rem solid #EAEFF3;
+          display: flex; }
+          .box .formCommon .container .scrolleroff .headLine p {
+            width: 33.333%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            text-align: center; }
+        .box .formCommon .container .scrolleroff .orderList {
+          width: 9.18rem;
+          margin: 0 auto; }
+          .box .formCommon .container .scrolleroff .orderList .anlysis {
+            width: 100%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            display: flex; }
+            .box .formCommon .container .scrolleroff .orderList .anlysis p {
+              width: 33.3333%;
+              text-align: center;
+              font-size: 0.2666666667rem;
+              color: #425C72;
+              letter-spacing: 0;
+              overflow-x: scroll; }
+            .box .formCommon .container .scrolleroff .orderList .anlysis .orderUp {
+              width: 0.24rem;
+              height: 0.2666666667rem;
+              margin-right: 0.1333333333rem;
+              margin-top: 0.1333333333rem; }
+      .box .formCommon .container .scrollerCar {
+        width: 28rem; }
+        .box .formCommon .container .scrollerCar .headLine {
+          height: 0.5333333333rem;
+          width: 27.8rem;
+          margin: 0 auto;
+          font-size: 0.3466666667rem;
+          color: #365873;
+          letter-spacing: 0;
+          border-bottom: 0.03rem solid #EAEFF3;
+          display: flex; }
+          .box .formCommon .container .scrollerCar .headLine p {
+            width: 9%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem; }
+        .box .formCommon .container .scrollerCar .orderList {
+          width: 27.8rem;
+          margin: 0 auto; }
+          .box .formCommon .container .scrollerCar .orderList .anlysis {
+            width: 100%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            display: flex; }
+            .box .formCommon .container .scrollerCar .orderList .anlysis p {
+              width: 9%;
+              font-size: 0.2666666667rem;
+              color: #425C72;
+              letter-spacing: 0;
+              overflow-x: scroll; }
+            .box .formCommon .container .scrollerCar .orderList .anlysis .orderUp {
+              width: 0.24rem;
+              height: 0.2666666667rem;
+              margin-right: 0.1333333333rem;
+              margin-top: 0.1333333333rem; }
+      .box .formCommon .container .scrollerOrder {
+        width: 18rem; }
+        .box .formCommon .container .scrollerOrder .headLine {
+          height: 0.5333333333rem;
+          width: 17.8rem;
+          margin: 0 auto;
+          font-size: 0.3466666667rem;
+          color: #365873;
+          letter-spacing: 0;
+          border-bottom: 0.03rem solid #EAEFF3;
+          display: flex; }
+          .box .formCommon .container .scrollerOrder .headLine p {
+            width: 10%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem; }
+        .box .formCommon .container .scrollerOrder .orderList {
+          width: 17.8rem;
+          margin: 0 auto; }
+          .box .formCommon .container .scrollerOrder .orderList .anlysis {
+            width: 100%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            display: flex; }
+            .box .formCommon .container .scrollerOrder .orderList .anlysis p {
+              width: 10%;
+              font-size: 0.2666666667rem;
+              color: #425C72;
+              letter-spacing: 0;
+              overflow-x: scroll; }
+            .box .formCommon .container .scrollerOrder .orderList .anlysis .orderUp {
+              width: 0.24rem;
+              height: 0.2666666667rem;
+              margin-right: 0.1333333333rem;
+              margin-top: 0.1333333333rem; }
+      .box .formCommon .container .scrollerage {
+        width: 16rem; }
+        .box .formCommon .container .scrollerage .headLine {
+          height: 0.5333333333rem;
+          width: 15.8rem;
+          margin: 0 auto;
+          font-size: 0.3466666667rem;
+          color: #365873;
+          letter-spacing: 0;
+          border-bottom: 0.03rem solid #EAEFF3;
+          display: flex; }
+          .box .formCommon .container .scrollerage .headLine p {
+            width: 16.7%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem; }
+        .box .formCommon .container .scrollerage .orderList {
+          width: 15.8rem;
+          margin: 0 auto; }
+          .box .formCommon .container .scrollerage .orderList .anlysis {
+            width: 100%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            display: -webkit-flex;
+            display: flex; }
+            .box .formCommon .container .scrollerage .orderList .anlysis p {
+              width: 16.7%;
+              font-size: 0.2666666667rem;
+              color: #425C72;
+              letter-spacing: 0;
+              overflow-x: scroll; }
+            .box .formCommon .container .scrollerage .orderList .anlysis .orderUp {
+              width: 0.24rem;
+              height: 0.2666666667rem;
+              margin-right: 0.1333333333rem;
+              margin-top: 0.1333333333rem; }
+      .box .formCommon .container .scrollerSite {
+        width: 14rem; }
+        .box .formCommon .container .scrollerSite .headLine {
+          height: 0.5333333333rem;
+          width: 13.8rem;
+          margin: 0 auto;
+          font-size: 0.3466666667rem;
+          color: #365873;
+          letter-spacing: 0;
+          border-bottom: 0.03rem solid #EAEFF3;
+          display: flex; }
+          .box .formCommon .container .scrollerSite .headLine p {
+            width: 16.7%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem; }
+        .box .formCommon .container .scrollerSite .orderList {
+          width: 13.8rem;
+          margin: 0 auto; }
+          .box .formCommon .container .scrollerSite .orderList .anlysis {
+            width: 100%;
+            height: 0.5333333333rem;
+            line-height: 0.5333333333rem;
+            display: -webkit-flex;
+            display: flex; }
+            .box .formCommon .container .scrollerSite .orderList .anlysis p {
+              width: 16.7%;
+              font-size: 0.2666666667rem;
+              color: #425C72;
+              letter-spacing: 0;
+              overflow-x: scroll; }
+            .box .formCommon .container .scrollerSite .orderList .anlysis .orderUp {
+              width: 0.24rem;
+              height: 0.2666666667rem;
+              margin-right: 0.1333333333rem;
+              margin-top: 0.1333333333rem; }
+    .box .formCommon .page {
+      width: 2.6666666667rem;
+      height: 0.5333333333rem;
+      margin: 0.2666666667rem auto 0;
+      display: flex;
+      color: #425C72;
+      font-size: 0.2666666667rem; }
+      .box .formCommon .page .pre {
+        height: 100%;
+        width: 0.5333333333rem;
+        line-height: 0.5333333333rem;
+        text-align: center; }
+      .box .formCommon .page .next {
+        height: 100%;
+        width: 0.5333333333rem;
+        line-height: 0.5333333333rem;
+        text-align: center; }
+      .box .formCommon .page .page-mid {
+        width: 1.6rem;
+        text-align: center;
+        line-height: 0.5333333333rem;
+        height: 0.5333333333rem; }
+
+.timeBorder {
+  width: 5.8666666667rem;
+  height: 0.8rem;
+  margin: 0 auto 0.16rem !important;
+  background: #F2F3F5;
+  box-shadow: inset 0 0.0266666667rem 0.1066666667rem 0 #D5D9DD;
+  border-radius: 2.6666666667rem;
+  display: flex;
+  line-height: 0.8rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: 0.4rem;
+  font-size: 0.32rem;
+  color: #647888; }
+  .timeBorder .appDateTime {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 1.5666666667rem;
+    font-size: 0.32rem;
+    color: #0DB95F;
+    letter-spacing: 0;
+    height: 0.8rem;
+    background: transparent; }
+  .timeBorder .appDateTime1 {
+    width: 1.5666666667rem;
+    font-size: 0.32rem;
+    color: #0DB95F;
+    letter-spacing: 0;
+    height: 0.8rem;
+    background: transparent; }
+
+/*# sourceMappingURL=cars.css.map */

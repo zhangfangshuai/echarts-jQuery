@@ -1,0 +1,219 @@
+@function pxToRem($px) {
+  @return $px / 37.5px * 1rem
+}
+//.container::-webkit-scrollbar{
+//  width:0;
+//}
+.slideBarBg{
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background: rgba(0,0,20,0.40);
+  display: none;
+  z-index:999999991;
+}
+.slideBar{
+  width:pxToRem(170px);
+  position: fixed;
+  left:-4.9333333333rem;
+  top:0;
+  //left:0;
+  background-image: linear-gradient(-224deg, #3F4955 0%, #171C22 72%);
+  box-shadow: pxToRem(10px) 0 pxToRem(10px) 0 rgba(37,42,48,0.70);
+  z-index:999999992;
+  .nickName{
+    width:100%;
+    height:pxToRem(50px);
+    margin-top:pxToRem(50px);
+
+    .headIcon{
+      width:pxToRem(50px);
+      height:pxToRem(50px);
+      background: url("../images/icon_user_default.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      //margin:pxToRem(50px) auto 0;
+      margin-left:pxToRem(30px);
+    }
+    .nickName1{
+      height:pxToRem(50px);
+      line-height:pxToRem(50px);
+      font-size: pxToRem(16px);
+      color: #768998;
+      letter-spacing: pxToRem(1px);
+      margin-left:pxToRem(12px);
+    }
+  }
+  .out{
+    font-size: pxToRem(13px);
+    color: #768998;
+    letter-spacing: 0;
+    position: absolute;
+    left:0;
+    bottom:pxToRem(10px);
+    display: block;
+    width:100%;
+    height:pxToRem(18px);
+    line-height: pxToRem(18px);
+    text-align: center;
+  }
+  .slideList{
+    width:100%;
+    margin-top:pxToRem(30px);
+    .list{
+      width:100%;
+      height:pxToRem(20px);
+      margin-top:pxToRem(20px);
+      display: flex;
+      .iconList{
+        margin-top:pxToRem(3px);
+        width:pxToRem(14px);
+        height:pxToRem(14px);
+        background: url("../images/icon_biview.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+        margin-left:pxToRem(16px);
+      }
+      .type{
+        font-size: pxToRem(14px);
+        color: #ABB7C1;
+        letter-spacing: pxToRem(1px);
+        margin-left:pxToRem(10px);
+      }
+      .iconListKpi{
+        background: url("../images/icon_citykpi.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListOrder{
+        background: url("../images/icon_list.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListCars{
+        background: url("../images/cheliang.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListOperation{
+        background: url("../images/icon_mapview.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListFare{
+        background: url("../images/yunwei.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListSite{
+        background: url("../images/wangdian.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListUser{
+        background: url("../images/yonghu.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListCustomer{
+        background: url("../images/icon_service_default.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+    }
+    .list.active{
+      .type{
+        color: #09CA65;
+      }
+      .iconList{
+        background:url("../images/icon_biview_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListKpi{
+        background: url("../images/icon_citykpi_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListOrder{
+        background: url("../images/icon_list_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListCars{
+        background: url("../images/cheliang_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListOperation{
+        background: url("../images/icon_mapview_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListFare{
+        background: url("../images/yunwei_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListSite{
+        background: url("../images/wangdian_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListUser{
+        background: url("../images/yonghu_chose.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+      .iconListCustomer{
+        background: url("../images/icon_service.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+      }
+    }
+
+  }
+}
+.gearArea{
+  //font-size:pxToRem(10px);
+  font-size:1em;
+}
+#demo3{
+  color: #ABB7C1;
+  background: transparent;
+  text-align: right;
+  width:1.4rem;
+  line-height: pxToRem(18px);
+  height:pxToRem(18px);
+}
+.dwv{
+  padding: 20px 0;
+  font-size: 0.45rem;
+}
+.dwl{
+  line-height: 80px;
+  height: 80px;
+  top: -80px;
+  font-size: 0.45rem;
+}
+.dwc{
+  padding-top: 80px;
+}
+.dwsc .dww{
+  width: 2.5rem;
+}
+.dw-li{
+  font-size: 0.5rem;
+}
+.dwbg .dwb{
+  height: 80px;
+  line-height: 80px;
+  font-size: 0.4rem;
+}
+div.dw-persp div.dw.dwbg{
+  top: auto !important;
+  bottom: 0.5rem;
+  position: fixed;
+}

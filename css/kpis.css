@@ -1,0 +1,346 @@
+.box {
+  width: 10rem;
+  padding-top: 1.0666666667rem; }
+  .box .header {
+    width: 10rem;
+    height: 1.0666666667rem;
+    background-image: linear-gradient(-180deg, #4C555E 0%, #252A30 80%);
+    box-shadow: 0 0.0533333333rem 0.1333333333rem 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999999; }
+    .box .header .slideBtn {
+      width: 0.5333333333rem;
+      height: 0.4266666667rem;
+      background: url("../images/icon_menu.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin-left: 0.2666666667rem;
+      margin-top: 0.32rem; }
+    .box .header .logo {
+      width: 1.3866666667rem;
+      height: 0.8533333333rem;
+      background: url("../images/logo_bar.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin: 0.1066666667rem 0 0 3.6266666667rem; }
+    .box .header .location {
+      width: 1.9rem;
+      height: 0.48rem;
+      margin: 0.2933333333rem 0 0 2rem;
+      display: flex; }
+      .box .header .location .showCity {
+        width: 1.4rem;
+        height: 0.48rem;
+        font-size: 0.3466666667rem;
+        color: #ABB7C1;
+        letter-spacing: 0; }
+      .box .header .location .showCityIcon {
+        width: 0.2666666667rem;
+        height: 0.3466666667rem;
+        margin: 0.0666666667rem 0 0 0.1066666667rem;
+        background: url("../images/icon_location.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+  .box .kpis {
+    width: 10rem;
+    padding-bottom: 0.8rem; }
+    .box .kpis #nationMap {
+      width: 9.3333333333rem;
+      height: 6.7733333333rem;
+      margin: 0.2666666667rem auto 0; }
+    .box .kpis .nationcityShow {
+      background: #FFFFFF;
+      box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+      border-radius: 0.2133333333rem;
+      width: 9.3333333333rem;
+      height: 5.6rem;
+      margin: 0.2666666667rem auto 0; }
+      .box .kpis .nationcityShow .nationcityKpiTitle {
+        width: 100%;
+        height: 0.5333333333rem;
+        margin-top: 0.32rem;
+        line-height: 0.5333333333rem;
+        font-size: 0.3733333333rem;
+        color: #425C72;
+        letter-spacing: 0;
+        position: relative; }
+        .box .kpis .nationcityShow .nationcityKpiTitle .nationcityKpiTitleLeft {
+          width: 100%;
+          text-align: center; }
+        .box .kpis .nationcityShow .nationcityKpiTitle .nationcityKpiTitleRight {
+          font-size: 0.2666666667rem;
+          color: #425C72;
+          letter-spacing: 0;
+          position: absolute;
+          top: 0;
+          right: 0.4rem; }
+      .box .kpis .nationcityShow .nationcityKpiBottom {
+        width: 100%;
+        height: 2.6666666667rem;
+        margin-top: 0.3733333333rem; }
+        .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon {
+          width: 33.33%;
+          height: 1.3333333333rem;
+          float: left; }
+          .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon p {
+            font-size: 0.2666666667rem;
+            color: #647888;
+            letter-spacing: 0;
+            text-align: center;
+            margin-bottom: 0.1066666667rem; }
+          .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon .nationOne, .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon .nationTwo, .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon .nationThree, .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon .nationFour, .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon .nationFive, .box .kpis .nationcityShow .nationcityKpiBottom .nationcityKpiCommon .nationSix {
+            font-size: 0.3733333333rem;
+            color: #0DB95F;
+            letter-spacing: 0;
+            font-weight: bold;
+            margin-bottom: 0.1066666667rem; }
+        .box .kpis .nationcityShow .nationcityKpiBottom .goToCity {
+          background-image: linear-gradient(-180deg, #14CA77 28%, #0DB95F 85%);
+          box-shadow: 0 0.0533333333rem 0.2133333333rem 0 rgba(13, 185, 95, 0.5);
+          border-radius: 0.9333333333rem;
+          width: 3.7333333333rem;
+          height: 0.96rem;
+          margin: 3.0933333333rem auto 0;
+          line-height: 0.96rem;
+          text-align: center;
+          font-size: 0.3733333333rem;
+          color: #FFFFFF;
+          letter-spacing: 0.0466666667rem; }
+    .box .kpis .kpiCommon {
+      width: 9.3333333333rem;
+      background: #fff;
+      box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+      border-radius: 0.2133333333rem;
+      margin: 0.5333333333rem auto 0;
+      padding-bottom: 0.4rem; }
+      .box .kpis .kpiCommon .kpiTitle {
+        text-align: center;
+        width: 100%;
+        height: 1.0133333333rem;
+        font-size: 0.3466666667rem;
+        color: #425C72;
+        letter-spacing: 0;
+        line-height: 1.0133333333rem;
+        font-weight: bold;
+        margin-bottom: 0.2666666667rem; }
+      .box .kpis .kpiCommon .headLine {
+        width: 9.0666666667rem;
+        height: 0.5333333333rem;
+        margin: 0 auto;
+        font-size: 0.3466666667rem;
+        color: #365873;
+        letter-spacing: 0;
+        border-bottom: 0.03rem solid #EAEFF3;
+        display: flex; }
+        .box .kpis .kpiCommon .headLine p {
+          width: 20%;
+          height: 0.5333333333rem;
+          line-height: 0.5333333333rem;
+          text-align: left; }
+      .box .kpis .kpiCommon .kpiList {
+        width: 9.0666666667rem;
+        margin: 0 auto; }
+        .box .kpis .kpiCommon .kpiList .anlysis {
+          width: 100%;
+          height: 0.5333333333rem;
+          line-height: 0.5333333333rem;
+          display: flex; }
+          .box .kpis .kpiCommon .kpiList .anlysis p {
+            width: 20%;
+            text-align: left;
+            font-size: 0.2666666667rem;
+            color: #425C72;
+            letter-spacing: 0;
+            overflow-x: scroll; }
+          .box .kpis .kpiCommon .kpiList .anlysis .orderUp {
+            width: 0.24rem;
+            height: 0.2666666667rem;
+            margin-right: 0.1333333333rem;
+            margin-top: 0.1333333333rem; }
+    .box .kpis .nationKpi {
+      width: 10rem; }
+      .box .kpis .nationKpi .nationKpiDetail {
+        width: 10rem; }
+        .box .kpis .nationKpi .nationKpiDetail .nationCommon {
+          width: 9.3333333333rem;
+          background: #fff;
+          box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+          border-radius: 0.2133333333rem;
+          margin: 0.5333333333rem auto 0;
+          padding-bottom: 0.4rem; }
+          .box .kpis .nationKpi .nationKpiDetail .nationCommon .nationTitle {
+            text-align: center;
+            width: 100%;
+            height: 1.0133333333rem;
+            font-size: 0.3466666667rem;
+            color: #425C72;
+            letter-spacing: 0;
+            line-height: 1.0133333333rem;
+            font-weight: bold;
+            margin-bottom: 0.2666666667rem; }
+          .box .kpis .nationKpi .nationKpiDetail .nationCommon .headLine {
+            width: 9.0666666667rem;
+            height: 0.5333333333rem;
+            margin: 0 auto;
+            font-size: 0.3466666667rem;
+            color: #365873;
+            letter-spacing: 0;
+            border-bottom: 0.03rem solid #EAEFF3;
+            display: flex; }
+            .box .kpis .nationKpi .nationKpiDetail .nationCommon .headLine p {
+              width: 20%;
+              height: 0.5333333333rem;
+              line-height: 0.5333333333rem;
+              text-align: left; }
+          .box .kpis .nationKpi .nationKpiDetail .nationCommon .nationList {
+            width: 9.0666666667rem;
+            margin: 0 auto; }
+            .box .kpis .nationKpi .nationKpiDetail .nationCommon .nationList .anlysis {
+              width: 100%;
+              height: 0.5333333333rem;
+              line-height: 0.5333333333rem;
+              display: flex; }
+              .box .kpis .nationKpi .nationKpiDetail .nationCommon .nationList .anlysis p {
+                width: 20%;
+                text-align: left;
+                font-size: 0.2666666667rem;
+                color: #425C72;
+                letter-spacing: 0; }
+              .box .kpis .nationKpi .nationKpiDetail .nationCommon .nationList .anlysis .orderUp {
+                width: 0.24rem;
+                height: 0.2666666667rem;
+                margin-right: 0.1333333333rem;
+                margin-top: 0.1333333333rem; }
+    .box .kpis .cityKpi {
+      width: 100%; }
+      .box .kpis .cityKpi .cityMap {
+        width: 9.3333333333rem;
+        height: 6.7733333333rem;
+        margin: 0.2666666667rem auto 0;
+        position: relative; }
+      .box .kpis .cityKpi .cityMapCover {
+        width: 10rem;
+        height: 7.3066666667rem;
+        position: absolute;
+        left: 0;
+        top: 1rem;
+        z-index: 999; }
+      .box .kpis .cityKpi .cityShow {
+        background: #FFFFFF;
+        box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+        border-radius: 0.2133333333rem;
+        width: 9.3333333333rem;
+        height: 2.6666666667rem;
+        margin: 0.2666666667rem auto 0; }
+        .box .kpis .cityKpi .cityShow .cityKpiTitle {
+          width: 100%;
+          height: 0.5333333333rem;
+          margin-top: 0.32rem;
+          line-height: 0.5333333333rem;
+          font-size: 0.3733333333rem;
+          color: #425C72;
+          letter-spacing: 0;
+          position: relative; }
+          .box .kpis .cityKpi .cityShow .cityKpiTitle .cityKpiTitleLeft {
+            width: 100%;
+            text-align: center; }
+          .box .kpis .cityKpi .cityShow .cityKpiTitle .cityKpiTitleRight {
+            font-size: 0.2666666667rem;
+            color: #425C72;
+            letter-spacing: 0;
+            position: absolute;
+            top: 0;
+            right: 0.4rem; }
+        .box .kpis .cityKpi .cityShow .cityKpiBottom {
+          width: 100%;
+          height: 1.0666666667rem;
+          margin-top: 0.3733333333rem;
+          display: flex; }
+          .box .kpis .cityKpi .cityShow .cityKpiBottom .cityKpiCommon {
+            width: 33.33%;
+            height: 100%; }
+            .box .kpis .cityKpi .cityShow .cityKpiBottom .cityKpiCommon p {
+              font-size: 0.2666666667rem;
+              color: #647888;
+              letter-spacing: 0;
+              text-align: center;
+              margin-bottom: 0.1066666667rem; }
+            .box .kpis .cityKpi .cityShow .cityKpiBottom .cityKpiCommon .amount, .box .kpis .cityKpi .cityShow .cityKpiBottom .cityKpiCommon .scale, .box .kpis .cityKpi .cityShow .cityKpiBottom .cityKpiCommon .number {
+              font-size: 0.3733333333rem;
+              color: #0DB95F;
+              letter-spacing: 0;
+              margin-bottom: 0.2666666667rem;
+              font-weight: bold; }
+      .box .kpis .cityKpi .monthKpi {
+        background: #FFFFFF;
+        box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+        border-radius: 0.2133333333rem;
+        width: 9.3333333333rem;
+        height: 5.3333333333rem;
+        margin: 0.2666666667rem auto 0; }
+        .box .kpis .cityKpi .monthKpi .monthKpiTile {
+          width: 100%;
+          height: 0.5333333333rem;
+          margin-top: 0.32rem;
+          line-height: 0.5333333333rem;
+          font-size: 0.3733333333rem;
+          color: #425C72;
+          letter-spacing: 0;
+          position: relative; }
+          .box .kpis .cityKpi .monthKpi .monthKpiTile .monthKpiTileLeft {
+            width: 100%;
+            text-align: center; }
+          .box .kpis .cityKpi .monthKpi .monthKpiTile .monthKpiTileRight {
+            font-size: 0.2666666667rem;
+            color: #425C72;
+            letter-spacing: 0;
+            position: absolute;
+            top: 0;
+            right: 0.4rem; }
+        .box .kpis .cityKpi .monthKpi .monthKpiContainer {
+          width: 100%;
+          height: 3.7866666667rem;
+          overflow-y: scroll;
+          margin-top: 0.5333333333rem; }
+          .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent {
+            width: 100%;
+            height: auto; }
+            .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon {
+              width: 33.3%;
+              height: 3.7866666667rem;
+              float: left;
+              position: relative;
+              margin-bottom: 0.2666666667rem; }
+              .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .chartsCommon {
+                width: 2.4rem;
+                height: 1.3866666667rem;
+                margin: 0 auto; }
+              .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .chartsCommonCover {
+                width: 100%;
+                height: 1.3866666667rem;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: transparent;
+                z-index: 999; }
+              .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .monthKpiContentBottom {
+                width: 100%;
+                height: auto; }
+                .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .monthKpiContentBottom .monthKpiOne, .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .monthKpiContentBottom .monthKpiThree {
+                  width: 100%;
+                  text-align: center;
+                  font-size: 0.2933333333rem;
+                  color: #0DB95F;
+                  letter-spacing: 0;
+                  margin-top: 0.16rem; }
+                .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .monthKpiContentBottom .monthKpiTwo, .box .kpis .cityKpi .monthKpi .monthKpiContainer .monthKpiContent .monthKpiContentCommon .monthKpiContentBottom .monthKpiFour {
+                  width: 100%;
+                  text-align: center;
+                  font-size: 0.2666666667rem;
+                  color: #647888;
+                  letter-spacing: 0; }
+
+/*# sourceMappingURL=kpis.css.map */

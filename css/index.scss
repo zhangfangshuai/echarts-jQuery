@@ -1,0 +1,103 @@
+@function pxToRem($px) {
+  @return $px / 37.5px * 1rem
+}
+::-webkit-input-placeholder{
+  color: #4CD78F;}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */  color:    #4CD78F;}
+::-moz-placeholder { /* Mozilla Firefox 19+ */  color:    #4CD78F;}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */  color:    #4CD78F;}
+input{
+  color: #696969;
+  width: 6rem;
+}
+body,html{
+  background: #fff;
+}
+.box{
+  width:10rem;
+  background: #fff;
+  .login{
+    width:10rem;
+    height:pxToRem(345px);
+    position: absolute;
+    left:0;
+    top:50%;
+    margin-top:pxToRem(-172.5px);
+    .logo{
+      width:pxToRem(121px);
+      height:pxToRem(75px);
+      background: url("../images/logo_login.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin:0 auto;
+    }
+    .user{
+      width:pxToRem(240px);
+      height:pxToRem(40px);
+      border-bottom:0.03rem solid #C6EFD9;
+      margin:pxToRem(50px) auto 0;
+      .userIcon{
+        display: inline-block;
+        width:pxToRem(13px);
+        height:pxToRem(18px);
+        background: url("../images/icon_user.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+        margin-left:pxToRem(10px);
+        margin-top:pxToRem(20px);
+      }
+      .userName{
+        font-size: pxToRem(14px);
+        color: #4CD78F;
+        letter-spacing: pxToRem(1.56px);
+        vertical-align: super;
+        margin-left:0.33333rem;
+        width:pxToRem(195px);
+        //height:pxToRem(15px);
+        height:100%;
+        background: transparent;
+        caret-color:#4CD78F;
+      }
+    }
+    .words{
+      width:pxToRem(240px);
+      height:pxToRem(40px);
+      border-bottom:0.03rem solid #C6EFD9;
+      margin:pxToRem(12px) auto 0;
+      .wordsIcon{
+        display: inline-block;
+        width:pxToRem(13px);
+        height:pxToRem(18px);
+        background: url("../images/icon_password.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+        margin-left:pxToRem(10px);
+        margin-top:pxToRem(20px);
+      }
+      .wordsName{
+        font-size: pxToRem(14px);
+        color: #4CD78F;
+        letter-spacing: pxToRem(1.56px);
+        vertical-align: super;
+        margin-left:0.33333rem;
+        width:pxToRem(195px);
+        background: transparent;
+        height:100%;
+        caret-color:#4CD78F;
+      }
+    }
+    .loginBtn{
+      background-image: linear-gradient(-180deg, #14CA77 28%, #0DB95F 85%);
+      box-shadow: 0 pxToRem(6px) pxToRem(13px) 0 rgba(13,185,95,0.50);
+      border-radius: pxToRem(35px);
+      width:pxToRem(165px);
+      height:pxToRem(45px);
+      margin:pxToRem(60px) auto 0;
+      font-size: pxToRem(16px);
+      color: #FFFFFF;
+      letter-spacing: pxToRem(2px);
+      text-align: center;
+      line-height:pxToRem(45px);
+    }
+  }
+}

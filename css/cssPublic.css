@@ -1,0 +1,492 @@
+/**
+ * Created with Atom.
+ * Author: zhangfs
+ * Date: 2018/03/22
+ * Time: 10:20
+ */
+
+/* public module style - start */
+.section-box {
+    width: 10rem;
+    background: #F2F3F5;
+}
+
+.box {
+    width: 10rem;
+    padding-top: 1.0666666667rem;
+}
+
+.wrap {
+    width: 9.4666666667rem;
+    /*height: 7.0333333333rem;*/
+    height: auto;
+    background: #FFFFFF;
+    box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
+    border-radius: 0.2133333333rem;
+    margin: 0.5866666667rem auto 0;
+    position: relative;
+}
+
+.cont-title {
+    width: 100%;
+    height: 0.8rem;
+    margin: 0.2666666667rem auto 0;
+    padding-top: .2333333333rem;
+    position: relative;
+    text-align: center;
+    font-size: 0.3466666667rem;
+    color: #425C72;
+    letter-spacing: 0;
+    line-height: 0.8rem;
+    font-weight: bold;
+}
+/* public module style - end */
+
+/* nav style - start */
+.header {
+    width: 10rem;
+    height: 1.0666666667rem;
+    background-image: linear-gradient(-180deg, #4C555E 0%, #252A30 80%);
+    box-shadow: 0 0.0533333333rem 0.1333333333rem 0 rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 99999999;
+}
+
+.header .slideBtn {
+    width: 0.5333333333rem;
+    height: 0.4266666667rem;
+    background: url(../images/icon_menu.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin-left: 0.2666666667rem;
+    margin-top: 0.32rem;
+}
+
+.header .logo {
+    width: 1.3866666667rem;
+    height: 0.8533333333rem;
+    background: url(../images/logo_bar.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+    margin: 0.1066666667rem 0 0 3.6266666667rem;
+}
+
+.header .location {
+    width: 1.9rem;
+    height: 0.48rem;
+    margin: 0.2933333333rem 0 0 2rem;
+    display: flex;
+}
+
+.header .showCity {
+    width: 1.4rem;
+    height: 0.48rem;
+    font-size: 0.3466666667rem;
+    color: #ABB7C1;
+    letter-spacing: 0;
+}
+
+.header .showCity input {
+    color: #ABB7C1;
+    background: transparent;
+    text-align: right;
+    width: 1.4rem;
+    line-height: 0.48rem;
+    height: 0.48rem;
+}
+
+.header .location .showCityIcon {
+    width: 0.2666666667rem;
+    height: 0.3466666667rem;
+    margin: 0.0666666667rem 0 0 0.1066666667rem;
+    background: url(../images/icon_location.png);
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+/* nav style - end */
+
+
+/* five column table style - start */
+.headLine, .headLine-four {
+    width: 9.0666666667rem;
+    height: 0.5333333333rem;
+    margin: 0 auto;
+    font-size: 0.3466666667rem;
+    color: #365873;
+    letter-spacing: 0;
+    border-bottom: 0.03rem solid #EAEFF3;
+    display: flex;
+}
+
+.headLine p {
+    width: 20%;
+    height: 0.5333333333rem;
+    line-height: 0.5333333333rem;
+    text-align: left;
+}
+
+.headLine .itemVal, .headLine-four .itemVal {
+    width: 9.0666666667rem;
+    height: 5.0666666667rem;
+    margin: 0 auto;
+}
+
+.itemVal {
+    padding: .2rem;
+}
+
+.itemVal li {
+    width: 100%;
+    height: 0.5333333333rem;
+    line-height: 0.5333333333rem;
+    display: flex;
+}
+
+.itemVal li p {
+    width: 20%;
+    text-align: left;
+    font-size: 0.2666666667rem;
+    color: #425C72;
+    letter-spacing: 0;
+    overflow-x: scroll;
+}
+/* five column table style - end */
+
+
+/**
+ * Author: zhangfs
+ * Add Time: 2018/03/25 09:11
+ */
+/* simple Selection with trangle float title right _start */
+.simpleSelection {
+    position: absolute;
+    top: 0.2rem;
+    right: 0.3666666667rem;
+    width: 1.5rem;
+}
+.simpleSelection .toggleIcon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0px;
+    height: 0px;
+    border: solid 10px transparent;
+    border-top: solid 10px #0DB95F;
+}
+.simpleSelection input {
+    position: relative;
+    width: 60%;
+    text-align: right;
+    font-size: .2666666667rem;
+    color: #0DB95F;
+}
+/* simple Selection with trangle float title right _end */
+
+
+/**
+ * Author: zhangfs
+ * Add Time: 2018/03/26 09:35
+ * Func: car type selection style */
+.carType-box {
+    height: 0.5866666667rem;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.2666666667rem;
+    position: relative;
+    font-size: 0.32rem;
+    color: #333;
+    line-height: 0.5866666667rem;
+}
+
+.car-type {
+    background: #F2F3F5;
+    border-radius: 0.1066666667rem;
+    width: 1.1733333333rem;
+    height: 0.5333333333rem;
+    font-size: 0.2933333333rem;
+    line-height: 0.5333333333rem;
+    color: #ABB7C1;
+    letter-spacing: 0;
+    text-align: center;
+    margin-right: 0.48rem;
+}
+.car-type:last-child {
+    margin-right: 0;
+}
+
+.carType-box .active {
+    color: #0DB95F;
+    background: #DBF7E8;
+}
+/* car type selection style _end */
+
+
+/**
+ * Author: zhangfs
+ * Add Time: 2018/03/26 09:35
+ * Func: single date picker style */
+.singleDatePicker {
+    width: 5.8666666667rem;
+    height: 0.8rem;
+    margin: 0 auto 0.2666666667rem;
+    background: #F2F3F5;
+    box-shadow: inset 0 0.0266666667rem 0.1066666667rem 0 #D5D9DD;
+    border-radius: 2.6666666667rem;
+    display: flex;
+}
+
+.singleDatePicker .preDateBtn {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.2666666667rem;
+    color: #647888;
+    letter-spacing: 0;
+    margin-left: 0.32rem;
+}
+
+.singleDatePicker .showDate {
+    width: 2.4rem;
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.32rem;
+    color: #0DB95F;
+    letter-spacing: 0;
+    margin-left: 0.6133333333rem;
+}
+
+.singleDatePicker .showDate .appDateTime {
+    width: 1.5666666667rem;
+    font-size: 0.32rem;
+    color: #0DB95F;
+    letter-spacing: 0;
+    height: 0.8rem;
+    background: transparent;
+}
+
+.singleDatePicker .nextDateBtn {
+    height: 0.8rem;
+    line-height: 0.8rem;
+    font-size: 0.2666666667rem;
+    color: #647888;
+    letter-spacing: 0;
+    margin-left: 0.6133333333rem;
+}
+/* single date picker style - end*/
+
+
+/* double data picker style - start */
+.doubleDatePicker {
+    width: 5.8666666667rem;
+    height: 0.8rem;
+    margin: 0 auto 0.16rem !important;
+    background: #F2F3F5;
+    box-shadow: inset 0 0.0266666667rem 0.1066666667rem 0 #D5D9DD;
+    border-radius: 2.6666666667rem;
+    display: flex;
+    line-height: 0.8rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 0.4rem;
+    font-size: 0.32rem;
+    color: #647888;
+}
+
+.doubleDatePicker .ddp-1, .doubleDatePicker .ddp-2 {
+    width: 1.5666666667rem;
+    font-size: 0.32rem;
+    color: #0DB95F;
+    letter-spacing: 0;
+    height: 0.8rem;
+    background: transparent;
+}
+
+.doubleDatePicker .ddp-1 {
+    margin-right: 0.7rem;
+}
+/* double data picker style - end */
+
+
+/**
+ * Author: zhangfs
+ * add Time: 2018/03/24 13:47
+ */
+/* three column selection style - start */
+.threeColumnSelection {
+    width: 5.4rem;
+    height: 0.5866666667rem;
+    margin: 0 auto 0.2666666667rem;
+}
+
+.threeColumnSelection .col-1, .threeColumnSelection .col-2, .threeColumnSelection .col-3  {
+    float: left;
+    width: 1.8rem;
+    height: 100%;
+    text-align: center;
+    line-height: 0.5866666667rem;
+    font-size: 0.2666666667rem;
+    color: #647888;
+    background: #F2F3F5;
+
+}
+
+.threeColumnSelection .col-1 {
+    border-radius: 2.6666666667rem 0 0 2.6666666667rem;
+}
+
+.threeColumnSelection .col-3 {
+    border-radius: 0 2.6666666667rem 2.6666666667rem 0;
+}
+
+.threeColumnSelection .active {
+    color: #FFFFFF;
+    background: #09CA65;
+}
+/* three column selection style - end */
+
+
+/**
+ * Author: zhangfs
+ * add Time: 2018/03/25 14:30
+ */
+/* four column table style [ need - five column style ] _start */
+.headLine-four p {
+    width: 25%;
+    height: 0.5333333333rem;
+    line-height: 0.5333333333rem;
+    text-align: left;
+}
+
+.itemVal-four li p {
+    width: 25%;
+    text-align: left;
+    font-size: 0.2666666667rem;
+    color: #425C72;
+    letter-spacing: 0;
+    overflow-x: scroll;
+}
+/* four column table style - start */
+
+
+
+/**
+ * Author: zhangfs
+ * add Time: 2018/03/25 16:10
+ */
+/* pagenation_start */
+.pagenation {
+    width: 2.6666666667rem;
+    height: 0.5333333333rem;
+    margin: 0 auto;
+    padding-bottom: .2rem;
+    display: flex;
+    color: #425C72;
+    font-size: 0.2666666667rem;
+}
+
+.pagenation .page-pre, .pagenation .page-next {
+    height: 100%;
+    width: 0.5333333333rem;
+    line-height: 0.5333333333rem;
+    text-align: center;
+}
+
+.pagenation .pages {
+    width: 1.6rem;
+    text-align: center;
+    line-height: 0.5333333333rem;
+    height: 0.5333333333rem;
+}
+/* pagenation_end */
+
+
+
+/* rise or down icon _start */
+.orderUp, .orderDown {
+    width: 0.24rem;
+    height: 0.2666666667rem;
+    margin-right: 0.1333333333rem;
+    margin-top: 0.1333333333rem;
+}
+/* rise or down icon _end */
+
+
+
+
+/**
+ * Author: zhangfs
+ * add Time: 2018/03/30 11:45
+ * Func: responsible person and click pop up persion phone bubble
+ */
+.responsiblePerson-box {
+    position: relative;
+    display: none;
+    justify-content: flex-end;
+    height: 0.5866666667rem;
+    line-height: 0.5866666667rem;
+    padding: 0.1rem .2666666667rem .1666666667rem 0;
+    font-size: .32rem;
+    color: #647888;
+    border-top: solid 0.03rem #EAEFF3;
+}
+.responsiblePerson {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.phoneBubble {
+    position: absolute;
+    top: -1rem;
+    right: .3rem;
+    height: .777rem;
+    line-height: .777rem;
+    padding: 0 .2666666667rem;
+    color: white;
+    border-radius: .2rem;
+    opacity: .7;
+    display: none;
+    background-color: #0d900b;
+}
+.phoneBubble:before {
+    content: '';
+    position: absolute;
+    bottom: -.2rem;
+    right: .5rem;
+    width: 0px;
+    height: 0px;
+    border-top: solid .2rem #0d900b;
+    border-right: solid .15rem transparent;
+    border-left: solid .3rem transparent;
+    border-bottom: 0;
+}
+.phoneBubble a {
+    color: #ffffff;
+}
+/* responsible person and click pop up persion phone bubble _end */
+
+
+/* bar with scroll _start */
+.scroll-cont {
+    width: 97%;
+    margin-left: 1%;
+    overflow-x: scroll;
+}
+.scroll-cont::-webkit-scrollbar {
+    display: none;
+}
+.scroll-cont .itemVal {
+    padding: .2rem 0;
+}
+ /*bar with scroll _end */
+
+ /* charts space _start*/
+ .echarts {
+     width: 100%;
+     height: 8rem;
+     padding-bottom: .2rem;
+ }
+ /* charts space _start*/

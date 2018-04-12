@@ -1,0 +1,181 @@
+.slideBarBg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 20, 0.4);
+  display: none;
+  z-index: 999999991; }
+
+.slideBar {
+  width: 4.5333333333rem;
+  position: fixed;
+  left: -4.9333333333rem;
+  top: 0;
+  background-image: linear-gradient(-224deg, #3F4955 0%, #171C22 72%);
+  box-shadow: 0.2666666667rem 0 0.2666666667rem 0 rgba(37, 42, 48, 0.7);
+  z-index: 999999992; }
+  .slideBar .nickName {
+    width: 100%;
+    height: 1.3333333333rem;
+    margin-top: 1.3333333333rem; }
+    .slideBar .nickName .headIcon {
+      width: 1.3333333333rem;
+      height: 1.3333333333rem;
+      background: url("../images/icon_user_default.png");
+      -webkit-background-size: cover;
+      background-size: cover;
+      margin-left: 0.8rem; }
+    .slideBar .nickName .nickName1 {
+      height: 1.3333333333rem;
+      line-height: 1.3333333333rem;
+      font-size: 0.4266666667rem;
+      color: #768998;
+      letter-spacing: 0.0266666667rem;
+      margin-left: 0.32rem; }
+  .slideBar .out {
+    font-size: 0.3466666667rem;
+    color: #768998;
+    letter-spacing: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0.2666666667rem;
+    display: block;
+    width: 100%;
+    height: 0.48rem;
+    line-height: 0.48rem;
+    text-align: center; }
+  .slideBar .slideList {
+    width: 100%;
+    margin-top: 0.8rem; }
+    .slideBar .slideList .list {
+      width: 100%;
+      height: 0.5333333333rem;
+      margin-top: 0.5333333333rem;
+      display: flex; }
+      .slideBar .slideList .list .iconList {
+        margin-top: 0.08rem;
+        width: 0.3733333333rem;
+        height: 0.3733333333rem;
+        background: url("../images/icon_biview.png");
+        -webkit-background-size: cover;
+        background-size: cover;
+        margin-left: 0.4266666667rem; }
+      .slideBar .slideList .list .type {
+        font-size: 0.3733333333rem;
+        color: #ABB7C1;
+        letter-spacing: 0.0266666667rem;
+        margin-left: 0.2666666667rem; }
+      .slideBar .slideList .list .iconListKpi {
+        background: url("../images/icon_citykpi.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListOrder {
+        background: url("../images/icon_list.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListCars {
+        background: url("../images/cheliang.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListOperation {
+        background: url("../images/icon_mapview.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListFare {
+        background: url("../images/yunwei.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListSite {
+        background: url("../images/wangdian.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListUser {
+        background: url("../images/yonghu.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+      .slideBar .slideList .list .iconListCustomer {
+        background: url("../images/icon_service_default.png");
+        -webkit-background-size: cover;
+        background-size: cover; }
+    .slideBar .slideList .list.active .type {
+      color: #09CA65; }
+    .slideBar .slideList .list.active .iconList {
+      background: url("../images/icon_biview_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListKpi {
+      background: url("../images/icon_citykpi_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListOrder {
+      background: url("../images/icon_list_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListCars {
+      background: url("../images/cheliang_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListOperation {
+      background: url("../images/icon_mapview_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListFare {
+      background: url("../images/yunwei_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListSite {
+      background: url("../images/wangdian_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListUser {
+      background: url("../images/yonghu_chose.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+    .slideBar .slideList .list.active .iconListCustomer {
+      background: url("../images/icon_service.png");
+      -webkit-background-size: cover;
+      background-size: cover; }
+
+.gearArea {
+  font-size: 1em; }
+
+#demo3 {
+  color: #ABB7C1;
+  background: transparent;
+  text-align: right;
+  width: 1.4rem;
+  line-height: 0.48rem;
+  height: 0.48rem; }
+
+.dwv {
+  padding: 20px 0;
+  font-size: 0.45rem; }
+
+.dwl {
+  line-height: 80px;
+  height: 80px;
+  top: -80px;
+  font-size: 0.45rem; }
+
+.dwc {
+  padding-top: 80px; }
+
+.dwsc .dww {
+  width: 2.5rem; }
+
+.dw-li {
+  font-size: 0.5rem; }
+
+.dwbg .dwb {
+  height: 80px;
+  line-height: 80px;
+  font-size: 0.4rem; }
+
+div.dw-persp div.dw.dwbg {
+  top: auto !important;
+  bottom: 0.5rem;
+  position: fixed; }
+
+/*# sourceMappingURL=slideBar.css.map */

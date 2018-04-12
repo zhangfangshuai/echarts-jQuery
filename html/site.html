@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>驾驶舱-网点</title>
+    <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <!--<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
+    <script src="//img.shouqiev.com/h5/libs/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/cssPublic.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/LArea.css">
+    <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/site.css">
+    <link rel="stylesheet" type="text/css" href="../css/slideBar.css">
+    <script src="//h5.shouqiev.com/libs/jquery.min.js"></script>
+    <script src="../js/common/baseUrl.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/mobiscroll.datetime-2.5.1-zh.js"></script>
+    <script src="../libs/singleData.js"></script>
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/picker.js"></script>
+</head>
+<body>
+<!--slideBar and slideBg start-->
+<div class="slideBarBg"></div>
+<section class="slideBar clearfix">
+    <div class="nickName clearfix">
+        <div class="headIcon fl"></div>
+        <p class="nickName1 fl"></p>
+    </div>
+    <!--超出滚动-待定-->
+    <div class="slideCon">
+        <ul class="slideList">
+            <!--实时监控-->
+            <li class="list showWatching " data-menuId="2" data-value="charts.html">
+                <span class="iconList"></span>
+                <div class="type">实时监控</div>
+            </li>
+            <!--城市KPI考核-->
+            <li class="list showKpi" data-menuId="3" data-value="kpis.html">
+                <span class="iconList iconListKpi"></span>
+                <div class="type">城市KPI考核</div>
+            </li>
+            <!--用户分析 car-user-->
+            <li class="list showUser" data-menuId="4" data-value="car-user.html">
+                <span class="iconList iconListUser"></span>
+                <div class="type">用户分析</div>
+            </li>
+            <!--order-->
+            <li class="list showOrders" data-menuId="5" data-value="orders.html">
+                <span class="iconList iconListOrder"></span>
+                <div class="type">订单分析</div>
+            </li>
+            <!--网点分析 site-->
+            <li class="list showSite active" data-menuId="6" data-value="site.html">
+                <span class="iconList iconListSite"></span>
+                <div class="type">网点分析</div>
+            </li>
+            <!--车辆分析 cars-->
+            <li class="list showCars" data-menuId="7" data-value="cars.html">
+                <span class="iconList iconListCars"></span>
+                <div class="type">车辆分析</div>
+            </li>
+            <!--客服分析 新增 customer-service.html-->
+            <li class="list showCustomer" data-menuId="8" data-value="customer-service.html">
+                <span class="iconList iconListCustomer"></span>
+                <div class="type">客服分析</div>
+            </li>
+            <!--运营分析==车资 car-fare-->
+            <li class="list showFare" data-menuId="9" data-value="operation.html">
+                <span class="iconList iconListFare"></span>
+                <div class="type">运营分析</div>
+            </li>
+            <!--营收分析 car-operation-->
+            <li class="list showOperation" data-menuId="10" data-value="income.html">
+                <span class="iconList iconListOperation"></span>
+                <div class="type">营收分析</div>
+            </li>
+
+
+
+        </ul>
+    </div>
+    <a href="../index.html" class="out">退出登陆</a>
+</section>
+<!--slideBar and slideBg end-->
+    <div class="box">
+        <!--header start -->
+        <header class="header clearfix">
+            <div class="slideBtn"></div>
+            <div class="logo"></div>
+            <div class="location">
+                <!--<div class="showCity">北京-->
+                <!--</div>-->
+                <div class="content-block showCity">
+                    <input id="demo3" type="text" readonly="" onfocus="this.blur();" />
+                    <input id="value3" type="hidden" />
+                </div>
+                <div class="showCityIcon"></div>
+            </div>
+        </header>
+        <!--header end-->
+        <section class="cars clearfix">
+            <!--网点概况-->
+            <div class="orderStatus orderCommon section-box" section-id="34">
+                <h2 class="orderTitle">网点概况</h2>
+                <div class="headLine">
+                    <p style="width: 23%;">指标名称 </p>
+                    <p >昨日</p>
+                    <p >前日</p>
+                    <p style="width: 19%;">同比</p>
+                    <p style="width: 18%;">同比增幅</p>
+                </div>
+                <ul class="orderList sitestatus">
+                    <li class="anlysis">
+                        <p style="width: 23%;">指标名称 </p>
+                        <p >昨日</p>
+                        <p >前日</p>
+                        <p style="width: 19%;">同比</p>
+                        <p style="width: 18%;">同比增幅
+                            <img src="../images/icon_rise.png" alt="" class="orderUp fr">
+                        </p>
+                    </li>
+                </ul>
+                <div class="page1 page">
+                    <div class="pre1 pre">
+                        <
+                    </div>
+                    <div class="page-mid1 page-mid">
+                        <span class="now1 now">1</span>/<span class="totle1 totle">1</span>
+                    </div>
+                    <div class="next1 next">
+                        >
+                    </div>
+                </div>
+                <div class="responsiblePerson-box">
+                  <p class="phoneBubble sbasic-phoneBubble"><a href=""></a></p>
+                  <p class="responsiblePerson"></p>
+                </div>
+            </div>
+            <!--second 网点变更-->
+            <div class="orderStatus orderCommon clearfix section-box" section-id="35">
+                <h2 class="orderTitle">网点变更
+                </h2>
+                <div class="timeBorder" style="margin-bottom: 0;">
+                    开始<input type="text" id="appDateTime1" class="appDateTime1" onfocus="this.blur();" style="margin-right: 0.7rem;">
+                    结束<input type="text" id="appDateTime2" class="appDateTime1" onfocus="this.blur();">
+                </div>
+                <div class="headLine">
+                    <p class="orderOne" style="width: 23%;">网点名称 </p>
+                    <p class="orderTwo">网点类型</p>
+                    <p class="orderThree">车位数</p>
+                    <p class="orderFour" style="width: 19%;">变更</p>
+                    <p class="orderFive" style="width: 18%;">变更日期</p>
+                </div>
+                <ul class="orderList orderList2">
+                    <!--<li class="anlysis">-->
+                    <!--<p class="orderOne">指标名称 </p>-->
+                    <!--<p class="orderTwo">月累计</p>-->
+                    <!--<p class="orderThree">昨日</p>-->
+                    <!--<p class="orderFour">同比</p>-->
+                    <!--<p class="orderFive">同比增幅-->
+                    <!--<img src="../images/icon_rise.png" alt="" class="orderUp fr">-->
+                    <!--</p>-->
+                    <!--</li>-->
+                </ul>
+                <div class="page page2">
+                    <div class="pre pre2">
+                        <
+                    </div>
+                    <div class="page-mid page-mid2">
+                        <span class="now now2">1</span>/<span class="totle totle2">2</span>
+                    </div>
+                    <div class="next next2">
+                        >
+                    </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble schange-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+            <!--second 网点明细-->
+            <div class="orderStatus orderCommon1 site clearfix section-box" section-id="36">
+                <h2 class="orderTitle">网点明细
+                </h2>
+                <div class="choose clearfix">
+                    <div class="chooseCom active fl jia">20佳</div>
+                    <div class="chooseCom fl jia">20差</div>
+                    <div class="chooseCom fl">全部</div>
+                </div>
+                <div class="changeline">
+                    <!--日期-->
+                    <div class="content-block last">
+                        <div class="trangle"></div>
+                        <input id="last1" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
+                        <input id="last1-s" type="hidden" />
+                    </div>
+                    <!--商圈-->
+                    <div class="content-block last">
+                        <div class="trangle"></div>
+                        <input id="last" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
+                        <input id="last-s" type="hidden" />
+                    </div>
+                    <!--网点选择  实体、虚拟-->
+                    <div class="content-block last">
+                        <div class="trangle"></div>
+                        <input id="last2" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
+                        <input id="last2-s" type="hidden" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="scroller">
+                        <div class="headLine">
+                            <p class="orderOne">网点名称 </p>
+                            <p class="orderTwo" style="width: 12.8%;text-align: center;">车位数</p>
+                            <p class="orderThree" style="width: 12.8%;text-align: center;">车位均单</p>
+                            <p class="orderFour" style="width: 15.8%;text-align: center;">日均取车均单</p>
+                            <p class="orderFive" style="width: 15.8%;text-align: center;">日均还车均单</p>
+                            <p class="orderFive" style="width: 15.8%;text-align: center;">日均服务用户</p>
+                            <p class="orderFive" style="width: 12.8%;">开启日期</p>
+                        </div>
+                        <ul class="orderList orderList3">
+                            <!--<li class="anlysis">-->
+                            <!--<p class="orderOne">网点名称 </p>-->
+                            <!--<p class="orderTwo" style="width: 12.8%;">车位数</p>-->
+                            <!--<p class="orderThree" style="width: 12.8%;">车位均单</p>-->
+                            <!--<p class="orderFour" style="width: 15.8%;">日均取车均单</p>-->
+                            <!--<p class="orderFive" style="width: 15.8%;">日均还车均单</p>-->
+                            <!--<p class="orderFive" style="width: 15.8%;">日均服务用户</p>-->
+                            <!--<p class="orderFive" style="width: 12.8%;">开启日期</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+                </div>
+                <div class="page page3">
+                    <div class="pre pre3">
+                        <
+                    </div>
+                    <div class="page-mid3 page-mid">
+                        <span class="now now3">1</span>/<span class="totle totle3">1</span>
+                    </div>
+                    <div class="next next3">
+                        >
+                    </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble sname-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+            <!--second 网点车辆-->
+            <div class="orderStatus orderCommon1 site clearfix section-box" section-id="38">
+                <h2 class="orderTitle">网点车辆
+                </h2>
+                <div class="date" style="margin-top: 0;">
+                    <div class="preDateBtn preDateBtn6">前一天</div>
+                    <div class="showDate">
+                        <input type="text" id="appDateTime6" class="appDateTime" onfocus="this.blur();">
+                        <span class="showWeek6"></span>
+                    </div>
+                    <div class="nextDateBtn nextDateBtn6">后一天</div>
+                </div>
+                <div class="changeline">
+                    <!--商圈-->
+                    <div class="content-block last" style="margin-left: 1rem;">
+                        <div class="trangle"></div>
+                        <input id="last3" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
+                        <input id="last3-s" type="hidden" />
+                    </div>
+                    <!--时刻-->
+                    <div class="content-block last">
+                        <div class="trangle"></div>
+                        <input id="last4" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
+                        <input id="last4-s" type="hidden" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="scroller scrollersitecar0">
+                        <div class="headLine">
+                            <p style="width: 14%;">网点名称 </p>
+                            <p style="text-align: center;">网点类型</p>
+                            <p style="text-align: center;">车位总数</p>
+                            <p style="text-align: center;">已用车位数</p>
+                            <p style="text-align: center;">订单占用</p>
+                            <p style="text-align: center;">待租车辆</p>
+                            <p style="text-align: center;">低电下架</p>
+                            <p style="text-align: center;">其他原因</p>
+                            <p style="text-align: center;">电量不足80%</p>
+                        </div>
+                        <ul class="orderList siteCar">
+                            <!--<li class="anlysis">-->
+                                <!--<p style="width: 14%;">网点名称 </p>-->
+                                <!--<p style="text-align: center;">网点类型</p>-->
+                                <!--<p style="text-align: center;">车位总数</p>-->
+                                <!--<p style="text-align: center;">已用车位数</p>-->
+                                <!--<p style="text-align: center;">订单占用</p>-->
+                                <!--<p style="text-align: center;">待租车辆</p>-->
+                                <!--<p style="text-align: center;">低电下架</p>-->
+                                <!--<p style="text-align: center;">其他原因</p>-->
+                                <!--<p style="text-align: center;">电量不足80%</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="page page4">
+                    <div class="pre pre4">
+                        <
+                    </div>
+                    <div class="page-mid4 page-mid">
+                        <span class="now now4">1</span>/<span class="totle totle4">1</span>
+                    </div>
+                    <div class="next next4">
+                        >
+                    </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble scar-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+            <!--second 网点订单-->
+            <div class="orderStatus orderCommon1 site clearfix section-box" section-id="39">
+                <h2 class="orderTitle">网点订单
+                </h2>
+                <div class="date" style="margin-top: 0;">
+                    <div class="preDateBtn preDateBtn7">前一天</div>
+                    <div class="showDate">
+                        <input type="text" id="appDateTime7" class="appDateTime" onfocus="this.blur();">
+                        <span class="showWeek7"></span>
+                    </div>
+                    <div class="nextDateBtn nextDateBtn7">后一天</div>
+                </div>
+                <div class="carType">
+                    <div class="carTypeCommon orderbtn active" data-carType="0">全部</div>
+                    <div class="carTypeCommon orderbtn" data-carType="2">燃油车</div>
+                    <div class="carTypeCommon orderbtn" data-carType="1">电动车</div>
+                </div>
+                <div class="container">
+                    <div class="scroller scrollersitecar">
+                        <div class="headLine">
+                            <p style="width: 8%;">网点名称 </p>
+                            <p style="text-align: center;">运营开通时间</p>
+                            <p style="text-align: center;">网点状态</p>
+                            <p style="text-align: center;">车位数</p>
+                            <p style="text-align: center;">下单量</p>
+                            <p style="text-align: center;">取车单</p>
+                            <p style="text-align: center;">订单执行率%</p>
+                            <p style="text-align: center;">当日完成单</p>
+                            <p style="text-align: center;">当日还车单</p>
+                            <p style="text-align: center;">异地还车单</p>
+                            <p style="text-align: center;">单均里程</p>
+                            <p style="text-align: center;">单均时长</p>
+                            <p style="text-align: center;">总流水</p>
+                            <p style="text-align: center;">总收现</p>
+                            <p style="text-align: center;">取车车位均单</p>
+                            <p style="text-align: center;">还车车位均单</p>
+                            <p style="text-align: center;">异地还车率%</p>
+                        </div>
+                        <ul class="orderList ordercar">
+                            <!--<li class="anlysis">-->
+                                <!--<p style="width: 8%;">网点名称 </p>-->
+                                <!--<p style="text-align: center;">运营开通时间</p>-->
+                                <!--<p style="text-align: center;">网点状态</p>-->
+                                <!--<p style="text-align: center;">车位数</p>-->
+                                <!--<p style="text-align: center;">下单量</p>-->
+                                <!--<p style="text-align: center;">取车单</p>-->
+                                <!--<p style="text-align: center;">订单执行率%</p>-->
+                                <!--<p style="text-align: center;">当日完成单</p>-->
+                                <!--<p style="text-align: center;">当日还车单</p>-->
+                                <!--<p style="text-align: center;">异地还车单</p>-->
+                                <!--<p style="text-align: center;">单均里程</p>-->
+                                <!--<p style="text-align: center;">单均时长</p>-->
+                                <!--<p style="text-align: center;">总流水</p>-->
+                                <!--<p style="text-align: center;">总收现</p>-->
+                                <!--<p style="text-align: center;">取车车位均单</p>-->
+                                <!--<p style="text-align: center;">还车车位均单</p>-->
+                                <!--<p style="text-align: center;">异地还车率%</p>-->
+                            <!--</li>-->
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="page page5">
+                    <div class="pre pre5">
+                        <
+                    </div>
+                    <div class="page-mid5 page-mid">
+                        <span class="now now5">1</span>/<span class="totle totle5">1</span>
+                    </div>
+                    <div class="next next5">
+                        >
+                    </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble sorder-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="../libs/echarts.min.js"></script>
+    <script src="../js/site/siteOption.js"></script>
+    <script src="../libs/china.js"></script>
+    <script src="../js/common/jsPublic.js?1"></script>
+    <script type="text/javascript" src='../js/site/site.js'></script>
+    <script src="//img.shouqiev.com/h5/libs/common.js"></script>
+    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+</body>
+</html>
