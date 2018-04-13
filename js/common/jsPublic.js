@@ -255,7 +255,7 @@ function logErr (r, i) {
 function getPrincipal (city, idArr, page, s, f) {
    if (city == 1)  return;
    buildAjax('get', 'getPrincipal', {id:idArr, cityId: city}, true, true, function(res){
-       $('.responsiblePerson-box').css('display', 'block');
+       $('.responsiblePerson-box').show('fast');
        for ( var i in res.data) {
            for ( var j = 0; j < $('.section-box').length; j ++) {
                if ( res.data[i].menu_id == $('.section-box').eq(j).attr('section-id') ) {
@@ -264,6 +264,7 @@ function getPrincipal (city, idArr, page, s, f) {
                    $('.section-box').eq(j).find('.phoneBubble a').html('TEL: ' + p);
                    res.data[i].sim ? $('.section-box').eq(j).find('.phoneBubble a').attr('href', 'tel:' + p)
                                    : $('.section-box').eq(j).find('.phoneBubble a').removeAttr('href');
+                   // console.log($('.section-box').eq(j).find('.phoneBubble a')[0]);
                    $('.section-box').eq(j).find('.responsiblePerson').html('责任人: ' +  n);
                    break;
                }
