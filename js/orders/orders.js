@@ -58,7 +58,7 @@ $(function () {
     // 订单概况时间监控 单日期
     $('.od-predate, .od-nextdate').on('click',function() {
         let id = this.parentNode.children[1].children[0].id;
-        this.classList[1] == 'od-predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                           : $('#'+id).val(updateDate(this.parentNode, 1, true));
         getorderAnalyze($('#'+id).val(), odtype);
     });
@@ -86,7 +86,7 @@ $(function () {
                     "<p>" + d.month_last_avg + "</p>" +
                     "<p>" + d.avg_rate + imgUrl + "</p>" + "</li>";
             }
-            $('#odVal').html(str);
+            $('.odVal').html(str);
         }, false);
     }
 

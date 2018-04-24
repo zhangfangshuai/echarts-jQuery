@@ -4,14 +4,11 @@
     <meta charset="UTF-8">
     <title>驾驶舱</title>
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3" />
-    <!--<meta name="viewport" content="width=device-width,user-scalable=no" />-->
     <script src="//img.shouqiev.com/h5/libs/flexible.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="//api.shouqiev.com/js/lib/jquery-2.0.3.min.js"></script>
     <script src="js/common/baseUrl.js"></script>
-    <script type="text/javascript" src='./js/index.js'></script>
-    <!--aa-->
 </head>
 <body>
     <div class="box">
@@ -19,7 +16,7 @@
             <div class="logo"></div>
             <div class="user">
                 <span class="userIcon"> </span>
-                <input type="text" placeholder="账号" class="userName" value="">
+                <input placeholder="账号" class="userName" value="">
             </div>
             <div class="words">
                 <span class="wordsIcon">
@@ -31,23 +28,6 @@
     </div>
 
     <script src="https://img.shouqiev.com/h5/libs/common.js"></script>
-    <script>
-        $('.box').css({'height':$(window).height()});
-        window.onload=function () {
-            document.addEventListener('touchstart',function (event) {
-                if(event.touches.length>1){
-                    event.preventDefault();
-                }
-            })
-            var lastTouchEnd=0;
-            document.addEventListener('touchend',function (event) {
-                var now=(new Date()).getTime();
-                if(now-lastTouchEnd<=300){
-                    event.preventDefault();
-                }
-                lastTouchEnd=now;
-            },false)
-        }
-    </script>
+    <script src="./js/index.js"></script>
 </body>
 </html>

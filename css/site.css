@@ -1,3 +1,63 @@
+.site .headLine p:first-child, .siteVal li p:first-child { width: 23%; }
+.site .headLine p:nth-child(4), .siteVal li p:nth-child(4) { width: 19%; }
+.site .headLine p:nth-child(5), .siteVal li p:nth-child(5) { width: 18%; }
+
+.site-change .headLine p, .changeVal li p {
+    text-align: center;
+}
+.site-change .headLine p:first-child, .changeVal li p:first-child { width: 25%; }
+.site-change .headLine p:nth-child(3), .changeVal li p:nth-child(3) { width: 18%; }
+.site-change .headLine p:nth-child(4), .changeVal li p:nth-child(4) { width: 19%; }
+.site-change .headLine p:nth-child(5), .changeVal li p:nth-child(5) { width: 18%; }
+
+
+.site-detail .scroll-cont .headLine, .detailVal {
+    width: 15.8rem;
+}
+.site-detail .scroll-cont .headLine p, .detailVal li p {
+    text-align: center;
+}
+.site-detail .scroll-cont .headLine p:first-child, .detailVal li p:first-child { width: 16.08%; }
+.site-detail .scroll-cont .headLine p:nth-child(2), .detailVal li p:nth-child(2) { width: 11%; }
+.site-detail .scroll-cont .headLine p:nth-child(3), .detailVal li p:nth-child(3) { width: 12.8%; }
+.site-detail .scroll-cont .headLine p:nth-child(4), .detailVal li p:nth-child(4) { width: 15.8%; }
+.site-detail .scroll-cont .headLine p:nth-child(5), .detailVal li p:nth-child(5) { width: 15.8%; }
+.site-detail .scroll-cont .headLine p:nth-child(6), .detailVal li p:nth-child(6) { width: 15.8%; }
+.site-detail .scroll-cont .headLine p:nth-child(7), .detailVal li p:nth-child(7) { width: 12.8%; }
+
+
+.site-car .scroll-cont .headLine, .siteCarVal {
+    width: 20rem;
+}
+
+.site-car .scroll-cont .headLine p, .siteCarVal li p {
+    width: 10%;
+    text-align: center;
+}
+.site-car .scroll-cont .headLine p:first-child, .siteCarVal li p:first-child { width: 16%; }
+.site-car .scroll-cont .headLine p:last-child, .siteCarVal li p:last-child { width: 14%; }
+.site-car .multiSelection .selection-box {
+    margin-left: 1.667rem;
+}
+
+
+.site-order .scroll-cont .headLine, .soVal {
+    width: 38rem;
+}
+.site-order .scroll-cont .headLine p, .soVal li p {
+    width: 5.88%;
+    text-align: center;
+}
+.site-order .scroll-cont .headLine p:nth-of-type(1), .soVal li p:nth-of-type(1) { width: 8%; }
+.site-order .scroll-cont .headLine p:nth-of-type(4), .soVal li p:nth-of-type(4) { width: 4.5%; }
+.site-order .scroll-cont .headLine p:nth-of-type(5), .soVal li p:nth-of-type(5) { width: 4.5%; }
+.site-order .scroll-cont .headLine p:nth-of-type(6), .soVal li p:nth-of-type(6) { width: 4.5%; }
+.site-order .scroll-cont .headLine p:nth-of-type(15), .soVal li p:nth-of-type(15) { width: 7.62%; }
+.site-order .scroll-cont .headLine p:nth-of-type(16), .soVal li p:nth-of-type(16) { width: 7.62%; }
+.site-order .scroll-cont .headLine p:nth-of-type(17), .soVal li p:nth-of-type(17) { width: 7.62%; }
+
+
+
 .box {
   width: 10rem;
   padding-top: 1.0666666667rem; }

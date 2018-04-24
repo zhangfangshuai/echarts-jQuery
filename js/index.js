@@ -1,18 +1,15 @@
 /**
- * Created with webstorm.
- * Author: dameng
- * Date: 2017/11/16
- * Time: 11:46
- *
+ * Created: dameng by webstorm
+ * Date: 2017/11/16 11:46
+ * Update: zhangfs by Atom
+ * Date: 2018/04/24 15:32
  */
-$(function () {
 
-    if(localStorage.user && localStorage.password){
-        $('.userName').val(localStorage.user);
-        $('.wordsName').val(localStorage.password);
-    }
-    //login start
-    $('.loginBtn').on('click',function(){
+$(function () {
+    localStorage.user && $('.userName').val(localStorage.user);
+    localStorage.password && $('.wordsName').val(localStorage.password);
+
+    $('.loginBtn').on('click', function(){
         if(!$('.userName').val()){
             Tip.success('请输入用户名');
             return false;
@@ -21,91 +18,52 @@ $(function () {
             Tip.success('请输入密码');
             return false;
         };
-        $.ajax({
-            url:http+'mobile/loginOn',
-            type:'get',
-            dateType:'json',
-            data:{
-                username:$('.userName').val(),
-                password:$('.wordsName').val()
-            },
-            success:function(res){
-                console.log(res);
-                if(res.code==200){
-                    localStorage.user=$('.userName').val();
-                    localStorage.password=$('.wordsName').val();
-                    sessionStorage.token=res.data.token;
-                    sessionStorage.nickname=res.data.nickname;
-                    $.ajax({
-                        url:http+'/mobile/getMenu',
-                        type:'get',
-                        dataType:'json',
-                        data:{
-                            token:sessionStorage.token
-                        },
-                        success:function(res){
-                            console.log('print data');
-                            if(res.code==200){
-                                console.log(res);
-                                if(res.data.length<=0){
-                                    Tip.success('您没有访问权限');
-                                    return false;
-                                };
-                                var menuArr2=[];
-                                for(var i=0;i<res.data.length;i++){
-                                    var acc=res.data[i].menuId;
-                                    for(var j=0;j<menuArr.length;j++){
-                                        if(menuArr[j]==acc){
-                                             console.log(menuArr[j]);
-                                            menuArr2.push(acc)
-                                        }
-                                    }
-                                }
-                                console.log(menuArr2);
-                                if(menuArr2.length<=0){
-                                    Tip.success('您没有访问权限');
-                                    return false;
-                                };
-                                var menuId=menuArr2[0];
-                                console.log(res,menuId);
-                                for( var id in menuJson){
-                                    if(id==menuId){
-                                        console.log(menuJson[id]);
-                                        window.location.href='./html/'+menuJson[id];
-                                    }
-                                }
-                            }
-                        },
-                        error:function(res){
-                            console.log(res)
-                        }
-                    });
 
-                }else if(res.code==201){
-                    Tip.success(res.desc)
-                }else if(res.code==301){
-                    Tip.success(res.desc)
-                }else if(res.code==302){
-                    Tip.success(res.desc)
-                }else if(res.code==303){
-                    Tip.success(res.desc)
-                }else if(res.code==305){
-                    Tip.success(res.desc)
-                }else if(res.code==306){
-                    Tip.success(res.desc)
-                }else if(res.code==307){
-                    Tip.success(res.desc)
-                }else if(res.code==308){
-                    Tip.success(res.desc)
-                }else if(res.code==500){
-                    Tip.success(res.desc)
+        buildAjax('get', 'loginOn',{username: $('.userName').val(), password: $('.wordsName').val()}, false, false, function(res){
+            localStorage.user = $('.userName').val();
+            localStorage.password = $('.wordsName').val();
+            sessionStorage.token = res.data.token;
+            sessionStorage.nickname = res.data.nickname;
+            buildAjax('get', 'getMenu', {}, false, false, function(res){
+                if (res.data.length == 0) {
+                    Tip.success('您没有访问权限');
+                    return;
                 }
-            },
-            error:function(res){
-                console.log(res,'失败')
-            }
-        })
-    });
-//login end
-
+                for (let d of res.data) {
+                    for (let m of menuConfig) {
+                        if (d.menuId == m.id) {
+                            sessionStorage.page = m.page;
+                            window.location.href = './html/' + m.page + '.html';
+                            return;
+                        }
+                    }
+                }
+                Tip.success('您没有访问权限');
+            })
+        });
+    })
 })
+
+
+function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
+    data.token = sessionStorage.token;
+    $.ajax({
+        url: http + 'mobile/' + uri,
+        type: method,
+        async: ayc,
+        dataType: 'json',
+        traditional: hasarrparam,
+        data: data,
+        success: (res) => {
+            res.code != 200 && (() => {
+                r ? Tip.success(r.desc) : Tip.success('接口' + i + '请求丢失');
+                return;
+            })();
+            s && s(res);
+        },
+        error: (res) => {
+            r ? Tip.success(r.desc) : Tip.success('接口' + i + '请求丢失');
+            f && f(res);
+        }
+    });
+}

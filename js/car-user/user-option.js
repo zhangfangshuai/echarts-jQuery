@@ -1,5 +1,4 @@
 
-/////////////////////////////////////////////////option start////////////////////
 
 var lineWidth='4';
 // 用户转化漏斗图
@@ -37,7 +36,7 @@ var lineWidth='4';
             y:"bottom"
         },
         grid:{
-top:"5%"
+          top:"5%"
         },
         calculable: true,
         series: [
@@ -260,12 +259,14 @@ option5 = {
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],
     xAxis:  {	//X轴
+        name: '日期',
         type : 'category',
         data : [],
         axisLabel:{'fontSize':22}
     },
     yAxis: [
         {
+            name: '百分比',
             type: 'value',
             axisLabel:{'fontSize':22}
         }
@@ -380,12 +381,14 @@ option6 = {
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],
     xAxis:  {	//X轴
+        name: '日期',
         type : 'category',
         data : [],
         axisLabel:{'fontSize':22}
     },
     yAxis: [
         {
+            name: '百分比',
             type: 'value',
             axisLabel:{'fontSize':22}
         }
@@ -517,12 +520,14 @@ option7 = {
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],
     xAxis:  {	//X轴
+        name: '日期',
         type : 'category',
         data : [],
         axisLabel:{'fontSize':22}
     },
     yAxis: [
         {
+            name: '百分比',
             type: 'value',
             axisLabel:{'fontSize':22}
         }
@@ -642,45 +647,3 @@ option8 = {
         }
     ]
 };
-var opt = {
-    preset:'date',//日期
-    theme:'default',//皮肤样式
-    display:'bottom',//显示方式
-    lang:'zh',
-    mode:'scroller',//日期选择模式
-    dateFormat:'yymmdd', // 日期格式
-    setText:'确定',
-    cancelText:'取消',
-    showNow:true,
-    nowText:'今天',
-    dateOrder:'yymmdd', //面板中日期排列格式
-    startYear:2016,
-    endYear:new Date().getFullYear(), //结束年份
-    dayText: '日',
-    monthText: '月',
-    yearText: '年', //面板中年月日文字
-};
-var area1 = new LArea1();
-area1.init({
-    'trigger':'#first-s',
-    'valueTo':'#first-sv',
-    'keys':{
-        id:'value',
-        name:'text'
-    },
-    'type':2,
-    'data':[[{"text":"近7日","value":"2"},{"text":"近15日","value":"3"},{"text":"近1月","value":"4"},{"text":"近2月","value":"5"}]]
-});
-
-
-
-function todate(time) {
-    var oDate=new Date();
-    oDate.setTime(time);
-    var year=oDate.getFullYear();
-    var mon=oDate.getMonth();
-    var d=oDate.getDate();
-    return year+'/'+mon+'/'+d
-}
-
-

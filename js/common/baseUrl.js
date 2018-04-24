@@ -1,19 +1,21 @@
-
-//baseurl
 var http='http://122.14.205.135:8110/'; //正式接口
 // var http='http://10.16.86.213:8080/SQBIServer-web/'; //apple本地接口
 
-// depends this json to judge login
-// prod env
-var menuArr = ['2','3','4','5','6','7','8','9','10'],
-    menuJson = {
-    '2':'charts.html',           //实时监控
-    '3':'kpis.html',             //城市KPI考核
-    '4':'car-user.html',         //用户分析
-    '5':'oreders.html',          //订单分析
-    '6':'site.html',             //网点分析
-    '7':'cars.html',             //车辆分析
-    '8':'customer-service.html', //客服分析分析
-    '9':'operation.html',        //运营分析==车资
-    '10':'income.html'           //营收分析
-};
+var version = 1.0;
+
+/**
+ * Create: zhangfs by Atom
+ * Date: 2018/04/24 18:38
+ * Func: 用户登录权限检查，用户可视目录控制
+ */
+var menuConfig = [
+    { id: 2, name: '实时监控', class: 'm-charts', page: 'charts'},
+    { id: 3, name: '城市KPI考核', class: 'm-kpis', page: 'kpis'},
+    { id: 4, name: '用户分析', class: 'm-user', page: 'car-user'},
+    { id: 5, name: '订单分析', class: 'm-orders', page: 'orders'},
+    { id: 6, name: '网点分析', class: 'm-site', page: 'site'},
+    { id: 7, name: '车辆分析', class: 'm-cars', page: 'cars'},
+    { id: 8, name: '客服分析', class: 'm-customer', page: 'customer-service'},
+    { id: 9, name: '运营分析', class: 'm-operation', page: 'operation'},
+    { id:10, name: '营收分析', class: 'm-income', page: 'income'}
+]

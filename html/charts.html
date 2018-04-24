@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <title>驾驶舱-实时监控</title>
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
-    <!--<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />-->
     <script src="//img.shouqiev.com/h5/libs/flexible.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/cssPublic.css">
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
     <link rel="stylesheet" type="text/css" href="../css/charts.css">
-    <link rel="stylesheet" type="text/css" href="../css/slideBar.css">
-    <!--<script src="https://api.shouqiev.com/js/lib/jquery-2.0.3.min.js"></script>-->
     <script src="//h5.shouqiev.com/libs/jquery.min.js"></script>
     <script src="../js/common/baseUrl.js"></script>
     <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
@@ -20,80 +17,14 @@
     <script src="../libs/singleData.js"></script>
     <script src="../libs/LArea.js"></script>
     <script src="../libs/picker.js"></script>
-
 </head>
 <body>
-<!--slideBar and slideBg start-->
-<div class="slideBarBg"></div>
-<section class="slideBar clearfix">
-    <div class="nickName clearfix">
-        <div class="headIcon fl"></div>
-        <p class="nickName1 fl"></p>
-    </div>
-    <!--超出滚动-待定-->
-    <div class="slideCon">
-        <ul class="slideList">
-            <!--实时监控-->
-            <li class="list showWatching active" data-menuId="2" data-value="charts.html">
-                <span class="iconList"></span>
-                <div class="type">实时监控</div>
-            </li>
-            <!--城市KPI考核-->
-            <li class="list showKpi" data-menuId="3" data-value="kpis.html">
-                <span class="iconList iconListKpi"></span>
-                <div class="type">城市KPI考核</div>
-            </li>
-            <!--用户分析 car-user-->
-            <li class="list showUser" data-menuId="4" data-value="car-user.html">
-                <span class="iconList iconListUser"></span>
-                <div class="type">用户分析</div>
-            </li>
-            <!--order-->
-            <li class="list showOrders" data-menuId="5" data-value="orders.html">
-                <span class="iconList iconListOrder"></span>
-                <div class="type">订单分析</div>
-            </li>
-            <!--网点分析 site-->
-            <li class="list showSite" data-menuId="6" data-value="site.html">
-                <span class="iconList iconListSite"></span>
-                <div class="type">网点分析</div>
-            </li>
-            <!--车辆分析 cars-->
-            <li class="list showCars" data-menuId="7" data-value="cars.html">
-                <span class="iconList iconListCars"></span>
-                <div class="type">车辆分析</div>
-            </li>
-            <!--客服分析 新增 customer-service.html-->
-            <li class="list showCustomer" data-menuId="8" data-value="customer-service.html">
-                <span class="iconList iconListCustomer"></span>
-                <div class="type">客服分析</div>
-            </li>
-            <!--运营分析==车资 car-fare-->
-            <li class="list showFare" data-menuId="9" data-value="operation.html">
-                <span class="iconList iconListFare"></span>
-                <div class="type">运营分析</div>
-            </li>
-            <!--营收分析 car-operation-->
-            <li class="list showOperation" data-menuId="10" data-value="income.html?1">
-                <span class="iconList iconListOperation"></span>
-                <div class="type">营收分析</div>
-            </li>
-
-
-
-        </ul>
-    </div>
-    <a href="../index.html" class="out">退出登陆</a>
-</section>
-<!--slideBar and slideBg end-->
     <div class="box">
-        <!--header start -->
+        <!--导航栏 navbar -->
         <header class="header clearfix">
             <div class="slideBtn"></div>
             <div class="logo"></div>
             <div class="location">
-                <!--<div class="showCity">北京-->
-                <!--</div>-->
                 <div class="content-block showCity">
                     <input id="demo3" type="text" readonly="" onfocus="this.blur();" />
                     <input id="value3" type="hidden" />
@@ -101,473 +32,288 @@
                 <div class="showCityIcon"></div>
             </div>
         </header>
-        <!--header end-->
 
-        <!--cars start-->
-        <section class="cars clearfix">
-            <!--1实时收现-->
-            <div class="carDate carCommon clearfix" style="height: 7.5rem;">
-                <img src=".././images/leftbottom.png" alt="" class="leftBotom">
-                <img src=".././images/leftup.png" alt="" class="rightbottom">
-                <div class="datebg clearfix">
-                    <div class="date">
-                        <div class="preDateBtn preDateBtn3">前一天</div>
+        <!-- 实时收现 -->
+        <section class="section-box">
+            <div class="wrap income-chart">
+                <div class="flag-title">实时收现</div>
+                <div class="bulge-datePicker">
+                    <div class="singleDatePicker">
+                        <div class="preDateBtn incr-predate">前一天</div>
                         <div class="showDate">
-                            <input type="text" id="appDateTime3" class="appDateTime" onfocus="this.blur();">
+                            <input id="appDateTime3" class="appDateTime" onfocus="this.blur();">
                             <span class="showWeek3"></span>
                         </div>
-                        <div class="nextDateBtn nextDateBtn3">后一天</div>
+                        <div class="nextDateBtn incr-nextdate">后一天</div>
                     </div>
                 </div>
-                <!--车辆选择-->
-                <div class="carType">
-                    <div class="carTypeCommon revenuebtn active" data-carType="0">全部</div>
-                    <div class="carTypeCommon revenuebtn" data-carType="2">燃油车</div>
-                    <div class="carTypeCommon revenuebtn" data-carType="1">电动车</div>
+                <div class="carType-box">
+                    <p class="car-type incr-ct active" data-type='0'>全部</p>
+                    <p class="car-type incr-ct" data-type='1'>电车</p>
+                    <p class="car-type incr-ct" data-type='2'>燃油车</p>
                 </div>
-                <div class="topIcon topIcon3"></div>
-                <div id="dateCarChart3"></div>
-                <!--<div class="carDetail clearfix">-->
-                    <!--<div class="carDetailList">-->
-                        <!--<p class="carsListContent">当日流水<span class="carDatas carDatas9"></span></p>-->
-                        <!--<p class="carsListContent">当日收现<span class="carDatas carDatas10"></span></p>-->
-                        <!--<p class="carsListContent">现金率<span class="carDatas carDatas11"></span></p>-->
-                    <!--</div>-->
-                    <!--<div class="carDetailList" style="display: block">-->
-                        <!--<p class="carsListContent fl" style="width: 2.8rem;">单均流水<span class="carDatas carDatas12"></span></p>-->
-                        <!--<p class="carsListContent fl" >单均收现<span class="carDatas carDatas13"></span></p>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="echarts" id="incrChart"></div>
             </div>
-            <!--实时收现表格-->
-            <div class="formCommon clearfix section-box" section-id="1" >
-                <img src=".././images/leftup.png" alt="" class="leftTop">
-                <img src=".././images/leftup.png" alt="" class="rightTop">
-                <h2 class="orderTitle">实时营收概况
-                    <!--<div class="content-block last">-->
-                        <!--<div class="trangle"></div>-->
-                        <!--<input id="last" class="lateTime" type="text" readonly="" onfocus="this.blur();" />-->
-                        <!--<input id="last-s" type="hidden" />-->
-                    <!--</div>-->
-                </h2>
-                <div class="container">
-                    <div class="scroller">
-                        <div class="headLine">
-                            <p class="orderOne" style="width: 10%;">时刻 </p>
-                            <p class="orderTwo">累计收入</p>
-                            <p class="orderThree">累计收现</p>
-                            <p class="orderFour">累计优惠</p>
-                            <p class="orderFive">累计未结算</p>
-                            <p class="orderFive">单均收入</p>
-                            <p class="orderFive">单均收现</p>
-                            <p class="orderFive">单均优惠</p>
-                            <p class="orderFive">单均未结算</p>
-                        </div>
-                        <ul class="orderList revenue">
-                            <li class="anlysis">
-                                <p class="orderOne" style="width: 10%;">时刻 </p>
-                                <p class="orderTwo">累计收入</p>
-                                <p class="orderThree">累计收现</p>
-                                <p class="orderFour">累计优惠</p>
-                                <p class="orderFive">累计未结算</p>
-                                <p class="orderFive">单均收入</p>
-                                <p class="orderFive">单均收现</p>
-                                <p class="orderFive">单均优惠</p>
-                                <p class="orderFive">单均未结算</p>
-                            </li>
-                        </ul>
+        </section>
+        <section class="section-box" section-id="1">
+            <div class="wrap income-table clearTopGap">
+                <div class="cont-title">实时营收概况</div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>时刻</p>
+                        <p>累计收入</p>
+                        <p>累计收现</p>
+                        <p>累计优惠</p>
+                        <p>累计未结算</p>
+                        <p>单均收入</p>
+                        <p>单均收现</p>
+                        <p>单均优惠</p>
+                        <p>单均未结算</p>
                     </div>
+                    <ul class="itemVal incrTableVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre incrtable-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage incrtable-nowpage">1</span>/<span class="allpage incrtable-allpage">1</span>
+                    </div>
+                    <div class="page-next incrtable-nextpage"> > </div>
+                </div>
+                <div class="responsiblePerson-box">
+                    <p class="phoneBubble incrtable-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
+                </div>
+            </div>
+        </section>
 
+        <!-- 车辆现况 -->
+        <section class="section-box">
+          <div class="wrap car-chart">
+              <div class="flag-title">车辆现况</div>
+              <div class="bulge-datePicker">
+                  <div class="singleDatePicker">
+                      <div class="preDateBtn carr-predate">前一天</div>
+                      <div class="showDate">
+                          <input id="appDateTime1" class="appDateTime" onfocus="this.blur();">
+                          <span class="showWeek1"></span>
+                      </div>
+                      <div class="nextDateBtn carr-nextdate">后一天</div>
+                  </div>
+              </div>
+              <div class="carType-box">
+                  <p class="car-type carr-ct active" data-type='0'>全部</p>
+                  <p class="car-type carr-ct" data-type='1'>电车</p>
+                  <p class="car-type carr-ct" data-type='2'>燃油车</p>
+              </div>
+              <div class="simpleSelection">
+                  <div class="toggleIcon"></div>
+                  <input id="carrtog" class="selectVal" value="全部" readonly="" onfocus="this.blur();"/>
+                  <input id="carrtog-val" type="hidden" />
+              </div>
+              <div class="echarts" id="carrChart"></div>
+              <div class="cont-note carr-notebar"></div>
+          </div>
+        </section>
+        <section class="section-box" section-id="2">
+            <div class="wrap car-table clearTopGap">
+                <div class="cont-title">实时车辆状况</div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>时刻</p>
+                        <p>整备中</p>
+                        <p>待租</p>
+                        <p>已预订</p>
+                        <p>服务中-未取车</p>
+                        <p>服务中-已取车</p>
+                        <p>运维中</p>
+                        <p>维修中</p>
+                        <p>事故出险</p>
+                        <p>物料缺失</p>
+                        <p>车机离线</p>
+                        <p>低电下架</p>
+                        <p>其他原因</p>
+                        <p>停止运营</p>
+                    </div>
+                    <ul class="itemVal carrTableVal"></ul>
                 </div>
-                <div class="page1 page">
-                    <div class="pre1 pre">
-                        <
+                <div class="pagenation">
+                    <div class="page-pre carr-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage carr-nowpage">1</span>/<span class="allpage carr-allpage">1</span>
                     </div>
-                    <div class="page-mid1 page-mid">
-                        <span class="now1 now">1</span>/<span class="totle1 totle">1</span>
-                    </div>
-                    <div class="next1 next">
-                        >
-                    </div>
+                    <div class="page-next carr-nextpage"> > </div>
                 </div>
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble incReal-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble carr-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>
-            <!--2车辆状况-->
-            <div class="carDate carCommon clearfix carRealChart">
-                <img src=".././images/leftbottom.png" alt="" class="leftBotom">
-                <img src=".././images/leftup.png" alt="" class="rightbottom">
-                <div class="datebg clearfix">
-                    <div class="date">
-                        <div class="preDateBtn preDateBtn1">前一天</div>
+        </section>
+
+        <!-- 实时订单 -->
+        <section class="section-box">
+            <div class="wrap order-chart">
+                <div class="flag-title">实时订单</div>
+                <div class="bulge-datePicker">
+                    <div class="singleDatePicker">
+                        <div class="preDateBtn or-predate">前一天</div>
                         <div class="showDate">
-                            <input type="text" id="appDateTime1" class="appDateTime" onfocus="this.blur();">
-                            <span class="showWeek1"></span>
-                        </div>
-                        <div class="nextDateBtn nextDateBtn1">后一天</div>
-                    </div>
-                </div>
-                <div class="carType">
-                    <div class="carTypeCommon carstatusbtn active" data-carType="0">全部</div>
-                    <div class="carTypeCommon carstatusbtn" data-carType="2">燃油车</div>
-                    <div class="carTypeCommon carstatusbtn" data-carType="1">电动车</div>
-                    <div class="content-block last">
-                        <div class="trangle"></div>
-                        <input id="last" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
-                        <input id="last-s" type="hidden" />
-                    </div>
-                </div>
-                <div class="topIcon"></div>
-                <div id="dateCarChart1"></div>
-                <div class="carDetail clearfix carDetailAll" style="display: none">
-                    <div class="carDetailList">
-                        <p class="carsListContent">后台车辆 <span class="carDatas carDatas1"></span></p>
-                        <p class="carsListContent">上架车辆 <span class="carDatas carDatas2"></span></p>
-                        <p class="carsListContent">实时上架率 <span class="carDatas carDatas3"></span></p>
-                    </div>
-                    <div class="carDetailList">
-                        <p class="carsListContent">运维下架 <span class="carDatas carDatas4"></span></p>
-                        <p class="carsListContent">低续航下架 <span class="carDatas carDatas5"></span></p>
-                        <p class="carsListContent">停止运营 <span class="carDatas carDatas6"></span></p>
-                    </div>
-                </div>
-                <div class="carDetail clearfix carDetailOn" style="display: none">
-                    <div class="carDetailList">
-                        <p class="carsListContent">待租 <span class="carDatas carDatason1"></span></p>
-                        <p class="carsListContent">已预订 <span class="carDatas carDatason2"></span></p>
-                        <!--<p class="carsListContent">实时上架率<span class="carDatas carDatas3"></span></p>-->
-                    </div>
-                    <div class="carDetailList">
-                        <p class="carsListContent">服务中-未取车 <span class="carDatas carDatason4"></span></p>
-                        <p class="carsListContent">服务中-已取车 <span class="carDatas carDatason5"></span></p>
-                        <!--<p class="carsListContent">停止运营<span class="carDatas carDatas6"></span></p>-->
-                    </div>
-                </div>
-                <div class="carDetail clearfix carDetailDown" style="display: none">
-                    <div class="carDetailList">
-                        <p class="carsListContent">运维中 <span class="carDatas carDatasdown1"></span></p>
-                        <p class="carsListContent">维修中 <span class="carDatas carDatasdown2"></span></p>
-                        <p class="carsListContent">事故出险 <span class="carDatas carDatasdown3"></span></p>
-                    </div>
-                    <div class="carDetailList">
-                        <p class="carsListContent">物料缺失 <span class="carDatas carDatasdown4"></span></p>
-                        <p class="carsListContent">低续航 <span class="carDatas carDatasdown5"></span></p>
-                        <p class="carsListContent">车机离线 <span class="carDatas carDatasdown6"></span></p>
-                    </div>
-                </div>
-            </div>
-            <!--车辆状况表格-->
-            <div class="formCommon clearfix section-box" section-id='2'>
-                <img src=".././images/leftup.png" alt="" class="leftTop">
-                <img src=".././images/leftup.png" alt="" class="rightTop">
-                <h2 class="orderTitle">实时车辆状况
-                </h2>
-                <!--<div class="choose clearfix">-->
-                <!--<div class="chooseCom active fl jia">10佳</div>-->
-                <!--<div class="chooseCom fl jia">10差</div>-->
-                <!--<div class="chooseCom fl">全部</div>-->
-                <!--</div>-->
-                <div class="container">
-                    <div class="scroller scrollerCar">
-                        <div class="headLine">
-                            <p class="orderOne" style="width: 5%;">时刻 </p>
-                            <p class="orderTwo">整备中</p>
-                            <p class="orderThree">待租</p>
-                            <p class="orderFour">已预订</p>
-                            <p class="orderFive" style="width: 10%;">服务中-未取车</p>
-                            <p class="orderFive" style="width: 10%;">服务中-已取车</p>
-                            <p class="orderFive">运维中</p>
-                            <p class="orderFive">维修中</p>
-                            <p class="orderFive">事故出险</p>
-                            <p class="orderFive">物料缺失</p>
-                            <p class="orderFive">车机离线</p>
-                            <p class="orderFive">低电下架</p>
-                            <p class="orderFive">其他原因</p>
-                            <p class="orderFive">停止运营</p>
-                        </div>
-                        <ul class="orderList carstatus">
-                            <li class="anlysis">
-                                <p class="orderOne" style="width: 5%;">时刻 </p>
-                                <p class="orderTwo">整备中</p>
-                                <p class="orderThree">待租</p>
-                                <p class="orderFour">已预订</p>
-                                <p class="orderFive" style="width: 10%;">服务中-未取车</p>
-                                <p class="orderFive" style="width: 10%;">服务中-已取车</p>
-                                <p class="orderFive">运维中</p>
-                                <p class="orderFive">维修中</p>
-                                <p class="orderFive">事故出险</p>
-                                <p class="orderFive">物料缺失</p>
-                                <p class="orderFive">车机离线</p>
-                                <p class="orderFive">低电下架</p>
-                                <p class="orderFive">其他原因</p>
-                                <p class="orderFive">停止运营</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="page page2">
-                    <div class="pre pre2">
-                        <
-                    </div>
-                    <div class="page-mid page-mid2">
-                        <span class="now now2">1</span>/<span class="totle totle2">1</span>
-                    </div>
-                    <div class="next next2">
-                        >
-                    </div>
-                </div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble carReal-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-            <!--3实时订单-->
-            <div class="carDate carCommon clearfix" style="height: 7.5rem;">
-                <img src=".././images/leftbottom.png" alt="" class="leftBotom">
-                <img src=".././images/leftup.png" alt="" class="rightbottom">
-                <div class="datebg clearfix">
-                    <div class="date">
-                        <div class="preDateBtn preDateBtn2">前一天</div>
-                        <div class="showDate">
-                            <input type="text" id="appDateTime2" class="appDateTime" onfocus="this.blur();">
+                            <input id="appDateTime2" class="appDateTime" onfocus="this.blur();">
                             <span class="showWeek2"></span>
                         </div>
-                        <div class="nextDateBtn nextDateBtn2">后一天</div>
+                        <div class="nextDateBtn or-nextdate">后一天</div>
                     </div>
                 </div>
-                <div class="carType">
-                    <div class="carTypeCommon orderbtn active" data-carType="0">全部</div>
-                    <div class="carTypeCommon orderbtn" data-carType="2">燃油车</div>
-                    <div class="carTypeCommon orderbtn" data-carType="1">电动车</div>
+                <div class="carType-box">
+                    <p class="car-type or-ct active" data-type='0'>全部</p>
+                    <p class="car-type or-ct" data-type='1'>电车</p>
+                    <p class="car-type or-ct" data-type='2'>燃油车</p>
                 </div>
-                <div class="topIcon topIcon2"></div>
-                <div id="dateCarChart2"></div>
-                <!--<div class="carDetail clearfix">-->
-                    <!--<div class="carDetailList">-->
-                        <!--<p class="carsListContent">今日取车单<span class="carDatas carDatas7"></span></p>-->
-                        <!--<p class="carsListContent">昨日取车单<span class="carDatas carDatas8"></span></p>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="echarts" id="orChart"></div>
+                <div class="cont-note or-notebar"></div>
             </div>
-            <!--实时订单表格-->
-            <div class="formCommon clearfix section-box" section-id="4">
-                <img src=".././images/leftup.png" alt="" class="leftTop">
-                <img src=".././images/leftup.png" alt="" class="rightTop">
-                <h2 class="orderTitle">实时订单
-                </h2>
-                <!--<div class="choose clearfix">-->
-                <!--<div class="chooseCom active fl jia">10佳</div>-->
-                <!--<div class="chooseCom fl jia">10差</div>-->
-                <!--<div class="chooseCom fl">全部</div>-->
-                <!--</div>-->
-                <div class="container">
-                    <div class="scroller scrollerOrder">
-                        <div class="headLine">
-                            <p class="orderOne" style="width: 8%;">时刻 </p>
-                            <p class="orderTwo" style="width: 12%;">累计订单量</p>
-                            <p class="orderThree" style="width: 15%;">累计取车订单量</p>
-                            <p class="orderFour" style="width: 15%;">累计取消订单量</p>
-                            <p class="orderFive" style="width: 11%;">订单量</p>
-                            <p class="orderFive" >取车订单量</p>
-                            <p class="orderFive" >取消订单量</p>
-                            <p class="orderFive">车均单</p>
-                            <p class="orderFive">单均里程</p>
-                            <p class="orderFive">单均时长</p>
-                        </div>
-                        <ul class="orderList order">
-                            <li class="anlysis">
-                                <p class="orderOne" style="width: 8%;">时刻 </p>
-                                <p class="orderTwo" style="width: 12%;">累计订单量</p>
-                                <p class="orderThree" style="width: 15%;">累计取车订单量</p>
-                                <p class="orderFour" style="width: 15%;">累计取消订单量</p>
-                                <p class="orderFive" style="width: 11%;">订单量</p>
-                                <p class="orderFive" >取车订单量</p>
-                                <p class="orderFive" >取消订单量</p>
-                                <p class="orderFive">车均</p>
-                                <p class="orderFive">单均里程</p>
-                                <p class="orderFive">单均时长</p>
-                            </li>
-                        </ul>
+        </section>
+        <section class="section-box" section-id="4">
+            <div class="wrap order-table clearTopGap">
+                <div class="cont-title">实时订单</div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>时刻</p>
+                        <p>累计订单量</p>
+                        <p>累计取车订单量</p>
+                        <p>累计取消订单量</p>
+                        <p>订单量</p>
+                        <p>取车订单量</p>
+                        <p>取消订单量</p>
+                        <p>车均单</p>
+                        <p>单均里程</p>
+                        <p>单均时长</p>
                     </div>
-
+                    <ul class="itemVal orTableVal"></ul>
                 </div>
-                <div class="page page3">
-                    <div class="pre pre3">
-                        <
+                <div class="pagenation">
+                    <div class="page-pre or-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage or-nowpage">1</span>/<span class="allpage or-allpage">1</span>
                     </div>
-                    <div class="page-mid page-mid3">
-                        <span class="now now3">1</span>/<span class="totle totle3">1</span>
-                    </div>
-                    <div class="next next3">
-                        >
-                    </div>
+                    <div class="page-next or-nextpage"> > </div>
                 </div>
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble orderReal-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble or-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>
-            <!--4实时新增用户-->
-            <div class="carDate carCommon clearfix" style="height: 8rem;">
-                <img src=".././images/leftbottom.png" alt="" class="leftBotom">
-                <img src=".././images/leftup.png" alt="" class="rightbottom">
-                <div class="datebg clearfix">
-                    <div class="date">
-                        <div class="preDateBtn preDateBtn4">前一天</div>
+        </section>
+
+        <!-- 实时新增用户 -->
+        <section class="section-box">
+            <div class="wrap newguy-chart">
+                <div class="flag-title">新增用户</div>
+                <div class="bulge-datePicker">
+                    <div class="singleDatePicker">
+                        <div class="preDateBtn ng-predate">前一天</div>
                         <div class="showDate">
-                            <input type="text" id="appDateTime4" class="appDateTime" onfocus="this.blur();">
+                            <input id="appDateTime4" class="appDateTime" onfocus="this.blur();">
                             <span class="showWeek4"></span>
                         </div>
-                        <div class="nextDateBtn nextDateBtn4">后一天</div>
+                        <div class="nextDateBtn ng-nextdate">后一天</div>
                     </div>
                 </div>
-                <div class="topIcon topIcon4"></div>
-                <div id="dateCarChart4" style="margin-top:0.5rem"></div>
-                <div class="carDetail clearfix" style="margin-top: 0.3rem;">
-                    <div class="carDetailList">
-                        <p class="carsListContent">今日注册<span class="carDatas carDatas14"></span></p>
-                        <p class="carsListContent">今日双证<span class="carDatas carDatas15"></span></p>
-                        <p class="carsListContent">今日押金<span class="carDatas carDatas16"></span></p>
-                    </div>
-                    <div class="carDetailList">
-                        <p class="carsListContent">今日下单<span class="carDatas carDatas17"></span></p>
-                        <p class="carsListContent" style="margin-right: -0.4rem;">今日首单<span class="carDatas carDatas18"></span></p>
-                        <!--<p class="carsListContent">累计押金<span class="carDatas carDatas19"></span></p>-->
-                    </div>
-                </div>
+                <div class="echarts" id="ngChart"></div>
+                <div class="cont-note ng-notebar"></div>
             </div>
-            <!--实时新增用户表格-->
-            <div class="formCommon clearfix section-box" section-id='5'>
-                <img src=".././images/leftup.png" alt="" class="leftTop">
-                <img src=".././images/leftup.png" alt="" class="rightTop">
-                <h2 class="orderTitle">实时新增用户
-                </h2>
-                <!--<div class="choose clearfix">-->
-                <!--<div class="chooseCom active fl jia">10佳</div>-->
-                <!--<div class="chooseCom fl jia">10差</div>-->
-                <!--<div class="chooseCom fl">全部</div>-->
-                <!--</div>-->
-                <div class="container">
-                    <div class="scroller scrollerUser">
-                        <div class="headLine">
-                            <p class="orderOne" style="width: 10%;">时刻 </p>
-                            <p class="orderTwo" >新增注册用户</p>
-                            <p class="orderThree">新增双证用户</p>
-                            <p class="orderFour" style="width: 19%;">新增可用车用户</p>
-                            <p class="orderFive" >新增下单用户</p>
-                            <p class="orderFive" >新增首单用户</p>
-                        </div>
-                        <ul class="orderList adduser">
-                            <!--<li class="anlysis">-->
-                                <!--<p class="orderOne" style="width: 10%;">时刻 </p>-->
-                                <!--<p class="orderTwo" >新增注册用户</p>-->
-                                <!--<p class="orderThree">新增双证用户</p>-->
-                                <!--<p class="orderFour" style="width: 19%;">新增可用车用户</p>-->
-                                <!--<p class="orderFive" >新增下单用户</p>-->
-                                <!--<p class="orderFive" >新增首单用户</p>-->
-                            <!--</li>-->
-                        </ul>
+        </section>
+        <section class="section-box" section-id="5">
+            <div class="wrap newguy-table clearTopGap">
+                <div class="cont-title">实时新增用户</div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>时刻</p>
+                        <p>新增注册用户</p>
+                        <p>新增双证用户</p>
+                        <p>新增可用车用户</p>
+                        <p>新增下单用户</p>
+                        <p>新增首单用户</p>
                     </div>
-
+                    <ul class="itemVal ngTableVal"></ul>
                 </div>
-                <div class=" page page4">
-                    <div class="pre pre4">
-                        <
+                <div class="pagenation">
+                    <div class="page-pre ng-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage ng-nowpage">1</span>/<span class="allpage ng-allpage">1</span>
                     </div>
-                    <div class="page-mid page-mid4">
-                        <span class="now now4">1</span>/<span class="totle totle4">1</span>
-                    </div>
-                    <div class="next next4">
-                        >
-                    </div>
+                    <div class="page-next ng-nextpage"> > </div>
                 </div>
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble newUserReal-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble ng-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>
-            <!--实时车辆电量-->
-            <div class="carDate carCommon clearfix carReal section-box" section-id="3" style="height: 7.8rem;">
-                <div class="datebg clearfix">
-                    <div class="date">
-                        <div class="preDateBtn preDateBtn5">前一天</div>
+        </section>
+
+
+        <!-- 实时车辆电量 -->
+        <section class="section-box" section-id="3">
+            <div class="wrap car-battery">
+                <div class="flag-title">车辆续航</div>
+                <div class="bulge-datePicker">
+                    <div class="singleDatePicker">
+                        <div class="preDateBtn cb-predate">前一天</div>
                         <div class="showDate">
-                            <input type="text" id="appDateTime5" class="appDateTime" onfocus="this.blur();">
+                            <input id="appDateTime5" class="appDateTime" onfocus="this.blur();">
                             <span class="showWeek5"></span>
                         </div>
-                        <div class="nextDateBtn nextDateBtn5">后一天</div>
+                        <div class="nextDateBtn cb-nextdate">后一天</div>
                     </div>
                 </div>
-                <div class="topIcon topIcon5"></div>
-                <div id="dateCarChart5" style="margin-top:0.5rem"></div>
-                <div class="carDetail clearfix" style="margin-top: 0.3rem">
-                    <div class="carDetailList">
-                        <p class="carsListContent">待租65%以下 <span class="carDatas carDatas55"></span></p>
-                        <p class="carsListContent">下架65%以下 <span class="carDatas carDatas56"></span></p>
-                    </div>
-                </div>
+                <div class="echarts" id="cbChart"></div>
+                <div class="cont-note cb-notebar"></div>
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble elecReal-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble cb-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>
-            <!--6实时网点概况表格-->
-            <div class="formCommon clearfix section-box" section-id='7' style="margin-top: 0.5866666667rem;">
+        </section>
 
-                <h2 class="orderTitle">实时网点概况
-                    <div class="content-block last">
-                        <div class="trangle"></div>
-                        <input id="finalone" class="lateTime" type="text" readonly="" onfocus="this.blur();" />
-                        <input id="finalone-s" type="hidden" />
+        <!-- 实时网点概况 -->
+        <section class="section-box" section-id="7">
+            <div class="wrap site-real">
+                <div class="cont-title">实时网点概况
+                    <div class="simpleSelection">
+                        <div class="toggleIcon"></div>
+                        <input id="sr-time" class="selectVal" value="时刻" readonly="" onfocus="this.blur();"/>
+                        <input id="sr-time-val" type="hidden"/>
                     </div>
-                </h2>
-                <div class="date" style="margin-top: 0;">
-                    <div class="preDateBtn preDateBtn6">前一天</div>
+                </div>
+                <div class="singleDatePicker">
+                    <div class="preDateBtn sr-predate">前一天</div>
                     <div class="showDate">
-                        <input type="text" id="appDateTime6" class="appDateTime" onfocus="this.blur();">
+                        <input id="appDateTime6" class="appDateTime" onfocus="this.blur();">
                         <span class="showWeek6"></span>
                     </div>
-                    <div class="nextDateBtn nextDateBtn6">后一天</div>
+                    <div class="nextDateBtn sr-nextdate">后一天</div>
                 </div>
-                <div class="container">
-                    <div class="scroller scrollerSite">
-                        <div class="headLine">
-                            <p class="orderOne">网点名称 </p>
-                            <p class="orderTwo" >总车位</p>
-                            <p class="orderThree">可用车位</p>
-                            <p class="orderFour">已用车位</p>
-                            <p class="orderFive" >车辆数</p>
-                            <p class="orderFive" >取车单数</p>
-                            <p class="orderFive" >还车单数</p>
-                        </div>
-                        <ul class="orderList sitestatus">
-                            <!--<li class="anlysis">-->
-                                <!--<p>网点名称</p>-->
-                                <!--<p>总车位</p>-->
-                                <!--<p>可用车位</p>-->
-                                <!--<p>已用车位</p>-->
-                                <!--<p>车辆数</p>-->
-                                <!--<p>取车单数</p>-->
-                                <!--<p>还车单数</p>-->
-                            <!--</li>-->
-                        </ul>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>网点名称</p>
+                        <p>总车位</p>
+                        <p>可用车位</p>
+                        <p>已用车位</p>
+                        <p>车辆数</p>
+                        <p>取车单数</p>
+                        <p>还车单数</p>
                     </div>
+                    <ul class="itemVal srVal"></ul>
                 </div>
-                <div class="page page5">
-                    <div class="pre pre5">
-                        <
+                <div class="pagenation">
+                    <div class="page-pre sr-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage sr-nowpage">1</span>/<span class="allpage sr-allpage">1</span>
                     </div>
-                    <div class="page-mid page-mid5">
-                        <span class="now now5">1</span>/<span class="totle totle5">1</span>
-                    </div>
-                    <div class="next next5">
-                        >
-                    </div>
+                    <div class="page-next sr-nextpage"> > </div>
                 </div>
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble siteReal-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble sr-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>

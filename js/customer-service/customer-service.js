@@ -75,8 +75,8 @@ $(function () {
                 "<p>" + d[i].success_rate + "</p>" +
                 "<p>" + d[i].phone_num + "</p>" +
                 "<p>" + d[i].phonesucc_num + "</p>" +
-                "<p>" + d[i].phonesucc_rate + "</p>" +
-                "<p>" + d[i].cpo + "</p>" + "</li>";
+                "<p>" + d[i].phonesucc_rate + "%</p>" +
+                "<p>" + d[i].cpo + "%</p> </li>";
         }
         $('.csVal').html(str);
     }
@@ -101,9 +101,9 @@ $(function () {
                 "<p>" + d[i].user_card_num + "</p>" +
                 "<p>" + d[i].car_card_num + "</p>" +
                 "<p>" + d[i].double_card_num + "</p>" +
-                "<p>" + d[i].user_card_rate + "</p>" +
-                "<p>" + d[i].car_card_rate + "</p>" +
-                "<p>" + d[i].double_card_rate + "</p>" + "</li>";
+                "<p>" + d[i].user_card_rate + "%</p>" +
+                "<p>" + d[i].car_card_rate + "%</p>" +
+                "<p>" + d[i].double_card_rate + "%</p> </li>";
         }
         $('.dcVal').html(str);
     }

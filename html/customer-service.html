@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
     <link rel="stylesheet" type="text/css" href="../css/customer-service.css">
-    <link rel="stylesheet" type="text/css" href="../css/slideBar.css">
     <script src="//h5.shouqiev.com/libs/jquery.min.js"></script>
     <script src="../js/common/baseUrl.js"></script>
     <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
@@ -20,67 +19,6 @@
     <script src="../libs/picker.js"></script>
 </head>
 <body>
-<!--slideBar and slideBg start-->
-<div class="slideBarBg"></div>
-    <section class="slideBar clearfix">
-        <div class="nickName clearfix">
-            <div class="headIcon fl"></div>
-            <p class="nickName1 fl"></p>
-        </div>
-        <!--超出滚动-待定-->
-        <div class="slideCon">
-            <ul class="slideList">
-                <!--实时监控-->
-                <li class="list showWatching " data-menuId="2" data-value="charts.html">
-                    <span class="iconList"></span>
-                    <div class="type">实时监控</div>
-                </li>
-                <!--城市KPI考核-->
-                <li class="list showKpi" data-menuId="3" data-value="kpis.html">
-                    <span class="iconList iconListKpi"></span>
-                    <div class="type">城市KPI考核</div>
-                </li>
-                <!--用户分析 car-user-->
-                <li class="list showUser" data-menuId="4" data-value="car-user.html">
-                    <span class="iconList iconListUser"></span>
-                    <div class="type">用户分析</div>
-                </li>
-                <!--order-->
-                <li class="list showOrders" data-menuId="5" data-value="orders.html">
-                    <span class="iconList iconListOrder"></span>
-                    <div class="type">订单分析</div>
-                </li>
-                <!--网点分析 site-->
-                <li class="list showSite" data-menuId="6" data-value="site.html">
-                    <span class="iconList iconListSite"></span>
-                    <div class="type">网点分析</div>
-                </li>
-                <!--车辆分析 cars-->
-                <li class="list showCars" data-menuId="7" data-value="cars.html">
-                    <span class="iconList iconListCars"></span>
-                    <div class="type">车辆分析</div>
-                </li>
-                <!--客服分析 新增 customer-service.html-->
-                <li class="list showCustomer active" data-menuId="8" data-value="customer-service.html">
-                    <span class="iconList iconListCustomer"></span>
-                    <div class="type">客服分析</div>
-                </li>
-                <!--运营分析==车资 car-fare-->
-                <li class="list showFare" data-menuId="9" data-value="operation.html">
-                    <span class="iconList iconListFare"></span>
-                    <div class="type">运营分析</div>
-                </li>
-                <!--营收分析 car-operation-->
-                <li class="list showOperation" data-menuId="10" data-value="income.html">
-                    <span class="iconList iconListOperation"></span>
-                    <div class="type">营收分析</div>
-                </li>
-            </ul>
-        </div>
-        <a href="../index.html" class="out">退出登陆</a>
-    </section>
-    <!--slideBar and slideBg end-->
-
     <div class="box">
         <!-- 导航栏 -->
         <header class="header clearfix">
@@ -113,8 +51,8 @@
                         <p>接起率%</p>
                         <p>外呼数量</p>
                         <p>外呼实际接通</p>
-                        <p>接通率%</p>
-                        <p>CPO(%)</p>
+                        <p>接通率</p>
+                        <p>CPO</p>
                     </div>
                     <ul class="itemVal csVal"></ul>
                 </div>
@@ -146,9 +84,9 @@
                         <p>身份证提交人数</p>
                         <p>驾照提交人数</p>
                         <p>双证提交人数</p>
-                        <p>身份证审核通过率%</p>
-                        <p>驾照审核通过率%</p>
-                        <p>双证审核通过率%</p>
+                        <p>身份证审核通过率</p>
+                        <p>驾照审核通过率</p>
+                        <p>双证审核通过率</p>
                     </div>
                     <ul class="itemVal dcVal"></ul>
                 </div>
@@ -167,7 +105,6 @@
         </section>
     </div>
     <script src="../libs/echarts.min.js"></script>
-    <script src="../libs/china.js"></script>
     <script src="../js/common/jsPublic.js?1"></script>
     <script type="text/javascript" src='../js/customer-service/customer-service.js'></script>
     <script src="https://img.shouqiev.com/h5/libs/common.js"></script>

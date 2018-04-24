@@ -8,8 +8,8 @@ $(function () {
      var DATA_CACHE, DETAIL_DATA_CACHE, PM_DATA_CACHE;
      var carType = '0',   // 0-All, 1-elec, 2-oil
          page = 1,        // 违章概况分页
-         pdPage = 1,      // 违章详情分页
-         pmPage = 1;      // 推费概况分页
+         pdPage = 1,
+         pmPage = 1,
          cityVal = 1;
      var today = getDaysOffset(),
          yesterday = getDaysOffset(-1),
@@ -193,78 +193,38 @@ $(function () {
 
      // 违章概况时间监控
      $('#appDateTime2, #appDateTime3').on('change', function() {
-         pdPage = 1;
-         $('.pd-nowpage').html(1);
+         pdPage = resetPaging('pd-nowpage');
          getPeccancyInfo(cityVal, carType, $('#appDateTime2').val(), $('#appDateTime3').val(), pdPage);
      });
 
      // 推费概述时间监控
      $('#appDateTime4, #appDateTime5').on('change', function() {
-         pmPage = 1;
-         $('.pm-nowpage').html(1);
+         pmPage = resetPaging('pm-nowpage');
          getPushMoneyData(cityVal, carType, $('#appDateTime4').val(), $('#appDateTime5').val(), pmPage);
      });
 
      // 违章概况分页控制
      $('.pec-prepage, .pec-nextpage').on('click',function() {
-         if (this.classList[1] == 'pec-prepage') {
-             page > 1 ? (() => {
-                 page --;
-                 refPeccancyUI(page);
-                 $('.pec-nowpage').html(page);
-             })() : console.log('Top page!');
-         } else {
-            page < parseInt($('.pec-allpage').html()) ? (() => {
-                page ++;
-                refPeccancyUI(page);
-                $('.pec-nowpage').html(page);
-            })() : console.log('Last page!');
-         }
+          page = pagingCtrl(this, page, refPeccancyUI);
      });
 
      // 车辆违章详情分页控制
-     $('.pd-prepage, .pd-nextpage').on('click',function() {
-         if (this.classList[1] == 'pd-prepage') {
-             pdPage > 1 ? (() => {
-                 pdPage --;
-                 refPeccancyDetailUI(pdPage);
-                 $('.pd-nowpage').html(pdPage);
-             })() : console.log('Top page!');
-         } else {
-            pdPage < parseInt($('.pd-allpage').html()) ? (() => {
-                pdPage ++;
-                refPeccancyDetailUI(pdPage);
-                $('.pd-nowpage').html(pdPage);
-            })() : console.log('Last page!');
-         }
+     $('.pd-prepage, .pd-nextpage').on('click', function() {
+          pdPage = pagingCtrl(this, pdPage, refPeccancyDetailUI);
      });
 
      // 推费概述 分页控制
      $('.pm-prepage, .pm-nextpage').on('click',function() {
-         if (this.classList[1] == 'pm-prepage') {
-             pmPage > 1 ? (() => {
-                 pmPage --;
-                 refPushMoneyUI(pmPage);
-                 $('.pm-nowpage').html(pmPage);
-             })() : console.log('Top page!');
-         } else {
-            pmPage < parseInt($('.pm-allpage').html()) ? (() => {
-                pmPage ++;
-                refPushMoneyUI(pmPage);
-                $('.pm-nowpage').html(pmPage);
-            })() : console.log('Last page!');
-         }
+         pmPage = pagingCtrl(this, pmPage, refPushMoneyUI);
      });
 
+
      // 前一天后一天时间监控
-     $('.nextDateBtn1').on('click',function(){
-         var d = changeDate1(1,1);
-         $('#appDateTime1').val(d);
-         getPeccancyDetail(cityVal, carType, $('#appDateTime1').val(), pdPage);
-     });
-     $('.preDateBtn1').on('click',function(){
-         var d = changeDate(1,-1);
-         $('#appDateTime1').val(d);
-         getPeccancyDetail(cityVal, carType, $('#appDateTime1').val(), pdPage);
-     });
+     $('.pd-predate, .pd-nextdate').on('click',function() {
+         let id = this.parentNode.children[1].children[0].id;
+         this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                                      : $('#'+id).val(updateDate(this.parentNode, 1, true));
+         pdPage = resetPaging('pd-nowpage');
+         getPeccancyDetail(cityVal, carType, $('#appDateTime1').val(), 1);
+     })
 })

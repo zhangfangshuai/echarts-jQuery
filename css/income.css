@@ -5,52 +5,57 @@
  * Time: 10:10
  */
 
-.income {
-    width: 10rem;
-    background: #F2F3F5;
+.inc .headLine p, .incVal li p {
+    width: 20%;
+    text-align: center;
 }
 
-.inc {
-    width: 9.4666666667rem;
-    /*height: 9.3333333333rem;*/
-    height: auto;
-    background: #FFFFFF;
-    box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
-    border-radius: 0.2133333333rem;
-    margin: 0.5866666667rem auto 0;
-    position: relative;
+.inc .headLine p:first-child, .incVal li p:first-child { width: 23%; }
+.inc .headLine p:nth-child(2), .incVal li p:nth-child(2) { width: 19%; }
+.inc .headLine p:nth-child(5), .incVal li p:nth-child(5) { width: 18%; }
+
+
+
+.recg .scroll-cont .headLine, .recgVal {
+    width: 12rem;
 }
 
-.headLine .itemOne, .incVal li p:first-child { width: 23%; }
-.headLine .itemFour, .incVal li p:nth-child(2) { width: 19%; }
-.headLine .itemFive, .incVal li p:nth-child(5) { width: 18%; text-align: center; }
-
-.recg {
-    width: 9.4666666667rem;
-    height: auto;
-    background: #FFFFFF;
-    box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
-    border-radius: 0.2133333333rem;
-    margin: 0.5866666667rem auto 0;
-    padding-bottom: .1rem;
-    position: relative;
+.recg .scroll-cont .headLine p, .recgVal li p {
+    text-align: center;
 }
-
-
-.recg-headline, .recgVal {
-    width: 122%;
-}
-
-.itemZero {
-    padding-left: .2rem;
-}
-.recharge .recg-headline .itemZero, .recgVal li p:nth-child(1) { width: 16%; }
-.recharge .recg-headline .itemOne, .recgVal li p:nth-child(2) { width: 15%; }
-.recharge .recg-headline .itemTwo, .recgVal li p:nth-child(3) { width: 12%; }
-.recharge .recg-headline .itemThree, .recgVal li p:nth-child(4) { width: 20%; }
-.recharge .recg-headline .itemFour, .recgVal li p:nth-child(5) { width: 17%; }
-.recharge .recg-headline .itemFive, .recgVal li p:nth-child(6) { width: 17%; text-align:center; }
+.recg .scroll-cont .headLine p:nth-child(1), .recgVal li p:nth-child(1) { width: 16%; }
+.recg .scroll-cont .headLine p:nth-child(2), .recgVal li p:nth-child(2) { width: 15%; }
+.recg .scroll-cont .headLine p:nth-child(3), .recgVal li p:nth-child(3) { width: 10%; }
+.recg .scroll-cont .headLine p:nth-child(4), .recgVal li p:nth-child(4) { width: 22%; }
+.recg .scroll-cont .headLine p:nth-child(5), .recgVal li p:nth-child(5) { width: 17%; }
+.recg .scroll-cont .headLine p:nth-child(6), .recgVal li p:nth-child(6) { width: 17%; }
 
 .recgVal li:last-child {
     margin-bottom: .2rem;
 }
+
+
+li p img {
+  left: 82%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TODO*/

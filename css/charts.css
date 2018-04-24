@@ -1,537 +1,157 @@
-.box {
-  width: 10rem;
-  padding-top: 1.0666666667rem;
-  overflow: hidden; }
-  .box .header {
-    width: 10rem;
-    height: 1.0666666667rem;
-    background-image: linear-gradient(-180deg, #4C555E 0%, #252A30 80%);
-    box-shadow: 0 0.0533333333rem 0.1333333333rem 0 rgba(0, 0, 0, 0.1);
-    display: flex;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 99999999; }
-    .box .header .slideBtn {
-      width: 0.5333333333rem;
-      height: 0.4266666667rem;
-      background: url("../images/icon_menu.png");
-      -webkit-background-size: cover;
-      background-size: cover;
-      margin-left: 0.2666666667rem;
-      margin-top: 0.32rem; }
-    .box .header .logo {
-      width: 1.3866666667rem;
-      height: 0.8533333333rem;
-      background: url("../images/logo_bar.png");
-      -webkit-background-size: cover;
-      background-size: cover;
-      margin: 0.1066666667rem 0 0 3.6266666667rem; }
-    .box .header .location {
-      width: 1.9rem;
-      height: 0.48rem;
-      margin: 0.2933333333rem 0 0 2rem;
-      display: flex; }
-      .box .header .location .showCity {
-        width: 1.4rem;
-        height: 0.48rem;
-        font-size: 0.3466666667rem;
-        color: #ABB7C1;
-        letter-spacing: 0; }
-      .box .header .location .showCityIcon {
-        width: 0.2666666667rem;
-        height: 0.3466666667rem;
-        margin: 0.0666666667rem 0 0 0.1066666667rem;
-        background: url("../images/icon_location.png");
-        -webkit-background-size: cover;
-        background-size: cover; }
-  .box .cars {
-    width: 10rem;
-    background: #F2F3F5;
-    padding-bottom: 1.3333333333rem; }
-    .box .cars .carCommon {
-      width: 9.4666666667rem;
-      height: 8.4266666667rem;
-      background: #FFFFFF;
-      box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
-      border-radius: 0.2133333333rem;
-      margin: 0.8533333333rem auto 0;
-      position: relative; }
-      .box .cars .carCommon .leftBotom {
-        width: 0.32rem;
-        height: 0.32rem;
-        position: absolute;
-        left: -0.048rem;
-        bottom: -0.0746666667rem;
-        z-index: 10; }
-      .box .cars .carCommon .rightbottom {
-        width: 0.32rem;
-        height: 0.32rem;
-        position: absolute;
-        right: -0.048rem;
-        bottom: -0.0746666667rem;
-        z-index: 10;
-        -webkit-transform: rotate(180deg);
-        -moz-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
-        transform: rotate(180deg); }
-      .box .cars .carCommon .datebg {
-        width: 6.1866666667rem;
-        height: 1.12rem;
-        background: #fff;
-        border-radius: 2.6666666667rem;
-        margin: -0.2666666667rem auto 0; }
-      .box .cars .carCommon .carType {
-        width: 100%;
-        height: 0.5866666667rem;
-        display: -webkit-flex;
-        display: flex;
-        justify-content: center;
-        margin-top: 0.2666666667rem;
-        margin-bottom: 0.2666666667rem;
-        position: relative; }
-        .box .cars .carCommon .carType .carTypeCommon {
-          background: #F2F3F5;
-          border-radius: 0.1066666667rem;
-          width: 1.1733333333rem;
-          height: 0.5333333333rem;
-          font-size: 0.2933333333rem;
-          line-height: 0.5333333333rem;
-          color: #ABB7C1;
-          letter-spacing: 0;
-          text-align: center;
-          margin-right: 0.48rem; }
-        .box .cars .carCommon .carType .carTypeCommon:last-child {
-          margin-right: 0; }
-        .box .cars .carCommon .carType .carTypeCommon.active {
-          color: #0DB95F;
-          background: #DBF7E8; }
-        .box .cars .carCommon .carType .last {
-          height: 0.5333333333rem;
-          width: 1.0666666667rem;
-          position: absolute;
-          right: 0.5333333333rem;
-          top: 0;
-          line-height: 0.5333333333rem;
-          font-size: 0.2666666667rem;
-          color: #0DB95F; }
-          .box .cars .carCommon .carType .last .trangle {
-            width: 0.16rem;
-            height: 0.08rem;
-            background: url("../images/Triangle 3.png");
-            -webkit-background-size: cover;
-            background-size: cover;
-            position: absolute;
-            right: -0.2666666667rem;
-            top: 43%; }
-          .box .cars .carCommon .carType .last #last {
-            width: 100%;
-            height: 0.5333333333rem;
-            line-height: 0.5333333333rem;
-            text-align: right;
-            font-size: 0.2666666667rem;
-            color: #0DB95F; }
-      .box .cars .carCommon .date {
-        width: 5.8666666667rem;
-        height: 0.8rem;
-        margin: 0.16rem auto;
-        background: #F2F3F5;
-        box-shadow: inset 0 0.0266666667rem 0.1066666667rem 0 #D5D9DD;
-        border-radius: 2.6666666667rem;
-        display: flex; }
-        .box .cars .carCommon .date .showDate {
-          width: 2.4rem;
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0.32rem;
-          color: #0DB95F;
-          letter-spacing: 0;
-          margin-left: 0.6133333333rem; }
-          .box .cars .carCommon .date .showDate .appDateTime {
-            width: 1.5666666667rem;
-            font-size: 0.32rem;
-            color: #0DB95F;
-            letter-spacing: 0;
-            height: 0.8rem;
-            background: transparent; }
-        .box .cars .carCommon .date .preDateBtn {
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0.2666666667rem;
-          color: #647888;
-          letter-spacing: 0;
-          margin-left: 0.32rem; }
-        .box .cars .carCommon .date .nextDateBtn {
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0.2666666667rem;
-          color: #647888;
-          letter-spacing: 0;
-          margin-left: 0.6133333333rem; }
-      .box .cars .carCommon .topIcon {
-        position: absolute;
-        left: 0.1333333333rem;
-        top: -0.1066666667rem;
-        width: 0.9066666667rem;
-        height: 1.1733333333rem;
-        background: url("../images/tag_cars.png");
-        -webkit-background-size: cover;
-        background-size: cover; }
-      .box .cars .carCommon .topIcon2 {
-        background: url("../images/tag_orderlist.png");
-        -webkit-background-size: cover;
-        background-size: cover; }
-      .box .cars .carCommon .topIcon3 {
-        background: url("../images/tag_income.png");
-        -webkit-background-size: cover;
-        background-size: cover; }
-      .box .cars .carCommon .topIcon4 {
-        background: url("../images/tag_users.png");
-        -webkit-background-size: cover;
-        background-size: cover; }
-      .box .cars .carCommon .topIcon5 {
-        background: url("../images/icon_energy.png");
-        -webkit-background-size: cover;
-        background-size: cover; }
-      .box .cars .carCommon #dateCarChart1, .box .cars .carCommon #dateCarChart2, .box .cars .carCommon #dateCarChart3, .box .cars .carCommon #dateCarChart4, .box .cars .carCommon #dateCarChart5, .box .cars .carCommon #dateCarChart6 {
-        height: 4.9066666667rem;
-        width: 100%;
-        background: #ccc; }
-      .box .cars .carCommon .carDetail {
-        width: 8.4rem;
-        margin-left: 1rem; }
-        .box .cars .carCommon .carDetail .carDetailList {
-          width: 8.4rem;
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.2933333333rem;
-          color: #425C72;
-          letter-spacing: 0;
-          margin: 0.1066666667rem auto 0; }
-          .box .cars .carCommon .carDetail .carDetailList .carsListContent {
-            width: 3.2rem;
-            height: 0.4266666667rem;
-            line-height: 0.4266666667rem; }
-            .box .cars .carCommon .carDetail .carDetailList .carsListContent .carDatas {
-              color: #0DB95F; }
-    .box .cars .formCommon {
-      width: 9.4666666667rem;
-      background: #fff;
-      box-shadow: 0 0.0533333333rem 0.1066666667rem 0 #D5D9DD;
-      border-radius: 0.2133333333rem;
-      margin: 0.16rem auto 0;
-      padding-bottom: 0.4rem;
-      position: relative; }
-      .box .cars .formCommon .date {
-        width: 5.8666666667rem;
-        height: 0.8rem;
-        margin: 0.16rem auto;
-        background: #F2F3F5;
-        box-shadow: inset 0 0.0266666667rem 0.1066666667rem 0 #D5D9DD;
-        border-radius: 2.6666666667rem;
-        display: flex; }
-        .box .cars .formCommon .date .showDate {
-          width: 2.4rem;
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0.32rem;
-          color: #0DB95F;
-          letter-spacing: 0;
-          margin-left: 0.6133333333rem; }
-          .box .cars .formCommon .date .showDate .appDateTime {
-            width: 1.5666666667rem;
-            font-size: 0.32rem;
-            color: #0DB95F;
-            letter-spacing: 0;
-            height: 0.8rem;
-            background: transparent; }
-        .box .cars .formCommon .date .preDateBtn {
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0.2666666667rem;
-          color: #647888;
-          letter-spacing: 0;
-          margin-left: 0.32rem; }
-        .box .cars .formCommon .date .nextDateBtn {
-          height: 0.8rem;
-          line-height: 0.8rem;
-          font-size: 0.2666666667rem;
-          color: #647888;
-          letter-spacing: 0;
-          margin-left: 0.6133333333rem; }
-      .box .cars .formCommon .leftTop {
-        width: 0.32rem;
-        height: 0.32rem;
-        position: absolute;
-        left: -0.048rem;
-        top: -0.0746666667rem;
-        z-index: 10; }
-      .box .cars .formCommon .rightTop {
-        width: 0.32rem;
-        height: 0.32rem;
-        position: absolute;
-        right: -0.04rem;
-        top: -0.0586666667rem;
-        z-index: 10;
-        -webkit-transform: rotate(180deg);
-        -moz-transform: rotate(180deg);
-        -ms-transform: rotate(180deg);
-        -o-transform: rotate(180deg);
-        transform: rotate(90deg); }
-      .box .cars .formCommon .orderTitle {
-        text-align: center;
-        width: 100%;
-        height: 1.0133333333rem;
-        font-size: 0.3466666667rem;
-        color: #425C72;
-        letter-spacing: 0;
-        line-height: 1.0133333333rem;
-        font-weight: bold;
-        position: relative; }
-        .box .cars .formCommon .orderTitle .last {
-          height: 1.0133333333rem;
-          width: 1.0666666667rem;
-          position: absolute;
-          right: 0.5333333333rem;
-          top: 0;
-          line-height: 1.0133333333rem;
-          font-size: 0.2666666667rem;
-          color: #0DB95F; }
-          .box .cars .formCommon .orderTitle .last .trangle {
-            width: 0.16rem;
-            height: 0.08rem;
-            background: url("../images/Triangle 3.png");
-            -webkit-background-size: cover;
-            background-size: cover;
-            position: absolute;
-            right: -0.2666666667rem;
-            top: 46%; }
-          .box .cars .formCommon .orderTitle .last #last, .box .cars .formCommon .orderTitle .last #finalone {
-            width: 100%;
-            height: 1.0133333333rem;
-            line-height: 1.0133333333rem;
-            text-align: right;
-            font-size: 0.2666666667rem;
-            color: #0DB95F; }
-      .box .cars .formCommon .choose {
-        width: 4.8rem;
-        height: 0.5866666667rem;
-        margin: 0 auto 0.2666666667rem; }
-        .box .cars .formCommon .choose .chooseCom {
-          width: 1.6rem;
-          height: 100%;
-          text-align: center;
-          line-height: 0.5866666667rem;
-          font-size: 0.2666666667rem;
-          color: #647888;
-          background: #F2F3F5; }
-        .box .cars .formCommon .choose .chooseCom.active {
-          color: #FFFFFF;
-          background: #09CA65; }
-        .box .cars .formCommon .choose .chooseCom:first-child {
-          border-radius: 2.6666666667rem 0 0 2.6666666667rem; }
-        .box .cars .formCommon .choose .chooseCom:last-child {
-          border-radius: 0 2.6666666667rem 2.6666666667rem 0; }
-      .box .cars .formCommon .container {
-        width: 9.2rem;
-        margin: 0 auto;
-        overflow-x: scroll; }
-        .box .cars .formCommon .container .scroller {
-          width: 15.8rem; }
-          .box .cars .formCommon .container .scroller .headLine {
-            height: 0.5333333333rem;
-            width: 15.6rem;
-            margin: 0 auto;
-            font-size: 0.3466666667rem;
-            color: #365873;
-            letter-spacing: 0;
-            border-bottom: 0.03rem solid #EAEFF3;
-            display: flex; }
-            .box .cars .formCommon .container .scroller .headLine p {
-              width: 14.28%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem;
-              text-align: center; }
-          .box .cars .formCommon .container .scroller .orderList {
-            width: 15.6rem;
-            margin: 0 auto; }
-            .box .cars .formCommon .container .scroller .orderList .anlysis {
-              width: 100%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem;
-              display: flex; }
-              .box .cars .formCommon .container .scroller .orderList .anlysis p {
-                width: 14.28%;
-                text-align: center;
-                font-size: 0.2666666667rem;
-                color: #425C72;
-                letter-spacing: 0;
-                overflow-x: scroll; }
-              .box .cars .formCommon .container .scroller .orderList .anlysis .orderUp {
-                width: 0.24rem;
-                height: 0.2666666667rem;
-                margin-right: 0.1333333333rem;
-                margin-top: 0.1333333333rem; }
-        .box .cars .formCommon .container .scrollerCar {
-          width: 25rem; }
-          .box .cars .formCommon .container .scrollerCar .headLine {
-            height: 0.5333333333rem;
-            width: 24.8rem;
-            margin: 0 auto;
-            font-size: 0.3466666667rem;
-            color: #365873;
-            letter-spacing: 0;
-            border-bottom: 0.03rem solid #EAEFF3;
-            display: flex; }
-            .box .cars .formCommon .container .scrollerCar .headLine p {
-              width: 7.14%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem; }
-          .box .cars .formCommon .container .scrollerCar .orderList {
-            width: 24.8rem;
-            margin: 0 auto; }
-            .box .cars .formCommon .container .scrollerCar .orderList .anlysis {
-              width: 100%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem;
-              display: flex; }
-              .box .cars .formCommon .container .scrollerCar .orderList .anlysis p {
-                width: 7.14%;
-                font-size: 0.2666666667rem;
-                color: #425C72;
-                letter-spacing: 0;
-                overflow-x: scroll; }
-              .box .cars .formCommon .container .scrollerCar .orderList .anlysis .orderUp {
-                width: 0.24rem;
-                height: 0.2666666667rem;
-                margin-right: 0.1333333333rem;
-                margin-top: 0.1333333333rem; }
-        .box .cars .formCommon .container .scrollerOrder {
-          width: 20rem; }
-          .box .cars .formCommon .container .scrollerOrder .headLine {
-            height: 0.5333333333rem;
-            width: 19.8rem;
-            margin: 0 auto;
-            font-size: 0.3466666667rem;
-            color: #365873;
-            letter-spacing: 0;
-            border-bottom: 0.03rem solid #EAEFF3;
-            display: flex; }
-            .box .cars .formCommon .container .scrollerOrder .headLine p {
-              width: 10%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem; }
-          .box .cars .formCommon .container .scrollerOrder .orderList {
-            width: 19.8rem;
-            margin: 0 auto; }
-            .box .cars .formCommon .container .scrollerOrder .orderList .anlysis {
-              width: 100%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem;
-              display: flex; }
-              .box .cars .formCommon .container .scrollerOrder .orderList .anlysis p {
-                width: 10%;
-                font-size: 0.2666666667rem;
-                color: #425C72;
-                letter-spacing: 0;
-                overflow-x: scroll; }
-              .box .cars .formCommon .container .scrollerOrder .orderList .anlysis .orderUp {
-                width: 0.24rem;
-                height: 0.2666666667rem;
-                margin-right: 0.1333333333rem;
-                margin-top: 0.1333333333rem; }
-        .box .cars .formCommon .container .scrollerUser {
-          width: 14rem; }
-          .box .cars .formCommon .container .scrollerUser .headLine {
-            height: 0.5333333333rem;
-            width: 13.8rem;
-            margin: 0 auto;
-            font-size: 0.3466666667rem;
-            color: #365873;
-            letter-spacing: 0;
-            border-bottom: 0.03rem solid #EAEFF3;
-            display: flex; }
-            .box .cars .formCommon .container .scrollerUser .headLine p {
-              width: 16.7%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem; }
-          .box .cars .formCommon .container .scrollerUser .orderList {
-            width: 13.8rem;
-            margin: 0 auto; }
-            .box .cars .formCommon .container .scrollerUser .orderList .anlysis {
-              width: 100%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem;
-              display: -webkit-flex;
-              display: flex; }
-              .box .cars .formCommon .container .scrollerUser .orderList .anlysis p {
-                width: 16.7%;
-                font-size: 0.2666666667rem;
-                color: #425C72;
-                letter-spacing: 0;
-                overflow-x: scroll; }
-              .box .cars .formCommon .container .scrollerUser .orderList .anlysis .orderUp {
-                width: 0.24rem;
-                height: 0.2666666667rem;
-                margin-right: 0.1333333333rem;
-                margin-top: 0.1333333333rem; }
-        .box .cars .formCommon .container .scrollerSite {
-          width: 14rem; }
-          .box .cars .formCommon .container .scrollerSite .headLine {
-            height: 0.5333333333rem;
-            width: 13.8rem;
-            margin: 0 auto;
-            font-size: 0.3466666667rem;
-            color: #365873;
-            letter-spacing: 0;
-            border-bottom: 0.03rem solid #EAEFF3;
-            display: flex; }
-            .box .cars .formCommon .container .scrollerSite .headLine p {
-              width: 16.7%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem; }
-          .box .cars .formCommon .container .scrollerSite .orderList {
-            width: 13.8rem;
-            margin: 0 auto; }
-            .box .cars .formCommon .container .scrollerSite .orderList .anlysis {
-              width: 100%;
-              height: 0.5333333333rem;
-              line-height: 0.5333333333rem;
-              display: -webkit-flex;
-              display: flex; }
-              .box .cars .formCommon .container .scrollerSite .orderList .anlysis p {
-                width: 16.7%;
-                font-size: 0.2666666667rem;
-                color: #425C72;
-                letter-spacing: 0;
-                overflow-x: scroll; }
-              .box .cars .formCommon .container .scrollerSite .orderList .anlysis .orderUp {
-                width: 0.24rem;
-                height: 0.2666666667rem;
-                margin-right: 0.1333333333rem;
-                margin-top: 0.1333333333rem; }
-      .box .cars .formCommon .page {
-        width: 2.6666666667rem;
-        height: 0.5333333333rem;
-        margin: 0.2666666667rem auto 0;
-        display: flex;
-        color: #425C72;
-        font-size: 0.2666666667rem; }
-        .box .cars .formCommon .page .pre {
-          height: 100%;
-          width: 0.5333333333rem;
-          line-height: 0.5333333333rem;
-          text-align: center; }
-        .box .cars .formCommon .page .next {
-          height: 100%;
-          width: 0.5333333333rem;
-          line-height: 0.5333333333rem;
-          text-align: center; }
-        .box .cars .formCommon .page .page-mid {
-          width: 1.6rem;
-          text-align: center;
-          line-height: 0.5333333333rem;
-          height: 0.5333333333rem; }
+/**
+ * Recode: zhangfs by Atom
+ * Date: 2018/04/19 15:25
+ * Note: old 535 lines; recode: 139 lines
+ */
+.wrap {
+    margin: 0.8rem auto 0;
+}
+.echarts {
+    height: 5rem;
+}
 
-/*# sourceMappingURL=charts.css.map */
+/* 实时营收 icon */
+.income-chart .flag-title {
+    background: -moz-linear-gradient(180deg, #f1d591 10%, #ffa313);
+    background: -ms-linear-gradient(180deg, #f1d591 10%, #ffa313);
+    background: -o-linear-gradient(180deg, #f1d591 10%, #ffa313);
+    background: -webkit-linear-gradient(180deg, #f1d591 10%, #ffa313);
+    background: linear-gradient(180deg, #f1d591 10%, #ffa313);
+}
+.income-chart .flag-title:before {
+    border-right: solid .375rem #ffa313;
+    border-left: solid .375rem #ffa313;
+}
+
+.income-table .scroll-cont .headLine, .incrTableVal {
+    width: 16rem;
+}
+.income-table .scroll-cont .headLine p, .incrTableVal li p {
+    width: 11.25%;
+    text-align: center;
+}
+.income-table .scroll-cont .headLine p:nth-of-type(1), .incrTableVal li p:nth-of-type(1) { width:10%; }
+
+
+/* 车辆现况 icon */
+.car-chart .flag-title {
+    background: -moz-linear-gradient(180deg, #32f9a7 10%, #0db95f);
+    background: -ms-linear-gradient(180deg, #32f9a7 10%, #0db95f);
+    background: -o-linear-gradient(180deg, #32f9a7 10%, #0db95f);
+    background: -webkit-linear-gradient(180deg, #32f9a7 10%, #0db95f);
+    background: linear-gradient(180deg, #32f9a7 10%, #0db95f);
+}
+.car-chart .flag-title:before {
+    border-right: solid .375rem #0db95f;
+    border-left: solid .375rem #0db95f;
+}
+
+.car-table .scroll-cont .headLine, .carrTableVal {
+    width: 25rem;
+}
+.car-table .scroll-cont .headLine p, .carrTableVal li p {
+    width: 7.14%;
+    text-align: center;
+}
+.car-table .scroll-cont .headLine p:nth-of-type(1), .carrTableVal li p:nth-of-type(1) { width: 5%; }
+.car-table .scroll-cont .headLine p:nth-of-type(5), .carrTableVal li p:nth-of-type(5) { width: 10%; }
+.car-table .scroll-cont .headLine p:nth-of-type(6), .carrTableVal li p:nth-of-type(6) { width: 10%; }
+
+
+/* 车辆概况上下架选择样式 */
+.car-chart .simpleSelection {
+    top: 1.1rem;
+    right: .8rem;
+}
+.car-chart .simpleSelection input {
+    float: right;
+    margin-right: 20%;
+}
+
+.noteLine p {
+    text-align: left;
+}
+
+
+/* 实时订单 icon */
+.order-chart .flag-title {
+    background: -moz-linear-gradient(180deg, #59ffd1 10%, #01c6b6);
+    background: -ms-linear-gradient(180deg, #59ffd1 10%, #01c6b6);
+    background: -o-linear-gradient(180deg, #59ffd1 10%, #01c6b6);
+    background: -webkit-linear-gradient(180deg, #59ffd1 10%, #01c6b6);
+    background: linear-gradient(180deg, #59ffd1 10%, #01c6b6);
+}
+.order-chart .flag-title:before {
+    border-right: solid .375rem #01c6b6;
+    border-left: solid .375rem #01c6b6;
+}
+
+.order-table .scroll-cont .headLine, .orTableVal {
+    width: 20rem;
+}
+.order-table .scroll-cont .headLine p, .orTableVal li p {
+    width: 9%;
+    text-align: center;
+}
+.order-table .scroll-cont .headLine p:nth-of-type(1), .orTableVal li p:nth-of-type(1) { width: 5%; }
+.order-table .scroll-cont .headLine p:nth-of-type(2), .orTableVal li p:nth-of-type(2) { width: 11%; }
+.order-table .scroll-cont .headLine p:nth-of-type(3), .orTableVal li p:nth-of-type(3) { width: 14%; }
+.order-table .scroll-cont .headLine p:nth-of-type(4), .orTableVal li p:nth-of-type(4) { width: 14%; }
+.order-table .scroll-cont .headLine p:nth-of-type(6), .orTableVal li p:nth-of-type(6) { width: 10%; }
+.order-table .scroll-cont .headLine p:nth-of-type(7), .orTableVal li p:nth-of-type(7) { width: 10%; }
+
+
+/* 实时新增用户 icon */
+.newguy-chart .flag-title {
+    background: -moz-linear-gradient(200deg, #81d4ff 10%, #a28fff);
+    background: -ms-linear-gradient(200deg, #81d4ff 10%, #a28fff);
+    background: -o-linear-gradient(200deg, #81d4ff 10%, #a28fff);
+    background: -webkit-linear-gradient(200deg, #81d4ff 10%, #a28fff);
+    background: linear-gradient(200deg, #81d4ff 10%, #a28fff);
+}
+.newguy-chart .flag-title:before {
+    border-right: solid .375rem #a28fff;
+    border-left: solid .375rem #a28fff;
+}
+
+.newguy-table .scroll-cont .headLine,
+.ngTableVal,
+.site-real .scroll-cont .headLine,
+.srVal {
+    width: 14rem;
+}
+
+.newguy-table .scroll-cont .headLine p,
+.ngTableVal li p {
+    width: 17.75%;
+    text-align: center;
+}
+.newguy-table .scroll-cont .headLine p:nth-of-type(1), .ngTableVal li p:nth-of-type(1) { width: 10%; }
+.newguy-table .scroll-cont .headLine p:nth-of-type(4), .ngTableVal li p:nth-of-type(4) { width: 19%; }
+
+
+/* 实时网点概况 */
+.site-real .scroll-cont .headLine p,
+.srVal li p {
+    width: 13.3%;
+    text-align: center;
+}
+.site-real .scroll-cont .headLine p:nth-of-type(1),
+.srVal li p:nth-of-type(1) {
+    width: 20%;
+}
+
+
+
+/* 车辆续航 icon */
+.car-battery .flag-title {
+    background: -moz-linear-gradient(200deg, #aee769 10%, #4ab90d);
+    background: -ms-linear-gradient(200deg, #aee769 10%, #4ab90d);
+    background: -o-linear-gradient(200deg, #aee769 10%, #4ab90d);
+    background: -webkit-linear-gradient(200deg, #aee769 10%, #4ab90d);
+    background: linear-gradient(200deg, #aee769 10%, #4ab90d);
+}
+.car-battery .flag-title:before {
+    border-right: solid .375rem #4ab90d;
+    border-left: solid .375rem #4ab90d;
+}

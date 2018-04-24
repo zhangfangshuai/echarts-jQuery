@@ -15,7 +15,7 @@ $(function () {
         yesterday = getDaysOffset(-1),
         weekAgo = getDaysOffset(-7);
 
-    for ( let i of [1.2,3]) {
+    for ( let i of [1,2,3]) {
         $('#appDateTime' + i).mobiscroll(APP.dateBar);
     }
 
@@ -41,12 +41,12 @@ $(function () {
             var str = "";
             var data = res.data.data;
             for (var i in data) {
-                var imgUrl = data[i].data4 == 0 ? "" : data[i].data4 > 0 ? "<img src=\"../images/icon_rise.png?1\" alt=\"\" class=\"orderUp fr\">" : "<img src=\"../images/icon_decline.png?1\" alt=\"\" class=\"orderUp fr\">";
-                str += "<li>" + "<p>" + data[i].data0 + "</p>" +
+                var imgUrl = data[i].data4 == 0 ? "" : data[i].data4 > 0 ? "<img src='../images/icon_rise.png?1' alt=''>" : "<img src='../images/icon_decline.png?1' alt=''>";
+                str += "<li> <p>" + data[i].data0 + "</p>" +
                     "<p>" + data[i].data1+ "</p>" +
                     "<p>" + data[i].data2 + "</p>" +
                     "<p>" + data[i].data3 + "</p>" +
-                    "<p>" + data[i].data4 + "%" + imgUrl + "</p>" + "</li>";
+                    "<p>" + data[i].data4 + "%" + imgUrl + "</p> </li>";
             }
             $('.incVal').html(str);
         });
@@ -104,8 +104,8 @@ $(function () {
         }
         cityVal = $('#value3').val();   //更改城市后重新渲染页面图表
         page = 1;
-        $('.phoneBubble').hide('fast');
         $('.nowpage').val('1');
+        $('.phoneBubble').hide('fast');
         cityVal == '1' && $('.responsiblePerson-box').hide('fast');
         getIncome(cityVal, carType, $('#appDateTime1').val());
         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
@@ -117,16 +117,22 @@ $(function () {
         triggerBubble(this.parentNode);
     });
 
-    // 前一天后一天时间监控
-    $('.nextDateBtn1, .preDateBtn1').on('click',function(){
-        var d = this.classList[1] == 'nextDateBtn1' ? changeDate1(1,1) : changeDate(1,-1);
-        $('#appDateTime1').val(d);
-        getIncome(cityVal, carType, d);
+
+    // 时间监控 单日期
+    $('.inc-predate, .inc-nextdate').on('click',function() {
+      let id = this.parentNode.children[1].children[0].id;
+      this.classList[1] == 'inc-predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                         : $('#'+id).val(updateDate(this.parentNode, 1, true));
+      page = resetPaging('nowpage');
+      getIncome(cityVal, carType, $('#appDateTime1').val());
     });
 
-    // 日历选择
-    $('#appDateTime1').on('change',function () {
-        changeWeekByHtml(1);
+    // 营收概况 时间监控
+    $('.inc-predate, .inc-nextdate').on('click',function() {
+        console.log(11);
+        let id = this.parentNode.children[1].children[0].id;
+        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                               : $('#'+id).val(updateDate(this.parentNode, 1, true));
         getIncome(cityVal, carType, $('#appDateTime1').val());
     });
 
@@ -135,14 +141,12 @@ $(function () {
          $('.inc-ct').removeClass('active');
          $(this).addClass('active');
          carType = $(this).attr('data-type');
-         console.log('查询: 营收概况; 车辆类型: ' + $(this).html() );
          getIncome(cityVal, carType, $('#appDateTime1').val());
     })
 
     // 用户充值时间监控
     $('#appDateTime2, #appDateTime3').on('change', function() {
-        page = 1;
-        $('.nowpage').html(1);
+        page = resetPaging('nowpage');
         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
     })
 
@@ -155,7 +159,7 @@ $(function () {
     })
 
     // 用户充值分页控制
-    $('.page-pre, .page-next').on('click',function() {
+    $('.inc-prepage, .inc-nextpage').on('click',function() {
         if (this.classList[0] == 'page-pre') {
             page > 1 ? (() => {
                 page --;

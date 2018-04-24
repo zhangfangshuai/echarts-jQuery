@@ -1,639 +1,353 @@
 /**
- * Created with webstorm.
- * Author: dameng
- * Date: 2017/11/15
- * Time: 09:05
- *
+ * Created: dameng by webstorm
+ * Date: 2017/11/15 09:05
+ * Recode: zhangfs 2018/04/16
+ * Note: Package and Add Handler
  */
+APP.html = "site.html";
 $(function () {
-    var cityVal='';
-    var selectType="1" ;         //网点明细  ／／10佳：1    10差：2     全部：3
-    var daylast='1'; //网点明细  1；2；3；4
-    var businessareaid1 = '';  //网点明细商圈
-    var businessareaid2 = '';  //网点车辆商圈
-    var hourId1 = '';  //网点车辆时刻
-    var parkingKind1 = ''; //网点明细实体网点
-    $('#last').val('近7日'); //时间默认为近7日
-    $('#last1').val('商圈'); //商圈
-    $('#last2').val('全部'); //全部，实体网点，虚拟网点
-    $('#last4').val('时刻'); //网点车辆时刻
-    $('#last3').val('商圈'); //网点车辆时刻
-    var typeid=0; //网点订单车辆类型
-    var newDate=new Date();
-    var yearNow=newDate.getFullYear();
-    var monthNow=newDate.getMonth()+1;
-    var daynow = newDate.getDate();
-    var nowDate=yearNow+''+addZero(monthNow)+ ''+addZero(daynow); //日期
-    var day1 = new Date();
-    day1.setDate(day1.getDate() - 7);
-    var s1 = day1.format("yyyyMMdd")
-    var day2 = new Date();
-    day2.setDate(day2.getDate() - 1);
-    var s2 = day2.format("yyyyMMdd")
-    $('#appDateTime1').mobiscroll(opt);
-    $('#appDateTime2').mobiscroll(opt);
-    $('#appDateTime1').val(s1);
-    $('#appDateTime2').val(s2);
-    $('#appDateTime6').mobiscroll(opt);
-    $('#appDateTime6').val(nowDate);
-    startingWeek(6);
-    $('#appDateTime7').mobiscroll(opt);
-    $('#appDateTime7').val(s2);
-    $('.showWeek7').html(getWeek(day2.getDay()));
-    //getCityList start
-    $.ajax({
-        url:http+'/mobile/getCity',
-        type:'get',
-        dataType:'json',
-        data:{
-            token:sessionStorage.token
-        },
-        success:function(res){
-            console.log(res.data);
-            if (res.data[0].value==1){
-                res.data.shift();
-            }
-            $('#demo3').val(res.data[0].text);
-            cityVal=res.data[0].value;
-            console.log(cityVal);
-            // 页面加载时默认第一个城市
-            orderAll(); //网点概况
-            sitechange($('#appDateTime1').val(),$('#appDateTime2').val()); //网点变更
-            orderAll2(); //网点明细
-            siteCar($('#appDateTime6').val()); //网点车辆
-            orderCar($('#appDateTime7').val()) //网点订单
-            getPrincipal(cityVal, [34,35,36,38,39], 'site.html', function() {
-                $('.box .cars .orderCommon').css('padding-bottom', '0');
-                $('.box .cars .orderCommon .page').css('margin-bottom', '0.2rem');
-                $('.box .cars .orderCommon1').css('padding-bottom', '0');
-                $('.box .cars .orderCommon1 .page').css('margin-bottom', '0.2rem');
-            });
-            //城市选择控件
-            var area3 = new LArea1();
-            area3.init({
-                'trigger':'#demo3',
-                'valueTo':'#value3',
-                'keys':{
-                    id:'value',
-                    name:'text'
-                },
-                'type':2,
-                //'data':[[{"text":"北京","value":"110000"},{"text":"天津","value":"120000"}]]
-                'data':[res.data]
-            });
-            // 获取商圈
-            $.ajax({
-                url:http+'mobile/park/getBusinessArea',
-                type:"get",
-                dataType:"json",
-                data:{
-                    cityId:cityVal,
-                    token:sessionStorage.token
-                },
-                success:function (res) {
-console.log(res.data,"商圈")
-                    var arr = [];
-                    for (var i in res.data){
-                        var json={"text":res.data[i].businessareaname,"value":res.data[i].businessareaid};
-                        arr.push(json)
-                    }
-                    console.log(arr,"商圈转换")
-                    // 网点明细商圈
-                    var area6 = new LArea1();
-                    area6.init({
-                        'trigger':'#last1',
-                        'valueTo':'#last1-s',
-                        'keys':{
-                            id:'value',
-                            name:'text'
-                        },
-                        'type':2,
-                        'data':[arr]
-                    });
-                    // 网点车辆商圈
-                    var area8 = new LArea1();
-                    area8.init({
-                        'trigger':'#last3',
-                        'valueTo':'#last3-s',
-                        'keys':{
-                            id:'value',
-                            name:'text'
-                        },
-                        'type':2,
-                        'data':[arr]
-                    });
-                }
-            })
+    var BASIC_CACHE, CHANGE_CACHE, DETAIL_CACHE, CAR_CACHE, ORDER_CACHE;
+    var sbpage = 1, scpage = 1, sdpage = 1, scpage = 1, sopage = 1;
+    var cityVal = '',
+        selectType = "1";           // 20佳：1  20差：2  全部：3
+    var detail_busiArea = '',       // 网点明细
+        detail_days = '1',
+        detail_site = '';
+    var sitecar_busiArea = '',      // 网点车辆
+        sitecar_hourId = '';
+    var so_cartype = 0;             // 网点订单
 
-        },
-        error:function (res) {
-            console.log(res,'失败')
-        }
-    });
+    var today = getDaysOffset(),
+        yesterday = getDaysOffset(-1),
+        weekAgo = getDaysOffset(-7);
+
+    for (let i of [1,2,6,7]) {
+        $('#appDateTime'+i).mobiscroll(APP.dateBar);
+    }
+
+    $('#appDateTime6').val(today);
+    $('#appDateTime1').val(weekAgo);
+    $('#appDateTime2, #appDateTime7').val(yesterday);
+
+    startingWeek(6);
+    startingWeekYesterday(7);
+
+    triggerLArea1('#detail-date', '#detail-date-val', APP.timePeriodBar);
+    triggerLArea1('#detail-site', '#detail-site-val', APP.siteTypeBar);
+    triggerLArea1('#car-time', '#car-time-val', APP.timeBar);
+
+    // 获取城市列表
+    getCity(function(res, cityInit) {
+        res.data[0].value == 1 && res.data.shift();
+        cityVal = res.data[0].value;
+        $('#demo3').val(res.data[0].text);  // 网店分析默认值不为全国
+        getBusinessAreaInit();
+        siteBasic(sbpage); //网点概况
+        sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), scpage); //网点变更
+        siteDetail(sdpage); //网点明细
+        siteCar($('#appDateTime6').val(), scpage); //网点车辆
+        siteOrder($('#appDateTime7').val(), sopage) //网点订单
+        getPrincipal(cityVal, [34,35,36,38,39]);
+    }, false);
+
+    function getBusinessAreaInit() {
+        buildAjax('get', 'park/getBusinessArea', {cityId:cityVal}, false, false, function(res) {
+            let arr = [];
+            for (let d of res.data){
+                arr.push({"text":d.businessareaname,"value":d.businessareaid})
+            }
+            triggerLArea1 ('#detail-business', '#detail-business-val', arr);
+            triggerLArea1 ('#car-business', '#car-business-val', arr);
+        }, false)
+    }
+
 
     //nav 城市改变 及其刷新数据
     $('#demo3').bind('input propertychange', function() {
-        if ($('#value3').val()==''){
-            return false
+        if ($('#value3').val()){
+            return
         }
-        cityVal=$('#value3').val();   //更改城市后重新渲染页面图表
-        $('.phoneBubble').css('display','none');
-        orderAll(); //网点概况
-        sitechange($('#appDateTime1').val(),$('#appDateTime2').val()); //网点变更
-        orderAll2(); //网点明细
-        siteCar($('#appDateTime6').val()) //网点车辆
-        orderCar($('#appDateTime7').val()) //网点订单
-        getPrincipal(cityVal, [34,35,36,38,39], 'site.html', function() {
-            $('.box .cars .orderCommon').css('padding-bottom', '0');
-            $('.box .cars .orderCommon1').css('padding-bottom', '0');
-            $('.box .cars .orderCommon .page').css('margin-bottom', '0.2rem');
-            $('.box .cars .orderCommon1 .page').css('margin-bottom', '0.2rem');
-        });
+        sbpage = scpage = sdpage = scpage = sopage = 1;
+        $('.nowpage').html(1);
+        cityVal = $('#value3').val();
+        $('.phoneBubble').hide('fast');
+        siteBasic(sbpage);
+        sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), scpage);
+        siteDetail(sdpage);
+        siteCar($('#appDateTime6').val(), scpage);
+        siteOrder($('#appDateTime7').val(), sopage);
+        getPrincipal(cityVal, [34,35,36,38,39]);
     });
 
     // 责任人弹窗控制
-    var BUBBLE_CACHE = '';
     $('.responsiblePerson').on('click', function() {
-        $('.sbasic-phoneBubble').css('display','none');
-        $('.schange-phoneBubble').css('display','none');
-        $('.sdetail-phoneBubble').css('display','none');
-        $('.scar-phoneBubble').css('display','none');
-        $('.sorder-phoneBubble').css('display','none');
-        if ( BUBBLE_CACHE == $(this.parentNode).children(':eq(0)')[0].classList[1] ) {
-            BUBBLE_CACHE = '';
-            return;
-        }
-        switch ( $(this.parentNode).children(':eq(0)')[0].classList[1] ) {
-           case 'sbasic-phoneBubble':
-               $('.sbasic-phoneBubble').css('display','block');
-               BUBBLE_CACHE = 'sbasic-phoneBubble';
-               break;
-           case 'schange-phoneBubble':
-               $('.schange-phoneBubble').css('display','block');
-               BUBBLE_CACHE = 'schange-phoneBubble';
-               break;
-           case 'sdetail-phoneBubble':
-               $('.sdetail-phoneBubble').css('display','block');
-               BUBBLE_CACHE = 'sdetail-phoneBubble';
-               break;
-           case 'scar-phoneBubble':
-               $('.scar-phoneBubble').css('display','block');
-               BUBBLE_CACHE = 'scar-phoneBubble';
-               break;
-           case 'sorder-phoneBubble':
-               $('.sorder-phoneBubble').css('display','block');
-               BUBBLE_CACHE = 'sorder-phoneBubble';
-               break;
-        }
+          triggerBubble(this.parentNode);
     });
 
 
-// orders start 网点概况
-    function orderAll(){
-        // 车辆概况
-        var webdata1=[];
-        var pageall1='';
-        var data1=[];
-        $('.pre1').off('click')
-        $('.next1').off('click')
-        $.ajax({
-            url : http+"/mobile/park/getGeneralSituationData",
-            type : "get",
-            async : true,
-            data : {cityId:cityVal,'token':sessionStorage.token},
-            dataType : "json",
-            success : function(res){
-                var pagenow='1';
-                $('.now1').html(pagenow);
-                console.log(res);
-                if(res.data.length>10){
-                    webdata1 = res.data;
-                    pageall1=Math.ceil(webdata1.length/10);
-                    $('.totle1').html(pageall1);
-                    data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                    page1();
-                    $('.pre1').on('click',function(){
-                        console.log(pagenow)
-                        if(pagenow<=1){
-                            return false;
-                        };
-                        pagenow--;
-                        $('.now1').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    });
-                    $('.next1').on('click',function(){
-                        console.log(pagenow)
-                        if(pagenow>=pageall1){
-                            return false;
-                        };
-                        pagenow++;
-                        $('.now1').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    })
-                }else{
-                    $('.totle1').html(1);
-                    data1=res.data;
-                    page1();
-                }
-
-                function page1() {
-                    var str1 = "";
-                    // var data = res.data;
-                    for (i in data1) {
-                        var imgUrl = "";
-                        if(data1[i].tongbiRate > 0){
-                            imgUrl = "<img src=\"../images/icon_rise.png\" alt=\"\" class=\"orderUp fr\">";
-                        }else if(data1[i].tongbiRate < 0){
-                            imgUrl = "<img src=\"../images/icon_decline.png\" alt=\"\" class=\"orderUp fr\">";
-                        }else if(data1[i].tongbiRate == 0) {
-                            imgUrl = "";
-                        }
-                        str1 += "<li class=\"anlysis\">" +
-                            "<p style=\"width: 23%;\">" + data1[i].kpiname + "</p>" +
-                            "<p>" + data1[i].kpiCurrent+ "</p>" +
-                            "<p>" + data1[i].kpiYes + "</p>" +
-                            "<p style=\"width: 19%;\">" + data1[i].kpiTongbi + "</p>" +
-                            "<p style=\"width: 18%;\">" + data1[i].tongbiRate + "%" + imgUrl + "</p>" +
-                            "</li>";
-                    }
-
-                    $('.sitestatus').html(str1);
-                }
-            }
-        });
+    // 网点概述
+    function siteBasic(p) {
+        buildAjax('get','park/getGeneralSituationData',{cityId:cityVal}, true, false, function(res){
+            BASIC_CACHE = res.data;
+            $('.site-allpage').html(Math.ceil(BASIC_CACHE.length / 10) == 0 ? 1 : Math.ceil(BASIC_CACHE.length / 10));
+            setSbUI(BASIC_CACHE.slice(10 * ( p - 1 ), 10 * p));
+        }, false);
     }
-// 网点变更
-    function sitechange(startDate,endDate){
-        var webdata=[];
-        var pageall='';
-        var data=[];
-        $('.pre2').off('click')
-        $('.next2').off('click')
-        var pagenow='1';
-        $('.now2').html(pagenow);
-        $.ajax({
-            url : http+"mobile/park/getParkingUpdateData",
-            type : "get",
-            async : true,
-            data : {cityId:cityVal,startDate:startDate,endDate:endDate,token:sessionStorage.token},
-            dataType : "json",
-            success : function(res){
-                console.log(res);
-                webdata = res.data;
-                pageall=Math.ceil(webdata.length/10);
-                if(pageall==0){
-                    pageall=1
-                }
-                $('.totle2').html(pageall);
-                data=webdata.slice(10*(pagenow-1),10*pagenow);
-                page();
-                $('.pre2').on('click',function(){
-                    if(pagenow<=1){
-                        return false;
-                    };
-                    pagenow--;
-                    $('.now2').html(pagenow);
-                    data=webdata.slice(10*(pagenow-1),10*pagenow);
-                    page();
-                });
-                $('.next2').on('click',function(){
-                    if(pagenow>=pageall){
-                        return false;
-                    };
-                    pagenow++;
-                    $('.now2').html(pagenow);
-                    data=webdata.slice(10*(pagenow-1),10*pagenow);
-                    page();
-                })
-            }
-        });
-        function page(){
-            var str1 = "";
-            for (i in data) {
-                str1 += "<li class=\"anlysis\">" +
-                    "<p style=\"width: 23%;\">" + data[i].parkName + "</p>" +
-                    "<p>" + toshi(data[i].parkType)+ "</p>" +
-                    "<p>" + data[i].carportNum + "</p>" +
-                    "<p style=\"width: 19%;\">" + datatype(data[i].updateType) + "</p>" +
-                    "<p style=\"width: 18%;\">" + todate(data[i].updateDate) + "</p>" +
-                    "</li>";
-            }
-            $('.orderList2').html(str1);
+
+    let refSbUI = (p) => {
+        BASIC_CACHE ? setSbUI(BASIC_CACHE.slice(10 * ( p - 1 ), 10 * p)) : siteBasic(p);
+    }
+
+    let setSbUI = (data) => {
+        let str = '';
+        for (let d of data) {
+            let imgSrc = d.tongbiRate == 0 ? "" : d.tongbiRate > 0 ? "../images/icon_rise.png" : "../images/icon_decline.png"
+            str += "<li> <p>" + d.kpiname + "</p>" +
+                "<p>" + d.kpiCurrent+ "</p>" +
+                "<p>" + d.kpiYes + "</p>" +
+                "<p>" + d.kpiTongbi + "</p>" +
+                "<p>" + d.tongbiRate + "%" +
+                "<img src='" + imgSrc + "' alt=''/> </p> </li>";
         }
+        $('.siteVal').html(str);
     }
+
+    // 网点概述 分页控制
+    $('.site-prepage, site-nextpage').on('click', function() {
+        sbpage = pagingCtrl(this, sbpage, refSbUI);
+    });
+
+
+    // 网点变更
+    function sitechange(s, e, p) {
+        buildAjax('get', 'park/getParkingUpdateData', {cityId:cityVal, startDate:s, endDate:e}, true, false, function(res){
+            CHANGE_CACHE = res.data;
+            $('.change-allpage').html(Math.ceil(CHANGE_CACHE.length/10) == 0 ? 1: Math.ceil(CHANGE_CACHE.length/10));
+            setChangeUI(CHANGE_CACHE.slice(10 * ( p - 1 ), 10 * p));
+        }, false);
+    }
+
+    let refChangeUI = (p) => {
+        CHANGE_CACHE ? setChangeUI(CHANGE_CACHE.slice(10 * ( p - 1 ), 10 * p))
+                     : sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), p);
+    }
+
+    let setChangeUI = (data) => {
+        let str = "";
+        for (let d of data) {
+            str += "<li>" + "<p>" + d.parkName + "</p>" +
+                "<p>" + siteType(d.parkType)+ "</p>" +
+                "<p>" + d.carportNum + "</p>" +
+                "<p>" + changeType(d.updateType) + "</p>" +
+                "<p>" + time2Date(d.updateDate) + "</p> </li>";
+        }
+        $('.changeVal').html(str);
+    }
+
+    // 网点变更分页控制
+    $('.change-prepage, .change-nextpage').on('click', function(){
+        scpage = pagingCtrl(this, scpage, refChangeUI);
+    });
+
 
     // 网点明细
-    function orderAll2(){
-        // 网点明细
-        var webdata1=[];
-        var pageall1='';
-        var data1=[];
-        $('.pre3').off('click');
-        $('.next3').off('click');
-        $.ajax({
-            url : http+"mobile/park/getParkDetail",
-            type : "get",
-            async : true,
-            data : {cityId:cityVal,token:sessionStorage.token,selectType:selectType,reportType:daylast,businessareaid:businessareaid1,parkingKind:parkingKind1},
-            dataType : "json",
-            success : function(res){
-                var pagenow='1';
-                $('.now3').html(pagenow);
-                console.log(res);
-                if(res.data.length>10){
-                    webdata1 = res.data;
-                    pageall1=Math.ceil(webdata1.length/10);
-                    $('.totle3').html(pageall1);
-                    data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                    page1();
-                    $('.pre3').on('click',function(){
-                        if(pagenow<=1){
-                            return false;
-                        };
-                        pagenow--;
-                        $('.now3').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    });
-                    $('.next3').on('click',function(){
-                        if(pagenow>=pageall1){
-                            return false;
-                        };
-                        pagenow++;
-                        $('.now3').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    })
-                }else{
-                    $('.totle3').html(1);
-                    data1=res.data;
-                    page1();
-                }
-
-                function page1() {
-                    var str1 = "";
-                    // var data = res.data;
-                    for (i in data1) {
-                        str1 += "<li class=\"anlysis\">\n" +
-                            "                                <p class=\"orderOne\">"+data1[i].parkName+ "</p>\n" +
-                            "                                <p class=\"orderTwo\" style=\"width: 12.8%;text-align: center;\">"+data1[i].carportNum+"</p>\n" +
-                            "                                <p class=\"orderThree\" style=\"width: 12.8%;text-align: center;\">"+data1[i].carportAvgorder+"</p>\n" +
-                            "                                <p class=\"orderFour\" style=\"width: 15.8%;text-align: center;\">"+data1[i].executAvgnum+"</p>\n" +
-                            "                                <p class=\"orderFive\" style=\"width: 15.8%;text-align: center;\">"+data1[i].retrunAvgnum+"</p>\n" +
-                            "                                <p class=\"orderFive\" style=\"width: 15.8%;text-align: center;\">"+data1[i].userAvgnum+"</p>\n" +
-                            "                                <p class=\"orderFive\" style=\"width: 12.8%;\">"+todate(data1[i].openDate)+"</p>\n" +
-                            "                            </li>";
-                    }
-                    $('.orderList3').html(str1);
-                }
-            }
-        });
-
+    function siteDetail(p) {
+        let data = {
+            cityId: cityVal,
+            selectType: selectType,
+            reportType: detail_days,
+            businessareaid: detail_busiArea,
+            parkingKind: detail_site
+        }
+        buildAjax('get', 'park/getParkDetail', data, true, false, function(res){
+            DETAIL_CACHE = res.data;
+            sdpage = resetPaging('detail-nowpage');
+            $('.detail-allpage').html(Math.ceil(DETAIL_CACHE.length / 10) == 0 ? 1 : Math.ceil(DETAIL_CACHE.length / 10));
+            setDetailUI(DETAIL_CACHE.slice(10 * ( p - 1 ), 10 * p));
+        }, false);
     }
+
+    let refDetailUI = (p) => {
+        DETAIL_CACHE ? setDetailUI(DETAIL_CACHE.slice(10 * ( p - 1 ), 10 * p))
+                     : getParkDetail(p);
+    }
+
+    let setDetailUI = (data) => {
+        let str = "";
+        for (let d of data) {
+            str += "<li>" +
+                "<p>" + d.parkName + "</p>" +
+                "<p>" + d.carportNum + "</p>" +
+                "<p>" + d.carportAvgorder + "</p>" +
+                "<p>" + d.executAvgnum + "</p>" +
+                "<p>" + d.retrunAvgnum + "</p>" +
+                "<p>" + d.userAvgnum + "</p>" +
+                "<p>" + time2Date(d.openDate) + "</p> </li>";
+        }
+        $('.detailVal').html(str)
+    }
+
+    // 网点明细 分页控制
+    $('.detail-prepage, .detail-nextpage').on('click', function(){
+        sdpage = pagingCtrl(this, sdpage, refDetailUI);
+    });
+
+    $('.tcs').on('click',function(){
+        $('.tcs').removeClass('active');
+        $(this).addClass('active');
+        selectType = $(this).attr('data-value');
+        $('.detail-nowpage').html(1);
+        siteDetail(1);
+    });
+
+
+    $('#detail-business').bind('input propertychange', function() {
+        if ($('#detail-business-val').val()){
+            detail_busiArea = $('#detail-business-val').attr('value');
+            siteDetail(1);
+        }
+    });
+    $('#detail-date').bind('input propertychange', function() {
+        if ($('#detail-date-val').val()){
+            detail_days = $('#detail-date-val').attr('value');
+            siteDetail(1);
+        }
+    });
+    $('#detail-site').bind('input propertychange', function() {
+        if ($('#detail-site-val').val()){
+            detail_site = $('#detail-site-val').attr('value');
+            siteDetail(1);
+        }
+    });
+
+
     // 网点车辆
-    function siteCar(val){
-        var webdata1=[];
-        var pageall1='';
-        var data1=[];
-        $('.pre4').off('click');
-        $('.next4').off('click');
-        $.ajax({
-            url : http+"/mobile/park/getParkCarDetail",
-            type : "get",
-            async : true,
-            data : {cityId:cityVal,token:sessionStorage.token,dateId:val,businessareaid:businessareaid2,hourId:hourId1},
-            dataType : "json",
-            success : function(res){
-                var pagenow='1';
-                $('.now4').html(pagenow);
-                console.log(res);
-                if(res.data.length>10){
-                    webdata1 = res.data;
-                    pageall1=Math.ceil(webdata1.length/10);
-                    $('.totle4').html(pageall1);
-                    data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                    page1();
-                    $('.pre4').on('click',function(){
-                        if(pagenow<=1){
-                            return false;
-                        };
-                        pagenow--;
-                        $('.now4').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    });
-                    $('.next4').on('click',function(){
-                        if(pagenow>=pageall1){
-                            return false;
-                        };
-                        pagenow++;
-                        $('.now4').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    })
-                }else{
-                    $('.totle4').html(1);
-                    data1=res.data;
-                    page1();
-                }
-
-                function page1() {
-                    var str1 = "";
-                    // var data = res.data;
-                    for (i in data1) {
-                        str1 += "<li class=\"anlysis\">\n" +
-                            "                                <p style=\"width: 14%;\">"+data1[i].parkName+" </p>" +
-                            "                                <p style=\"text-align: center;\">"+toshi(data1[i].parkingkind)+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].parkplacenums+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].useparkplacenums+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].orderparkplacecount+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].waitCarnum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].poweroffCarnum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].operoffCarnum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].powerCarnum+"%</p>" +
-                            "                            </li>";
-                    }
-                    $('.siteCar').html(str1);
-                }
-            }
-        });
-
+    function siteCar(date, p) {
+        let data = {
+            cityId: cityVal,
+            dateId: date,
+            businessareaid: sitecar_busiArea,
+            hourId: sitecar_hourId
+        }
+        buildAjax('get', 'park/getParkCarDetail', data, true, false, function(res) {
+            CAR_CACHE = res.data;
+            scpage = resetPaging('sitecar-nowpage');
+            $('.sitecar-allpage').html(Math.ceil(CAR_CACHE.length / 10) == 0 ? 1 : Math.ceil(CAR_CACHE.length / 10));
+            setSiteCarUI(CAR_CACHE.slice(10 * ( p - 1 ), 10 * p));
+        }, false);
     }
+
+    let refSiteCarUI = (p) => {
+        CAR_CACHE ? setSiteCarUI(CAR_CACHE.slice(10 * ( p - 1 ), 10 * p))
+                  : siteCar($('#appDateTime6').val(), p);
+    }
+
+    let setSiteCarUI = (data) => {
+        let str = "";
+        for (let d of data) {
+            str += "<li> <p>" + d.parkName + " </p>" +
+                "<p>" + siteType(d.parkingkind) + "</p>" +
+                "<p>" + d.parkplacenums + "</p>" +
+                "<p>" + d.useparkplacenums + "</p>" +
+                "<p>" + d.orderparkplacecount + "</p>" +
+                "<p>" + d.waitCarnum + "</p>" +
+                "<p>" + d.poweroffCarnum + "</p>" +
+                "<p>" + d.operoffCarnum + "</p>" +
+                "<p>" + d.powerCarnum + "%</p> </li>";
+        }
+        $('.siteCarVal').html(str);
+    }
+
+    // 网点车辆 分页控制
+    $('.sitecar-prepage, .sitecar-nextpage').on('click', function(){
+        scpage = pagingCtrl(this, scpage, refSiteCarUI);
+    });
+
+    // 网点车辆 时间监控 单日期
+    $('.sitecar-predate, .sitecar-nextdate').on('click',function() {
+      let id = this.parentNode.children[1].children[0].id;
+      this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                             : $('#'+id).val(updateDate(this.parentNode, 1, true));
+      siteCar($('#appDateTime6').val(), scpage);
+    });
+
+    // 网点车辆 条件切换
+    $('#car-business').bind('input propertychange', function() {
+        if ($('#car-business-val').val()){
+            sitecar_busiArea = $('#car-business-val').attr('value');
+            siteCar($('#appDateTime6').val(), 1);
+        }
+    });
+
+    $('#car-time').bind('input propertychange', function() {
+        if ($('#car-time-val').val()){
+            sitecar_hourId = $('#car-time-val').attr('value');
+            siteCar($('#appDateTime6').val(), 1);
+        }
+    });
+
+
     // 网点订单
-    function orderCar(val){
-        var webdata1=[];
-        var pageall1='';
-        var data1=[];
-        $('.pre5').off('click');
-        $('.next5').off('click');
-        $.ajax({
-            url : http+"/mobile/park/getParkOrderDetail",
-            type : "get",
-            async : true,
-            data : {cityId:cityVal,token:sessionStorage.token,dateId:val,typeId:typeid},
-            dataType : "json",
-            success : function(res){
-                var pagenow='1';
-                $('.now5').html(pagenow);
-                console.log(res);
-                if(res.data.length>10){
-                    webdata1 = res.data;
-                    pageall1=Math.ceil(webdata1.length/10);
-                    $('.totle5').html(pageall1);
-                    data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                    page1();
-                    $('.pre5').on('click',function(){
-                        if(pagenow<=1){
-                            return false;
-                        };
-                        pagenow--;
-                        $('.now5').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    });
-                    $('.next5').on('click',function(){
-                        if(pagenow>=pageall1){
-                            return false;
-                        };
-                        pagenow++;
-                        $('.now5').html(pagenow);
-                        data1=webdata1.slice(10*(pagenow-1),10*pagenow);
-                        page1();
-                    })
-                }else{
-                    $('.totle5').html(1);
-                    data1=res.data;
-                    page1();
-                }
-
-                function page1() {
-                    var str1 = "";
-                    // var data = res.data;
-                    for (i in data1) {
-                        str1 += "<li class=\"anlysis\">\n" +
-                            "                                <p style=\"width: 8%;\">"+data1[i].parkName+" </p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].operaTime+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].parkState+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].parkPlaceNum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].createOrderNum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].execOrderNum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].execOrderRate+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].finishOrderNum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].retrunOrderNum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].diffOrderNum+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].avgOrderMileage+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].avgOrderMinute+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].amount+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].payamount+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].placeAvgExecorder+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].placeAvgReturnorder+"</p>" +
-                            "                                <p style=\"text-align: center;\">"+data1[i].diffReturnorderRate+"</p>" +
-                            "                            </li>";
-                    }
-                    $('.ordercar').html(str1);
-                }
-            }
-        });
-
+    function siteOrder (date, p) {
+        let data = {
+            cityId: cityVal,
+            dateId: date,
+            typeId: so_cartype
+        };
+        buildAjax('get', 'park/getParkOrderDetail', data, true, false, function(res){
+            ORDER_CACHE = res.data;
+            sopage = resetPaging('so-nowpage');
+            $('.so-allpage').html(Math.ceil(ORDER_CACHE.length / 10) == 0 ? 1 : Math.ceil(ORDER_CACHE.length / 10));
+            setSiteOrderUI(ORDER_CACHE.slice(10 * ( p - 1 ), 10 * p));
+        }, false);
     }
-    $('.chooseCom').on('click',function(){
-        $('.chooseCom').removeClass('active');
-        $(this).addClass('active');
-        selectType=$(this).index()+1;
-        console.log(selectType,'selectType');
-        orderAll2()
-    });
-    $('#last').bind('input propertychange', function() {
-        if ($('#last').val()=='' || $('#last-s').attr('value')==undefined){
-            return false
+    let refOrderUI = (p) => {
+        ORDER_CACHE ? setSiteOrderUI(ORDER_CACHE.slice(10 * ( p - 1 ), 10 * p))
+                    : siteOrder($('#appDateTime7').val(), p);
+    }
+    let setSiteOrderUI = (data) => {
+        let str = '';
+        for (let d of data) {
+            str += "<li> <p>" + d.parkName + " </p>" +
+                "<p>" + d.operaTime + "</p>" +
+                "<p>" + d.parkState + "</p>" +
+                "<p>" + d.parkPlaceNum + "</p>" +
+                "<p>" + d.createOrderNum + "</p>" +
+                "<p>" + d.execOrderNum + "</p>" +
+                "<p>" + d.execOrderRate + "</p>" +
+                "<p>" + d.finishOrderNum + "</p>" +
+                "<p>" + d.retrunOrderNum + "</p>" +
+                "<p>" + d.diffOrderNum + "</p>" +
+                "<p>" + d.avgOrderMileage + "</p>" +
+                "<p>" + d.avgOrderMinute + "</p>" +
+                "<p>" + d.amount + "</p>" +
+                "<p>" + d.payamount + "</p>" +
+                "<p>" + d.placeAvgExecorder + "</p>" +
+                "<p>" + d.placeAvgReturnorder + "</p>" +
+                "<p>" + d.diffReturnorderRate + "</p> </li>";
         }
-        daylast=$('#last-s').attr('value');//更改城市后重新渲染页面图表
-        console.log(daylast);
-        orderAll2() //网点明细 近七日
-    });
-    $('#last1').bind('input propertychange', function() {
-        if ($('#last1').val()=='' || $('#last1-s').attr('value')==undefined){
-            return false
-        }
-        businessareaid1=$('#last1-s').attr('value');//更改城市后重新渲染页面图表
-        console.log(businessareaid1);
-        orderAll2() //网点明细 商圈
-    });
-    $('#last2').bind('input propertychange', function() {
-        if ($('#last2').val()=='' || $('#last2-s').attr('value')==undefined){
-            return false
-        }
-        parkingKind1=$('#last2-s').attr('value');//更改城市后重新渲染页面图表
-        console.log(parkingKind1);
-        orderAll2() //网点明细 实体网点
-    });
-    // 网点车辆商圈
-    $('#last3').bind('input propertychange', function() {
-        if ($('#last3').val()=='' || $('#last3-s').attr('value')==undefined){
-            return false
-        }
-        businessareaid2=$('#last3-s').attr('value');
-        siteCar($('#appDateTime6').val())
-    });
-    // 网点车辆时刻
-    $('#last4').bind('input propertychange', function() {
-        if ($('#last4').val()=='' || $('#last4-s').attr('value')==undefined){
-            return false
-        }
-        hourId1=$('#last4-s').attr('value');
-        siteCar($('#appDateTime6').val())
-    });
-    // $('.jia').on('click',function(){
-    //     $('.now1').html(1);
-    //     $('.totle1').html(1);
-    // })
+        $('.soVal').html(str);
+    }
 
-    $('#appDateTime1').on('change',function () {
-        sitechange($('#appDateTime1').val(),$('#appDateTime2').val()); //网点变更
+    // 网点订单 分页控制
+    $('.so-prepage, .so-nextpage').on('click', function() {
+        sopage = pagingCtrl(this, sopage, refOrderUI);
     });
-    $('#appDateTime2').on('change',function () {
-        sitechange($('#appDateTime1').val(),$('#appDateTime2').val()); //网点变更
+
+    // 网点订单 时间监控
+    $('.so-predate, .so-nextdate').on('click',function() {
+        let id = this.parentNode.children[1].children[0].id;
+        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                                     : $('#'+id).val(updateDate(this.parentNode, 1, true));
+        siteOrder($('#appDateTime7').val(), 1);
     });
-//前进  网点车辆
-    $('.nextDateBtn6').on('click',function(){
-        var goDate61=changeDate1(6,1);
-        $('#appDateTime6').val(goDate61);
-        siteCar(goDate61);
-    });
-// 后退
-    $('.preDateBtn6').on('click',function(){
-        var goDate62=changeDate(6,-1);
-        $('#appDateTime6').val(goDate62);
-        siteCar(goDate62);
-    });
-// 日历选
-    $('#appDateTime6').on('change',function () {
-        changeWeekByHtml(6);
-        siteCar($('#appDateTime6').val());
-    });
-    //前进  订单车辆
-    $('.nextDateBtn7').on('click',function(){
-        var goDate71=changeDate1(7,1);
-        $('#appDateTime7').val(goDate71);
-        orderCar(goDate71);
-    });
-// 后退
-    $('.preDateBtn7').on('click',function(){
-        var goDate72=changeDate(7,-1);
-        $('#appDateTime7').val(goDate72);
-        orderCar(goDate72);
-    });
-// 日历选
-    $('#appDateTime7').on('change',function () {
-        changeWeekByHtml(7);
-        orderCar($('#appDateTime7').val());
-    });
-    $('.orderbtn').on('click',function () {
-        $('.orderbtn').removeClass('active');
+
+    // 网点订单 车类型选择
+    $('.so-ct').on('click', function() {
+        $('.'+this.classList[1]).removeClass('active');
         $(this).addClass('active');
-        typeid=$(this).attr('data-carType');
-        orderCar($('#appDateTime7').val());
+        so_cartype = $(this).attr('data-type')
+        $('.so-nowpage').html(1);
+        siteOrder($('#appDateTime7').val(), 1);
     })
 });
