@@ -46,7 +46,7 @@ $(function () {
 
 
 function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
-    data.token = sessionStorage.token;
+    uri != "loginOn" ? data.token = sessionStorage.token : '';
     $.ajax({
         url: http + 'mobile/' + uri,
         type: method,
@@ -54,16 +54,16 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
         dataType: 'json',
         traditional: hasarrparam,
         data: data,
-        success: (res) => {
-            res.code != 200 && (() => {
+        success: (r) => {
+            r.code != 200 && (() => {
                 r ? Tip.success(r.desc) : Tip.success('接口' + i + '请求丢失');
                 return;
             })();
-            s && s(res);
+            s && s(r);
         },
-        error: (res) => {
+        error: (r) => {
             r ? Tip.success(r.desc) : Tip.success('接口' + i + '请求丢失');
-            f && f(res);
+            f && f(r);
         }
     });
 }

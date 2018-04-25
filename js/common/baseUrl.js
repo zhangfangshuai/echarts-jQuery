@@ -1,5 +1,5 @@
-var http='http://122.14.205.135:8110/'; //正式接口
-// var http='http://10.16.86.213:8080/SQBIServer-web/'; //apple本地接口
+var http='http://122.14.205.135:8110/';  // prod
+// var http='http://10.16.86.213:8080/SQBIServer-web/';  // test
 
 var version = 1.0;
 
