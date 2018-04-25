@@ -4,7 +4,6 @@
  * Recode: zhangfs by Atom
  * Date: 2018/04/19 15:50
  */
-APP.html = "currency.html";
 $(function () {
     var INC_CACHE, CARR_CACHE, OR_CACHE, NG_CACHE, SR_CACHE;
     var incrpage = 1, carrpage = 1, orpage = 1, ngpage = 1, srpage = 1;
@@ -108,17 +107,22 @@ $(function () {
 
     // 实时营收折线图 时间监控
     $('.incr-predate, .incr-nextdate').on('click',function() {
-      let id = this.parentNode.children[1].children[0].id;
-      this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
-                                             : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      incomeReal($('#appDateTime3').val(), incrpage);
+        let id = this.parentNode.children[1].children[0].id;
+        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                               : $('#'+id).val(updateDate(this.parentNode, 1, true));
+        incomeReal($('#appDateTime3').val(), 1);
+    });
+    // 实时营收列表 日历控件监控
+    $('#appDateTime3').bind('change', function() {
+        incomeReal($('#appDateTime3').val(), 1);
+        updateWeek(this);
     });
     // 实时营收折线图 车辆类型选择
     $('.incr-ct').on('click', function() {
          $('.' + this.classList[1]).removeClass('active');
          $(this).addClass('active');
          incReal_ct = $(this).attr('data-type');
-         incomeReal($('#appDateTime3').val(), incrpage);
+         incomeReal($('#appDateTime3').val(), 1);
     });
     // 实时营收列表 分页控制
     $('.incrtable-prepage, .incrtable-nextpage').on('click', function(){
@@ -218,14 +222,19 @@ $(function () {
       let id = this.parentNode.children[1].children[0].id;
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      carStatus($('#appDateTime1').val(), carrpage);
+      carStatus($('#appDateTime1').val(), 1);
+    });
+    // 车辆现况折线图 日历控件修改
+    $('#appDateTime1').bind('change', function() {
+        carStatus($('#appDateTime1').val(), 1);
+        updateWeek(this);
     });
     // 车辆现况折线图 车辆类型选择
     $('.carr-ct').on('click', function() {
          $('.' + this.classList[1]).removeClass('active');
          $(this).addClass('active');
          carReal_ct = $(this).attr('data-type');
-         carStatus($('#appDateTime1').val(), carrpage);
+         carStatus($('#appDateTime1').val(), 1);
     });
     // 车辆现况列表 分页控制
     $('.carr-prepage, .carr-nextpage').on('click', function(){
@@ -238,6 +247,7 @@ $(function () {
             refCrChartUI();
         }
     });
+
 
 
 
@@ -296,14 +306,19 @@ $(function () {
       let id = this.parentNode.children[1].children[0].id;
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      orderReal($('#'+id).val(), orpage);
+      orderReal($('#'+id).val(), 1);
+    });
+    // 实时订单折线图 日历控件监控
+    $('#appDateTime2').bind('change', function() {
+        orderReal($('#appDateTime2').val(), 1);
+        updateWeek(this);
     });
     // 实时订单折线图 车辆类型选择
     $('.or-ct').on('click', function() {
          $('.' + this.classList[1]).removeClass('active');
          $(this).addClass('active');
          odReal_ct = $(this).attr('data-type');
-         orderReal($('#appDateTime2').val(), orpage);
+         orderReal($('#appDateTime2').val(), 1);
     });
     // 实时订单列表 分页控制
     $('.or-prepage, .or-nextpage').on('click', function(){
@@ -320,12 +335,12 @@ $(function () {
         buildAjax('get', 'getRegisterRealData', {cityId:cityVal, dateId:date}, true, false, function(res){
             NG_CACHE = res.data.table;
             // 新增用户 折线图
-            option4.xAxis.data=res.data.data1;
-            option4.series[0].data=res.data.data2;
-            option4.series[1].data=res.data.data3;
-            option4.series[2].data=res.data.data4;
-            option4.series[3].data=res.data.data5;
-            option4.series[4].data=res.data.data6;
+            option4.xAxis.data = res.data.data1;
+            option4.series[0].data = res.data.data2;
+            option4.series[1].data = res.data.data3;
+            option4.series[2].data = res.data.data4;
+            option4.series[3].data = res.data.data5;
+            option4.series[4].data = res.data.data6;
             ngChart.setOption(option4);
             ngChart.hideLoading();
             let str = "<div class='noteLine'> <p>今日注册数 <span>" + res.data.sumData0 + "</span> </p>" +
@@ -364,7 +379,12 @@ $(function () {
       let id = this.parentNode.children[1].children[0].id;
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      newGuy($('#'+id).val(), ngpage);
+      newGuy($('#'+id).val(), 1);
+    });
+    // 新增用户列表 日历控件修改
+    $('#appDateTime4').bind('change', function() {
+        newGuy($('#appDateTime4').val(), 1);
+        updateWeek(this);
     });
     // 新增用户列表 分页控制
     $('.ng-prepage, .ng-nextpage').on('click', function(){
@@ -379,12 +399,12 @@ $(function () {
 
     function carBattery(date) {
         buildAjax('get', 'getKpiCarPower', {cityId:cityVal,dateId:date}, true, false, function(res) {
-            option5.xAxis.data=res.data.data1;
-            option5.series[0].data=res.data.data2;
-            option5.series[1].data=res.data.data3;
-            option5.series[2].data=res.data.data4;
-            option5.series[3].data=res.data.data5;
-            option5.series[4].data=res.data.data6;
+            option5.xAxis.data = res.data.data1;
+            option5.series[0].data = res.data.data2;
+            option5.series[1].data = res.data.data3;
+            option5.series[2].data = res.data.data4;
+            option5.series[3].data = res.data.data5;
+            option5.series[4].data = res.data.data6;
             cbChart.setOption(option5);
             cbChart.hideLoading();
             let str = "<div class='noteLine'> <p>待租65%以下车辆 <span>" + res.data.sumData0 + "</span> </p>" +
@@ -400,7 +420,11 @@ $(function () {
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
       carBattery($('#'+id).val());
     });
-
+    // 车辆电量 日历控件修改
+    $('#appDateTime5').bind('change', function() {
+        carBattery($('#appDateTime5').val());
+        updateWeek(this);
+    });
 
 
     // 实时网点概况
@@ -441,6 +465,11 @@ $(function () {
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
       siteReal($('#'+id).val(), 1);
+    });
+    // 实时网点概况 日历控件修改
+    $('#appDateTime6').bind('change', function() {
+        siteReal($('#appDateTime6').val(), 1);
+        updateWeek(this);
     });
     // 实时网点概况 分页控制
     $('.sr-prepage, .sr-nextpage').on('click', function(){

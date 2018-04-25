@@ -22,24 +22,28 @@ $(function () {
         buildAjax('get', 'loginOn',{username: $('.userName').val(), password: $('.wordsName').val()}, false, false, function(res){
             localStorage.user = $('.userName').val();
             localStorage.password = $('.wordsName').val();
-            sessionStorage.token = res.data.token;
-            sessionStorage.nickname = res.data.nickname;
-            buildAjax('get', 'getMenu', {}, false, false, function(res){
-                if (res.data.length == 0) {
-                    Tip.success('您没有访问权限');
-                    return;
-                }
-                for (let d of res.data) {
-                    for (let m of menuConfig) {
-                        if (d.menuId == m.id) {
-                            sessionStorage.page = m.page;
-                            window.location.href = './html/' + m.page + '.html';
-                            return;
+            try {
+                sessionStorage.token = res.data.token;
+                sessionStorage.nickname = res.data.nickname;
+                buildAjax('get', 'getMenu', {}, false, false, function(res){
+                    if (res.data.length == 0) {
+                        Tip.success('您没有访问权限');
+                        return;
+                    }
+                    for (let d of res.data) {
+                        for (let m of menuConfig) {
+                            if (d.menuId == m.id) {
+                                sessionStorage.page = m.page;
+                                window.location.href = './html/' + m.page + '.html?v=' + version;
+                                return;
+                            }
                         }
                     }
-                }
-                Tip.success('您没有访问权限');
-            })
+                    Tip.success('您没有访问权限');
+                })
+            } catch (e) {
+                console.log("用户名或密码不正确");
+            }
         });
     })
 })

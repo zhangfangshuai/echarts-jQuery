@@ -4,7 +4,6 @@
  * Date: 2018/03/21
  * Time: 16:10
  */
-APP.html = 'income.html';
 $(function () {
     var DATA_CACHE;
     var cityVal = 1,
@@ -23,12 +22,32 @@ $(function () {
     $('#appDateTime1, #appDateTime3').val(yesterday);
     $('#appDateTime2').val(weekAgo);
 
-    // 页面初始化
+    // 获取城市信息
      getCity(function(res, cityInit){
          cityVal = cityInit;
          getIncome(cityVal, carType, yesterday);
          getRecharge(cityVal, weekAgo, yesterday, base, page);
      }, false);
+
+
+     // nav 城市改变 及其刷新数据
+     $('#demo3').bind('input propertychange', function() {
+         if ($('#value3').val() == ''){
+             return false
+         }
+         cityVal = $('#value3').val();   //更改城市后重新渲染页面图表
+         $('.phoneBubble').hide('fast');
+         cityVal == '1' && $('.responsiblePerson-box').hide('fast');
+         getIncome(cityVal, carType, $('#appDateTime1').val());
+         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
+         getPrincipal(cityVal, [58,59]);
+     });
+
+     // 责任人弹窗控制
+     $('.responsiblePerson').on('click', function() {
+         triggerBubble(this.parentNode);
+     });
+
 
     // 营收概况
     function getIncome(city, car, date) {
@@ -51,6 +70,28 @@ $(function () {
             $('.incVal').html(str);
         });
     };
+    // 营收概况 时间监控 单日期
+    $('.inc-predate, .inc-nextdate').on('click',function() {
+      let id = this.parentNode.children[1].children[0].id;
+      this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                             : $('#'+id).val(updateDate(this.parentNode, 1, true));
+      getIncome(cityVal, carType, $('#'+id).val());
+    });
+    // 时间监控 日历控件监控
+    $('#appDateTime1').bind('change', function() {
+        getIncome(cityVal, carType, $('#appDateTime1').val());
+        updateWeek(this);
+    });
+
+    // 营收概况 车辆类型选择监控
+    $('.inc-ct').on('click', function() {
+         $('.inc-ct').removeClass('active');
+         $(this).addClass('active');
+         carType = $(this).attr('data-type');
+         getIncome(cityVal, carType, $('#appDateTime1').val());
+    })
+
+
 
     // 用户充值
     function getRecharge(city, s, e, base, page) {
@@ -62,6 +103,7 @@ $(function () {
         buildAjax('get', 'getRechargeInfo', data, true, false, function(res){
             DATA_CACHE = res.data.data;
             $('.allpage').html( Math.ceil(DATA_CACHE.length / 10) == 0 ? 1 : Math.ceil(DATA_CACHE.length / 10) );
+            page = resetPaging('nowpage');
             setUI(base, DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page));
         });
     }
@@ -96,57 +138,8 @@ $(function () {
         }
         $('.recgVal').html(str);
     }
-
-    //nav 城市改变 及其刷新数据
-    $('#demo3').bind('input propertychange', function() {
-        if ($('#value3').val() == ''){
-            return false
-        }
-        cityVal = $('#value3').val();   //更改城市后重新渲染页面图表
-        page = 1;
-        $('.nowpage').val('1');
-        $('.phoneBubble').hide('fast');
-        cityVal == '1' && $('.responsiblePerson-box').hide('fast');
-        getIncome(cityVal, carType, $('#appDateTime1').val());
-        getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
-        getPrincipal(cityVal, [58,59]);
-    });
-
-    // 责任人弹窗控制
-    $('.responsiblePerson').on('click', function() {
-        triggerBubble(this.parentNode);
-    });
-
-
-    // 时间监控 单日期
-    $('.inc-predate, .inc-nextdate').on('click',function() {
-      let id = this.parentNode.children[1].children[0].id;
-      this.classList[1] == 'inc-predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
-                                         : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      page = resetPaging('nowpage');
-      getIncome(cityVal, carType, $('#appDateTime1').val());
-    });
-
-    // 营收概况 时间监控
-    $('.inc-predate, .inc-nextdate').on('click',function() {
-        console.log(11);
-        let id = this.parentNode.children[1].children[0].id;
-        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
-                                               : $('#'+id).val(updateDate(this.parentNode, 1, true));
-        getIncome(cityVal, carType, $('#appDateTime1').val());
-    });
-
-    // 车辆类型选择监控
-    $('.inc-ct').on('click', function() {
-         $('.inc-ct').removeClass('active');
-         $(this).addClass('active');
-         carType = $(this).attr('data-type');
-         getIncome(cityVal, carType, $('#appDateTime1').val());
-    })
-
     // 用户充值时间监控
     $('#appDateTime2, #appDateTime3').on('change', function() {
-        page = resetPaging('nowpage');
         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
     })
 
@@ -160,18 +153,6 @@ $(function () {
 
     // 用户充值分页控制
     $('.inc-prepage, .inc-nextpage').on('click',function() {
-        if (this.classList[0] == 'page-pre') {
-            page > 1 ? (() => {
-                page --;
-                refRechargeUI(base, page);
-                $('.nowpage').html(page);
-            })() : console.log('Top page!');
-        } else {
-           page < parseInt($('.allpage').html()) ? (() => {
-               page ++;
-               refRechargeUI(base, page);
-               $('.nowpage').html(page);
-           })() : console.log('Last page!');
-        }
+        page = pagingCtrl(this, page, refRechargeUI);
     });
 });

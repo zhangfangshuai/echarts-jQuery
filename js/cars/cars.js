@@ -5,7 +5,6 @@
  * Recode: zhangfs 2018/04/12 11:30
  * Note: Package and Add Handler
  */
-APP.html = "cars.html";
 // addVersionControl();
 $(function () {
     var CAR_CACHE, OFFLINE_CACHE;

@@ -4,7 +4,6 @@
  * Recode: zhangfs 2018/04/16
  * Note: Package and Add Handler
  */
-APP.html = "site.html";
 $(function () {
     var BASIC_CACHE, CHANGE_CACHE, DETAIL_CACHE, CAR_CACHE, ORDER_CACHE;
     var sbpage = 1, scpage = 1, sdpage = 1, scpage = 1, sopage = 1;
@@ -268,7 +267,12 @@ $(function () {
       let id = this.parentNode.children[1].children[0].id;
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      siteCar($('#appDateTime6').val(), scpage);
+      siteCar($('#appDateTime6').val(), 1);
+    });
+    // 网点车辆 日历控件监控
+    $('#appDateTime6').bind('change', function() {
+        siteCar($('#appDateTime6').val(), 1);
+        updateWeek(this);
     });
 
     // 网点车辆 条件切换
@@ -340,6 +344,11 @@ $(function () {
         this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                                      : $('#'+id).val(updateDate(this.parentNode, 1, true));
         siteOrder($('#appDateTime7').val(), 1);
+    });
+    // 网点订单 日历控件监控
+    $('#appDateTime7').bind('change', function() {
+        siteOrder($('#appDateTime7').val(), 1);
+        updateWeek(this);
     });
 
     // 网点订单 车类型选择

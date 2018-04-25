@@ -5,7 +5,6 @@
  * Upd: zhangfs 2018/4/10 16:27
  * Note: Standard code and Add error handler
  */
-APP.html = 'customer-service.html';
 $(function () {
     var CS_CACHE, DC_CACHE;
     var cityVal = 1,

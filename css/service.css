@@ -226,7 +226,7 @@ a:hover {
 }
 
 .itemVal {
-    padding: .2rem;
+    padding: .2rem 0;
 }
 
 .itemVal li {
@@ -826,7 +826,7 @@ li p img {
 /*
  * Created: zhangfs by Atom
  * Date: 2018/04/24 11:50
- * Func: 导航栏目城市选择控件
+ * Func: 导航栏目城市选择控件 及 日期选择控件
  */
 #demo3 {
     color: #ABB7C1;
@@ -836,10 +836,45 @@ li p img {
     line-height: 0.48rem;
     height: 0.48rem;
 }
+
 /* 弹出框样式控制 */
 .gearArea {
-    font-size: 1em !important;
+    font-size: 1em;
 }
+
+div.dw-persp div.dw.dwbg {
+    top: auto !important;
+    bottom: 0;
+    padding-bottom: .1rem;
+    position: fixed;
+}
+
+.dwv {
+    padding: 20px 0;
+    font-size: 0.45rem;
+}
+.dwc {
+    padding-top: 80px;
+}
+.dwsc .dww {
+    width: 2.5rem;
+}
+.dw-li {
+    font-size: 0.5rem;
+}
+.dwl {
+    line-height: 80px;
+    height: 80px;
+    top: -80px;
+    font-size: 0.45rem;
+}
+.dwbg .dwb {
+    height: .8rem;
+    line-height: .8rem;
+    font-size: 0.4rem;
+    border-radius: .1rem;
+}
+
 
 
 
@@ -1017,12 +1052,12 @@ li p img {
     -webkit-background-size: cover;
     background-size: cover;
 }
-.m-charts span {
+.m-watch span {
     background: url(../images/icon_biview.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
-.m-charts .active {
+.m-watch .active {
     background: url(../images/icon_biview_chose.png);
     -webkit-background-size: cover;
     background-size: cover;

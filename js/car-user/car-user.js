@@ -5,7 +5,6 @@
  * Recode: zhangfs by Atom - 2018/04/16
  * Note: Package and Add Handler   old: 828 lines; recode: 450 lines;
  */
- APP.html = "car-user.html";
 $(function () {
     var LICENSE_CACHE, CARUSABLE_CACHE, PURCHASE_CACHE, FO_CACHE;
     var licpage = 1,
@@ -404,6 +403,11 @@ $(function () {
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
       userPurchase($('#appDateTime16').val(), purcpage);
     });
+    // 下单用户分析 日历控件修改
+    $('#appDateTime16').bind('change', function() {
+        userPurchase($('#appDateTime16').val(), purcpage);
+        updateWeek(this);
+    });
 
     // 下单用户分析 分页控制
     $('.purc-prepage, .purc-nextpage').on('click', function(){
@@ -442,6 +446,11 @@ $(function () {
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
       userFirstOrder($('#appDateTime17').val(), fopage);
+    });
+    // 首单用户分析 日历控件监控
+    $('#appDateTime17').bind('change', function() {
+        userFirstOrder($('#appDateTime17').val(), fopage);
+        updateWeek(this);
     });
 
     // 首单用户分析 分页控制

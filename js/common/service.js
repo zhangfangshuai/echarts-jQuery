@@ -23,47 +23,11 @@ window.onload = function () {
     },false)
 };
 // 监控横竖屏现象
-window.onresize=function(){
+window.onresize = function(){
     $('.slideBar').css({'height':$(window).height()});
     $('.slideBarBg').css({'height':$(window).height()});
 }
 
-
-// 混入数据
-var APP = {
-    html: 'charts.html',     // 全局当前页面去向控制
-    dateBar: {
-        preset:'date',       // 日期
-        theme:'default',     // 皮肤样式
-        display:'bottom',    // 显示位置
-        lang:'zh',
-        mode:'scroller',     // 日期选择模式
-        dateFormat:'yymmdd', // 日期格式
-        setText:'确定',
-        cancelText:'取消',
-        showNow:true,
-        nowText:'今天',
-        dateOrder:'yymmdd',   // 返回日期排列格式
-        startYear:2016,
-        endYear:new Date().getFullYear(),  // 最大年份
-        dayText: '日',
-        monthText: '月',
-        yearText: '年',       // 面板中年月日文字
-    },
-    timeBar: [
-        {"text":"0点","value":"0"},{"text":"1点","value":"1"},{"text":"2点","value":"2"},{"text":"3点","value":"3"},
-        {"text":"4点","value":"4"},{"text":"5点","value":"5"},{"text":"6点","value":"6"},{"text":"7点","value":"7"},
-        {"text":"8点","value":"8"},{"text":"9点","value":"9"},{"text":"10点","value":"10"},{"text":"11点","value":"11"},
-        {"text":"12点","value":"12"},{"text":"13点","value":"13"},{"text":"14点","value":"14"},{"text":"15点","value":"15"},
-        {"text":"16点","value":"16"},{"text":"17点","value":"17"},{"text":"18点","value":"18"},{"text":"19点","value":"19"},
-        {"text":"20点","value":"20"},{"text":"21点","value":"21"},{"text":"22点","value":"22"},{"text":"23点","value":"23"}
-    ],
-    siteTypeBar: [{"text":"全部","value":""},{"text":"实体","value":"0"},{"text":"虚拟","value":"1"}],
-    timePeriodBar: [{"text":"近7日","value":"1"},{"text":"近15日","value":"2"},{"text":"近1月","value":"3"},{"text":"近3月","value":"4"}],
-    userPeriodBar: [{"text":"近7日","value":"2"},{"text":"近15日","value":"3"},{"text":"近1月","value":"4"},{"text":"近3月","value":"5"}],
-    carOperateBar: [{"text":"全部","value":"0"},{"text":"上架","value":"1"},{"text":"下架","value":"2"}],
-    BUBBLE_CACHE: ''
-}
 
 
 
@@ -92,6 +56,7 @@ function menuMaker() {
           userMenu += " </ul> </div> <a href='../index.html'>退出登陆</a>";
           let slideBar = document.createElement("div");
           slideBar.className = "slideBar";
+          slideBar.style.display = "none";  // 防止出现加载缓慢时闪现黑色大字问题
           slideBar.innerHTML = slideUser + userMenu;
           $(document.body).prepend(slideBar);
           let slideBarBg = document.createElement("div");
@@ -108,14 +73,20 @@ function menuMaker() {
  * Create: zhangfs by Atom
  * Date: 2018/04/24 12:08
  * Func: 路由控制 +随机数
- * Note: 函数执行在事件流的捕获阶段，因此必须定义在目录创建之后
+ * Note: 函数执行在事件流的冒泡阶段，因此必须定义在目录创建之后
  */
 $.each($('.slideMenu>ul>li'),function(i,e){
     $(this).on('click',function(){
         $('.slideMenu>ul>li').removeClass('active');
         $(this).addClass('active');
+        // 除实时监控外，其他页面点击本页面不重载
+        if (sessionStorage.page != menuConfig[0].page && sessionStorage.page == $(this).attr('data-value')) {
+            $('.slideBarBg').fadeOut();
+            $('.slideBar').stop().animate({'left':'-4.93rem'})
+            return;
+        }
         sessionStorage.page = $(this).attr('data-value');
-        window.location.href='../html/'+$(this).attr('data-value')+'.html?' + Math.random().toFixed(5);
+        window.location.href='../html/'+$(this).attr('data-value')+'.html?v=' + version;   //  + '&r=' + Math.random().toFixed(5)
     });
 });
 
@@ -129,12 +100,13 @@ $.each($('.slideMenu>ul>li'),function(i,e){
  */
 $('.slideBtn').on('click',function() {
     $('.slideBarBg').fadeIn();
+    $('.slideBar').css('display', 'block');
     $('.slideBar').stop().animate({'left':0});
 });
 /* Func: 点击空白处隐藏 */
 $('.slideBarBg').on('click',function(){
     $(this).fadeOut();
-    $('.slideBar').stop().animate({'left':'-4.93rem'})
+    $('.slideBar').stop().animate({'left':'-4.93rem'});
 });
 
 
@@ -156,15 +128,23 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
         traditional: hasarrparam,
         data: data,
         success: (res) => {
-            res.code != 200 && (() => {
-              logErr(res, uri);
-              return;
-            })();
-            s && s(res);
+            try {
+                res.code != 200 && (() => {
+                  errorHandler(res, uri);
+                  return;
+                })();
+                s && s(res);
+            } catch (e) {
+                Tip.success('接口' + uri + '请求错误');
+            }
         },
         error: (res) => {
-            logErr(res, uri);
-            f && f(res);
+            try {
+                errorHandler(res, uri);
+                f && f(res);
+            } catch (e) {
+                Tip.success('接口' + uri + '请求错误');
+            }
         }
     });
 }
@@ -195,15 +175,16 @@ function getCity(s, f) {
  * Func: 接口错误日志监控，token失效自动登出
  * Params: 两个参数： 执行返回的结果集，正在访问的接口名
  */
-function logErr (r, i) {
-    r && r.code == '401' && (() => {
-          window.location.href = '../index.html';
-          Tip.success("身份信息已过期, 请重新登录");
-          console.log('\n Token Expired!')
-    })();
-    r ? Tip.success(r.desc) : Tip.success('接口'+i+'请求丢失');
-    r ? console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html)
-      : console.log('Request Rejected  \nInterface: ' + i + ' \nPage: ' + APP.html);
+function errorHandler (r, i) {
+    Tip.success(res.desc);
+    // r && r.code == '401' && (() => {
+    //       window.location.href = '../index.html';
+    //       Tip.success("身份信息已过期, 请重新登录");
+    //       console.log('\n Token Expired!')
+    // })();
+    // r ? Tip.success(r.desc) : Tip.success('接口'+i+'请求丢失');
+    // r ? console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html)
+    //   : console.log('Request Rejected  \nInterface: ' + i + ' \nPage: ' + APP.html);
 }
 
 
@@ -284,7 +265,7 @@ function updateDate(_parent, num, limit) {
     if ($('#'+id).val()) {
         let d = $('#'+id).val();
         let dest = new Date(d.slice(0,4) +'/'+d.slice(4,6) +'/'+ d.slice(6,8));
-        dest.setTime(dest.getTime() + num*24*3600000)
+        dest.setTime(dest.getTime() + num*24*3600000);
         if ( limit && dest.getTime() > new Date().getTime() ) {
             return d;
         }
@@ -405,6 +386,12 @@ function startingWeekYesterday (num){
 function getWeek(i){
     return '周' + '日一二三四五六'.substr(i,1);
 };
+function updateWeek(_this){
+    let i = $(_this).attr('id').charAt($(_this).attr('id').length-1);
+    let d = $(_this).val();
+    let dest = new Date(d.slice(0,4) +'/'+d.slice(4,6) +'/'+ d.slice(6,8));
+    $('.showWeek'+i).html(getWeek(dest.getDay()));
+}
 
 
 
@@ -461,36 +448,6 @@ function createDomEachElement(element, objArray){
         }
         if (i != objArray.length) {
             // $('#'+element)[0].appeng('li')
-        }
-    }
-}
-
-
-
-/**
- * Created: zhangfs by Atom
- * Date: 2018/04/13 18:10
- * Func: 增加常改动页面的版本控制，处理缓存问题 - 存在BUG未解决
- * Note: 添加引入文件随机参数，暂时存在待修复BUG，此动作发生在文件已被瞎下载之后，不能解决缓存问题
- */
-function addVersionControl() {
-    version = version || Math.random().toFixed(5);
-    let cssCtrl = [APP.html.split('.')[0], 'cssPublic'];
-        jsCtrl = [APP.html.split('.')[0], 'jsPublic'];
-
-    for(let i = 0; i < $('link').length; i ++){
-        let cssfile = $('link')[i].href.split('/').pop().split('.')[0];
-        if ( cssCtrl.indexOf(cssfile) >= 0 ) {
-            $('link')[i].href.split('?')[1] ? $('link')[i].href = $('link')[i].href + '&version=' + version
-                                            : $('link')[i].href = $('link')[i].href.split('?')[0] + '?version=' + version;
-        }
-    };
-
-    for(let j = 0; j < $('script').length; j ++) {
-        let jsfile = $('script')[j].src.split('/').pop().split('.')[0];
-        if (jsCtrl.indexOf(jsfile) >= 0) {
-            $('script')[j].src.split('?')[1] ? $('script')[j].src = $('script')[j].src + '&version=' + version
-                                             : $('script')[j].src = $('script')[j].src + '?version=' + version;
         }
     }
 }

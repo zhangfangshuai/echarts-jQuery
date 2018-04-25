@@ -5,7 +5,6 @@
  * Recode: zhangfs 2018/04/11 10:50
  * Note: Package and Add Handler
  */
-APP.html = "orders.html";
 $(function () {
     var odtype = 0,
         cancelType = 0,
@@ -60,7 +59,12 @@ $(function () {
         let id = this.parentNode.children[1].children[0].id;
         this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                           : $('#'+id).val(updateDate(this.parentNode, 1, true));
-        getorderAnalyze($('#'+id).val(), odtype);
+        getorderAnalyze($('#'+id).val(), 1);
+    });
+    // 订单概况时间监控 日历控件监控
+    $('#appDateTime1').bind('change', function() {
+        getorderAnalyze($('#appDateTime1').val(), 1);
+        updateWeek(this);
     });
 
     $('#appDateTime2, #appDateTime3').on('change',function () {

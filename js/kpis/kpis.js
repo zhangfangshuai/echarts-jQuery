@@ -4,7 +4,6 @@
  * Recode: zhangfs by Atom 2018/04/21
  * Note: old: 1160 lines
  */
-APP.html = "kpi.html";
 $(function () {
     var MAP_CACHE;  // 全国基础地图数据
     var ODAVG, CASH, SHELFRATE;  // kpis

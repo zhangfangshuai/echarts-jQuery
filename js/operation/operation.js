@@ -3,7 +3,6 @@
  * Author: zhangfs
  * Date: 2018/03/26 15:12
  */
-APP.html = 'operation.html';
 $(function () {
      var DATA_CACHE, DETAIL_DATA_CACHE, PM_DATA_CACHE;
      var carType = '0',   // 0-All, 1-elec, 2-oil
@@ -93,6 +92,7 @@ $(function () {
         }
         buildAjax('get', 'getPeccancyDetail', data, true, false, function(res){
             DETAIL_DATA_CACHE = res.data.data
+            pdPage = resetPaging('pd-nowpage');
             $('.pd-allpage').html( Math.ceil(DETAIL_DATA_CACHE.length / 10) == 0 ? 1 : Math.ceil(DETAIL_DATA_CACHE.length / 10) );
             setPecDetailUI( DETAIL_DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page) )
         }, false);
@@ -219,12 +219,17 @@ $(function () {
      });
 
 
-     // 前一天后一天时间监控
+     // 车辆违章详情 时间监控
      $('.pd-predate, .pd-nextdate').on('click',function() {
          let id = this.parentNode.children[1].children[0].id;
          this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                                       : $('#'+id).val(updateDate(this.parentNode, 1, true));
-         pdPage = resetPaging('pd-nowpage');
+
          getPeccancyDetail(cityVal, carType, $('#appDateTime1').val(), 1);
-     })
+     });
+     // 车辆违章详情 日历控件监控
+     $('#appDateTime1').bind('change', function() {
+         getPeccancyDetail(cityVal, carType, $('#appDateTime1').val(), 1);
+         updateWeek(this);
+     });
 })
