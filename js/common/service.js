@@ -119,7 +119,7 @@ $('.slideBarBg').on('click',function(){
  * Params: http方法，执行接口名，所需参数(默认带有token)，是否异步执行，是否含有需要遍历执行的参数，成功回调，失败回调
  */
 function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
-    data.token = sessionStorage.token;
+    if (uri != "loginOn" ) { data.token = sessionStorage.token }
     $.ajax({
         url: http + 'mobile/' + uri,
         type: method,
@@ -128,25 +128,38 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
         traditional: hasarrparam,
         data: data,
         success: (res) => {
-            try {
-                res.code != 200 && (() => {
-                  errorHandler(res, uri);
-                  return;
-                })();
-                s && s(res);
-            } catch (e) {
-                Tip.success('接口' + uri + '请求错误');
-            }
-        },
-        error: (res) => {
-            try {
+            if (res.code != 200) {
                 errorHandler(res, uri);
                 f && f(res);
-            } catch (e) {
-                Tip.success('接口' + uri + '请求错误');
+                return;
             }
+            s && s(res);
+        },
+        error: (res) => {
+            errorHandler(res, uri);
+            f && f(res);
         }
     });
+}
+
+
+
+/**
+ * Created: zhangfs by Atom
+ * Date: 2018/04/02  18:34
+ * Func: 接口错误日志监控，token失效自动登出
+ * Params: 两个参数： 执行返回的结果集，正在访问的接口名
+ */
+function errorHandler (r, i) {
+    try {
+        r && Tip.success(r.desc);
+        if (i == 'loginOn' || i == 'event') return;
+        window.location.href = '../index.html';
+        console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html);
+    } catch (e) {
+        Tip.success('请求'+i+'失败');
+        console.log('请求'+i+'失败 \n\nInterface: ' + i + ' \nPage: ' + APP.html);
+    }
 }
 
 
@@ -167,25 +180,6 @@ function getCity(s, f) {
     }, f);
 }
 
-
-
-/**
- * Created: zhangfs by Atom
- * Date: 2018/04/02  18:34
- * Func: 接口错误日志监控，token失效自动登出
- * Params: 两个参数： 执行返回的结果集，正在访问的接口名
- */
-function errorHandler (r, i) {
-    Tip.success(res.desc);
-    // r && r.code == '401' && (() => {
-    //       window.location.href = '../index.html';
-    //       Tip.success("身份信息已过期, 请重新登录");
-    //       console.log('\n Token Expired!')
-    // })();
-    // r ? Tip.success(r.desc) : Tip.success('接口'+i+'请求丢失');
-    // r ? console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html)
-    //   : console.log('Request Rejected  \nInterface: ' + i + ' \nPage: ' + APP.html);
-}
 
 
 
@@ -365,7 +359,7 @@ Date.prototype.format = function (fmt) {
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/10 10:21
- * Func: 设置单时间选择器的周几数据
+ * Func: 设置单时间选择器的周几数据/html/watch.html?v=2.0.1
  * Params: 周几控件种的最后一个数据.如showeek1，则num = 1
  */
 function startingWeek(num){
@@ -425,7 +419,7 @@ function nullHandle(t) {
 
 /**
  * Func: 返回数据中时间戳转所需日期格式
- * Params:
+ * Params: 要转换的时间戳
  */
 function time2Date (timestamp) {
     let d = new Date();
@@ -435,19 +429,52 @@ function time2Date (timestamp) {
 
 
 
+
 /**
  * Created: zhangfs by Atom
- * Date: 2018/04/12 10:45
- * Func: 实现jquery的html页面each遍历列表功能，实现数据驱动效应 - 存在BUG未解决
+ * Date: 2018/04/26 12:01
+ * Func: 埋点及事件上报
  */
-function createDomEachElement(element, objArray){
-    for (let i in objArray) {
-        for (let j = 0; j < $('#'+element)[0].children[0].children.length; j++) {
-            let attr = $('#'+element)[0].children[0].children[j].innerHTML
-            $($('#'+element)[0].children[0].children[j]).html(objArray[i][attr]);
-        }
-        if (i != objArray.length) {
-            // $('#'+element)[0].appeng('li')
-        }
+
+function reportEntry(base) {
+    var data = base || {};
+    data['reportType'] = 'entry';
+    buildReport(data);
+}
+
+function reportLeave(base) {
+    var data = base || {};
+    data['reportType'] = 'leave';
+    buildReport(data);
+}
+
+function reportEvent(evt, base) {
+    var data = base || {};
+    data['reportType'] = 'event';
+    data['reportName'] = evt || '';
+    postReport(data);
+}
+
+function postReport(data, r) {
+    var retry = r || 0;
+    if (!data['reportTime']) {
+        data['reportTime'] = new Date().toISOString();
+        data['userName'] = localStorage.user || '';
+        data['nickname'] = sessionStorage.nickname || '';
+        data['ip'] = sessionStorage.ip || '';
+        data['address'] = sessionStorage.address || '';
+        data['entryTime'] = sessionStorage.entryTime || '';
+        data['device'] = sessionStorage.device || '';
+        data['platform'] = sessionStorage.platform || '';
+        data['page'] = APP.html || '';
+        data['BIversion'] = version;
+        data['channel'] = 1;    // 1: app. 2: pc
     }
+    console.log(data);
+    // debugger;
+    buildAjax('post', 'event', data, true, false, function(res) {
+    }, function(res) {
+        retry < 3 && setTimeout(function(){ postReport(data, ++retry) }, 200);
+        retry > 3 && console.log(data['eventName'] + '上报失败');
+    });
 }

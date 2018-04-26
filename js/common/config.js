@@ -1,5 +1,5 @@
 // 项目版本 version
-let version = '2.0.0';
+let version = '2.0.1';
 
 // let http='http://10.16.86.213:8080/SQBIServer-web/';  // test_env
 let http = 'http://122.14.205.135:8110/';  // prod_env
@@ -20,6 +20,8 @@ var  menuConfig = [
     { id: 9, name: '运营分析', class: 'm-operation', page: 'operation'},
     { id:10, name: '营收分析', class: 'm-income', page: 'income'}
 ];
+
+
 
 
 // Mixin
@@ -60,6 +62,7 @@ let APP = {
 
 
 
+
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/24 10:43
@@ -67,7 +70,7 @@ let APP = {
  */
 (function(doc, win) {
     let baseURI = doc.documentElement.children["0"].baseURI;
-    APP.html = baseURI.split('?')[0].split('/').pop().split('.').shift();
+    APP.html = baseURI.split('?')[0].split('/').pop().split('.').shift();  // 也控制页面整体走向
     let cssCtrl = [APP.html, 'service'],
         jsCtrl = [APP.html, 'service'];
 
