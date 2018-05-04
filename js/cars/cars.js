@@ -68,6 +68,7 @@ $(function () {
         }
         buildAjax('get', 'car/getKpiCarInfo', data, true, false, function(res){
             CAR_CACHE = res.data;
+            carpage = resetPaging('car-nowpage');
             $('.car-allpage').html(Math.ceil(CAR_CACHE.length / 10) == 0 ? 1 : Math.ceil(CAR_CACHE.length / 10));
             setCarUI(CAR_CACHE.slice( 10 * ( p - 1 ), 10 * p));
         }, false);
@@ -147,6 +148,7 @@ $(function () {
         }
         buildAjax('get', 'car/getCarofflineTableData', data, true, false, function(res){
             OFFLINE_CACHE = res.data.table;
+            offpage = resetPaging('off-nowpage');
             $('.off-allpage').html(Math.ceil(OFFLINE_CACHE.length / 10) == 0 ? 1 : Math.ceil(OFFLINE_CACHE.length / 10));
             setTableUI(OFFLINE_CACHE.slice(10 * ( p - 1 ), 10 * p));
         }, false);
@@ -189,17 +191,17 @@ $(function () {
 
     // 日历选择控制
     $('#appDateTime2, #appDateTime3').on('change',function () {
-        carpage = resetPaging('car-nowpage');
-        getCarInfo($('#appDateTime2').val(), $('#appDateTime3').val(), 1)
+        isDateValid(2, 3) && getCarInfo($('#appDateTime2').val(), $('#appDateTime3').val(), 1)
     });
 
     $('#appDateTime4, #appDateTime5').on('change',function () {
-        onlineCharts($('#appDateTime4').val(),$('#appDateTime5').val())
+        isDateValid(4, 5) && onlineCharts($('#appDateTime4').val(),$('#appDateTime5').val())
     });
 
     $('#appDateTime6, #appDateTime7').on('change',function () {
-        offlineChart($('#appDateTime6').val(),$('#appDateTime7').val());
-        offpage = resetPaging('off-nowpage');
-        offlineTable($('#appDateTime6').val(),$('#appDateTime7').val(), 1);
+        if (isDateValid(6, 7)) {
+            offlineChart($('#appDateTime6').val(),$('#appDateTime7').val());
+            offlineTable($('#appDateTime6').val(),$('#appDateTime7').val(), 1);
+        }
     });
 });

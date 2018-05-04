@@ -7,8 +7,8 @@
 var optionCity = {
    geo: {
        map: 'china',
-       roam: true,
-       zoom: 1.1,
+       // roam: true,  // 只平移:move; 只缩放:scale; 平移和缩放: true; 默认false
+       zoom: 1.2,
        center: [104, 35],
        label: {
            emphasis: {
@@ -54,8 +54,8 @@ var optionCity = {
            type: 'scatter',
            coordinateSystem: 'geo',
            data: [],
-           symbolSize: [50,50],
-           symbol: 'image:////h5.shouqiev.com/gofunCockpit/images/iconGreen.png',
+           symbolSize: [65,65],
+           symbol: 'image://../images/icon_hotpot.png',
            itemStyle: {
                normal: {
                    color:  new echarts.graphic.LinearGradient(0, 1, 0, 0, [{
@@ -107,8 +107,8 @@ var optionCity = {
            type: 'scatter',
            coordinateSystem: 'geo',
            data: [],
-           symbolSize: [50,50],
-           symbol: 'image:////h5.shouqiev.com/gofunCockpit/images/iconYellow.png',
+           symbolSize: [90,90],
+           symbol: 'image://../images/icon_hotpot_chose.png',
            itemStyle: {
                normal: {
                    opacity:1,

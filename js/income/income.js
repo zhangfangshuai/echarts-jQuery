@@ -8,13 +8,13 @@ $(function () {
     var DATA_CACHE;
     var cityVal = 1,
         base = '0',
-        page = 1,
+        incpage = 1,
         carType = '0';
     var today = getDaysOffset(),
         yesterday = getDaysOffset(-1),
         weekAgo = getDaysOffset(-7);
 
-    for ( let i of [1,2,3]) {
+    for (let i of [1,2,3]) {
         $('#appDateTime' + i).mobiscroll(APP.dateBar);
     }
 
@@ -26,20 +26,18 @@ $(function () {
      getCity(function(res, cityInit){
          cityVal = cityInit;
          getIncome(cityVal, carType, yesterday);
-         getRecharge(cityVal, weekAgo, yesterday, base, page);
+         getRecharge(cityVal, weekAgo, yesterday, base, incpage);
      }, false);
 
 
      // nav 城市改变 及其刷新数据
      $('#demo3').bind('input propertychange', function() {
-         if ($('#value3').val() == ''){
-             return false
-         }
-         cityVal = $('#value3').val();   //更改城市后重新渲染页面图表
+         if ($('#value3').val() == '') return;
+         cityVal = $('#value3').val();
          $('.phoneBubble').hide('fast');
          cityVal == '1' && $('.responsiblePerson-box').hide('fast');
          getIncome(cityVal, carType, $('#appDateTime1').val());
-         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
+         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, incpage);
          getPrincipal(cityVal, [58,59]);
      });
 
@@ -102,15 +100,15 @@ $(function () {
         }
         buildAjax('get', 'getRechargeInfo', data, true, false, function(res){
             DATA_CACHE = res.data.data;
+            incpage = resetPaging('inc-nowpage');
             $('.allpage').html( Math.ceil(DATA_CACHE.length / 10) == 0 ? 1 : Math.ceil(DATA_CACHE.length / 10) );
-            page = resetPaging('nowpage');
             setUI(base, DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page));
         });
     }
 
     let refRechargeUI = (base, page) => {
         DATA_CACHE ? setUI(base, DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page))
-                   : getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
+                   : getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, 1);
     }
     let setUI = (base, d) => {
         base = ['0','1','2'].indexOf(base.toString()) == -1 ? 0 : base;
@@ -140,7 +138,7 @@ $(function () {
     }
     // 用户充值时间监控
     $('#appDateTime2, #appDateTime3').on('change', function() {
-        getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, page);
+        isDateValid(2,3) && getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, incpage);
     })
 
     // 用户充值价格区间选择监控
@@ -148,11 +146,23 @@ $(function () {
         $('.tcs').removeClass('active');
         $(this).addClass('active');
         base = $(this).attr('base');
-        refRechargeUI(base, page);
+        refRechargeUI(base, incpage);
     })
 
     // 用户充值分页控制
     $('.inc-prepage, .inc-nextpage').on('click',function() {
-        page = pagingCtrl(this, page, refRechargeUI);
+        if (this.classList[0] == 'inc-prepage') {
+            incpage > 1 ? (() => {
+                incpage --;
+                refRechargeUI(base, incpage);
+                $('.nowpage').html(incpage);
+            })() : console.log('Top page!');
+        } else {
+           incpage < parseInt($('.allpage').html()) ? (() => {
+               incpage ++;
+               refRechargeUI(base, incpage);
+               $('.nowpage').html(incpage);
+           })() : console.log('Last page!');
+        }
     });
 });

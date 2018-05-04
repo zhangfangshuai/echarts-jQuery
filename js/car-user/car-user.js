@@ -3,7 +3,7 @@
  * Author: dameng
  * Date: 2017/11/15 09:05
  * Recode: zhangfs by Atom - 2018/04/16
- * Note: Package and Add Handler   old: 828 lines; recode: 450 lines;
+ * Note: Package and Add Handler   old: 828 lines;
  */
 $(function () {
     var LICENSE_CACHE, CARUSABLE_CACHE, PURCHASE_CACHE, FO_CACHE;
@@ -32,7 +32,7 @@ $(function () {
 
     startingWeekYesterday(16);
     startingWeekYesterday(17);
-    triggerLArea1('#ut', '#ut-val', APP.userPeriodBar);
+    triggerLArea('#ut', '#ut-val', APP.userPeriodBar);
 
     // 获取城市列表，并初始化数据
     getCity(function(res, cityInit){
@@ -193,7 +193,7 @@ $(function () {
     }
 
     $('#appDateTime1, #appDateTime2').on('change', function(){
-        userBing($('#appDateTime1').val(), $('#appDateTime2').val());
+        isDateValid(1, 2) && userBing($('#appDateTime1').val(), $('#appDateTime2').val());
     })
 
 
@@ -216,7 +216,7 @@ $(function () {
     }
 
     $('#appDateTime3, #appDateTime4').on('change', function(){
-        userActivate($('#appDateTime3').val(), $('#appDateTime4').val());
+        isDateValid(3, 4) && userActivate($('#appDateTime3').val(), $('#appDateTime4').val());
     })
 
 
@@ -236,7 +236,7 @@ $(function () {
     }
 
     $('#appDateTime5, #appDateTime6').on('change', function(){
-        userLoss($('#appDateTime5').val(), $('#appDateTime6').val());
+        isDateValid(5, 6) && userLoss($('#appDateTime5').val(), $('#appDateTime6').val());
     })
 
 
@@ -256,7 +256,7 @@ $(function () {
     }
 
     $('#appDateTime7, #appDateTime8').on('change', function(){
-        pullNew($('#appDateTime7').val(), $('#appDateTime8').val());
+        isDateValid(7, 8) && pullNew($('#appDateTime7').val(), $('#appDateTime8').val());
     })
 
 
@@ -275,7 +275,7 @@ $(function () {
     }
 
     $('#appDateTime9, #appDateTime10').on('change', function(){
-        userRegist($('#appDateTime9').val(), $('#appDateTime10').val());
+        isDateValid(9, 10) && userRegist($('#appDateTime9').val(), $('#appDateTime10').val());
     })
 
 
@@ -314,7 +314,7 @@ $(function () {
 
     // 用户双证分析 时间监控
     $('#appDateTime11, #appDateTime12').on('change', function(){
-        userLicense($('#appDateTime11').val(), $('#appDateTime12').val(), 1);
+        isDateValid(11, 12) && userLicense($('#appDateTime11').val(), $('#appDateTime12').val(), 1);
     })
 
     // 用户双证分析 分页控制
@@ -361,7 +361,7 @@ $(function () {
 
     // 可用车用户分析 时间监控
     $('#appDateTime13, #appDateTime14').on('change', function() {
-        carUsable($('#appDateTime13').val(), $('#appDateTime14').val(), 1);
+        isDateValid(13, 14) && carUsable($('#appDateTime13').val(), $('#appDateTime14').val(), 1);
     })
 
     // 可用车用户分析 分页控制

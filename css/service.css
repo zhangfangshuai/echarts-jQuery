@@ -70,7 +70,12 @@ a {
 a:hover {
     text-decoration:none;
 }
-
+/*
+  隐藏滚动条样式但又可以滚动区已经
+*/
+::-webkit-scrollbar{
+    display:none;
+}
 
 /**
  * Author: zhangfs
@@ -85,6 +90,7 @@ a:hover {
 .box {
     width: 10rem;
     padding: 1rem 0;
+    visibility: hidden;
 }
 
 .wrap {
@@ -154,11 +160,11 @@ a:hover {
 
 .header .logo {
     width: 1.39rem;
-    height: 0.85rem;
-    background: url(../images/logo_bar.png);
-    -webkit-background-size: cover;
-    background-size: cover;
-    margin: 0.1rem 0 0 3.63rem;
+    height: 80%;
+    background: url(../images/logo_bar.png) no-repeat;
+    -webkit-background-size: auto 100%;
+    background-size: auto 100%;
+    margin: 0.07rem 0 0 3.63rem;
 }
 
 .header .location {
@@ -202,7 +208,7 @@ a:hover {
  * Func： 五行表格基础列表样式
  */
 .headLine, .headLine-four {
-    width: 9.07rem;
+    width: 100%;
     height: 0.53rem;
     margin: 0 auto;
     font-size: 0.35rem;
@@ -216,7 +222,7 @@ a:hover {
     width: 20%;
     height: 0.53rem;
     line-height: 0.53rem;
-    text-align: left;
+    text-align: center;
 }
 
 .headLine .itemVal, .headLine-four .itemVal {
@@ -238,11 +244,19 @@ a:hover {
 
 .itemVal li p {
     width: 20%;
-    text-align: left;
+    height: 0.53rem;
+    text-align: center;
     font-size: 0.27rem;
     color: #425C72;
     letter-spacing: 0;
     overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.itemVal li p span {
+    white-space: nowrap;
+    float: left;
+    text-align: left;
 }
 
 

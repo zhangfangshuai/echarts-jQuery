@@ -85,6 +85,7 @@ $(function () {
             $('#demo3').val(locat.data.name);
             cityOverview();
             getTarget(city);
+            getPrincipal(ovCity, [8,9,10,11,12,13,14]);
         }
     })
 

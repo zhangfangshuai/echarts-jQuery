@@ -55,6 +55,7 @@ $(function () {
         };
         buildAjax('get', 'getCustServerDetail', data, true, false, function(res){
             CS_CACHE = res.data.data;
+            cspage = resetPaging('cs-nowpage');
             $('.cs-allpage').html(Math.ceil(CS_CACHE.length / 10) == 0 ? 1 : Math.ceil(CS_CACHE.length / 10));
             setCSUI( CS_CACHE.slice( 10 * ( p - 1 ), 10 * p) );
         }, false)
@@ -85,6 +86,7 @@ $(function () {
     function getDoubleCardDetail(s, e, p) {
         buildAjax('get', 'getDoubleCardDetail', {cityId:cityVal, startDate:s, endDate:e}, true, false, function(res){
             DC_CACHE = res.data.data;
+            dcpage = resetPaging('dc-nowpage');
             $('.dc-allpage').html(Math.ceil(DC_CACHE.length / 10) == 0 ? 1 : Math.ceil(DC_CACHE.length / 10));
             setDcUI( DC_CACHE.slice( 10 * ( p - 1 ), 10 * p) );
         }, false);
@@ -144,14 +146,10 @@ $(function () {
     });
 
     $('#appDateTime1, #appDateTime2').on('change',function () {
-        cspage = 1;
-        $('.cs-nowpage').html(1);
-        getCustServerDetail($('#appDateTime1').val(),$('#appDateTime2').val(), cspage);
+        isDateValid(1,2) && getCustServerDetail($('#appDateTime1').val(),$('#appDateTime2').val(), cspage);
     });
 
     $('#appDateTime3, #appDateTime4').on('change',function () {
-        dcpage = 1;
-        $('.dc-nowpage').html(1);
-        getDoubleCardDetail($('#appDateTime3').val(),$('#appDateTime4').val(), dcpage);
+        isDateValid(3,4) && getDoubleCardDetail($('#appDateTime3').val(),$('#appDateTime4').val(), dcpage);
     });
 });

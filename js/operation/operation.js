@@ -61,6 +61,7 @@ $(function () {
         };
         buildAjax('get', 'getPeccancyInfo', data, true, false, function(res){
             DATA_CACHE = res.data.data;
+            pdPage = resetPaging('pd-nowpage');
             $('.pec-allpage').html( Math.ceil(DATA_CACHE.length / 10) == 0 ? 1 : Math.ceil(DATA_CACHE.length / 10) );
             setPeccancyUI( DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page) );
         }, false);
@@ -126,6 +127,7 @@ $(function () {
         }
         buildAjax('get','getPushMoneyData', data, true, false, function(res){
             PM_DATA_CACHE = res.data.data
+            pmPage = resetPaging('pm-nowpage');
             $('.pm-allpage').html( Math.ceil(PM_DATA_CACHE.length / 10) == 0 ? 1 : Math.ceil(PM_DATA_CACHE.length / 10) );
             setPushMoneyUI(PM_DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page))
         });
@@ -193,14 +195,12 @@ $(function () {
 
      // 违章概况时间监控
      $('#appDateTime2, #appDateTime3').on('change', function() {
-         pdPage = resetPaging('pd-nowpage');
-         getPeccancyInfo(cityVal, carType, $('#appDateTime2').val(), $('#appDateTime3').val(), pdPage);
+         isDateValid(2,3) && getPeccancyInfo(cityVal, carType, $('#appDateTime2').val(), $('#appDateTime3').val(), pdPage);
      });
 
      // 推费概述时间监控
      $('#appDateTime4, #appDateTime5').on('change', function() {
-         pmPage = resetPaging('pm-nowpage');
-         getPushMoneyData(cityVal, carType, $('#appDateTime4').val(), $('#appDateTime5').val(), pmPage);
+         isDateValid(4,5) && getPushMoneyData(cityVal, carType, $('#appDateTime4').val(), $('#appDateTime5').val(), pmPage);
      });
 
      // 违章概况分页控制
@@ -224,7 +224,6 @@ $(function () {
          let id = this.parentNode.children[1].children[0].id;
          this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                                       : $('#'+id).val(updateDate(this.parentNode, 1, true));
-
          getPeccancyDetail(cityVal, carType, $('#appDateTime1').val(), 1);
      });
      // 车辆违章详情 日历控件监控

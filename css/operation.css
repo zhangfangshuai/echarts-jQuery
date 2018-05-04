@@ -34,21 +34,18 @@
 
 
 
-.accident .headLine-four .itemOne, .acdVal li p:nth-child(1) { width: 20%; text-align: center; }
-.accident .headLine-four .itemTwo, .acdVal li p:nth-child(2) { width: 29%; text-align: center; }
-.accident .headLine-four .itemThree, .acdVal li p:nth-child(3) { width: 28%; text-align: center; }
-.accident .headLine-four .itemFour, .acdVal li p:nth-child(4) { width: 23%; text-align: center; }
+.accident .headLine p:nth-child(1), .acdVal li p:nth-child(1) { width: 20%; }
+.accident .headLine p:nth-child(2), .acdVal li p:nth-child(2) { width: 29%; }
+.accident .headLine p:nth-child(3), .acdVal li p:nth-child(3) { width: 28%; }
+.accident .headLine p:nth-child(4), .acdVal li p:nth-child(4) { width: 23%; }
 
-.peccancy .headLine .itemOne { width: 16%; }
+.peccancy .headLine p:nth-child(1) { width: 16%; }
 .pecVal li p:nth-child(1) { width: 18%; }
-.peccancy .headLine .itemTwo { width: 25%; text-align: center;  }
-.pecVal li p:nth-child(2) { width: 23%; text-align: center;  }
-.peccancy .headLine .itemThree, .pecVal li p:nth-child(3) { width: 18%; text-align: center; }
-.peccancy .headLine .itemFour, .pecVal li p:nth-child(4) { width: 17%; text-align: center; }
-.peccancy .headLine .itemFive, .pecVal li p:nth-child(5) { width: 24%; text-align: center; }
+.peccancy .headLine p:nth-child(2) { width: 25%;  }
+.pecVal li p:nth-child(2) { width: 23%;  }
+.peccancy .headLine p:nth-child(3), .pecVal li p:nth-child(3) { width: 18%; }
+.peccancy .headLine p:nth-child(4), .pecVal li p:nth-child(4) { width: 17%; }
+.peccancy .headLine p:nth-child(5), .pecVal li p:nth-child(5) { width: 24%; }
 
-.pecDetail .headLine .itemOne, .pecDetailVal li p:nth-child(1) { width: 22%; }
-.pecDetail .headLine .itemTwo, .pecDetailVal li p:nth-child(2) { text-align: center; }
-.pecDetail .headLine .itemThree, .pecDetailVal li p:nth-child(3) { text-align: center; }
-.pecDetail .headLine .itemFour, .pecDetailVal li p:nth-child(4) { text-align: center; }
-.pecDetail .headLine .itemFive, .pecDetailVal li p:nth-child(5) { width: 18%; text-align: center; }
+.pecDetail .headLine p:nth-child(1), .pecDetailVal li p:nth-child(1) { width: 22%; }
+.pecDetail .headLine p:nth-child(5), .pecDetailVal li p:nth-child(5) { width: 18%; }

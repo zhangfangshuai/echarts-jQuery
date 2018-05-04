@@ -1,4 +1,40 @@
 /**
+ * Copy: zhangfs by Atom
+ * Func: 日历控件滚动选择控件展示定义，增加mobiscroll.custom.min.js文件中文资源包 (ceo@vmeitime.com)
+ */
+(function ($) {
+    $.mobiscroll.i18n.zh = $.extend($.mobiscroll.i18n.zh, {
+        dateFormat: 'yyyy-mm-dd',
+        dateOrder: 'yymmdd',
+        dayNames: ['周日', '周一;', '周二;', '周三', '周四', '周五', '周六'],
+		    dayNamesShort: ['日', '一', '二', '三', '四', '五', '六'],
+        dayText: '日',
+        hourText: '时',
+        minuteText: '分',
+        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+        monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+        monthText: '月',
+        secText: '秒',
+        timeFormat: 'HH:ii',
+        timeWheels: 'HHii',
+        yearText: '年'
+    });
+})(jQuery);
+
+
+
+/**
+ * Copy: zhangfs by Atom
+ * Func: 解决页面加载时出现的无样式闪现问题
+ */
+showBody();
+function showBody(){
+    $('.box').css('visibility', 'visible');
+}
+
+
+
+/**
  * Author: dameng by webstorm
  * Update: zhangfs by Atom
  * Func: 获取选中日期周几
@@ -31,12 +67,12 @@ window.onresize = function(){
 
 
 
- /**
-  * Created: zhangfs by Atom
-  * Date: 2018/04/23 20:28
-  * Func: 目录访问权限的控制及用户目录生成
-  */
-menuMaker();
+/**
+ * Created: zhangfs by Atom
+ * Date: 2018/04/23 20:28
+ * Func: 用户目录生成器
+ */
+APP.html != 'index' && APP.html != '' && menuMaker();
 function menuMaker() {
     sessionStorage.page = sessionStorage.page || menuConfig[0].page;
     buildAjax('get', 'getMenu', {}, false, false, function(res) {
@@ -56,7 +92,6 @@ function menuMaker() {
           userMenu += " </ul> </div> <a href='../index.html'>退出登陆</a>";
           let slideBar = document.createElement("div");
           slideBar.className = "slideBar";
-          slideBar.style.display = "none";  // 防止出现加载缓慢时闪现黑色大字问题
           slideBar.innerHTML = slideUser + userMenu;
           $(document.body).prepend(slideBar);
           let slideBarBg = document.createElement("div");
@@ -100,7 +135,6 @@ $.each($('.slideMenu>ul>li'),function(i,e){
  */
 $('.slideBtn').on('click',function() {
     $('.slideBarBg').fadeIn();
-    $('.slideBar').css('display', 'block');
     $('.slideBar').stop().animate({'left':0});
 });
 /* Func: 点击空白处隐藏 */
@@ -119,7 +153,7 @@ $('.slideBarBg').on('click',function(){
  * Params: http方法，执行接口名，所需参数(默认带有token)，是否异步执行，是否含有需要遍历执行的参数，成功回调，失败回调
  */
 function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
-    if (uri != "loginOn" ) { data.token = sessionStorage.token }
+    if (uri != "loginOn" ) { data.token = sessionStorage.token };
     $.ajax({
         url: http + 'mobile/' + uri,
         type: method,
@@ -149,13 +183,14 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
  * Date: 2018/04/02  18:34
  * Func: 接口错误日志监控，token失效自动登出
  * Params: 两个参数： 执行返回的结果集，正在访问的接口名
+ * Note: 如果是loginOn，则本身就在index页，上报事件出错不打断页面业务执行
  */
 function errorHandler (r, i) {
     try {
         r && Tip.success(r.desc);
+        console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html);
         if (i == 'loginOn' || i == 'event') return;
         window.location.href = '../index.html';
-        console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html);
     } catch (e) {
         Tip.success('请求'+i+'失败');
         console.log('请求'+i+'失败 \n\nInterface: ' + i + ' \nPage: ' + APP.html);
@@ -175,7 +210,7 @@ function getCity(s, f) {
     buildAjax('get', 'getCity', {}, false, false, function(res){
         $('#demo3').val(res.data[0].text);
         let cityInit = res.data[0].value;
-        triggerLArea1("#demo3", "#value3", res.data);
+        triggerLArea("#demo3", "#value3", res.data);
         s && s(res, cityInit);
     }, f);
 }
@@ -315,8 +350,8 @@ function resetPaging (i) {
  * Params: 三个参数： 出发点击事件的id，执行反馈的id，插入到弹窗列表的数据
  * E.g.: 网点分析
  */
-function triggerLArea1 (triggerId, actionId, data) {
-    let area = new LArea1();
+function triggerLArea (triggerId, actionId, data) {
+    let area = new LArea();
     area.init({
         'trigger': triggerId,
         'valueTo': actionId,
@@ -326,10 +361,8 @@ function triggerLArea1 (triggerId, actionId, data) {
         },
         'type': 2,
         'data': [data]
-        //'data':[[{"text":"北京","value":"110000"},{"text":"天津","value":"120000"}]]
     });
 }
-
 
 
 
@@ -385,7 +418,8 @@ function updateWeek(_this){
     let d = $(_this).val();
     let dest = new Date(d.slice(0,4) +'/'+d.slice(4,6) +'/'+ d.slice(6,8));
     $('.showWeek'+i).html(getWeek(dest.getDay()));
-}
+};
+
 
 
 
@@ -397,7 +431,7 @@ function updateWeek(_this){
  * E.g.: 网点分析
  */
 function siteType (t) {
-    return t == 0 ? "实体网店" : "虚拟网点"
+    return t == 0 ? "实体网点" : "虚拟网点"
 }
 
 /**
@@ -430,12 +464,34 @@ function time2Date (timestamp) {
 
 
 
+
+/**
+ * Created: zhangfs by Atom
+ * Date: 2018/04/27 11:20
+ * Func: 双日历选择控件(选择时间段),开始日期小于结束日期
+ */
+function isDateValid(start, end) {
+    let s = $('#appDateTime'+start).val();
+    let e = $('#appDateTime'+end).val();
+    let startDate = new Date(s.slice(0,4), s.slice(4, 6), s.slice(6, s.length));
+    let endDate = new Date(e.slice(0,4), e.slice(4, 6), e.slice(6, e.length));
+    if (startDate.getTime() > endDate.getTime()) {
+        Tip.success('查询周期不合理');
+        $('#appDateTime'+start).val(getDaysOffset(-7));
+        $('#appDateTime'+end).val(getDaysOffset(-1))
+        return false;
+    }
+    return true;
+}
+
+
+
+
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/26 12:01
  * Func: 埋点及事件上报
  */
-
 function reportEntry(base) {
     var data = base || {};
     data['reportType'] = 'entry';
@@ -474,6 +530,7 @@ function postReport(data, r) {
     // debugger;
     buildAjax('post', 'event', data, true, false, function(res) {
     }, function(res) {
+      console.log(retry, 'postReport');
         retry < 3 && setTimeout(function(){ postReport(data, ++retry) }, 200);
         retry > 3 && console.log(data['eventName'] + '上报失败');
     });

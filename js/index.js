@@ -4,11 +4,11 @@
  * Update: zhangfs by Atom
  * Date: 2018/04/24 15:32
  */
-
 $(function () {
     // reportEntry();
     localStorage.user && $('.userName').val(localStorage.user);
     localStorage.password && $('.wordsName').val(localStorage.password);
+
     $('.loginBtn').on('click', function(){
         if(!$('.userName').val()){
             Tip.success('请输入用户名');
@@ -32,28 +32,29 @@ $(function () {
                 sessionStorage.platform = window.navigator.platform;
                 var md = new MobileDetect(window.navigator.userAgent);
                 sessionStorage.device = md.mobile() +'-'+ md.os();
+
+                buildAjax('get', 'getMenu', {}, false, false, function(res) {
+                    if (res.data.length == 0) {
+                        Tip.success('您没有访问权限');
+                        // reportEvent('没有访问权限');
+                        return;
+                    }
+                    for (let d of res.data) {
+                        for (let m of menuConfig) {
+                            if (d.menuId == m.id) {
+                                sessionStorage.page = m.page;
+                                // reportLeave();
+                                window.location.href = './html/' + m.page + '.html?v=' + version;
+                                return;
+                            }
+                        }
+                    }
+                    Tip.success('您没有访问权限');
+                    // reportEvent('没有访问权限');
+                })
             } catch (e) {
                 // reportEvent('登录失败');
             }
-            buildAjax('get', 'getMenu', {}, false, false, function(res) {
-                if (res.data.length == 0) {
-                    Tip.success('您没有访问权限');
-                    // reportEvent('没有访问权限');
-                    return;
-                }
-                for (let d of res.data) {
-                    for (let m of menuConfig) {
-                        if (d.menuId == m.id) {
-                            sessionStorage.page = m.page;
-                            // reportLeave();
-                            window.location.href = './html/' + m.page + '.html?v=' + version;
-                            return;
-                        }
-                    }
-                }
-                Tip.success('您没有访问权限');
-                // reportEvent('没有访问权限');
-            })
         }, function(res){
             // reportEvent('登录失败');
         });

@@ -36,7 +36,6 @@
 }
 .user-stay .headLine p, .stayVal li p {
     width: 11.11%;
-    text-align: center;
 }
 
 .user-license .scroll-cont .headLine, .licenseVal {
@@ -44,7 +43,6 @@
 }
 .user-license .scroll-cont .headLine p, .licenseVal li p {
     width: 14%;
-    text-align: center;
 }
 .user-license .scroll-cont .headLine p:nth-of-type(1), .licenseVal li p:nth-of-type(1) { width: 8% }
 .user-license .scroll-cont .headLine p:nth-of-type(5), .licenseVal li p:nth-of-type(5) { width: 20% }
@@ -57,7 +55,6 @@
 
 .car-usable .scroll-cont .headLine p, .carUsableVal li p {
     width: 11%;
-    text-align: center;
 }
 
 .car-usable .scroll-cont .headLine p:nth-of-type(1), .carUsableVal li p:nth-of-type(1) { width: 5% }
@@ -74,7 +71,6 @@
 .firstOrder .headLine p,
 .foVal li p {
     width: 20%;
-    text-align: center;
 }
 
 .purchase .headLine p:nth-of-type(2),

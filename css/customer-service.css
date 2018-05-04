@@ -29,3 +29,7 @@
 .dc .scroll-cont .headLine p:nth-child(5), .dcVal li p:nth-child(5) { width: 16%; }
 .dc .scroll-cont .headLine p:nth-child(6), .dcVal li p:nth-child(6) { width: 16%; }
 .dc .scroll-cont .headLine p:nth-child(7), .dcVal li p:nth-child(7) { width: 16%; }
+
+.header .location {
+    display: none;
+}

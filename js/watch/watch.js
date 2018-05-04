@@ -19,8 +19,8 @@ $(function () {
         startingWeek(i);
     }
 
-    triggerLArea1('#carrtog', '#carrtog-val', APP.carOperateBar);
-    triggerLArea1('#sr-time', '#sr-time-val', APP.timeBar);
+    triggerLArea('#carrtog', '#carrtog-val', APP.carOperateBar);
+    triggerLArea('#sr-time', '#sr-time-val', APP.timeBar);
 
     // 获取城市列表
     getCity(function(res, cityInit){
@@ -448,7 +448,7 @@ $(function () {
     let setSrUI = (data) => {
         let str = "";
         for (let d of data) {
-            str += "<li> <p>" + d.parks3 + "</p>" +
+            str += "<li> <p><span>" + d.parks3 + "</span></p>" +
                 "<p>" + d.parks4 + "</p>" +
                 "<p>" + d.parks5 + "</p>" +
                 "<p>" + d.parks6 + "</p>" +

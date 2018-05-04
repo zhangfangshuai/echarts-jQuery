@@ -1,17 +1,7 @@
 /**
  * LArea移动端城市选择控件
- * 
  * version:1.7.2
- * 
- * author:黄磊
- * 
  * git:https://github.com/xfhxbb/LArea
- * 
- * Copyright 2016
- * 
- * Licensed under MIT
- * 
- * 最近修改于： 2016-6-12 16:47:41
  */
 window.LArea = (function() {
     var MobileArea = function() {
@@ -25,7 +15,7 @@ window.LArea = (function() {
             this.params = params;
             this.trigger = document.querySelector(params.trigger);
             if(params.valueTo){
-              this.valueTo=document.querySelector(params.valueTo);
+                this.valueTo=document.querySelector(params.valueTo);
             }
             this.keys = params.keys;
             this.type = params.type||1;
@@ -61,35 +51,29 @@ window.LArea = (function() {
         },
         bindEvent: function() {
             var _self = this;
+            _self.gearArea = '';
             //呼出插件
             function popupArea(e) {
                 _self.gearArea = document.createElement("div");
                 _self.gearArea.className = "gearArea";
                 _self.gearArea.innerHTML = '<div class="area_ctrl slideInUp">' +
                     '<div class="area_btn_box">' +
-                    '<div class="area_btn larea_cancel">取消</div>' +
-                    '<div class="area_btn larea_finish">确定</div>' +
+                        '<div class="area_btn larea_cancel">取消</div>' +
+                            '<div class="area_btn larea_finish">确定</div>' +
+                        '</div>' +
+                        '<div class="area_roll_mask">' +
+                        '<div class="area_roll">' +
+                            '<div>' +
+                                '<div class="gear area_province" data-areatype="area_province"></div>' +
+                                '<div class="area_grid"></div>' +
+                            '</div>' +
+                        '</div>' +
                     '</div>' +
-                    '<div class="area_roll_mask">' +
-                    '<div class="area_roll">' +
-                    '<div>' +
-                    '<div class="gear area_province" data-areatype="area_province"></div>' +
-                    '<div class="area_grid">' +
-                    '</div>' +
-                    '</div>' +
-                    '<div>' +
-                    '<div class="gear area_city" data-areatype="area_city"></div>' +
-                    '<div class="area_grid">' +
-                    '</div>' +
-                    '</div>' +
-                    '<div>' +
-                    '<div class="gear area_county" data-areatype="area_county"></div>' +
-                    '<div class="area_grid">' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
+                '</div>';
+                // update data
+                if(document.body.querySelector('.gearArea')) {
+                    document.body.removeChild(document.body.querySelector('.gearArea'));
+                }
                 document.body.appendChild(_self.gearArea);
                 areaCtrlInit();
                 var larea_cancel = _self.gearArea.querySelector(".larea_cancel");
@@ -101,24 +85,13 @@ window.LArea = (function() {
                     _self.finish(e);
                 });
                 var area_province = _self.gearArea.querySelector(".area_province");
-                var area_city = _self.gearArea.querySelector(".area_city");
-                var area_county = _self.gearArea.querySelector(".area_county");
                 area_province.addEventListener('touchstart', gearTouchStart);
-                area_city.addEventListener('touchstart', gearTouchStart);
-                area_county.addEventListener('touchstart', gearTouchStart);
                 area_province.addEventListener('touchmove', gearTouchMove);
-                area_city.addEventListener('touchmove', gearTouchMove);
-                area_county.addEventListener('touchmove', gearTouchMove);
                 area_province.addEventListener('touchend', gearTouchEnd);
-                area_city.addEventListener('touchend', gearTouchEnd);
-                area_county.addEventListener('touchend', gearTouchEnd);
             }
             //初始化插件默认值
             function areaCtrlInit() {
                 _self.gearArea.querySelector(".area_province").setAttribute("val", _self.value[0]);
-                _self.gearArea.querySelector(".area_city").setAttribute("val", _self.value[1]);
-                _self.gearArea.querySelector(".area_county").setAttribute("val", _self.value[2]);
-
                 switch (_self.type) {
                     case 1:
                         _self.setGearTooth(_self.data);
@@ -200,7 +173,8 @@ window.LArea = (function() {
             //缓动效果
             function rollGear(target) {
                 var d = 0;
-                var stopGear = false;
+                var stopGear = true;
+                target.style.webkitTransitionDuration = target.style.transitionDuration = '200ms';
                 function setDuration() {
                     target.style.webkitTransitionDuration = target.style.transitionDuration = '200ms';
                     stopGear = true;
@@ -229,6 +203,7 @@ window.LArea = (function() {
                         setGear(target, gearVal);
                         clearInterval(target["int_" + target.id]);
                     }
+                    pos=Math.round(pos / 2) * 2;
                     target["pos_" + target.id] = pos;
                     target.style["-webkit-transform"] = 'translate3d(0,' + pos + 'em,0)';
                     target.setAttribute('top', pos + 'em');
@@ -241,30 +216,17 @@ window.LArea = (function() {
                 target.setAttribute("val", val);
                 switch (_self.type) {
                     case 1:
-                         _self.setGearTooth(_self.data);
+                        _self.setGearTooth(_self.data);
                         break;
                     case 2:
-                     switch(target.dataset['areatype']){
-                         case 'area_province':
-                         _self.setGearTooth(_self.data[0]);
-                             break;
-                         case 'area_city':
-                             var ref = target.childNodes[val].getAttribute('ref');
-                             var childData=[];
-                             var nextData= _self.data[2];
-                             for (var i in nextData) {
-                                 if(i==ref){
-                                    childData = nextData[i];
-                                    break;
-                                 }
-                             };
-                        _self.index=2;
-                        _self.setGearTooth(childData);
-                             break;
-                     }
+                        switch(target.dataset['areatype']){
+                            case 'area_province':
+                                _self.setGearTooth(_self.data[0]);
+                                break;
+                        }
                 }
-                
-            }
+
+            }/**/
             _self.getData(function() {
                 _self.trigger.addEventListener('click', popupArea);
             });
@@ -274,72 +236,38 @@ window.LArea = (function() {
             var _self = this;
             var item = data || [];
             var l = item.length;
-            var gearChild = _self.gearArea.querySelectorAll(".gear");
-            var gearVal = gearChild[_self.index].getAttribute('val');
-            var maxVal = l - 1;
-            if (gearVal > maxVal) {
-                gearVal = maxVal;
+            var gearChild = _self.gearArea.querySelector(".gear");
+            var gearVal = gearChild.getAttribute('val');
+
+            gearChild.setAttribute('data-len', l);
+
+            var id = item[gearVal][this.keys['id']];
+
+            var itemStr = "";
+            for (var i = 0; i < item.length; i++) {
+                itemStr += "<div class='tooth'  ref='" + item[i][this.keys['id']] + "'>" + item[i][this.keys['name']] + "</div>";
             }
-            gearChild[_self.index].setAttribute('data-len', l);
-            if (l > 0) {
-                var id = item[gearVal][this.keys['id']];
-                var childData;
-                switch (_self.type) {
-                    case 1:
-                    childData = item[gearVal].child
-                        break;
-                    case 2:
-                     var nextData= _self.data[_self.index+1] 
-                     for (var i in nextData) {
-                         if(i==id){
-                            childData = nextData[i];
-                            break;
-                         }
-                     };
-                        break;
-                }
-                var itemStr = "";
-                for (var i = 0; i < l; i++) {
-                    itemStr += "<div class='tooth'  ref='" + item[i][this.keys['id']] + "'>" + item[i][this.keys['name']] + "</div>";
-                }
-                gearChild[_self.index].innerHTML = itemStr;
-                gearChild[_self.index].style["-webkit-transform"] = 'translate3d(0,' + (-gearVal * 2) + 'em,0)';
-                gearChild[_self.index].setAttribute('top', -gearVal * 2 + 'em');
-                gearChild[_self.index].setAttribute('val', gearVal);
-                _self.index++;
-                if (_self.index > 2) {
-                    _self.index = 0;
-                    return;
-                }
-                _self.setGearTooth(childData);
-            } else {
-                gearChild[_self.index].innerHTML = "<div class='tooth'></div>";
-                gearChild[_self.index].setAttribute('val', 0);
-                if(_self.index==1){
-                    gearChild[2].innerHTML = "<div class='tooth'></div>";
-                    gearChild[2].setAttribute('val', 0);
-                }
+            gearChild.innerHTML = itemStr;
+            gearChild.style["-webkit-transform"] = 'translate3d(0,' + (-gearVal * 2) + 'em,0)';
+            gearChild.setAttribute('top', -gearVal * 2 + 'em');
+            gearChild.setAttribute('val', gearVal);
+            _self.index++;
+            if (_self.index > 2) {
                 _self.index = 0;
+                return;
             }
+
         },
         finish: function(e) {
             var _self = this;
             var area_province = _self.gearArea.querySelector(".area_province");
-            var area_city = _self.gearArea.querySelector(".area_city");
-            var area_county = _self.gearArea.querySelector(".area_county");
             var provinceVal = parseInt(area_province.getAttribute("val"));
             var provinceText = area_province.childNodes[provinceVal].textContent;
             var provinceCode = area_province.childNodes[provinceVal].getAttribute('ref');
-            var cityVal = parseInt(area_city.getAttribute("val"));
-            var cityText = area_city.childNodes[cityVal].textContent;
-            var cityCode = area_city.childNodes[cityVal].getAttribute('ref');
-            var countyVal = parseInt(area_county.getAttribute("val"));
-            var countyText = area_county.childNodes[countyVal].textContent;
-            var countyCode = area_county.childNodes[countyVal].getAttribute('ref');
-            _self.trigger.value = provinceText + ((cityText)?(',' + cityText):(''))+ ((countyText)?(',' + countyText):(''));
-            _self.value = [provinceVal, cityVal, countyVal];
+            _self.trigger.value = provinceText;
+            _self.value = [provinceVal];
             if(this.valueTo){
-                this.valueTo.value= provinceCode +((cityCode)?(',' + cityCode):('')) + ((countyCode)?(',' + countyCode):(''));
+                this.valueTo.value= provinceCode;
             }
             _self.close(e);
         },

@@ -31,51 +31,55 @@ $(function () {
     startingWeek(6);
     startingWeekYesterday(7);
 
-    triggerLArea1('#detail-date', '#detail-date-val', APP.timePeriodBar);
-    triggerLArea1('#detail-site', '#detail-site-val', APP.siteTypeBar);
-    triggerLArea1('#car-time', '#car-time-val', APP.timeBar);
+    triggerLArea('#detail-date', '#detail-date-val', APP.timePeriodBar);
+    triggerLArea('#detail-site', '#detail-site-val', APP.siteTypeBar);
+    triggerLArea('#car-time', '#car-time-val', APP.timeBar);
+
 
     // 获取城市列表
     getCity(function(res, cityInit) {
         res.data[0].value == 1 && res.data.shift();
         cityVal = res.data[0].value;
-        $('#demo3').val(res.data[0].text);  // 网店分析默认值不为全国
+        $('#demo3').val(res.data[0].text);
         getBusinessAreaInit();
-        siteBasic(sbpage); //网点概况
-        sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), scpage); //网点变更
-        siteDetail(sdpage); //网点明细
-        siteCar($('#appDateTime6').val(), scpage); //网点车辆
-        siteOrder($('#appDateTime7').val(), sopage) //网点订单
+        siteBasic(sbpage);
+        sitechange($('#appDateTime1').val(), $('#appDateTime2').val(), scpage);
+        siteDetail(sdpage);
+        siteCar($('#appDateTime6').val(), scpage);
+        siteOrder($('#appDateTime7').val(), sopage);
         getPrincipal(cityVal, [34,35,36,38,39]);
     }, false);
 
+
+
     function getBusinessAreaInit() {
         buildAjax('get', 'park/getBusinessArea', {cityId:cityVal}, false, false, function(res) {
-            let arr = [];
+            let bus_area = [];
             for (let d of res.data){
-                arr.push({"text":d.businessareaname,"value":d.businessareaid})
+                bus_area.push({"text":d.businessareaname,"value":d.businessareaid})
             }
-            triggerLArea1 ('#detail-business', '#detail-business-val', arr);
-            triggerLArea1 ('#car-business', '#car-business-val', arr);
+            triggerLArea('#detail-business', '#detail-business-val', bus_area);
+            triggerLArea('#car-business', '#car-business-val', bus_area);
         }, false)
     }
 
 
     //nav 城市改变 及其刷新数据
     $('#demo3').bind('input propertychange', function() {
-        if ($('#value3').val()){
-            return
+        if ($('#value3').val()) {
+            cityVal = $('#value3').val();
+            $('.phoneBubble').hide('fast');
+            $('#detail-business').val('商圈');
+            $('#car-business').val('商圈');
+            detail_busiArea = sitecar_busiArea = '';
+            getBusinessAreaInit();
+            siteBasic(sbpage);
+            sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), scpage);
+            siteDetail(sdpage);
+            siteCar($('#appDateTime6').val(), scpage);
+            siteOrder($('#appDateTime7').val(), sopage);
+            getPrincipal(cityVal, [34,35,36,38,39]);
         }
-        sbpage = scpage = sdpage = scpage = sopage = 1;
-        $('.nowpage').html(1);
-        cityVal = $('#value3').val();
-        $('.phoneBubble').hide('fast');
-        siteBasic(sbpage);
-        sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), scpage);
-        siteDetail(sdpage);
-        siteCar($('#appDateTime6').val(), scpage);
-        siteOrder($('#appDateTime7').val(), sopage);
-        getPrincipal(cityVal, [34,35,36,38,39]);
     });
 
     // 责任人弹窗控制
@@ -88,6 +92,7 @@ $(function () {
     function siteBasic(p) {
         buildAjax('get','park/getGeneralSituationData',{cityId:cityVal}, true, false, function(res){
             BASIC_CACHE = res.data;
+            sbpage = resetPaging('site-nowpage');
             $('.site-allpage').html(Math.ceil(BASIC_CACHE.length / 10) == 0 ? 1 : Math.ceil(BASIC_CACHE.length / 10));
             setSbUI(BASIC_CACHE.slice(10 * ( p - 1 ), 10 * p));
         }, false);
@@ -100,7 +105,7 @@ $(function () {
     let setSbUI = (data) => {
         let str = '';
         for (let d of data) {
-            let imgSrc = d.tongbiRate == 0 ? "" : d.tongbiRate > 0 ? "../images/icon_rise.png" : "../images/icon_decline.png"
+            let imgSrc = d.tongbiRate == 0 ? "" : d.tongbiRate > 0 ? "../images/icon_rise.png" : "../images/icon_decline.png";
             str += "<li> <p>" + d.kpiname + "</p>" +
                 "<p>" + d.kpiCurrent+ "</p>" +
                 "<p>" + d.kpiYes + "</p>" +
@@ -121,6 +126,7 @@ $(function () {
     function sitechange(s, e, p) {
         buildAjax('get', 'park/getParkingUpdateData', {cityId:cityVal, startDate:s, endDate:e}, true, false, function(res){
             CHANGE_CACHE = res.data;
+            scpage = resetPaging('change-nowpage');
             $('.change-allpage').html(Math.ceil(CHANGE_CACHE.length/10) == 0 ? 1: Math.ceil(CHANGE_CACHE.length/10));
             setChangeUI(CHANGE_CACHE.slice(10 * ( p - 1 ), 10 * p));
         }, false);
@@ -134,7 +140,7 @@ $(function () {
     let setChangeUI = (data) => {
         let str = "";
         for (let d of data) {
-            str += "<li>" + "<p>" + d.parkName + "</p>" +
+            str += "<li>" + "<p><span>" + d.parkName + "</span></p>" +
                 "<p>" + siteType(d.parkType)+ "</p>" +
                 "<p>" + d.carportNum + "</p>" +
                 "<p>" + changeType(d.updateType) + "</p>" +
@@ -146,6 +152,10 @@ $(function () {
     // 网点变更分页控制
     $('.change-prepage, .change-nextpage').on('click', function(){
         scpage = pagingCtrl(this, scpage, refChangeUI);
+    });
+
+    $('#appDateTime1, #appDateTime2').on('change',function () {
+        isDateValid(1,2) && sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), 1);
     });
 
 
@@ -174,8 +184,7 @@ $(function () {
     let setDetailUI = (data) => {
         let str = "";
         for (let d of data) {
-            str += "<li>" +
-                "<p>" + d.parkName + "</p>" +
+            str += "<li> <p><span>" + d.parkName + "</span></p>" +
                 "<p>" + d.carportNum + "</p>" +
                 "<p>" + d.carportAvgorder + "</p>" +
                 "<p>" + d.executAvgnum + "</p>" +
@@ -244,7 +253,7 @@ $(function () {
     let setSiteCarUI = (data) => {
         let str = "";
         for (let d of data) {
-            str += "<li> <p>" + d.parkName + " </p>" +
+            str += "<li> <p><span>" + d.parkName + "</span></p>" +
                 "<p>" + siteType(d.parkingkind) + "</p>" +
                 "<p>" + d.parkplacenums + "</p>" +
                 "<p>" + d.useparkplacenums + "</p>" +
@@ -312,13 +321,13 @@ $(function () {
     let setSiteOrderUI = (data) => {
         let str = '';
         for (let d of data) {
-            str += "<li> <p>" + d.parkName + " </p>" +
+            str += "<li> <p><span>" + d.parkName + "</span></p>" +
                 "<p>" + d.operaTime + "</p>" +
                 "<p>" + d.parkState + "</p>" +
                 "<p>" + d.parkPlaceNum + "</p>" +
                 "<p>" + d.createOrderNum + "</p>" +
                 "<p>" + d.execOrderNum + "</p>" +
-                "<p>" + d.execOrderRate + "</p>" +
+                "<p>" + d.execOrderRate + "%</p>" +
                 "<p>" + d.finishOrderNum + "</p>" +
                 "<p>" + d.retrunOrderNum + "</p>" +
                 "<p>" + d.diffOrderNum + "</p>" +
@@ -328,7 +337,7 @@ $(function () {
                 "<p>" + d.payamount + "</p>" +
                 "<p>" + d.placeAvgExecorder + "</p>" +
                 "<p>" + d.placeAvgReturnorder + "</p>" +
-                "<p>" + d.diffReturnorderRate + "</p> </li>";
+                "<p>" + d.diffReturnorderRate + "%</p> </li>";
         }
         $('.soVal').html(str);
     }

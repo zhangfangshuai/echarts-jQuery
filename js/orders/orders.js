@@ -68,7 +68,7 @@ $(function () {
     });
 
     $('#appDateTime2, #appDateTime3').on('change',function () {
-        getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType)
+        isDateValid(2,3) && getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType)
     });
 
 

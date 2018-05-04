@@ -36,7 +36,7 @@ var lineWidth='4';
             y:"bottom"
         },
         grid:{
-          top:"5%"
+          top:"10%"
         },
         calculable: true,
         series: [
@@ -108,7 +108,7 @@ var lineWidth='4';
         // ¦ {number}（y坐标，单位px）
     },
         grid:{
-        top:"5%",
+            top:"10%",
             bottom:"15%"
         },
     color : ['#F5A623', '#09CA65'],
@@ -250,15 +250,15 @@ option5 = {
         // ¦ {number}（x坐标，单位px）
         y: 'bottom',                  // 垂直安放位置，默认为全图顶端，可选为：
         // 'top' ¦ 'bottom' ¦ 'center'
-        // ¦ {number}（y坐标，单位px）
+        // ¦ {number}（y坐标，单位px
     },
     grid:{
         left: '13%',
-        top: '5%',
+        top: '10%',
         bottom: '15%',
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],
-    xAxis:  {	//X轴
+    xAxis:  {	   // X轴
         name: '日期',
         type : 'category',
         data : [],
@@ -375,8 +375,9 @@ option6 = {
         // ¦ {number}（y坐标，单位px）
     },
     grid:{
-        // left: '13%',
-        top: "5%",
+        left: '10%',
+        right: '10%',
+        top: "10%",
         bottom: "25%",
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],
@@ -515,7 +516,7 @@ option7 = {
     },
     grid:{
         left: '13%',
-        top:"5%",
+        top:"10%",
         bottom:"15%"
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],

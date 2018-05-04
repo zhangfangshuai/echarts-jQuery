@@ -45,8 +45,9 @@ li p img {
     padding-bottom: 0;
 }
 
-.circle-line>div {
-    width: 100%;
+.circle-line div {
+    /*width: 100%;  */   /* 100% 的宽度会导致echarts获取宽度失败 */
+    width: 396px;
     height: 1.8rem;
     text-align: center;
     margin-top: .3rem;

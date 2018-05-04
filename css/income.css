@@ -5,14 +5,13 @@
  * Time: 10:10
  */
 
-.inc .headLine p, .incVal li p {
+/*.inc .headLine p, .incVal li p {
     width: 20%;
-    text-align: center;
-}
+}*/
 
-.inc .headLine p:first-child, .incVal li p:first-child { width: 23%; }
+/*.inc .headLine p:first-child, .incVal li p:first-child { width: 23%; }
 .inc .headLine p:nth-child(2), .incVal li p:nth-child(2) { width: 19%; }
-.inc .headLine p:nth-child(5), .incVal li p:nth-child(5) { width: 18%; }
+.inc .headLine p:nth-child(5), .incVal li p:nth-child(5) { width: 18%; }*/
 
 
 
@@ -20,9 +19,6 @@
     width: 12rem;
 }
 
-.recg .scroll-cont .headLine p, .recgVal li p {
-    text-align: center;
-}
 .recg .scroll-cont .headLine p:nth-child(1), .recgVal li p:nth-child(1) { width: 16%; }
 .recg .scroll-cont .headLine p:nth-child(2), .recgVal li p:nth-child(2) { width: 15%; }
 .recg .scroll-cont .headLine p:nth-child(3), .recgVal li p:nth-child(3) { width: 10%; }
@@ -33,7 +29,6 @@
 .recgVal li:last-child {
     margin-bottom: .2rem;
 }
-
 
 li p img {
   left: 82%;

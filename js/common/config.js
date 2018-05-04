@@ -1,8 +1,9 @@
 // 项目版本 version
 let version = '2.0.1';
 
-// let http='http://10.16.86.213:8080/SQBIServer-web/';  // test_env
-let http = 'http://122.14.205.135:8110/';  // prod_env
+// let http='http://10.16.86.213:8080/SQBIServer-web/';     // test_env
+let http = 'http://122.14.205.135:8110/';                   // prod_env
+
 
 /**
  * Create: zhangfs by Atom
@@ -26,7 +27,7 @@ var  menuConfig = [
 
 // Mixin
 let APP = {
-      html: menuConfig[0].page,     // 全局当前页面去向控制
+      html: 'index',            // 全局当前页面去向控制
       dateBar: {
           preset: 'date',       // 日期
           theme: 'default',     // 皮肤样式
@@ -43,7 +44,7 @@ let APP = {
           endYear: new Date().getFullYear(),  // 最大年份
           dayText: '日',
           monthText: '月',
-          yearText: '年',       // 面板中年月日文字
+          yearText: '年',        // 面板中年月日文字
       },
       timeBar: [
           {"text":"0点","value":"0"},{"text":"1点","value":"1"},{"text":"2点","value":"2"},{"text":"3点","value":"3"},
@@ -62,15 +63,32 @@ let APP = {
 
 
 
-
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/24 10:43
  * Func: 添加文件载入版本
+ * Note: 在页面资源载入之前引入，否则会因为加载问题页面渲染不上带版本号的文件
  */
 (function(doc, win) {
+    // rem页面布局适配  - 目前沿用老版本的flexible.js方案
+    // let docEl = doc.documentElement,
+    //     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+    //     recalc = function() {
+    //         let clientWidth = docEl.clientWidth
+    //         if (!clientWidth) return
+    //         if (clientWidth < 550) {
+    //             docEl.style.fontSize = 24 * (clientWidth / 720) + 'px'
+    //         } else {
+    //             docEl.style.fontSize = 24 * (clientWidth / 1440) + 'px'
+    //         }
+    //     }
+    // win.addEventListener(resizeEvt, recalc, false)
+    // if (!doc.addEventListener) return
+    // doc.addEventListener('DOMContentLoaded', recalc, false)
+
+
     let baseURI = doc.documentElement.children["0"].baseURI;
-    APP.html = baseURI.split('?')[0].split('/').pop().split('.').shift();  // 也控制页面整体走向
+    APP.html = baseURI.split('?')[0].split('/').pop().split('.').shift();  // 同时控制页面整体走向，错误处理时使用
     let cssCtrl = [APP.html, 'service'],
         jsCtrl = [APP.html, 'service'];
 
@@ -82,7 +100,7 @@ let APP = {
         }
     };
 
-    /* 服务器强制js访问刷新，不需要加版本 */  // $('script') -bug-获取不到页面上的所有标签
+    /* 服务器强制js访问刷新，不需要加版本 */  // $('script') -bug-打印发现拿不到所有页面上的script标签
     // for(let j = 0; j < $('script').length; j ++) {
     //     let jsfile = $('script')[j].src.split('/').pop().split('.')[0];
     //     if (jsCtrl.indexOf(jsfile) >= 0) {
