@@ -6,24 +6,28 @@
  * Note: Package and Add Handler
  */
 $(function () {
+    var ODH_CACHE;
     var odtype = 0,
+        odHisType = 0,
         cancelType = 0,
-        cityVal='';
+        cityVal = '';
+    var odhpage = '';
     var yesterday = getDaysOffset(-1),
         weekAgo = getDaysOffset(-7);
 
-    for (let i of [1,2,3]) {  // trigger scroller
+    for (let i of [1,2,3,4,5]) {  // trigger scroller
         $('#appDateTime' + i).mobiscroll(APP.dateBar);
     }
 
     startingWeekYesterday(1);
-    $('#appDateTime1, #appDateTime3').val(yesterday);
-    $('#appDateTime2').val(weekAgo);
+    $('#appDateTime1, #appDateTime3, #appDateTime5').val(yesterday);
+    $('#appDateTime2, #appDateTime4').val(weekAgo);
 
     // 页面初始化
     getCity(function(res, cityInit) {
         cityVal = cityInit;
         getorderAnalyze($('#appDateTime1').val(), odtype);
+        getHistoryOrder(1);
         getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType);
     }, false);
 
@@ -36,6 +40,7 @@ $(function () {
         $('.phoneBubble').hide('fast');
         cityVal == '1' && $('.responsiblePerson-box').css('display','none');
         getorderAnalyze($('#appDateTime1').val(), odtype);
+        getHistoryOrder(1);
         getCancelReason($('#appDateTime2').val(),$('#appDateTime3').val(), cancelType);
         getPrincipal(cityVal, [32,33]);
     });
@@ -93,6 +98,63 @@ $(function () {
             $('.odVal').html(str);
         }, false);
     }
+
+    // 历史订单详情
+    function getHistoryOrder(p) {
+        let data = {
+            cityId: cityVal,
+            typeId: odHisType,
+            startDate: $('#appDateTime4').val(),
+            endDate: $('#appDateTime5').val()
+        }
+        buildAjax('get', 'getHistoryOrder', data, true, false, function(res) {
+            ODH_CACHE = res.data;
+            if (ODH_CACHE.length > 0) {
+                let total = ODH_CACHE.pop();
+                ODH_CACHE.unshift(total);
+                odhpage = resetPaging('odHis-nowpage');
+                $('.odHis-allpage').html(Math.ceil(ODH_CACHE.length / 10) == 0 ? 1 : Math.ceil(ODH_CACHE.length / 10));
+                setOdhUI(ODH_CACHE.slice(0, 10), p);
+            } else {
+                setOdhUI(ODH_CACHE, p);
+            }
+        }, false)
+    }
+    let refOdhUI = (p) => {
+        ODH_CACHE ? setOdhUI(ODH_CACHE.slice( 10 * ( p - 1 ), 10 * p), p)
+                  : getHistoryOrder(p)
+    }
+    let setOdhUI = (data, p) => {
+        let str = "";
+        for (let d of data) {
+            str += "<li> <p>" + d.date_id + "</p>" +
+                "<p>" + d.order_total + "</p>" +
+                "<p>" + d.order_up + "</p>" +
+                "<p>" + d.order_cancel + "</p>" +
+                "<p>" + d.order_real_avg + "</p>" +
+                "<p>" + d.avg_sumAmount + "</p>" +
+                "<p>" + d.avg_sumPayAmount + "</p>" +
+                "<p>" + d.car_avgamount + "</p>" +
+                "<p>" + d.car_avgpayamount + "</p>" + "</li>";
+        }
+        $('.odHisVal').html(str);
+        $('.odHisVal>li').eq(0).css('background', p == 1 ? '#c2fbcb' : 'transparent');
+    }
+    // 历史订单 分页控制
+    $('.odHis-prepage, .odHis-nextpage').on('click',function() {
+        odhpage = pagingCtrl(this, odhpage, refOdhUI);
+    });
+    // 历史订单 日期监控
+    $('#appDateTime4, #appDateTime5').on('change',function () {
+        isDateValid(4, 5) && getHistoryOrder(1);
+    });
+    // 历史订单 车类型监控
+    $('.odh-ct').on('click',function(){
+        $('.odh-ct').removeClass('active');
+        $(this).addClass('active');
+        odHisType = $(this).attr('data-type');
+        getHistoryOrder(1);
+    });
 
 
     //订单取消原因

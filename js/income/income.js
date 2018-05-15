@@ -25,8 +25,8 @@ $(function () {
     // 获取城市信息
      getCity(function(res, cityInit){
          cityVal = cityInit;
-         getIncome(cityVal, carType, yesterday);
-         getRecharge(cityVal, weekAgo, yesterday, base, incpage);
+         getIncome();
+         getRecharge(base);
      }, false);
 
 
@@ -36,8 +36,8 @@ $(function () {
          cityVal = $('#value3').val();
          $('.phoneBubble').hide('fast');
          cityVal == '1' && $('.responsiblePerson-box').hide('fast');
-         getIncome(cityVal, carType, $('#appDateTime1').val());
-         getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, incpage);
+         getIncome();
+         getRecharge(base);
          getPrincipal(cityVal, [58,59]);
      });
 
@@ -48,22 +48,23 @@ $(function () {
 
 
     // 营收概况
-    function getIncome(city, car, date) {
+    function getIncome() {
         var data = {
-            cityId: city,
-            carType: car,
-            dateId: date
+            cityId: cityVal,
+            carType: carType,
+            dateId: $('#appDateTime1').val()
         };
         buildAjax('get','getInComeDetail', data, true, false, function(res){
             var str = "";
             var data = res.data.data;
             for (var i in data) {
-                var imgUrl = data[i].data4 == 0 ? "" : data[i].data4 > 0 ? "<img src='../images/icon_rise.png?1' alt=''>" : "<img src='../images/icon_decline.png?1' alt=''>";
+                var imgSrc = data[i].data4 == 0 ? "" : data[i].data4 > 0 ?  "../images/icon_rise.png" : "../images/icon_decline.png";
                 str += "<li> <p>" + data[i].data0 + "</p>" +
                     "<p>" + data[i].data1+ "</p>" +
                     "<p>" + data[i].data2 + "</p>" +
                     "<p>" + data[i].data3 + "</p>" +
-                    "<p>" + data[i].data4 + "%" + imgUrl + "</p> </li>";
+                    "<p>" + data[i].data4 + "%" +
+                    "<img src='" + imgSrc + "' alt=''/> </p> </li>";
             }
             $('.incVal').html(str);
         });
@@ -73,11 +74,11 @@ $(function () {
       let id = this.parentNode.children[1].children[0].id;
       this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
                                              : $('#'+id).val(updateDate(this.parentNode, 1, true));
-      getIncome(cityVal, carType, $('#'+id).val());
+      getIncome();
     });
     // 时间监控 日历控件监控
     $('#appDateTime1').bind('change', function() {
-        getIncome(cityVal, carType, $('#appDateTime1').val());
+        getIncome();
         updateWeek(this);
     });
 
@@ -86,29 +87,28 @@ $(function () {
          $('.inc-ct').removeClass('active');
          $(this).addClass('active');
          carType = $(this).attr('data-type');
-         getIncome(cityVal, carType, $('#appDateTime1').val());
+         getIncome();
     })
 
 
 
     // 用户充值
-    function getRecharge(city, s, e, base, page) {
+    function getRecharge(base) {
         let data = {
-            cityId: city,
-            startDate: s,
-            endDate: e
+            cityId: cityVal,
+            startDate: $('#appDateTime2').val(),
+            endDate: $('#appDateTime3').val()
         }
         buildAjax('get', 'getRechargeInfo', data, true, false, function(res){
             DATA_CACHE = res.data.data;
             incpage = resetPaging('inc-nowpage');
             $('.allpage').html( Math.ceil(DATA_CACHE.length / 10) == 0 ? 1 : Math.ceil(DATA_CACHE.length / 10) );
-            setUI(base, DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page));
+            setUI(base, DATA_CACHE.slice(0, 10));
         });
     }
 
     let refRechargeUI = (base, page) => {
-        DATA_CACHE ? setUI(base, DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page))
-                   : getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, 1);
+        DATA_CACHE ? setUI(base, DATA_CACHE.slice( 10 * ( page - 1 ), 10 * page)) : getRecharge(base);
     }
     let setUI = (base, d) => {
         base = ['0','1','2'].indexOf(base.toString()) == -1 ? 0 : base;
@@ -138,7 +138,7 @@ $(function () {
     }
     // 用户充值时间监控
     $('#appDateTime2, #appDateTime3').on('change', function() {
-        isDateValid(2,3) && getRecharge(cityVal, $('#appDateTime2').val(), $('#appDateTime3').val(), base, incpage);
+        isDateValid(2,3) && getRecharge(base);
     })
 
     // 用户充值价格区间选择监控

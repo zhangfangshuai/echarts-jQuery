@@ -37,15 +37,18 @@
 
 
 .site-order .scroll-cont .headLine, .soVal {
-    width: 38rem;
+    width: 39rem;
 }
 .site-order .scroll-cont .headLine p, .soVal li p {
     width: 5.88%;
 }
 .site-order .scroll-cont .headLine p:nth-of-type(1), .soVal li p:nth-of-type(1) { width: 8%; }
-.site-order .scroll-cont .headLine p:nth-of-type(4), .soVal li p:nth-of-type(4) { width: 4.5%; }
-.site-order .scroll-cont .headLine p:nth-of-type(5), .soVal li p:nth-of-type(5) { width: 4.5%; }
-.site-order .scroll-cont .headLine p:nth-of-type(6), .soVal li p:nth-of-type(6) { width: 4.5%; }
-.site-order .scroll-cont .headLine p:nth-of-type(15), .soVal li p:nth-of-type(15) { width: 7.62%; }
+.site-order .scroll-cont .headLine p:nth-of-type(2), .soVal li p:nth-of-type(2) { width: 6.5%; }
+.site-order .scroll-cont .headLine p:nth-of-type(4), .soVal li p:nth-of-type(4) { width: 4.3%; }
+.site-order .scroll-cont .headLine p:nth-of-type(5), .soVal li p:nth-of-type(5) { width: 4.3%; }
+.site-order .scroll-cont .headLine p:nth-of-type(6), .soVal li p:nth-of-type(6) { width: 4.3%; }
+.site-order .scroll-cont .headLine p:nth-of-type(14), .soVal li p:nth-of-type(14) { width: 5%; }
+.site-order .scroll-cont .headLine p:nth-of-type(15), .soVal li p:nth-of-type(15) { width: 4.5%; }
 .site-order .scroll-cont .headLine p:nth-of-type(16), .soVal li p:nth-of-type(16) { width: 7.62%; }
 .site-order .scroll-cont .headLine p:nth-of-type(17), .soVal li p:nth-of-type(17) { width: 7.62%; }
+.site-order .scroll-cont .headLine p:nth-of-type(18), .soVal li p:nth-of-type(18) { width: 7.62%; }

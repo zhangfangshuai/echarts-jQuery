@@ -41,23 +41,24 @@ function showBody(){
  * Params: 控件后面的采数字
  */
 window.onload = function () {
-    $('body, html').css({'min-height':$(window).height()});
     $('.slideBar').css({'height':$(window).height()});
     $('.slideBarBg').css({'height':$(window).height()});
-    document.addEventListener('touchstart', function(event) {
-        if (event.touches.length > 1){
-            event.preventDefault();
-        }
-    }, false)
-    var lastTouchEnd = 0;
-    document.addEventListener('touchend',function (event) {
-        var now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300){
-            event.preventDefault();
-        }
-        lastTouchEnd = now;
-    },false)
+    $('body, html').css({'min-height':$(window).height()});
+   document.addEventListener('touchstart', function(event) {
+       if (event.touches.length > 1){
+           event.preventDefault();
+       }
+   }, false)
+   var lastTouchEnd = 0;
+   document.addEventListener('touchend',function (event) {
+       var now = (new Date()).getTime();
+       if (now - lastTouchEnd <= 300){
+           event.preventDefault();
+       }
+       lastTouchEnd = now;
+   },false)
 };
+
 // 监控横竖屏现象
 window.onresize = function(){
     $('.slideBar').css({'height':$(window).height()});
@@ -166,6 +167,8 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
                 errorHandler(res, uri);
                 f && f(res);
                 return;
+            } else if (res.data && (res.data == null || res.data.length == 0)) {
+                i != 'getPrincipal' && console.log(uri+' 此次查询数据为空');
             }
             s && s(res);
         },
@@ -187,10 +190,12 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
  */
 function errorHandler (r, i) {
     try {
-        r && Tip.success(r.desc);
         console.log('Error: '+r.desc+' \nCode: ('+r.code+') '+' \nInterface: '+i+' \nPage: '+APP.html);
         if (i == 'loginOn' || i == 'event') return;
-        window.location.href = '../index.html';
+        if (r) {
+            r.desc ? Tip.success(r.desc) : Tip.success(i+'错误; Code: ' + r.status);
+            (r.code && r.code == '401') ? window.location.href = '../index.html' : '';
+        }
     } catch (e) {
         Tip.success('请求'+i+'失败');
         console.log('请求'+i+'失败 \n\nInterface: ' + i + ' \nPage: ' + APP.html);
@@ -281,6 +286,22 @@ function getDaysOffset (num) {
 
 
 
+
+/**
+ * Created: zhangfs by Atom
+ * Date: 2018/05/11 14:36
+ * Func: 月份偏移及格式化。
+ * Params: 0个或1个： 偏移的月份，正数表示以后几月，负数表示以前几月
+ */
+function getMonthOffset (num) {
+    num = num || 0;
+    var d = new Date();
+    d.setMonth(d.getMonth()+num)
+    return d.format("yyyyMM");
+}
+
+
+
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/11 17:45
@@ -300,6 +321,27 @@ function updateDate(_parent, num, limit) {
         }
         $('.'+week).html(getWeek(dest.getDay()));
         return dest.format('yyyyMMdd');
+    }
+}
+
+
+
+/**
+ * Created: zhangfs by Atom
+ * Date: 2018/05/11 15:15
+ * Func: 月份选择控件点击上一月下一月数据联动
+ * E.g.: 用户分析
+ */
+function updateMonth(_parent, num, limit) {
+    let id = _parent.children[1].children[0].id;
+    if ($('#'+id).val()) {
+        let d = $('#'+id).val();
+        let dest = new Date(d.slice(0,4) +'/'+d.slice(4,6));
+        dest.setMonth(dest.getMonth() + num);
+        if ( limit && dest.getTime() > new Date().getTime() ) {
+            return d;
+        }
+        return dest.format('yyyyMM');
     }
 }
 
@@ -464,7 +506,6 @@ function time2Date (timestamp) {
 
 
 
-
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/27 11:20
@@ -479,6 +520,26 @@ function isDateValid(start, end) {
         Tip.success('查询周期不合理');
         $('#appDateTime'+start).val(getDaysOffset(-7));
         $('#appDateTime'+end).val(getDaysOffset(-1))
+        return false;
+    }
+    return true;
+}
+
+
+
+/**
+ * Created: zhangfs by Atom
+ * Date: 2018/05/11 14:52
+ * Func: 月份选择控件; 支持查询本月以前的数据,不包含本月
+ * E.g.: 用户分析
+ */
+function isMonthValid(num) {
+    let now = new Date();
+    let date = $('#appMonth'+num).val();
+    let picked = new Date(date.slice(0,4), date.slice(4,6));
+    if (picked.getTime() > now.getTime() || now.getMonth() == picked.getMonth()-1) {
+        Tip.success('可查当月之前数据');
+        $('#appMonth'+num).val(getMonthOffset(-1))
         return false;
     }
     return true;

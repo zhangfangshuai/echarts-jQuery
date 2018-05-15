@@ -1,9 +1,18 @@
 .order .scroll-cont .headLine, .odVal {
     width: 13.8rem;
-    text-align: center;
 }
 
 .order .scroll-cont .headLine p, .odVal li p {
     width: 16.6%;
-    text-align: center;
+}
+
+.orderHistory .headLine, .odHisVal {
+    width: 16rem;
+}
+.orderHistory .scroll-cont .headLine p, .odHisVal li p {
+    width: 11.1%;
+}
+
+.odHisVal li:first-child {
+    background: #c2fbcb;
 }

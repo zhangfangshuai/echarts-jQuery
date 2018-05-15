@@ -20,7 +20,6 @@ $(function () {
     }
 
     triggerLArea('#carrtog', '#carrtog-val', APP.carOperateBar);
-    triggerLArea('#sr-time', '#sr-time-val', APP.timeBar);
 
     // 获取城市列表
     getCity(function(res, cityInit){
@@ -30,7 +29,6 @@ $(function () {
         orderReal(today, orpage);
         newGuy(today, ngpage);
         carBattery(today);
-        siteReal(today, srpage);
     });
 
     // 切换城市 页面刷新
@@ -48,7 +46,6 @@ $(function () {
         orderReal(today, orpage);
         newGuy(today, ngpage);
         carBattery(today);
-        siteReal(today, srpage);
         getPrincipal(cityVal, [1,2,3,4,5,6,7]);
     });
 

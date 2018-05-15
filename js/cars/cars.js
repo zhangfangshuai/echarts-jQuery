@@ -167,8 +167,6 @@ $(function () {
         $('.offVal').html(str);
     }
 
-
-
     // 车辆概况 分页控制
     $('.car-prepage, .car-nextpage').on('click',function() {
         carpage = pagingCtrl(this, carpage, refCarUI);
@@ -180,7 +178,7 @@ $(function () {
     });
 
 
-    $('.tcs').on('click',function(){
+    $('.tcs').on('click',function() {
         $('.tcs').removeClass('active');
         $(this).addClass('active');
         typeId = $(this).attr('data-hourId');

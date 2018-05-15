@@ -8,8 +8,8 @@
 
 .funnelDate {
     position: absolute;
-    top: 2.3rem;
-    left: 6.6rem;
+    top: 2.7rem;
+    left: 6rem;
     width: 1rem;
     z-index: 200;
 }
@@ -23,66 +23,75 @@
     z-index: 201;
 }
 
-.user-rebuy .headLine p, .rebuyVal li p {
-    text-align: center;
-}
-.user-rebuy .headLine p:nth-of-type(1), .rebuyVal li p:nth-of-type(1) { width: 23% }
-.user-rebuy .headLine p:nth-of-type(2), .rebuyVal li p:nth-of-type(2) { width: 18% }
-.user-rebuy .headLine p:nth-of-type(3), .rebuyVal li p:nth-of-type(3) { width: 18% }
-.user-rebuy .headLine p:nth-of-type(4), .rebuyVal li p:nth-of-type(4) { width: 21% }
+.user-regist .headLine p:nth-of-type(1), .registVal li p:nth-of-type(1) { width: 18% }
+.user-regist .headLine p:nth-of-type(4), .registVal li p:nth-of-type(4) { width: 22% }
 
-.user-stay .headLine, .stayVal {
-    width: 20rem;
-}
-.user-stay .headLine p, .stayVal li p {
-    width: 11.11%;
-}
 
-.user-license .scroll-cont .headLine, .licenseVal {
-    width: 20rem;
+.user-license .scroll-cont .headLine,
+.licenseVal {
+    width: 22.5rem;
 }
-.user-license .scroll-cont .headLine p, .licenseVal li p {
-    width: 14%;
+.user-license .scroll-cont .headLine p,
+.licenseVal li p {
+    width: 12.8%;
 }
-.user-license .scroll-cont .headLine p:nth-of-type(1), .licenseVal li p:nth-of-type(1) { width: 8% }
-.user-license .scroll-cont .headLine p:nth-of-type(5), .licenseVal li p:nth-of-type(5) { width: 20% }
-.user-license .scroll-cont .headLine p:nth-of-type(6), .licenseVal li p:nth-of-type(6) { width: 15% }
-.user-license .scroll-cont .headLine p:nth-of-type(7), .licenseVal li p:nth-of-type(7) { width: 15% }
+.user-license .scroll-cont .headLine p:nth-of-type(1), .licenseVal li p:nth-of-type(1) { width: 9.9% }
 
-.car-usable .scroll-cont .headLine, .carUsableVal {
+
+.car-usable .scroll-cont .headLine,
+.carUsableVal {
     width: 28rem;
 }
-
-.car-usable .scroll-cont .headLine p, .carUsableVal li p {
-    width: 11%;
+.car-usable .scroll-cont .headLine p,
+.carUsableVal li p {
+    width: 10.5%;
 }
 
-.car-usable .scroll-cont .headLine p:nth-of-type(1), .carUsableVal li p:nth-of-type(1) { width: 5% }
-.car-usable .scroll-cont .headLine p:nth-of-type(2), .carUsableVal li p:nth-of-type(2) { width: 9% }
-.car-usable .scroll-cont .headLine p:nth-of-type(3), .carUsableVal li p:nth-of-type(3) { width: 9% }
-.car-usable .scroll-cont .headLine p:nth-of-type(4), .carUsableVal li p:nth-of-type(4) { width: 9% }
-.car-usable .scroll-cont .headLine p:nth-of-type(8), .carUsableVal li p:nth-of-type(8) { width: 13% }
-.car-usable .scroll-cont .headLine p:nth-of-type(9), .carUsableVal li p:nth-of-type(9) { width: 13% }
-.car-usable .scroll-cont .headLine p:nth-of-type(10), .carUsableVal li p:nth-of-type(10) { width: 13% }
+.car-usable .scroll-cont .headLine p:nth-of-type(1), .carUsableVal li p:nth-of-type(1) { width: 5.5% }
 
-
+.purchase .scroll-cont .headLine, .purcVal {
+    width: 15rem;
+}
 .purchase .headLine p,
-.purchaseVal li p,
-.firstOrder .headLine p,
-.foVal li p {
-    width: 20%;
+.purcVal li p {
+    width: 14.7%;
 }
+.purchase .scroll-cont .headLine p:nth-of-type(1), .purcVal li p:nth-of-type(1) { width: 10% }
+.purchase .scroll-cont .headLine p:nth-of-type(4), .purcVal li p:nth-of-type(4) { width: 12.8% }
+.purchase .scroll-cont .headLine p:nth-of-type(5), .purcVal li p:nth-of-type(5) { width: 15.8% }
+.purchase .scroll-cont .headLine p:nth-of-type(7), .purcVal li p:nth-of-type(7) { width: 17.3% }
 
-.purchase .headLine p:nth-of-type(2),
-.purchaseVal li p:nth-of-type(2),
-.firstOrder .headLine p:nth-of-type(2),
-.foVal li p:nth-of-type(2) {
-    width: 40%;
-}
 
-.purchase .headLine p:nth-of-type(3),
-.purchaseVal li p:nth-of-type(3),
-.firstOrder .headLine p:nth-of-type(3),
-.foVal li p:nth-of-type(3) {
-    width: 40%
+.firstOrder .scroll-cont .headLine, .foVal {
+    width: 10.5rem;
 }
+.firstOrder .scroll-cont .headLine p:nth-of-type(1), .foVal li p:nth-of-type(1) { width: 12% }
+.firstOrder .scroll-cont .headLine p:nth-of-type(2), .foVal li p:nth-of-type(2) { width: 21% }
+.firstOrder .scroll-cont .headLine p:nth-of-type(3), .foVal li p:nth-of-type(3) { width: 25% }
+.firstOrder .scroll-cont .headLine p:nth-of-type(4), .foVal li p:nth-of-type(4) { width: 19% }
+.firstOrder .scroll-cont .headLine p:nth-of-type(5), .foVal li p:nth-of-type(5) { width: 23% }
+
+
+
+.userStay .scroll-cont .headLine, .uStayVal {
+    width: 17rem;
+}
+.userStay .headLine p, .uStayVal li p {
+    width: 15%;
+}
+.userStay .scroll-cont .headLine p:nth-of-type(1), .uStayVal li p:nth-of-type(1) { width: 7% }
+.userStay .scroll-cont .headLine p:nth-of-type(2), .uStayVal li p:nth-of-type(2) { width: 13% }
+.userStay .scroll-cont .headLine p:nth-of-type(5), .uStayVal li p:nth-of-type(5) { width: 16% }
+.userStay .scroll-cont .headLine p:nth-of-type(6), .uStayVal li p:nth-of-type(6) { width: 18% }
+.userStay .scroll-cont .headLine p:nth-of-type(7), .uStayVal li p:nth-of-type(7) { width: 16% }
+
+
+.recall .scroll-cont .headLine, .recallVal {
+    width: 15rem;
+}
+.recall .headLine p, .recallVal li p {
+    width: 18%;
+}
+.recall .scroll-cont .headLine p:nth-of-type(1), .recallVal li p:nth-of-type(1) { width: 10% }
+.recall .scroll-cont .headLine p:nth-of-type(2), .recallVal li p:nth-of-type(2) { width: 16% }
+.recall .scroll-cont .headLine p:nth-of-type(4), .recallVal li p:nth-of-type(4) { width: 20% }

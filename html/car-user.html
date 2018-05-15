@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/car-user.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -58,156 +54,57 @@
             </div>
         </section>
 
-        <!-- 用户复购率 -->
-        <section class="section-box" section-id="16">
-            <div class="wrap user-rebuy">
-                <div class="cont-title">用户复购率</div>
-                <div class="headLine">
-                    <p>指标名称</p>
-                    <p>昨日</p>
-                    <p>前日</p>
-                    <p>同比(上月)</p>
-                    <p>同比增幅</p>
-                </div>
-                <ul class="itemVal rebuyVal"></ul>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble rebuy-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 用户留存 -->
-        <section class="section-box" section-id="17">
-            <div class="wrap user-stay">
-                <div class="cont-title">用户留存</div>
-                <div class="twoGroups">
-                    <div class="set us-set active">APP</div>
-                    <div class="set us-set">下单</div>
-                </div>
-                <div class="scroll-cont">
-                    <div class="headLine">
-                        <p>日期</p>
-                        <p>用户数</p>
-                        <p>第1天留存率</p>
-                        <p>第2天留存率</p>
-                        <p>第3天留存率</p>
-                        <p>第4天留存率</p>
-                        <p>第5天留存率</p>
-                        <p>第6天留存率</p>
-                        <p>第7天留存率</p>
-                    </div>
-                    <ul class="itemVal stayVal"></ul>
-                </div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble ustay-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 用户注绑率 -->
-        <section class="section-box" section-id="18">
-            <div class="wrap user-bind">
-                <div class="cont-title">用户注绑率</div>
-                <div class="doubleDatePicker">
-                    开始<input id="appDateTime1" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime2" class="ddp-2" onfocus="this.blur();">
-                </div>
-                <div class="echarts" id="ubindChart"></div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble ubind-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 用户激活率 -->
-        <section class="section-box" section-id="19">
-            <div class="wrap user-activate">
-                <div class="cont-title">用户激活率</div>
-                <div class="doubleDatePicker">
-                    开始<input id="appDateTime3" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime4" class="ddp-2" onfocus="this.blur();">
-                </div>
-                <div class="echarts" id="uactChart"></div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble uact-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 用户流失率 -->
-        <section class="section-box" section-id="20">
-            <div class="wrap user-loss">
-                <div class="cont-title">用户流失率</div>
-                <div class="doubleDatePicker">
-                    开始<input id="appDateTime5" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime6" class="ddp-2" onfocus="this.blur();">
-                </div>
-                <div class="echarts" id="ulossChart"></div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble uloss-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
-
-        <!--  老拉新 -->
-        <section class="section-box" section-id="21">
-            <div class="wrap pull-new">
-                <div class="cont-title">老拉新</div>
-                <div class="doubleDatePicker">
-                    开始<input id="appDateTime7" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime8" class="ddp-2" onfocus="this.blur();">
-                </div>
-                <div class="echarts" id="pullnewChart"></div>
-                <div class="cont-note">
-                    <div class="noteLine">
-                        <p>老拉新合计 <span class="pn-note"></span> </p>
-                    </div>
-                </div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble pn-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 注册用户分析 -->
+        <!-- 用户注册分析 -->
         <section class="section-box" section-id="22">
             <div class="wrap user-regist">
                 <div class="cont-title">注册用户分析</div>
                 <div class="doubleDatePicker">
-                    开始<input id="appDateTime9" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime10" class="ddp-2" onfocus="this.blur();">
+                    开始<input id="appDateTime1" class="ddp-1" onfocus="this.blur();">
+                    结束<input id="appDateTime2" class="ddp-2" onfocus="this.blur();">
                 </div>
-                <div class="echarts" id="uregistChart"></div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>累计注册</p>
+                        <p>新增注册</p>
+                        <p>老拉新注册</p>
+                        <p>老拉新占比</p>
+                    </div>
+                    <ul class="itemVal registVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre regist-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage regist-nowpage">1</span>/<span class="allpage regist-allpage">1</span>
+                    </div>
+                    <div class="page-next regist-nextpage"> > </div>
+                </div>
                 <div class="responsiblePerson-box">
-                    <p class="phoneBubble ur-phoneBubble"><a href=""></a></p>
+                    <p class="phoneBubble regist-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
                 </div>
             </div>
         </section>
+
 
         <!-- 双证用户分析 -->
         <section class="section-box" section-id="24">
             <div class="wrap user-license">
                 <div class="cont-title">双证用户分析</div>
                 <div class="doubleDatePicker">
-                    开始<input id="appDateTime11" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime12" class="ddp-2" onfocus="this.blur();">
+                    开始<input id="appDateTime3" class="ddp-1" onfocus="this.blur();">
+                    结束<input id="appDateTime4" class="ddp-2" onfocus="this.blur();">
                 </div>
                 <div class="scroll-cont">
                     <div class="headLine">
                         <p>日期</p>
-                        <p>新增身份证绑定</p>
-                        <p>新增驾照绑定</p>
-                        <p>新增双证绑定</p>
-                        <p>身份证绑定增长率</p>
-                        <p>驾照绑定增长率</p>
-                        <p>双证绑定增长率</p>
+                        <p>累计双证绑定数</p>
+                        <p>累计身份证绑定数</p>
+                        <p>累计驾照绑定数</p>
+                        <p>新增双证绑定数</p>
+                        <p>新增身份证绑定数</p>
+                        <p>新增驾照绑定数</p>
+                        <p>双证用户转化率</p>
                     </div>
                     <ul class="itemVal licenseVal"></ul>
                 </div>
@@ -230,21 +127,21 @@
             <div class="wrap car-usable">
                 <div class="cont-title">可用车用户分析</div>
                 <div class="doubleDatePicker">
-                    开始<input id="appDateTime13" class="ddp-1" onfocus="this.blur();">
-                    结束<input id="appDateTime14" class="ddp-2" onfocus="this.blur();">
+                    开始<input id="appDateTime5" class="ddp-1" onfocus="this.blur();">
+                    结束<input id="appDateTime6" class="ddp-2" onfocus="this.blur();">
                 </div>
                 <div class="scroll-cont">
                     <div class="headLine">
                         <p>日期</p>
-                        <p>基础押金用户</p>
-                        <p>升级押金用户</p>
-                        <p>芝麻信用用户</p>
+                        <p>累计可用车用户</p>
                         <p>累计基础押金用户</p>
                         <p>累计升级押金用户</p>
                         <p>累计芝麻信用用户</p>
-                        <p>基础押金用户增长率</p>
-                        <p>升级押金用户增长率</p>
-                        <p>芝麻信用用户增长率</p>
+                        <p>新增可用车用户</p>
+                        <p>新增基础押金用户</p>
+                        <p>新增升级押金用户</p>
+                        <p>新增芝麻信用用户</p>
+                        <p>可用车用户转化率</p>
                     </div>
                     <ul class="itemVal carUsableVal"></ul>
                 </div>
@@ -266,20 +163,22 @@
         <section class="section-box" section-id="27">
             <div class="wrap purchase">
                 <div class="cont-title">下单用户分析</div>
-                <div class="singleDatePicker">
-                    <div class="preDateBtn purc-predate">前一天</div>
-                    <div class="showDate">
-                        <input id="appDateTime16" class="appDateTime" onfocus="this.blur();">
-                        <span class="showWeek16"></span>
+                <div class="doubleDatePicker">
+                    开始<input id="appDateTime7" class="ddp-1" onfocus="this.blur();">
+                    结束<input id="appDateTime8" class="ddp-2" onfocus="this.blur();">
+                </div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>下单用户数</p>
+                        <p>首单用户数</p>
+                        <p>老用户数</p>
+                        <p>首单用户占比</p>
+                        <p>老用户占比</p>
+                        <p>下单用户转化率</p>
                     </div>
-                    <div class="nextDateBtn purc-nextdate">后一天</div>
+                    <ul class="itemVal purcVal"></ul>
                 </div>
-                <div class="headLine">
-                    <p>城市</p>
-                    <p>每日下单用户数</p>
-                    <p>下单用户增长率</p>
-                </div>
-                <ul class="itemVal purchaseVal"></ul>
                 <div class="pagenation">
                     <div class="page-pre purc-prepage"> < </div>
                     <div class="pages">
@@ -294,24 +193,44 @@
             </div>
         </section>
 
+
+        <!-- 订单用户占比分析 -->
+        <section class="section-box">
+            <div class="wrap orderUserRate">
+                <div class="cont-title">订单用户占比分析</div>
+                <div class="monthPicker">
+                    <div class="preMonthBtn odUserRate-premonth">上一月</div>
+                    <div class="showMonth">
+                        <input type="text" id="appMonth1" class="appMonth" onfocus="this.blur();">
+                    </div>
+                    <div class="nextMonthBtn odUserRate-nextmonth">下一月</div>
+                </div>
+                <div class="echarts" id="odUserRateChart"></div>
+            </div>
+        </section>
+
+
         <!-- 首单用户分析 -->
         <section class="section-box" section-id="31">
             <div class="wrap firstOrder">
                 <div class="cont-title">首单用户分析</div>
-                <div class="singleDatePicker">
-                    <div class="preDateBtn fo-predate">前一天</div>
-                    <div class="showDate">
-                        <input id="appDateTime17" class="appDateTime" onfocus="this.blur();">
-                        <span class="showWeek17"></span>
+                <div class="monthPicker">
+                    <div class="preMonthBtn fo-premonth">上一月</div>
+                    <div class="showMonth">
+                        <input type="text" id="appMonth2" class="appMonth" onfocus="this.blur();">
                     </div>
-                    <div class="nextDateBtn fo-nextdate">后一天</div>
+                    <div class="nextMonthBtn fo-nextmonth">下一月</div>
                 </div>
-                <div class="headLine">
-                    <p>城市</p>
-                    <p>每日首单用户数</p>
-                    <p>首单用户增长率</p>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>城市</p>
+                        <p>首单用户数</p>
+                        <p>首单用户订单数</p>
+                        <p>下单频率</p>
+                        <p>首单用户占比</p>
+                    </div>
+                    <ul class="itemVal foVal"></ul>
                 </div>
-                <ul class="itemVal foVal"></ul>
                 <div class="pagenation">
                     <div class="page-pre fo-prepage"> < </div>
                     <div class="pages">
@@ -325,7 +244,77 @@
                 </div>
             </div>
         </section>
+
+        <!-- 留存用户分析 -->
+        <section class="section-box">
+            <div class="wrap userStay">
+                <div class="cont-title">留存用户分析</div>
+                <div class="monthPicker">
+                    <div class="preMonthBtn uStay-premonth">上一月</div>
+                    <div class="showMonth">
+                        <input type="text" id="appMonth3" class="appMonth" onfocus="this.blur();">
+                    </div>
+                    <div class="nextMonthBtn uStay-nextmonth">下一月</div>
+                </div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>城市</p>
+                        <p>留存用户数</p>
+                        <p>上月首单用户数</p>
+                        <p>上月老用户数</p>
+                        <p>留存用户下单量</p>
+                        <p>留存用户下单频次</p>
+                        <p>本月用户留存率</p>
+                    </div>
+                    <ul class="itemVal uStayVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre uStay-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage uStay-nowpage">1</span>/<span class="allpage uStay-allpage">1</span>
+                    </div>
+                    <div class="page-next uStay-nextpage"> > </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 召回用户分析 -->
+        <section class="section-box">
+            <div class="wrap recall">
+                <div class="cont-title">召回用户分析</div>
+                <div class="monthPicker">
+                    <div class="preMonthBtn recall-premonth">上一月</div>
+                    <div class="showMonth">
+                        <input type="text" id="appMonth4" class="appMonth" onfocus="this.blur();">
+                    </div>
+                    <div class="nextMonthBtn recall-nextmonth">下一月</div>
+                </div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>城市</p>
+                        <p>召回用户数</p>
+                        <p>召回用户下单数</p>
+                        <p>召回用户下单频次</p>
+                        <p>召回用户占比</p>
+                        <p>本月用户召回率</p>
+                    </div>
+                    <ul class="itemVal recallVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre recall-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage recall-nowpage">1</span>/<span class="allpage recall-allpage">1</span>
+                    </div>
+                    <div class="page-next recall-nextpage"> > </div>
+                </div>
+            </div>
+        </section>
     </div>
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
     <script src="../libs/echarts.min.js"></script>
     <script src="../js/common/common.js"></script>
     <script src="../js/common/service.js"></script>

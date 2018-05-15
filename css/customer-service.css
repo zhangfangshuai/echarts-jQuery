@@ -1,29 +1,27 @@
+.echarts {
+    height: 6rem;
+}
+
 .cs .scroll-cont .headLine, .csVal {
-    width: 21.8rem;
-    text-align: center;
+    width: 24rem;
 }
 
 .cs .scroll-cont .headLine p, .csVal li p {
-    width: 10%;
-    text-align: center;
+    width: 8%;
 }
-.cs .scroll-cont .headLine p:first-child, .csVal li p:first-child { width: 9%; }
-.cs .scroll-cont .headLine p:nth-child(3), .csVal li p:nth-child(3) { width: 15%; }
-.cs .scroll-cont .headLine p:nth-child(6), .csVal li p:nth-child(6) { width: 9%; }
-.cs .scroll-cont .headLine p:nth-child(7), .csVal li p:nth-child(7) { width: 9%; }
-.cs .scroll-cont .headLine p:nth-child(8), .csVal li p:nth-child(8) { width: 15%; }
-.cs .scroll-cont .headLine p:nth-child(9), .csVal li p:nth-child(9) { width: 9%; }
-.cs .scroll-cont .headLine p:nth-child(10), .csVal li p:nth-child(10) { width: 15%; }
+.cs .scroll-cont .headLine p:nth-child(1), .csVal li p:nth-child(1) { width: 6.5%; }
+.cs .scroll-cont .headLine p:nth-child(3), .csVal li p:nth-child(3) { width: 10%; }
+.cs .scroll-cont .headLine p:nth-child(8), .csVal li p:nth-child(8) { width: 10%; }
+.cs .scroll-cont .headLine p:nth-child(10), .csVal li p:nth-child(10) { width: 6%; }
+.cs .scroll-cont .headLine p:nth-child(11), .csVal li p:nth-child(11) { width: 11.5%; }
 
 
 .dc .scroll-cont .headLine, .dcVal {
     width: 19.8rem;
-    text-align: center;
 }
 
 .dc .scroll-cont .headLine p, .dcVal li p {
     width: 14.28%;
-    text-align: center;
 }
 .dc .scroll-cont .headLine p:first-child, .dcVal li p:first-child { width: 10%; }
 .dc .scroll-cont .headLine p:nth-child(5), .dcVal li p:nth-child(5) { width: 16%; }
@@ -33,3 +31,21 @@
 .header .location {
     display: none;
 }
+
+.workorderDetail .scroll-cont .headLine, .woDetailVal {
+    width: 11rem;
+}
+.workorderDetail .scroll-cont .headLine p, .woDetailVal li p {
+    width: 21%;
+}
+.workorderDetail .scroll-cont .headLine p:nth-child(1), .woDetailVal li p:nth-child(1) { width: 16%; }
+
+
+.workorderAmount .scroll-cont .headLine, .woAmountVal {
+    width: 12rem;
+}
+.workorderAmount .scroll-cont .headLine p:nth-child(1), .woAmountVal li p:nth-child(1) { width: 12%; }
+.workorderAmount .scroll-cont .headLine p:nth-child(2), .woAmountVal li p:nth-child(2) { width: 17%; }
+.workorderAmount .scroll-cont .headLine p:nth-child(3), .woAmountVal li p:nth-child(3) { width: 23%; }
+.workorderAmount .scroll-cont .headLine p:nth-child(4), .woAmountVal li p:nth-child(4) { width: 33%; }
+.workorderAmount .scroll-cont .headLine p:nth-child(5), .woAmountVal li p:nth-child(5) { width: 15%; }

@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/orders.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -34,6 +30,11 @@
         <section class="section-box" section-id="32">
             <div class="wrap order">
                 <div class="cont-title">订单概况</div>
+                <div class="carType-box">
+                    <p class="car-type od-ct active" data-type='0'>全部</p>
+                    <p class="car-type od-ct" data-type='1'>电车</p>
+                    <p class="car-type od-ct" data-type='2'>燃油车</p>
+                </div>
                 <div class="singleDatePicker">
                     <div class="preDateBtn od-predate">前一天</div>
                     <div class="showDate">
@@ -41,11 +42,6 @@
                         <span class="showWeek1"></span>
                     </div>
                     <div class="nextDateBtn od-nextdate">后一天</div>
-                </div>
-                <div class="carType-box">
-                    <p class="car-type od-ct active" data-type='0'>全部</p>
-                    <p class="car-type od-ct" data-type='1'>电车</p>
-                    <p class="car-type od-ct" data-type='2'>燃油车</p>
                 </div>
                 <div class="scroll-cont">
                     <div class="headLine">
@@ -65,6 +61,43 @@
             </div>
         </section>
 
+        <!-- 历史订单详情 -->
+        <section class="section-box" section-id="">
+            <div class="wrap orderHistory">
+                <div class="cont-title">历史订单详情</div>
+                <div class="carType-box">
+                    <p class="car-type odh-ct active" data-type='0'>全部</p>
+                    <p class="car-type odh-ct" data-type='1'>电车</p>
+                    <p class="car-type odh-ct" data-type='2'>燃油车</p>
+                </div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime4" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime5" class="ddp-2" onfocus="this.blur();">
+                </div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>下单量</p>
+                        <p>取车单</p>
+                        <p>取消单</p>
+                        <p>车均单</p>
+                        <p>单均收入</p>
+                        <p>单均收现</p>
+                        <p>车均收入</p>
+                        <p>车均收现</p>
+                    </div>
+                    <ul class="itemVal odHisVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre odHis-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage odHis-nowpage">1</span>/<span class="allpage odHis-allpage">1</span>
+                    </div>
+                    <div class="page-next odHis-nextpage"> > </div>
+                </div>
+            </div>
+        </section>
+
         <!--订单取消原因-->
         <section class="section-box" section-id="33">
             <div class="wrap odc">
@@ -80,13 +113,16 @@
                 </div>
                 <div class="echarts" id="orderCancel"></div>
                 <div class="responsiblePerson-box">
-                  <p class="phoneBubble ordercancel-phoneBubble"><a href=""></a></p>
-                  <p class="responsiblePerson"></p>
+                    <p class="phoneBubble ordercancel-phoneBubble"><a href=""></a></p>
+                    <p class="responsiblePerson"></p>
                 </div>
             </div>
         </section>
     </div>
-
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
     <script src="../libs/echarts.min.js"></script>
     <script src="../js/common/common.js"></script>
     <script src="../js/common/service.js"></script>

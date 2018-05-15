@@ -20,13 +20,13 @@ $(function () {
         yesterday = getDaysOffset(-1),
         weekAgo = getDaysOffset(-7);
 
-    for (let i of [1,2,6,7]) {
+    for (let i of [1,2,6,7,8]) {
         $('#appDateTime'+i).mobiscroll(APP.dateBar);
     }
 
     $('#appDateTime6').val(today);
-    $('#appDateTime1').val(weekAgo);
-    $('#appDateTime2, #appDateTime7').val(yesterday);
+    $('#appDateTime1, #appDateTime7').val(weekAgo);
+    $('#appDateTime2, #appDateTime8').val(yesterday);
 
     startingWeek(6);
     startingWeekYesterday(7);
@@ -46,7 +46,7 @@ $(function () {
         sitechange($('#appDateTime1').val(), $('#appDateTime2').val(), scpage);
         siteDetail(sdpage);
         siteCar($('#appDateTime6').val(), scpage);
-        siteOrder($('#appDateTime7').val(), sopage);
+        siteOrder();
         getPrincipal(cityVal, [34,35,36,38,39]);
     }, false);
 
@@ -77,7 +77,7 @@ $(function () {
             sitechange($('#appDateTime1').val(),$('#appDateTime2').val(), scpage);
             siteDetail(sdpage);
             siteCar($('#appDateTime6').val(), scpage);
-            siteOrder($('#appDateTime7').val(), sopage);
+            siteOrder();
             getPrincipal(cityVal, [34,35,36,38,39]);
         }
     });
@@ -301,22 +301,22 @@ $(function () {
 
 
     // 网点订单
-    function siteOrder (date, p) {
+    function siteOrder () {
         let data = {
             cityId: cityVal,
-            dateId: date,
+            startDate: $('#appDateTime7').val(),
+            endDate: $('#appDateTime8').val(),
             typeId: so_cartype
         };
         buildAjax('get', 'park/getParkOrderDetail', data, true, false, function(res){
             ORDER_CACHE = res.data;
             sopage = resetPaging('so-nowpage');
             $('.so-allpage').html(Math.ceil(ORDER_CACHE.length / 10) == 0 ? 1 : Math.ceil(ORDER_CACHE.length / 10));
-            setSiteOrderUI(ORDER_CACHE.slice(10 * ( p - 1 ), 10 * p));
+            setSiteOrderUI(ORDER_CACHE.slice(0, 10));
         }, false);
     }
     let refOrderUI = (p) => {
-        ORDER_CACHE ? setSiteOrderUI(ORDER_CACHE.slice(10 * ( p - 1 ), 10 * p))
-                    : siteOrder($('#appDateTime7').val(), p);
+        ORDER_CACHE ? setSiteOrderUI(ORDER_CACHE.slice(10 * ( p - 1 ), 10 * p)) : siteOrder();
     }
     let setSiteOrderUI = (data) => {
         let str = '';
@@ -333,6 +333,7 @@ $(function () {
                 "<p>" + d.diffOrderNum + "</p>" +
                 "<p>" + d.avgOrderMileage + "</p>" +
                 "<p>" + d.avgOrderMinute + "</p>" +
+                "<p>" + d.avgOrderPayamount + "</p>" +
                 "<p>" + d.amount + "</p>" +
                 "<p>" + d.payamount + "</p>" +
                 "<p>" + d.placeAvgExecorder + "</p>" +
@@ -348,16 +349,8 @@ $(function () {
     });
 
     // 网点订单 时间监控
-    $('.so-predate, .so-nextdate').on('click',function() {
-        let id = this.parentNode.children[1].children[0].id;
-        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
-                                                     : $('#'+id).val(updateDate(this.parentNode, 1, true));
-        siteOrder($('#appDateTime7').val(), 1);
-    });
-    // 网点订单 日历控件监控
-    $('#appDateTime7').bind('change', function() {
-        siteOrder($('#appDateTime7').val(), 1);
-        updateWeek(this);
+    $('#appDateTime7, #appDateTime8').on('change',function () {
+        isDateValid(7,8) && siteOrder();
     });
 
     // 网点订单 车类型选择
@@ -366,6 +359,6 @@ $(function () {
         $(this).addClass('active');
         so_cartype = $(this).attr('data-type')
         $('.so-nowpage').html(1);
-        siteOrder($('#appDateTime7').val(), 1);
+        siteOrder();
     })
 });

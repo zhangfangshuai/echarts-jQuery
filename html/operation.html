@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/operation.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -30,7 +26,7 @@
             </div>
         </header>
 
-        <!--保险/事故 accident-->
+        <!--保险/事故 -->
         <section class="section-box" section-id="53">
             <div class="wrap accident">
                 <div class="cont-title">保险/事故
@@ -56,7 +52,7 @@
             </div>
         </section>
 
-        <!--违章概况 peccancy-->
+        <!--违章概况 -->
         <section class="section-box" section-id="55">
             <div class="wrap peccancy">
                 <div class="cont-title">违章概况</div>
@@ -69,16 +65,17 @@
                   开始<input type="text" id="appDateTime2" class="ddp-1" onfocus="this.blur();">
                   结束<input type="text" id="appDateTime3" class="ddp-2" onfocus="this.blur();">
                 </div>
-
-                <div class="headLine">
-                  <p>日期</p>
-                  <p>单均违章次数</p>
-                  <p>违章率</p>
-                  <p>未处理</p>
-                  <p>平均处理天数</p>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                      <p>日期</p>
+                      <p>累计违章订单</p>
+                      <p>单均违章次数</p>
+                      <p>违章率</p>
+                      <p>未处理违章</p>
+                      <p>平均处理天数</p>
+                    </div>
+                    <ul class="itemVal pecVal"></ul>
                 </div>
-                <ul class="itemVal pecVal"></ul>
-
                 <div class="pagenation">
                     <div class="page-pre pec-prepage"> < </div>
                     <div class="pages">
@@ -86,7 +83,6 @@
                     </div>
                     <div class="page-next pec-nextpage"> > </div>
                 </div>
-
                 <div class="responsiblePerson-box">
                     <p class="phoneBubble pec-phoneBubble"><a href=""></a></p>
                     <p class="responsiblePerson"></p>
@@ -94,7 +90,7 @@
             </div>
         </section>
 
-        <!--车辆违章详情 peccancy detail-->
+        <!-- 车辆违章详情 -->
         <section class="section-box" section-id="56">
             <div class="wrap pecDetail">
                 <div class="cont-title">车辆违章详情</div>
@@ -111,7 +107,6 @@
                     </div>
                     <div class="nextDateBtn pd-nextdate">后一天</div>
                 </div>
-
                 <div class="headLine">
                     <p>车牌号</p>
                     <p>违章次数</p>
@@ -120,7 +115,6 @@
                     <p>备注</p>
                 </div>
                 <ul class="itemVal pecDetailVal"></ul>
-
                 <div class="pagenation">
                     <div class="page-pre pd-prepage"> < </div>
                     <div class="pages">
@@ -135,7 +129,7 @@
             </div>
         </section>
 
-        <!-- 推费概述 PushMoney -->
+        <!-- 推费概述 -->
         <section class="section-box" section-id="57">
             <div class="wrap pushMoney">
                 <div class="cont-title">推费概况</div>
@@ -148,16 +142,17 @@
                   开始<input type="text" id="appDateTime4" class="ddp-1" onfocus="this.blur();">
                   结束<input type="text" id="appDateTime5" class="ddp-2" onfocus="this.blur();">
                 </div>
-
-                <div class="headLine">
-                    <p>日期</p>
-                    <p>推费总额</p>
-                    <p>推费缴纳</p>
-                    <p>逾期未交</p>
-                    <p>缴纳比例</p>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>累计未交推费总额</p>
+                        <p>推费总额</p>
+                        <p>推费缴纳</p>
+                        <p>逾期未交</p>
+                        <p>缴纳比例</p>
+                    </div>
+                    <ul class="itemVal pmVal"></ul>
                 </div>
-                <ul class="itemVal pmVal"></ul>
-
                 <div class="pagenation">
                     <div class="page-pre pm-prepage"> < </div>
                     <div class="pages">
@@ -171,13 +166,15 @@
                 </div>
             </div>
         </section>
-
     </div>
-  </div>
-  <script src="../libs/echarts.min.js"></script>
-  <script src="../js/common/common.js"></script>
-  <script src="../js/common/service.js"></script>
-  <script type="text/javascript" src='../js/operation/operation.js'></script>
-  <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/echarts.min.js"></script>
+    <script src="../js/common/common.js"></script>
+    <script src="../js/common/service.js"></script>
+    <script type="text/javascript" src='../js/operation/operation.js'></script>
+    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
 </body>
 </html>

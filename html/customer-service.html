@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/customer-service.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -45,11 +41,13 @@
                         <p>IVR(自助服务)</p>
                         <p>转人工量</p>
                         <p>成功接起</p>
-                        <p>接起率%</p>
+                        <p>接起率</p>
                         <p>外呼数量</p>
                         <p>外呼实际接通</p>
                         <p>接通率</p>
                         <p>CPO</p>
+                        <p>人员日均接听量</p>
+                        <p>首解率</p>
                     </div>
                     <ul class="itemVal csVal"></ul>
                 </div>
@@ -100,10 +98,84 @@
                 </div>
             </div>
         </section>
+
+
+        <!-- 工单类型 -->
+        <section class="section-box">
+            <div class="wrap workorder">
+                <div class="cont-title">工单类型分布</div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime5" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime6" class="ddp-2" onfocus="this.blur();">
+                </div>
+                <div class="echarts" id="workorderChart"></div>
+            </div>
+        </section>
+
+        <!-- 工单类型详情 -->
+        <section class="section-box">
+            <div class="wrap workorderDetail">
+                <div class="cont-title">工单类型详情</div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime7" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime8" class="ddp-2" onfocus="this.blur();">
+                </div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>车辆使用占比</p>
+                        <p>订单问题占比</p>
+                        <p>网点问题占比</p>
+                        <p>注册问题占比</p>
+                    </div>
+                    <ul class="itemVal woDetailVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre woDetail-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage woDetail-nowpage">1</span>/<span class="allpage woDetail-allpage">1</span>
+                    </div>
+                    <div class="page-next woDetail-nextpage"> > </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 工单量详情 -->
+        <section class="section-box">
+            <div class="wrap workorderAmount">
+                <div class="cont-title">工单量统计</div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime9" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime10" class="ddp-2" onfocus="this.blur();">
+                </div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>日期</p>
+                        <p>工单总数</p>
+                        <p>当日跟进中总数</p>
+                        <p>当日新增工单(已完成)</p>
+                        <p>完成率</p>
+                    </div>
+                    <ul class="itemVal woAmountVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre woAmount-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage woAmount-nowpage">1</span>/<span class="allpage woAmount-allpage">1</span>
+                    </div>
+                    <div class="page-next woAmount-nextpage"> > </div>
+                </div>
+            </div>
+        </section>
     </div>
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
     <script src="../libs/echarts.min.js"></script>
     <script src="../js/common/common.js"></script>
     <script src="../js/common/service.js"></script>
+    <script type="text/javascript" src='../js/customer-service/serviceOption.js'></script>
     <script type="text/javascript" src='../js/customer-service/customer-service.js'></script>
     <script type="text/javascript" src='../js/common/biMonitor.js'></script>
 </body>

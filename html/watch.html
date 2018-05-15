@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/watch.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -248,7 +244,6 @@
             </div>
         </section>
 
-
         <!-- 实时车辆电量 -->
         <section class="section-box" section-id="3">
             <div class="wrap car-battery">
@@ -271,51 +266,11 @@
                 </div>
             </div>
         </section>
-
-        <!-- 实时网点概况 -->
-        <section class="section-box" section-id="7">
-            <div class="wrap site-real">
-                <div class="cont-title">实时网点概况
-                    <div class="simpleSelection">
-                        <div class="toggleIcon"></div>
-                        <input id="sr-time" class="selectVal" value="时刻" readonly="" onfocus="this.blur();"/>
-                        <input id="sr-time-val" type="hidden"/>
-                    </div>
-                </div>
-                <div class="singleDatePicker">
-                    <div class="preDateBtn sr-predate">前一天</div>
-                    <div class="showDate">
-                        <input id="appDateTime6" class="appDateTime" onfocus="this.blur();">
-                        <span class="showWeek6"></span>
-                    </div>
-                    <div class="nextDateBtn sr-nextdate">后一天</div>
-                </div>
-                <div class="scroll-cont">
-                    <div class="headLine">
-                        <p>网点名称</p>
-                        <p>总车位</p>
-                        <p>可用车位</p>
-                        <p>已用车位</p>
-                        <p>车辆数</p>
-                        <p>取车单数</p>
-                        <p>还车单数</p>
-                    </div>
-                    <ul class="itemVal srVal"></ul>
-                </div>
-                <div class="pagenation">
-                    <div class="page-pre sr-prepage"> < </div>
-                    <div class="pages">
-                        <span class="nowpage sr-nowpage">1</span>/<span class="allpage sr-allpage">1</span>
-                    </div>
-                    <div class="page-next sr-nextpage"> > </div>
-                </div>
-                <div class="responsiblePerson-box">
-                    <p class="phoneBubble sr-phoneBubble"><a href=""></a></p>
-                    <p class="responsiblePerson"></p>
-                </div>
-            </div>
-        </section>
     </div>
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
     <script src="../libs/echarts.min.js"></script>
     <script src="../js/common/common.js"></script>
     <script src="../js/common/service.js"></script>

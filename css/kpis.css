@@ -24,7 +24,7 @@
 }
 
 .headLine p, .itemVal li p {
-    text-align: center;
+    width: 25%;
 }
 
 li p img {
@@ -39,23 +39,23 @@ li p img {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding-bottom: .27rem;
-}
-.circledata-line:last-child {
-    padding-bottom: 0;
 }
 
 .circle-line div {
-    /*width: 100%;  */   /* 100% 的宽度会导致echarts获取宽度失败 */
-    width: 396px;
+    width: 25%;   /* 100% 配合echarts图表有些问题 */
     height: 1.8rem;
     text-align: center;
     margin-top: .3rem;
 }
 .circledata-line>div {
-    width: 100%;
+    width: 100%;  /* 100% 让其自动挤压均匀分配 */
     height: 1rem;
     text-align: center;
+    padding-top: .27rem;
+    /*border-right: 1px solid #bbb;*/
+}
+.circledata-line>div:last-child {
+    border-right: initial;
 }
 
 .circledata-line>div p:first-child {
@@ -66,8 +66,18 @@ li p img {
     flex-direction: column;
     justify-content: flex-end;
 }
+
 .circledata-line>div p:last-child {
     color: #647888;
     font-size: 0.27rem;
     line-height: .5rem;
+}
+.circledata-line>div p:last-child span {
+    float: left;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.carType-box {
+    padding-top: .12rem;
 }

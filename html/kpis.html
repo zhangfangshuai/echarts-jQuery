@@ -11,10 +11,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/kpis.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -62,12 +58,17 @@
 
             <!-- 运营车辆车均单 -->
             <section class="section-box">
-                <div class="wrap kpi-orderAvg">
+                <div class="wrap kpi-odAvg">
                     <div class="cont-title">当月KPI-运营车辆车均单</div>
+                    <div class="carType-box">
+                        <p class="car-type odAvg-ct active" data-type='0'>新电车</p>
+                        <p class="car-type odAvg-ct" data-type='1'>全部</p>
+                        <p class="car-type odAvg-ct" data-type='2'>老电车</p>
+                        <p class="car-type odAvg-ct" data-type='3'>燃油车</p>
+                    </div>
                     <div class="headLine">
                         <p>城市</p>
                         <p>目标值</p>
-                        <p>及格值</p>
                         <p>当前值</p>
                         <p>完成度</p>
                     </div>
@@ -83,13 +84,12 @@
             </section>
 
             <!-- 月总收现金额 -->
-            <section class="sction-box">
+            <section class="section-box">
                 <div class="wrap kpi-cash">
-                    <div class="cont-title">当月KPI-月总收现金额</div>
+                    <div class="cont-title">当月KPI-单均收现</div>
                     <div class="headLine">
                         <p>城市</p>
                         <p>目标值</p>
-                        <p>及格值</p>
                         <p>当前值</p>
                         <p>完成度</p>
                     </div>
@@ -105,13 +105,12 @@
             </section>
 
             <!-- 上架率 -->
-            <section class="sction-box">
+            <section class="section-box">
                 <div class="wrap kpi-shelfrate">
                     <div class="cont-title">当月KPI-运营车辆上架率</div>
                     <div class="headLine">
                         <p>城市</p>
                         <p>目标值</p>
-                        <p>及格值</p>
                         <p>当前值</p>
                         <p>完成度</p>
                     </div>
@@ -125,10 +124,31 @@
                     </div>
                 </div>
             </section>
+
+            <!-- 新增双证绑定用户数 -->
+            <section class="section-box">
+                <div class="wrap kpi-licence">
+                    <div class="cont-title">当月KPI-新增双证绑定用户数</div>
+                    <div class="headLine">
+                        <p>城市</p>
+                        <p>目标值</p>
+                        <p>当前值</p>
+                        <p>完成度</p>
+                    </div>
+                    <ul class="itemVal licVal"></ul>
+                    <div class="pagenation">
+                        <div class="page-pre licence-prepage"> < </div>
+                        <div class="pages">
+                            <span class="nowpage licence-nowpage">1</span>/<span class="allpage licence-allpage">1</span>
+                        </div>
+                        <div class="page-next licence-nextpage"> > </div>
+                    </div>
+                </div>
+            </section>
         </div>
 
 
-        <div id="forCityDetailKPI" style="display: none">   <!-- 详细城市信息默认不展示,样式写在页面上提升优化视觉效果 -->
+        <div id="forCityDetailKPI" style="display: none">
             <!-- 城市概览-->
             <section class="section-box" section-id="8">
                 <div class="wrap city-overview">
@@ -159,21 +179,30 @@
                             截至<span class="ring-stopdate"></span>
                         </div>
                     </div>
+                    <div class="carType-box">
+                        <p class="car-type kpiCircle-ct active" data-type='0'>新电车</p>
+                        <p class="car-type kpiCircle-ct" data-type='1'>全部</p>
+                        <p class="car-type kpiCircle-ct" data-type='2'>老电车</p>
+                        <p class="car-type kpiCircle-ct" data-type='3'>燃油车</p>
+                    </div>
                     <div class="overview-box">
                         <div class="circle-line">
                             <div id="orderAvgCircle"></div>
                             <div id="cashCircle"></div>
                             <div id="onShelfCircle"></div>
+                            <div id="licenceCircle"></div>
                         </div>
                         <div class="circledata-line">
-                            <div> <p class="coavg-now"></p> <p>车均单</p> </div>
-                            <div> <p class="cash-now"></p> <p>月总收现金额</p> </div>
+                            <div> <p class="coavg-now"></p> <p class="coavg-text">新电车车均单</p> </div>
+                            <div> <p class="cash-now"></p> <p>单均收现</p> </div>
                             <div> <p class="onshelf-now"></p> <p>上架率</p> </div>
+                            <div> <p class="licence-now"></p> <p><span>新增双证绑定用户</span></p> </div>
                         </div>
                         <div class="circledata-line">
                             <div> <p class="coavg-goal"></p> <p>目标值</p> </div>
                             <div> <p class="cash-goal"></p> <p>目标值</p> </div>
                             <div> <p class="onshelf-goal"></p> <p>目标值</p> </div>
+                            <div> <p class="licence-goal"></p> <p>目标值</p> </div>
                         </div>
                     </div>
                     <div class="responsiblePerson-box">
@@ -292,7 +321,10 @@
             </section>
         </div>
     </div>
-
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
     <script src="../libs/echarts.min.js"></script>
     <script src="../js/common/common.js"></script>
     <script src="../js/common/service.js"></script>

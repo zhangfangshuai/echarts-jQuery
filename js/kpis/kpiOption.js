@@ -156,9 +156,15 @@ var optionCityCircle = {
         color:'#647888',
         fontSize:30
     },
+    // grid: {
+        // left: '30px',
+        // top: 10%;
+        // right: '30%'
+        // bottom: 10%;
+    // },
     series: [
         {
-            name:'访问来源',
+            name:'kpi',
             type:'pie',
             radius: ['100%', '90%'],
             hoverAnimation:false,
@@ -184,26 +190,23 @@ var optionCityCircle = {
                 }
             },
             data:[
-                {
-                    value:30,
-                    name:'直接访问',
-                    label:{
-                        normal:{
-                            show:true
-                        }
-                    }
-                },
-                {
-                    value:70,
-                    name:'邮件营销',
-                    label:{
-                        normal:{
-                            show:false
-                        }
-                    }
-
-                },
-
+              {
+                  value:0,
+                  name:'',
+                  label:{
+                      normal:{
+                          show:true
+                      }
+                  }
+              },{
+                  value:100,
+                  name:'',
+                  label:{
+                      normal:{
+                          show:false
+                      }
+                  }
+              }
             ]
         }
     ]

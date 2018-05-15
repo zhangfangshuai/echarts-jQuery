@@ -32,20 +32,32 @@
 }
 
 
-
-
 .accident .headLine p:nth-child(1), .acdVal li p:nth-child(1) { width: 20%; }
 .accident .headLine p:nth-child(2), .acdVal li p:nth-child(2) { width: 29%; }
 .accident .headLine p:nth-child(3), .acdVal li p:nth-child(3) { width: 28%; }
 .accident .headLine p:nth-child(4), .acdVal li p:nth-child(4) { width: 23%; }
 
-.peccancy .headLine p:nth-child(1) { width: 16%; }
-.pecVal li p:nth-child(1) { width: 18%; }
-.peccancy .headLine p:nth-child(2) { width: 25%;  }
-.pecVal li p:nth-child(2) { width: 23%;  }
-.peccancy .headLine p:nth-child(3), .pecVal li p:nth-child(3) { width: 18%; }
-.peccancy .headLine p:nth-child(4), .pecVal li p:nth-child(4) { width: 17%; }
-.peccancy .headLine p:nth-child(5), .pecVal li p:nth-child(5) { width: 24%; }
+
+.peccancy .scroll-cont .headLine, .pecVal {
+    width: 13rem;
+}
+.peccancy .scroll-cont .headLine p, .pecVal li p {
+    width: 15%;
+}
+.peccancy .scroll-cont .headLine p:nth-child(2), .pecVal li p:nth-child(2) { width: 18.3%; }
+.peccancy .scroll-cont .headLine p:nth-child(3), .pecVal li p:nth-child(3) { width: 18.4%; }
+.peccancy .scroll-cont .headLine p:nth-child(6), .pecVal li p:nth-child(6) { width: 18.3%; }
+
 
 .pecDetail .headLine p:nth-child(1), .pecDetailVal li p:nth-child(1) { width: 22%; }
 .pecDetail .headLine p:nth-child(5), .pecDetailVal li p:nth-child(5) { width: 18%; }
+
+
+.pushMoney .scroll-cont .headLine, .pmVal {
+    width: 12rem;
+}
+.pushMoney .scroll-cont .headLine p, .pmVal li p {
+    width: 15%;
+}
+.pushMoney .scroll-cont .headLine p:nth-child(1), .pmVal li p:nth-child(1) { width: 11.5%; }
+.pushMoney .scroll-cont .headLine p:nth-child(2), .pmVal li p:nth-child(2) { width: 28.5%; }

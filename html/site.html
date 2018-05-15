@@ -10,10 +10,6 @@
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/site.css">
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -191,18 +187,14 @@
         <section class="section-box" section-id='39'>
             <div class="wrap site-order">
                 <div class="cont-title">网点订单</div>
-                <div class="singleDatePicker">
-                    <div class="preDateBtn so-predate">前一天</div>
-                    <div class="showDate">
-                        <input id="appDateTime7" class="appDateTime" onfocus="this.blur();">
-                        <span class="showWeek7"></span>
-                    </div>
-                    <div class="nextDateBtn so-nextdate">后一天</div>
-                </div>
                 <div class="carType-box">
                     <p class="car-type so-ct active" data-type='0'>全部</p>
                     <p class="car-type so-ct" data-type='1'>电车</p>
                     <p class="car-type so-ct" data-type='2'>燃油车</p>
+                </div>
+                <div class="doubleDatePicker">
+                    开始<input type="text" id="appDateTime7" class="ddp-1" onfocus="this.blur();">
+                    结束<input type="text" id="appDateTime8" class="ddp-2" onfocus="this.blur();">
                 </div>
                 <div class="scroll-cont">
                     <div class="headLine">
@@ -218,6 +210,7 @@
                         <p>异地还车单</p>
                         <p>单均里程</p>
                         <p>单均时长</p>
+                        <p>单均收现</p>
                         <p>总流水</p>
                         <p>总收现</p>
                         <p>取车车位均单</p>
@@ -239,8 +232,11 @@
                 </div>
             </div>
         </section>
-
     </div>
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
+    <script src="../libs/LArea.js"></script>
     <script src="../libs/echarts.min.js"></script>
     <script src="../js/common/common.js"></script>
     <script src="../js/common/service.js"></script>
