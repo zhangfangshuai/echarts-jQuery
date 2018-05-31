@@ -68,7 +68,7 @@ $(function () {
     });
     // 订单概况时间监控 日历控件监控
     $('#appDateTime1').bind('change', function() {
-        getorderAnalyze($('#appDateTime1').val(), 1);
+        isDateValid(1) && getorderAnalyze($('#appDateTime1').val(), 1);
         updateWeek(this);
     });
 

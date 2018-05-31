@@ -95,3 +95,14 @@
 .recall .scroll-cont .headLine p:nth-of-type(1), .recallVal li p:nth-of-type(1) { width: 10% }
 .recall .scroll-cont .headLine p:nth-of-type(2), .recallVal li p:nth-of-type(2) { width: 16% }
 .recall .scroll-cont .headLine p:nth-of-type(4), .recallVal li p:nth-of-type(4) { width: 20% }
+
+
+.orderUser .scroll-cont .headLine, .ouVal {
+    width: 21.5rem;
+}
+.orderUser .scroll-cont .headLine p, .ouVal li p {
+    width: 10%;
+}
+.orderUser .scroll-cont .headLine p:nth-of-type(1), .ouVal li p:nth-of-type(1) { width: 7% }
+.orderUser .scroll-cont .headLine p:nth-of-type(5), .ouVal li p:nth-of-type(5) { width: 9% }
+.orderUser .scroll-cont .headLine p:nth-of-type(6), .ouVal li p:nth-of-type(6) { width: 14% }

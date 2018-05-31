@@ -40,10 +40,10 @@ var funnelOption = {
             type:'funnel',
             left: '10%',
             top: 60,
-            bottom: 60,
+            bottom: 100,
             width: '80%',
             min: 0,
-            // max: 100,  // 如果想取消漏斗的大小变化效果,可以设置比较小的max值
+            // max: 100,  // 大于max宽度显示为100%
             minSize: '0%',
             maxSize: '100%',
             sort: 'descending',
@@ -51,11 +51,23 @@ var funnelOption = {
             label: {
                 normal: {
                     show: true,
-                    position: 'inside'
+                    fontSize: 30,
+                    position: 'inside',
+                    // formatter: '{b}',
+                    formatter: function(param){
+                        var series = funnelOption.series[0].data;
+                        var key = param.name.slice(0, param.name.length-2);
+                        if (param.dataIndex == 0) {
+                            return key + ": " + (param.value ? param.value : '-') + "人次";
+                        } else if (param.dataIndex < funnelOption.series[0].data.length) {
+                            var perc = (series[param.dataIndex].value / series[param.dataIndex-1].value * 100).toFixed(2);
+                            return key +": " + (isNaN(perc) ? '-' : perc) + '%';
+                        }
+                    }
                 },
                 emphasis: {
                     textStyle: {
-                        fontSize: 36,
+                        fontSize: 32,
                         color:'#fff'
                     }
                 }

@@ -165,7 +165,7 @@ $(function () {
     });
     // 车辆违章详情 日历控件监控
     $('#appDateTime1').bind('change', function() {
-        getPeccancyDetail();
+        isDateValid(1) && getPeccancyDetail();
         updateWeek(this);
     });
 

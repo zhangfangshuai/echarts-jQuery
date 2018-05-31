@@ -4,14 +4,27 @@
  */
 @charset "utf-8";
 * {
-    margin:0;padding: 0;
+    margin:0;
+    padding: 0;
 }
- /* 禁用iPhone中Safari的字号自动调整 */
+/*
+ios字体： Heiti SC,Helvetica,HelveticaNeue
+android字体： 默认中文字体是Droidsansfallback 默认英文和数字字体是Droid Sans
+winphone字体：默认中文字体是Dengxian(方正等线体)  默认英文和数字字体是Segoe
+*/
+body {
+    width: 100%;
+    background: #f5f5f5;
+    font-family:AvantiBold,'微软雅黑', SimHei,'Helvetica Neue',Arial,'Droid Sans',sans-serif;
+    /*visibility: hidden;*/
+}
+
+/* 禁用iPhone中Safari的字号自动调整 */
 html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
 }
- /* 去除iPhone中默认的input样式 */
+/* 去除iPhone中默认的input样式 */
 input[type="submit"], input[type="reset"], input[type="button"], input{
     resize: none;
 }
@@ -22,7 +35,7 @@ input {
     outline: none;
 }
 /* 取消链接高亮 并初始化 */
-body,div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article,
+div,ul,li,ol,h1,h2,h3,h4,h5,h6,input,textarea,select,p,dl,dt,dd,a,img,button,form,table,th,tr,td,tbody,article,
 aside, details,figcaption,figure,footer,header,hgroup, menu,nav,section{
     -webkit-tap-highlight-color: transparent;
     margin: 0;
@@ -41,17 +54,6 @@ img {
     max-width: 100%;
     height: auto; width:auto\9; /* ie8 */
     -ms-interpolation-mode: bicubic; /*为了照顾ie图片缩放失真*/
-}
-/*
-ios字体： Heiti SC,Helvetica,HelveticaNeue
-android字体： 默认中文字体是Droidsansfallback 默认英文和数字字体是Droid Sans
-winphone字体：默认中文字体是Dengxian(方正等线体)  默认英文和数字字体是Segoe
-*/
-body {
-    width: 10rem;
-    margin:0 auto;
-    background: #f5f5f5;
-    font-family:AvantiBold,'微软雅黑', SimHei,'Helvetica Neue',Arial,'Droid Sans',sans-serif;
 }
 em,i {
     font-style:normal;
@@ -82,15 +84,17 @@ a:hover {
  * Time: 2018/03/22 14:03
  * Func: 基础公用样式
  */
+.box {
+   width: 10rem;
+   background: #f5f5f5;
+   overflow-y: scroll;
+   margin-top: 1rem;
+   box-sizing: border-box;
+}
+
 .section-box {
     width: 10rem;
     background: #F2F3F5;
-}
-
-.box {
-    width: 10rem;
-    padding: 1rem 0;
-    visibility: hidden;
 }
 
 .wrap {
@@ -290,8 +294,8 @@ a:hover {
     right: 0;
     width: 0px;
     height: 0px;
-    border: solid 10px transparent;
-    border-top: solid 10px #0DB95F;
+    border: solid .1rem transparent;
+    border-top: solid .1rem #0DB95F;
 }
 .simpleSelection input {
     position: relative;
@@ -862,7 +866,10 @@ li p img {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding-bottom: .27rem;
+    padding-bottom: .1rem;
+}
+.overview-line:last-child {
+    padding-bottom: .2rem;
 }
 .overview-line>div {
     width: 100%;
@@ -912,11 +919,12 @@ li p img {
     width: 1.4rem;
     line-height: 0.48rem;
     height: 0.48rem;
+    font-size: .31rem;
 }
 
 /* 弹出框样式控制 */
 .gearArea {
-    font-size: 1em;
+    font-size: .31rem;
 }
 
 div.dw-persp div.dw.dwbg {
@@ -1049,95 +1057,119 @@ div.dw-persp div.dw.dwbg {
 }
 
 
+body {
+    padding-top: constant(safe-area-inset-top);
+    padding-bottom: constant(safe-area-inset-bottom);
+}
+@media screen and (width:375px){
+    body {
+        padding-top: 0px;
+        background: #f5f5f5;
+        overflow: hidden;
+        box-sizing: content-box;
+    }
+    .box {
+        margin-top: 1.5rem;
+        height: calc(100% - 1.9rem);
+    }
+    .header {
+        top: 20px;
+    }
+}
+
+
+
+
+
 
 /* 目录各图标 */
 .m-income span {
-    background: url(../images/icon_mapview.png);
+    background: url(../images/income.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-income .active {
-    background: url(../images/icon_mapview_chose.png);
+    background: url(../images/income_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-operation span {
-    background: url(../images/yunwei.png);
+    background: url(../images/operation.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-operation .active {
-    background: url(../images/yunwei_chose.png);
+    background: url(../images/operation_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-customer span {
-    background: url(../images/icon_service_default.png);
+    background: url(../images/service.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-customer .active {
-    background: url(../images/icon_service.png);
+    background: url(../images/service_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-orders span {
-    background: url(../images/icon_list.png);
+    background: url(../images/order.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-orders .active {
-    background: url(../images/icon_list_chose.png);
+    background: url(../images/order_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-site span {
-    background: url(../images/wangdian.png);
+    background: url(../images/sites.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-site .active {
-    background: url(../images/wangdian_chose.png);
+    background: url(../images/sites_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-user span {
-    background: url(../images/yonghu.png);
+    background: url(../images/user.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-user .active {
-    background: url(../images/yonghu_chose.png);
+    background: url(../images/user_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-kpis span {
-    background: url(../images/icon_citykpi.png);
+    background: url(../images/kpi.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-kpis .active {
-    background: url(../images/icon_citykpi_chose.png);
+    background: url(../images/kpi_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-cars span {
-    background: url(../images/cheliang.png);
+    background: url(../images/cars.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-cars .active {
-    background: url(../images/cheliang_chose.png);
+    background: url(../images/cars_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-watch span {
-    background: url(../images/icon_biview.png);
+    background: url(../images/watch.png);
     -webkit-background-size: cover;
     background-size: cover;
 }
 .m-watch .active {
-    background: url(../images/icon_biview_chose.png);
+    background: url(../images/watch_chose.png);
     -webkit-background-size: cover;
     background-size: cover;
 }

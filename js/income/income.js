@@ -78,7 +78,7 @@ $(function () {
     });
     // 时间监控 日历控件监控
     $('#appDateTime1').bind('change', function() {
-        getIncome();
+        isDateValid(1) && getIncome();
         updateWeek(this);
     });
 

@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>驾驶舱-用户</title>
-    <link rel="shortcut icon" href="../images/favicon.ico?1"/>
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <title>驾驶舱-用户</title>
     <script src="../libs/flexible.js"></script>
     <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/car-user.css">
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/echarts.min.js"></script>
+    <script src="../js/car-user/userOption.js"></script>
 </head>
 <body>
     <div class="box">
@@ -28,7 +33,7 @@
 
         <!-- 用户转化漏斗图 -->
         <section class="section-box" section-id="15">
-            <div class="wrap user-transform">
+            <div class="wrap user-transform clearTopGap">
                 <div class="cont-title">用户转化
                     <div class="simpleSelection" style="display: none;">  <!-- 初始化时不展示 -->
                         <div class="toggleIcon"></div>
@@ -39,12 +44,6 @@
                 <div class="twoGroups">
                     <div class="set ut-set active">累计</div>
                     <div class="set ut-set">新增</div>
-                </div>
-                <div class="funnelDate">
-                    <p class="per ut1"></p>
-                    <p class="per ut2"></p>
-                    <p class="per ut3"></p>
-                    <p class="per ut4"></p>
                 </div>
                 <div class="echarts" id="ut-funnel"></div>
                 <div class="responsiblePerson-box">
@@ -208,6 +207,34 @@
                 <div class="echarts" id="odUserRateChart"></div>
             </div>
         </section>
+        <!-- 订单用户分析 -->
+        <section class="section-box">
+            <div class="wrap orderUser clearTopGap">
+                <div class="cont-title">订单用户数据分析</div>
+                <div class="scroll-cont">
+                    <div class="headLine">
+                        <p>城市</p>
+                        <p>总订单用户数</p>
+                        <p>总订单数</p>
+                        <p>首单用户数</p>
+                        <p>老用户数</p>
+                        <p>订单用户下单频率</p>
+                        <p>留存用户数</p>
+                        <p>召回用户数</p>
+                        <p>首单用户占比</p>
+                        <p>老用户占比</p>
+                    </div>
+                    <ul class="itemVal ouVal"></ul>
+                </div>
+                <div class="pagenation">
+                    <div class="page-pre ou-prepage"> < </div>
+                    <div class="pages">
+                        <span class="nowpage ou-nowpage">1</span>/<span class="allpage ou-allpage">1</span>
+                    </div>
+                    <div class="page-next ou-nextpage"> > </div>
+                </div>
+            </div>
+        </section>
 
 
         <!-- 首单用户分析 -->
@@ -311,15 +338,8 @@
             </div>
         </section>
     </div>
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
-    <script src="../libs/echarts.min.js"></script>
-    <script src="../js/common/common.js"></script>
-    <script src="../js/common/service.js"></script>
-    <script type="text/javascript" src="../js/car-user/userOption.js"></script>
-    <script type="text/javascript" src='../js/car-user/car-user.js'></script>
-    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+    <!-- <script src="../js/common/service.js"></script>
+    <script src="../js/car-user/car-user.js"></script> -->
+    <script src='../js/common/biMonitor.js'></script>
 </body>
 </html>

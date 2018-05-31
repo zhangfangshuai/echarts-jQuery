@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>驾驶舱-运营</title>
-    <link rel="shortcut icon" href="../images/favicon.ico?1"/>
+    <meta charset="UTF-8" />
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <!-- <meta name="viewport" content="width=device-width, viewport-fit=cover" /> -->
+    <title>驾驶舱-运营</title>
     <script src="../libs/flexible.js"></script>
     <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/operation.css">
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/echarts.min.js"></script>
 </head>
 <body>
     <div class="box">
@@ -28,7 +33,7 @@
 
         <!--保险/事故 -->
         <section class="section-box" section-id="53">
-            <div class="wrap accident">
+            <div class="wrap accident clearTopGap">
                 <div class="cont-title">保险/事故
                     <div class="acdBubble"> TOP 10 </div>
                 </div>
@@ -52,10 +57,10 @@
             </div>
         </section>
 
-        <!--违章概况 -->
+        <!--违法概况 -->
         <section class="section-box" section-id="55">
             <div class="wrap peccancy">
-                <div class="cont-title">违章概况</div>
+                <div class="cont-title">违法概况</div>
                 <div class="carType-box">
                     <p class="car-type pec-ct active" data-type='0'>全部</p>
                     <p class="car-type pec-ct" data-type='1'>电车</p>
@@ -68,10 +73,10 @@
                 <div class="scroll-cont">
                     <div class="headLine">
                       <p>日期</p>
-                      <p>累计违章订单</p>
-                      <p>单均违章次数</p>
-                      <p>违章率</p>
-                      <p>未处理违章</p>
+                      <p>累计违法订单</p>
+                      <p>单均违法次数</p>
+                      <p>违法率</p>
+                      <p>未处理违法</p>
                       <p>平均处理天数</p>
                     </div>
                     <ul class="itemVal pecVal"></ul>
@@ -90,10 +95,10 @@
             </div>
         </section>
 
-        <!-- 车辆违章详情 -->
+        <!-- 车辆违法详情 -->
         <section class="section-box" section-id="56">
             <div class="wrap pecDetail">
-                <div class="cont-title">车辆违章详情</div>
+                <div class="cont-title">车辆违法详情</div>
                 <div class="carType-box">
                     <p class="car-type pd-ct active" data-type='0'>全部</p>
                     <p class="car-type pd-ct" data-type='1'>电车</p>
@@ -109,7 +114,7 @@
                 </div>
                 <div class="headLine">
                     <p>车牌号</p>
-                    <p>违章次数</p>
+                    <p>违法次数</p>
                     <p>已处理</p>
                     <p>未处理</p>
                     <p>备注</p>
@@ -167,14 +172,6 @@
             </div>
         </section>
     </div>
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
-    <script src="../libs/echarts.min.js"></script>
-    <script src="../js/common/common.js"></script>
-    <script src="../js/common/service.js"></script>
-    <script type="text/javascript" src='../js/operation/operation.js'></script>
-    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+    <script src='../js/common/biMonitor.js'></script>
 </body>
 </html>

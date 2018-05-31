@@ -11,11 +11,9 @@ $(function () {
     var city, ovCity, autoCenterflag = false;
     var today = getDaysOffset();
 
-
     // 构建全国基础地图
     var stationsMap = echarts.init(document.getElementById('stationsMap'));
     echarts.registerMap('china', chinaMapJson);
-
 
     // 获取城市列表
     getCity(function(res, cityInit) {
@@ -26,6 +24,7 @@ $(function () {
         getKpi(true);
         getTarget(city);
     })
+
 
     // 切换城市监控
     $('#demo3').bind('input propertychange', function() {
@@ -106,7 +105,7 @@ $(function () {
 
     // 城市概览，默认北京
     function cityOverview() {
-        buildAjax('get', 'kpi/getKPICityData', {cityId:ovCity}, true, false, function(res){
+        buildAjax('get', 'kpi/getKPICityData', {cityId:ovCity}, true, false, function(res) {
             $('.cityName').html(res.data.cityname);
             $('.openTime').html(res.data.opentime);
             $('.totleUser').html(res.data.users_reg_t);
@@ -115,6 +114,9 @@ $(function () {
             $('.siteRange').html(res.data.parking);
             $('.orderAvg').html(res.data.order_avg);
             $('.siteNum').html(res.data.parkPlaceCount);
+            $('.orderNum').html(res.data.orders_month);
+            $('.incomeAvg').html(res.data.car_avgpayamount);
+            $('.dauUsers').html(res.data.dau_users);
         });
     }
 
@@ -275,6 +277,7 @@ $(function () {
         autoCenterflag = true;
         stationsMap.setOption(mapUpdate);
         $('#forOverviewKPI').hide('fast');
+        $('#detailBtn').hide('fast');
         $('#forCityDetailKPI').show('fast');
     }
 
@@ -294,6 +297,7 @@ $(function () {
         stationsMap.setOption(optionCity);
         sessionStorage.locat = JSON.stringify(MAP_CACHE[0]);
         $('#forOverviewKPI').show('fast');
+        $('#detailBtn').show('fast');
         $('#forCityDetailKPI').hide('fast');
     }
 

@@ -2,14 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>驾驶舱-营收</title>
-    <link rel="shortcut icon" href="../images/favicon.ico?1"/>
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <title>驾驶舱-营收</title>
     <script src="../libs/flexible.js"></script>
     <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css">
     <link rel="stylesheet" type="text/css" href="../css/income.css">
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/echarts.min.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/LArea.js"></script>
 </head>
 <body>
     <div class="box">
@@ -28,7 +32,7 @@
 
         <!--营收概况-->
         <section class="income section-box" section-id="58">
-            <div class="wrap inc">
+            <div class="wrap inc clearTopGap">
                 <div class="cont-title">营收概况</div>
                 <div class="carType-box">
                     <p class="car-type inc-ct active" data-type='0'>全部</p>
@@ -96,14 +100,6 @@
             </div>
         </section>
     </div>
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
-    <script src="../libs/echarts.min.js"></script>
-    <script src="../js/common/common.js"></script>
-    <script src="../js/common/service.js"></script>
-    <script type="text/javascript" src='../js/income/income.js'></script>
-    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+    <script src='../js/common/biMonitor.js'></script>
 </body>
 </html>

@@ -28,7 +28,7 @@ pieOption = {
             name: '工单类型',
             type: 'pie',
             radius : '60%',
-            center: ['50%', '40%'],
+            center: ['50%', '33%'],
             label: {
                 normal: {
                     show: false,

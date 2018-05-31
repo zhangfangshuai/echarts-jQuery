@@ -9,7 +9,9 @@
 .echarts {
     height: 5rem;
 }
-
+.clearTopGap-watch {
+  margin-top: .4rem;
+}
 /* 实时营收 icon */
 .income-chart .flag-title {
     background: -moz-linear-gradient(180deg, #f1d591 10%, #ffa313);

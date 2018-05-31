@@ -6,8 +6,8 @@
  * Note: Package and Add Handler   old: 828 lines;
  */
 $(function () {
-    var REGIST_CACHE, LICENSE_CACHE, CARUSABLE_CACHE, PURCHASE_CACHE, FO_CACHE, STAY_CACHE, RECALL_CACHE;
-    var registpage = 1, licpage = 1, cupage = 1, purcpage = 1, fopage = 1, staypage = 1, recallpage = 1;
+    var REGIST_CACHE, LICENSE_CACHE, CARUSABLE_CACHE, PURCHASE_CACHE, FO_CACHE, STAY_CACHE, RECALL_CACHE, OU_CACHE;
+    var registpage = 1, licpage = 1, cupage = 1, purcpage = 1, fopage = 1, staypage = 1, recallpage = 1, oupage = 1;
     var cityVal = '',
         appId = '1',       // 1;2
         ut_period = "1";   // 用户转化
@@ -40,17 +40,8 @@ $(function () {
     getCity(function(res, cityInit){
         cityVal = cityInit;
         $('.simpleSelection').hide();
-        userTransform();
-        userRegist();
-        userLicense();
-        carUsable();
-        userPurchase();
-        orderUserRate();
-        firstOrderUser();
-        thisMonthKeep();
-        recallUser();
+        refInit();
     });
-
 
     //nav 城市改变 及其刷新数据
     $('#demo3').bind('input propertychange', function() {
@@ -59,15 +50,7 @@ $(function () {
         $('.phoneBubble').hide('fast');
         $('.simpleSelection').hide();
         cityVal == '1' && $('.responsiblePerson-box').hide('fast');
-        userTransform();
-        userRegist();
-        userLicense();
-        carUsable();
-        userPurchase();
-        orderUserRate();
-        firstOrderUser();
-        thisMonthKeep();
-        recallUser();
+        refInit();
         getPrincipal(cityVal, [15,22,24,26,27,31]);
     });
 
@@ -76,21 +59,28 @@ $(function () {
         triggerBubble(this.parentNode);
     });
 
+    // 页面初始化
+    function refInit() {
+        userTransform();
+        userRegist();
+        userLicense();
+        carUsable();
+        userPurchase();
+        orderUserRate();
+        orderTotals();
+        firstOrderUser();
+        thisMonthKeep();
+        recallUser();
+    }
 
     /**
-     * 用户转化
+     * 用户转化漏斗图
      */
     var myChart3 = echarts.init(document.getElementById("ut-funnel"));
     myChart3.showLoading({ effect:'ring' });
 
     function userTransform() {
         buildAjax('get', 'MUser/MuserTransformData', {cityId: cityVal,reportId: ut_period}, true, false, function(res){
-            if (res.data.length > 0) {
-                $('.ut1').html((res.data[3].value/res.data[4].value*100).toFixed(2)+'%');
-                $('.ut2').html((res.data[2].value/res.data[3].value*100).toFixed(2)+'%');
-                $('.ut3').html((res.data[1].value/res.data[2].value*100).toFixed(2)+'%');
-                $('.ut4').html((res.data[0].value/res.data[2].value*100).toFixed(2)+'%');
-            }
             let arr = [];
             for(let d of res.data) {
                 arr.push(d.name)
@@ -304,7 +294,7 @@ $(function () {
             cityId: cityVal,
             dateId: $('#appMonth1').val()
         };
-        buildAjax('get', 'MUser/getOrderUserRate', params, true, false, function(res){
+        buildAjax('get', 'MUser/getOrderUserRate', params, true, false, function(res) {
             try {
                 pieOption.series[0].data = res.data.listData;
                 pieOption.legend.data = res.data.arr;
@@ -316,17 +306,57 @@ $(function () {
             odUserRateChart.hideLoading();
         });
     }
-    // 订单用户占比分析 时间监控
+    // 订单用户(占比)分析 时间监控
     $('#appMonth1').on('change', function(){
-        isMonthValid(1) && orderUserRate();
+        isMonthValid(1) && orderUserRate() && orderTotals();
     })
-    // 订单用户占比分析 月份监控
-    $('.odUserRate-premonth, .odUserRate-nextmonth').on('click', function(){
+    // 订单用户(占比)分析 月份监控
+    $('.odUserRate-premonth, .odUserRate-nextmonth').on('click', function() {
         let id = this.parentNode.children[1].children[0].id;
-        this.classList[1].split('-')[1] == 'premonth' ? $('#'+id).val(updateMonth(this.parentNode, -1, true))
-                                               : $('#'+id).val(updateMonth(this.parentNode, 1, true));
-        isMonthValid(1) && orderUserRate();
+        console.log(updateMonth(this.parentNode, -1, true));
+        this.classList[1].split('-')[1] == 'premonth' ? $('#'+id).val(updateMonth(this.parentNode, -1, true)) : $('#'+id).val(updateMonth(this.parentNode, 1, true));
+        orderUserRate();
+        orderTotals();
     });
+
+    /**
+     * 订单用户数据分析 与上表联动
+     */
+     function orderTotals() {
+        let params = {
+            cityId: cityVal,
+            dateId: $('#appMonth1').val()
+        };
+        buildAjax('get', 'MUser/getFactOrderTotals', params, true, false, function(res) {
+            OU_CACHE = res.data;
+            oupage = resetPaging('ou-nowpage');
+            $('.ou-allpage').html(Math.ceil(OU_CACHE.length/10) == 0 ? 1: Math.ceil(OU_CACHE.length/10));
+            setOuUI(OU_CACHE.slice(0, 10));
+        })
+     };
+     let refOuUI = (p) => {
+         OU_CACHE ? setOuUI(OU_CACHE.slice(10 * ( p - 1 ), 10 * p)) : orderTotals();
+     };
+     let setOuUI = (data) => {
+         let str = '';
+         for (let d of data) {
+             str += "<li> <p>" + d.cityName + "</p>" +
+                 "<p>" + d.orderUsersTotal + "</p>" +
+                 "<p>" + d.ordersMonth + "</p>" +
+                 "<p>" + d.fristorderUsers + "</p>" +
+                 "<p>" + d.oldorderUsers + "</p>" +
+                 "<p>" + d.orderAvg + "</p>" +
+                 "<p>" + d.retainUsers + "</p>" +
+                 "<p>" + d.recallUsers + "</p>" +
+                 "<p>" + d.fristuserRate + "%</p>" +
+                 "<p>" + d.olduserRate + "%</p> </li>";
+         }
+         $('.ouVal').html(str);
+     };
+     // 订单用户数据分析 分页控制
+     $('.ou-prepage, .ou-nextpage').on('click', function(){
+         oupage = pagingCtrl(this, oupage, refOuUI);
+     });
 
 
     /**
@@ -366,7 +396,7 @@ $(function () {
         let id = this.parentNode.children[1].children[0].id;
         this.classList[1].split('-')[1] == 'premonth' ? $('#'+id).val(updateMonth(this.parentNode, -1, true))
                                                : $('#'+id).val(updateMonth(this.parentNode, 1, true));
-        isMonthValid(2) && firstOrderUser();
+        firstOrderUser();
     })
     // 首单用户分析 分页控制
     $('.fo-prepage, .fo-nextpage').on('click', function(){
@@ -413,7 +443,7 @@ $(function () {
         let id = this.parentNode.children[1].children[0].id;
         this.classList[1].split('-')[1] == 'premonth' ? $('#'+id).val(updateMonth(this.parentNode, -1, true))
                                                : $('#'+id).val(updateMonth(this.parentNode, 1, true));
-        isMonthValid(3) && thisMonthKeep();
+        thisMonthKeep();
     })
     // 留存用户分析 分页控制
     $('.uStay-prepage, .uStay-nextpage').on('click', function(){
@@ -459,7 +489,7 @@ $(function () {
         let id = this.parentNode.children[1].children[0].id;
         this.classList[1].split('-')[1] == 'premonth' ? $('#'+id).val(updateMonth(this.parentNode, -1, true))
                                                : $('#'+id).val(updateMonth(this.parentNode, 1, true));
-        isMonthValid(4) && recallUser();
+        recallUser();
     })
     // 留存用户分析 分页控制
     $('.recall-prepage, .recall-nextpage').on('click', function(){

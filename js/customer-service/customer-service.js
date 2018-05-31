@@ -7,6 +7,7 @@ $(function () {
     var cityVal = 1, cspage = 1, dcpage = 1, wodpage = 1, woapage = 1;
     var yesterday = getDaysOffset(-1),
         weekAgo = getDaysOffset(-7);
+
     for (let i of [1,2,3,4,5,6,7,8,9,10]) {
         $('#appDateTime' + i).mobiscroll(APP.dateBar);
     }

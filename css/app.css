@@ -5,7 +5,7 @@
 
 .funnelDate {
     position: absolute;
-    top: 2.8rem;
+    top: 3.7rem;
     left: 6.5rem;
     width: 1rem;
     z-index: 200;
@@ -28,6 +28,7 @@
     margin-top: .2rem;
 }
 
+/* dau统计报表r */
 .dauTable .scroll-cont .headLine, .dauTVal {
     width: 14rem;
 }
@@ -37,8 +38,21 @@
 }
 .dauTable .scroll-cont .headLine p:nth-child(1), .dauTVal li p:nth-child(1) { width: 12%; }
 
-
+/* difference user */
 .diffUserStart .scroll-cont .headLine, .durVal {
-    width: 15rem;
+    width: 12rem;
 }
-.diffUserStart .scroll-cont .headLine p:nth-child(1), .durVal li p:nth-child(1) { width: 12%; }
+.diffUserStart .scroll-cont .headLine p, .durVal li p {
+    width: 27%;
+}
+.diffUserStart .scroll-cont .headLine p:nth-child(1), .durVal li p:nth-child(1) { width: 19%; }
+
+/* difference city */
+.diffCity .scroll-cont .headLine, .dcVal {
+    width: 23.5rem;
+}
+.diffCity .scroll-cont .headLine p, .dcVal li p { width: 13%; }
+.diffCity .scroll-cont .headLine p:nth-child(1), .dcVal li p:nth-child(1) { width: 6%; }
+.diffCity .scroll-cont .headLine p:nth-child(2), .dcVal li p:nth-child(2) { width: 7%; }
+.diffCity .scroll-cont .headLine p:nth-child(4), .dcVal li p:nth-child(4) { width: 15%; }
+.diffCity .scroll-cont .headLine p:nth-child(9), .dcVal li p:nth-child(9) { width: 8%; }

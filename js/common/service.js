@@ -1,49 +1,31 @@
 /**
- * Copy: zhangfs by Atom
- * Func: 日历控件滚动选择控件展示定义，增加mobiscroll.custom.min.js文件中文资源包 (ceo@vmeitime.com)
+ * Created: zhangfs by Atom
+ * Date: 2018/05/12 09;30
+ * Func: REM布局
  */
-(function ($) {
-    $.mobiscroll.i18n.zh = $.extend($.mobiscroll.i18n.zh, {
-        dateFormat: 'yyyy-mm-dd',
-        dateOrder: 'yymmdd',
-        dayNames: ['周日', '周一;', '周二;', '周三', '周四', '周五', '周六'],
-		    dayNamesShort: ['日', '一', '二', '三', '四', '五', '六'],
-        dayText: '日',
-        hourText: '时',
-        minuteText: '分',
-        monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-        monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-        monthText: '月',
-        secText: '秒',
-        timeFormat: 'HH:ii',
-        timeWheels: 'HHii',
-        yearText: '年'
-    });
-})(jQuery);
-
+// (function(doc, win) {
+//     var docEl = doc.documentElement,
+//         resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+//         recalc = function() {
+//             var clientWidth = docEl.clientWidth
+//             if (!clientWidth) return
+//             docEl.style.fontSize = 108 * (clientWidth / 1080) + 'px'
+//         }
+//     win.addEventListener(resizeEvt, recalc, false)
+//     if (!doc.addEventListener) return
+//     doc.addEventListener('DOMContentLoaded', recalc, false)
+// })(document, window);
 
 
 /**
- * Copy: zhangfs by Atom
- * Func: 解决页面加载时出现的无样式闪现问题
- */
-showBody();
-function showBody(){
-    $('.box').css('visibility', 'visible');
-}
-
-
-
-/**
- * Author: dameng by webstorm
- * Update: zhangfs by Atom
+ * Author: zhangfs by Atom
  * Func: 获取选中日期周几
  * Params: 控件后面的采数字
  */
 window.onload = function () {
-    $('.slideBar').css({'height':$(window).height()});
-    $('.slideBarBg').css({'height':$(window).height()});
-    $('body, html').css({'min-height':$(window).height()});
+    $('.slideBar').css({'height': '100vh'});
+    $('.slideBarBg').css({'height': '100vh'});
+    $('body, html').css({'height': '100vh'});
    document.addEventListener('touchstart', function(event) {
        if (event.touches.length > 1){
            event.preventDefault();
@@ -59,7 +41,7 @@ window.onload = function () {
    },false)
 };
 
-// 监控横竖屏现象
+// 页面重载
 window.onresize = function(){
     $('.slideBar').css({'height':$(window).height()});
     $('.slideBarBg').css({'height':$(window).height()});
@@ -147,6 +129,7 @@ $('.slideBarBg').on('click',function(){
 
 
 
+
 /**
  * Author: zhangfs by Atom
  * Date: 2018/04/09 18:50
@@ -168,7 +151,7 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
                 f && f(res);
                 return;
             } else if (res.data && (res.data == null || res.data.length == 0)) {
-                i != 'getPrincipal' && console.log(uri+' 此次查询数据为空');
+                uri != 'getPrincipal' && console.log(uri+' 此次查询数据为空');
             }
             s && s(res);
         },
@@ -178,6 +161,7 @@ function buildAjax (method, uri, data, ayc, hasarrparam, s, f) {
         }
     });
 }
+
 
 
 
@@ -296,7 +280,7 @@ function getDaysOffset (num) {
 function getMonthOffset (num) {
     num = num || 0;
     var d = new Date();
-    d.setMonth(d.getMonth()+num)
+    d.setMonth(d.getMonth()+num);
     return d.format("yyyyMM");
 }
 
@@ -305,7 +289,7 @@ function getMonthOffset (num) {
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/11 17:45
- * Func: 单日期选择控件日期点击前一天后一天数据联动
+ * Func: 单日期选择控件日期点击前一天后一天数据联动, 接受三个参数,作用域,变更天数,是否开启范围选择控制
  * Note: 为了向上兼容，日期部分必须要有id属性，周几部分必须要有class属性
  * E.g.: 订单分析
  */
@@ -333,10 +317,10 @@ function updateDate(_parent, num, limit) {
  * E.g.: 用户分析
  */
 function updateMonth(_parent, num, limit) {
-    let id = _parent.children[1].children[0].id;
+    var id = _parent.children[1].children[0].id;
     if ($('#'+id).val()) {
-        let d = $('#'+id).val();
-        let dest = new Date(d.slice(0,4) +'/'+d.slice(4,6));
+        var d = $('#'+id).val();
+        var dest = new Date(d.slice(0,4) + '/' + d.slice(4,6) + '/01');
         dest.setMonth(dest.getMonth() + num);
         if ( limit && dest.getTime() > new Date().getTime() ) {
             return d;
@@ -437,11 +421,11 @@ Date.prototype.format = function (fmt) {
  * Func: 设置单时间选择器的周几数据/html/watch.html?v=2.0.1
  * Params: 周几控件种的最后一个数据.如showeek1，则num = 1
  */
-function startingWeek(num){
-    $('.showWeek'+num).html(getWeek(new Date().getDay()));
+function startingWeek(id){
+    $('.showWeek'+id).html(getWeek(new Date().getDay()));
 };
-function startingWeekYesterday (num){
-    $('.showWeek'+num).html(getWeek(new Date().getDay() - 1));
+function startingWeekYesterday (id){
+    $('.showWeek'+id).html(getWeek(new Date().getDay() - 1));
 };
 
 
@@ -509,17 +493,24 @@ function time2Date (timestamp) {
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/27 11:20
- * Func: 双日历选择控件(选择时间段),开始日期小于结束日期
+ * Func: 日历选择控件,接受1到2个参数; 1个参数检查单日期控件, 2个参数检查双日期控件
  */
 function isDateValid(start, end) {
     let s = $('#appDateTime'+start).val();
-    let e = $('#appDateTime'+end).val();
-    let startDate = new Date(s.slice(0,4), s.slice(4, 6), s.slice(6, s.length));
-    let endDate = new Date(e.slice(0,4), e.slice(4, 6), e.slice(6, e.length));
+    let startDate = new Date(s.slice(0,4), parseInt(s.slice(4, 6))-1, s.slice(6, s.length));
+    let endDate = new Date();
+    if (end) {
+        let e = $('#appDateTime'+end).val();
+        endDate = new Date(e.slice(0,4), parseInt(e.slice(4, 6))-1, e.slice(6, e.length));
+    }
     if (startDate.getTime() > endDate.getTime()) {
-        Tip.success('查询周期不合理');
-        $('#appDateTime'+start).val(getDaysOffset(-7));
-        $('#appDateTime'+end).val(getDaysOffset(-1))
+        Tip.success('日期选择不合理');
+        if(end) {
+            $('#appDateTime'+start).val(getDaysOffset(-7));
+            $('#appDateTime'+end).val(getDaysOffset(-1))
+        } else {
+            $('#appDateTime'+start).val(getDaysOffset(-1));
+        }
         return false;
     }
     return true;
@@ -537,9 +528,9 @@ function isMonthValid(num) {
     let now = new Date();
     let date = $('#appMonth'+num).val();
     let picked = new Date(date.slice(0,4), date.slice(4,6));
-    if (picked.getTime() > now.getTime() || now.getMonth() == picked.getMonth()-1) {
-        Tip.success('可查当月之前数据');
-        $('#appMonth'+num).val(getMonthOffset(-1))
+    if ((picked.getTime() > now.getTime()) || (now.getMonth() == picked.getMonth()-1)) {
+        Tip.success('请查当月之前数据');
+        $('#appMonth'+num).val(getMonthOffset(-1));
         return false;
     }
     return true;
@@ -596,3 +587,117 @@ function postReport(data, r) {
         retry > 3 && console.log(data['eventName'] + '上报失败');
     });
 }
+
+
+
+
+
+/**
+ * Update: zhangfs by Atom
+ * Date: 2018/05/18 09:59
+ * Func: 类原生toast错误提示效果
+ */
+function GlobalTip(config){
+    this.timeout = (config&&config.timeout)||2000;
+    this.hasInit = false;
+    this.$tipEle = $("<p style='z-index: 9999;word-break:break-all;max-width: 7rem;min-height:1.067rem;color:white;font-size:0.373rem;padding:0.32rem 0.72rem;position:fixed;top:40%;left:50%;-webkit-transform: translate(-50%);-ms-transform: translate(-50%);transform: translate(-50%);background:rgba(46,55,53,0.90);border-radius: 0.133rem;-webkit-box-shadow: 0 0.053rem 0.08rem 0 rgba(66,75,71,0.20);-moz-box-shadow: 0 0.053rem 0.08rem 0 rgba(66,75,71,0.20);box-shadow: 0 0.053rem 0.08rem 0 rgba(66,75,71,0.20);-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;text-align: center;'><i class='icon icon-tipright' style='vertical-align:middle;margin-right:10px;text-align: center'></i><span></span></p></p>");
+    this.tip=$('<div style="position: fixed;left: 0;top: 0;right: 0;bottom: 0;background-color: rgba(0,0,0,0.40);z-index: 9999;" id="doubleAlert">\n' +
+        '\t<div style="position: absolute;left: 50%;top: 50%;width: 7.467rem;-webkit-transform: translateX(-50%) translateY(-50%);-moz-transform: translateX(-50%) translateY(-50%);-ms-transform: translateX(-50%) translateY(-50%);-o-transform: translateX(-50%) translateY(-50%);transform: translateX(-50%) translateY(-50%);background: #FFFFFF;-webkit-box-shadow:  0 0.053rem 0.133rem 0 rgba(0,0,0,0.10);-moz-box-shadow:  0 0.053rem 0.133rem 0 rgba(0,0,0,0.10);box-shadow:  0 0.053rem 0.133rem 0 rgba(0,0,0,0.10);-webkit-border-radius: 0.133rem;-moz-border-radius: 0.133rem;border-radius: 0.133rem;">\n' +
+        '\t\t<h2 class="tipTitle" style="font-size: 0.4rem;color: #696969;letter-spacing: 0;width: 100%;\n' +
+        '\t\theight: 1.067rem;padding-top: 0.4rem;text-align: center;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;"></h2>\n' +
+        '\t\t<p class="tipContent" style="width: 5.973rem;margin:0 auto;font-size: 0.373rem;color: #AAAAAA;\n' +
+        'line-height: 0.533rem;padding: 0.373rem 0;word-break:break-all;"></p>\n' +
+        '\t\t<div class="tipBtn" style="width: 100%;border: 0.027rem solid #FAFAFA;height: 1.173rem;text-align: center;line-height: 1.173rem;color: #0DB95F;font-size: 0.373rem;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;-webkit-border-radius: 0 0 0.133rem 0.133rem;-moz-border-radius: 0 0 0.133rem 0.133rem;border-radius:0 0 0.133rem 0.133rem;display: flex;">\n' +
+        '            <div class="tipBtn1" style="height: 100%;border-right: 0.027rem solid #FAFAFA;height: 1.1rem;text-align: center;line-height: 1.17rem;color: #0DB95F;font-size: 0.373rem;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;flex: 1"></div>\n' +
+        '            <div class="tipBtn2" style="height: 100%;height: 1.1rem;text-align: center;line-height: 1.1rem;color: #0DB95F;font-size: 0.373rem;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;flex: 1;"></div>\n' +
+        '        </div>\n' +
+        '\t</div>\n' +
+        '</div>');
+    this.loading=$('<div class="lodingbg-gofun clearfix">\n' +
+            '    <div class="loading-gofun clearfix">\n' +
+            '        <div class="loadingL-gofun clearfix">\n' +
+            '            <div class="sk-fading-circle">\n' +
+            '                <div class="sk-circle sk-circle1"></div>\n' +
+            '                <div class="sk-circle sk-circle2"></div>\n' +
+            '                <div class="sk-circle sk-circle3"></div>\n' +
+            '                <div class="sk-circle sk-circle4"></div>\n' +
+            '                <div class="sk-circle sk-circle5"></div>\n' +
+            '                <div class="sk-circle sk-circle6"></div>\n' +
+            '                <div class="sk-circle sk-circle7"></div>\n' +
+            '                <div class="sk-circle sk-circle8"></div>\n' +
+            '                <div class="sk-circle sk-circle9"></div>\n' +
+            '                <div class="sk-circle sk-circle10"></div>\n' +
+            '                <div class="sk-circle sk-circle11"></div>\n' +
+            '                <div class="sk-circle sk-circle12"></div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <p id="londingtxt" class="clearfix">12阿瑟费噶1122阿瑟</p>\n' +
+            '    </div>\n' +
+            '</div>');
+}
+
+var Tip = new GlobalTip();
+GlobalTip.prototype.initDom=function(){
+    $('body').append(this.$tipEle);
+    this.hasInit = true;
+};
+GlobalTip.prototype.showTip=function(type, msg){
+    if(!this.hasInit){
+        this.initDom();
+    }
+    var icon_class = "icon icon-tipright";
+    if(type=="error"){
+        icon_class = "icon icon-tipwarn";
+    }
+    this.$tipEle.stop(true).fadeIn().delay(this.timeout).fadeOut().find("span").text(msg).end().find(".icon").attr("class", icon_class);
+};
+GlobalTip.prototype.success = function(msg){
+    this.showTip("success", msg);
+};
+GlobalTip.prototype.error = function(msg){
+    this.showTip("error", msg);
+};
+GlobalTip.prototype.popups=function(obj){
+
+    $('body').append(this.tip);
+    if(obj.title){
+        this.tip.find('.tipTitle').show().html(obj.title);
+    }else{
+        this.tip.find('.tipTitle').hide();
+    }
+    this.tip.find('.tipContent').html(obj.content);
+    if(obj.leftBtn){
+        this.tip.find('.tipBtn1').show().html(obj.leftBtn);
+        if(obj.leftBtnColor){
+            this.tip.find('.tipBtn1').css({'color':obj.leftBtnColor})
+        }
+        this.tip.find('.tipBtn1').on('click',function(){
+            if(obj.leftBtnCb){
+                obj.leftBtnCb()
+            }
+            $('#doubleAlert').remove();
+        });
+    }else{
+        this.tip.find('.tipBtn1').hide();
+    }
+    this.tip.find('.tipBtn2').html(obj.mainBtn);
+    if(obj.rightBtnColor){
+        this.tip.find('.tipBtn2').css({'color':obj.rightBtnColor})
+    }
+    this.tip.find('.tipBtn2').on('click',function(){
+        if(obj.mainCb){
+            obj.mainCb()
+        }
+        $('#doubleAlert').remove();
+    });
+};
+GlobalTip.prototype.addLoading=function(obj){
+    $('body').append(this.loading);
+    this.loading.find('#londingtxt').html(obj.txt)
+};
+GlobalTip.prototype.changeLoading=function(obj){
+    this.loading.find('#londingtxt').html(obj.txt)
+};
+GlobalTip.prototype.removeLoading=function(obj){
+    $('body').find(this.loading).remove();
+};

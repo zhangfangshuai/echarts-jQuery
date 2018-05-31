@@ -7,7 +7,7 @@
 var optionCity = {
    geo: {
        map: 'china',
-       // roam: true,  // 只平移:move; 只缩放:scale; 平移和缩放: true; 默认false
+       roam: true,  // 只平移:move; 只缩放:scale; 平移和缩放: true; 默认false
        zoom: 1.2,
        center: [104, 35],
        label: {

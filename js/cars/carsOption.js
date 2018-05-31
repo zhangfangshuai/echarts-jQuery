@@ -8,7 +8,7 @@
 
 
 option = {
-// backgroundColor:'red',  //背景颜色
+//  backgroundColor:'red',  //背景颜色
     color:['#09CA65','#0DB0FF','#FF7263','#F5A623','#C584FF','#4D68E5'],
     textStyle:{
         color:'#647888',
@@ -61,22 +61,21 @@ option = {
         }
     }, */
     grid: {
-        top:'5%',
+        top:'10%',
         bottom: '15%',
         containLabel: true
     },
     xAxis : [
-
         {
             type : 'category',
             data : [],
             axisLabel:{'fontSize':22}
         }
-
     ],
     yAxis : [
         {
             type : 'value',
+            name: '百分比',
             axisLabel:{'fontSize':22}
         }
     ],
@@ -150,10 +149,9 @@ option1 = {
         right:'15%'
     },
     color : ['#09CA65','#F5A623','#0DB0FF','#FF7263','#C584FF','#4D68E5'],
-    xAxis:  {	//X轴
+    xAxis:  {
         axisLabel:{'fontSize':24},
         type: 'category',
-        name: '日期',
         splitLine: {show: false},
         data: []
     },
@@ -165,7 +163,6 @@ option1 = {
         }
     ],
     series: [
-
         {
             name:'离线详情',
             type:'line',

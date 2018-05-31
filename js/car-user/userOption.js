@@ -43,15 +43,26 @@ var funnelOption = {
             bottom: 60,
             width: '70%',
             // height: {totalHeight} - y - y2,
-            // max: 100,  // 设置比较小的max值能关闭漏斗效果
+            // max: 100,  // 数值大于max宽度显示为100%
             minSize: '0%',
             maxSize: '100%',
             sort: 'descending',
             gap: 2,
             label: {
                 normal: {
+                    fontSize: 30,
                     show: true,
-                    position: 'inside'
+                    position: 'inside',
+                    formatter: function(param){
+                        var series = funnelOption.series[0].data;
+                        var key = param.dataIndex == 0 ? param.name : param.name.slice(0, param.name.length-2);
+                        if (param.dataIndex == param.name.length) {
+                            return param.name + ": " + (param.value ? param.value : '-') + "人";
+                        } else if (param.dataIndex < funnelOption.series[0].data.length) {
+                            var perc = (series[param.dataIndex].value / series[param.dataIndex+1].value * 100).toFixed(2);
+                            return key +": " + (perc ? perc : '-') + '%';
+                        }
+                    }
                 },
                 emphasis: {
                     textStyle: {
@@ -96,7 +107,7 @@ pieOption = {
             name: '占比类型',
             type: 'pie',
             radius : '75%',
-            center: ['50%', '45%'],
+            center: ['50%', '40%'],
             label: {
                 normal: {
                     show: false,

@@ -111,7 +111,7 @@ $(function () {
     });
     // 实时营收列表 日历控件监控
     $('#appDateTime3').bind('change', function() {
-        incomeReal($('#appDateTime3').val(), 1);
+        isDateValid(3) && incomeReal($('#appDateTime3').val(), 1);
         updateWeek(this);
     });
     // 实时营收折线图 车辆类型选择
@@ -223,7 +223,7 @@ $(function () {
     });
     // 车辆现况折线图 日历控件修改
     $('#appDateTime1').bind('change', function() {
-        carStatus($('#appDateTime1').val(), 1);
+        isDateValid(1) && carStatus($('#appDateTime1').val(), 1);
         updateWeek(this);
     });
     // 车辆现况折线图 车辆类型选择
@@ -307,7 +307,7 @@ $(function () {
     });
     // 实时订单折线图 日历控件监控
     $('#appDateTime2').bind('change', function() {
-        orderReal($('#appDateTime2').val(), 1);
+        isDateValid(2) && orderReal($('#appDateTime2').val(), 1);
         updateWeek(this);
     });
     // 实时订单折线图 车辆类型选择
@@ -380,7 +380,7 @@ $(function () {
     });
     // 新增用户列表 日历控件修改
     $('#appDateTime4').bind('change', function() {
-        newGuy($('#appDateTime4').val(), 1);
+        isDateValid(4) && newGuy($('#appDateTime4').val(), 1);
         updateWeek(this);
     });
     // 新增用户列表 分页控制
@@ -419,7 +419,7 @@ $(function () {
     });
     // 车辆电量 日历控件修改
     $('#appDateTime5').bind('change', function() {
-        carBattery($('#appDateTime5').val());
+        isDateValid(5) && carBattery($('#appDateTime5').val());
         updateWeek(this);
     });
 
@@ -465,7 +465,7 @@ $(function () {
     });
     // 实时网点概况 日历控件修改
     $('#appDateTime6').bind('change', function() {
-        siteReal($('#appDateTime6').val(), 1);
+        isDateValid(6) && siteReal($('#appDateTime6').val(), 1);
         updateWeek(this);
     });
     // 实时网点概况 分页控制

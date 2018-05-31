@@ -1,10 +1,9 @@
 // BImobile版本
-let version = '2.2.3';
+var version = '3.0.2.5';
 
 // let http = 'http://39.107.226.244/';                        // test_env
-let http = 'http://122.14.205.135:8110/';                      // prod_env
-// let http = 'http://172.26.1.127:8080/SQBIServer-web/';      // guoguang_env
-// let http = 'http://172.26.2.49:8081/';                      // chengjt env
+var http = 'http://bi.shouqiev.com/'
+// let http = 'http://172.25.2.234:8080/SQBIServer-web/';      // guoguang_env
 
 
 /**
@@ -16,13 +15,13 @@ var  menuConfig = [
     { id: 2, name: '实时监控', class: 'm-watch', page: 'watch' },
     { id: 3, name: '城市KPI考核', class: 'm-kpis', page: 'kpis' },
     { id: 4, name: '用户分析', class: 'm-user', page: 'car-user' },
+    { id:64, name: 'APP分析', class: 'm-app', page: 'app' },
     { id: 5, name: '订单分析', class: 'm-orders', page: 'orders' },
     { id: 6, name: '网点分析', class: 'm-site', page: 'site' },
     { id: 7, name: '车辆分析', class: 'm-cars', page: 'cars' },
     { id: 8, name: '客服分析', class: 'm-customer', page: 'customer-service' },
     { id: 9, name: '运营分析', class: 'm-operation', page: 'operation' },
-    { id:10, name: '营收分析', class: 'm-income', page: 'income' },
-    { id:64, name: 'APP分析', class: 'm-app', page: 'app' }
+    { id:10, name: '营收分析', class: 'm-income', page: 'income' }
 ];
 
 
@@ -82,33 +81,15 @@ let APP = {
 };
 
 
-
 /**
  * Created: zhangfs by Atom
  * Date: 2018/04/24 10:43
  * Func: 添加文件载入版本
- * Note: 在页面资源载入之前引入，否则会因为加载问题页面渲染不上带版本号的文件
+ * Note: 在页面资源载入之前引入，否则会因为加载问题页面渲染不上带版本号的文件; APP.html识别当前页面, 同时控制页面整体走向，错误处理时使用
  */
 (function(doc, win) {
-    // rem页面布局适配  - 目前沿用老版本的flexible.js方案
-    // let docEl = doc.documentElement,
-    //     resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
-    //     recalc = function() {
-    //         let clientWidth = docEl.clientWidth
-    //         if (!clientWidth) return
-    //         if (clientWidth < 550) {
-    //             docEl.style.fontSize = 24 * (clientWidth / 720) + 'px'
-    //         } else {
-    //             docEl.style.fontSize = 24 * (clientWidth / 1440) + 'px'
-    //         }
-    //     }
-    // win.addEventListener(resizeEvt, recalc, false)
-    // if (!doc.addEventListener) return
-    // doc.addEventListener('DOMContentLoaded', recalc, false)
-
-
     let baseURI = doc.documentElement.children["0"].baseURI;
-    APP.html = baseURI.split('?')[0].split('/').pop().split('.').shift();  // 同时控制页面整体走向，错误处理时使用
+    APP.html = baseURI.split('?')[0].split('/').pop().split('.').shift();
     let cssCtrl = [APP.html, 'service'],
         jsCtrl = [APP.html, 'service'];
 
@@ -119,13 +100,4 @@ let APP = {
                                             : $('link')[i].href = $('link')[i].href.split('?')[0] + '?v=' + version;
         }
     };
-
-    /* 服务器强制js访问刷新，不需要加版本 */  // $('script') -bug-打印发现拿不到所有页面上的script标签
-    // for(let j = 0; j < $('script').length; j ++) {
-    //     let jsfile = $('script')[j].src.split('/').pop().split('.')[0];
-    //     if (jsCtrl.indexOf(jsfile) >= 0) {
-    //         $('script')[j].src.split('?')[1] ? $('script')[j].src = $('script')[j].src + '&v=' + version
-    //                                          : $('script')[j].src = $('script')[j].src + '?v=' + version;
-    //     }
-    // }
 })(document, window);

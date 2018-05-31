@@ -351,7 +351,7 @@ GlobalTip.prototype.removeLoading=function(obj){
 //         $sum = $sum + $id_17[i]*$WS[i];
 //         console.log($sum+"--------"+i);
 //     };
-//     var last_num = $sum%11;
+//     var last_num = $sum%11;ba
 //     console.log(last_num);
 //     console.log($_modMap[last_num]);
 //     console.log($id_last);

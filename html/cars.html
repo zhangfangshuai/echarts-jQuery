@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>驾驶舱—车辆</title>
-    <link rel="shortcut icon" href="../images/favicon.ico?1"/>
     <meta name="flexible" content="initial-dpr=2,maximum-dpr=3,user-scalable=no" />
+    <title>驾驶舱—车辆</title>
     <script src="../libs/flexible.js"></script>
     <link rel="stylesheet" href="../css/mobiscroll.custom-2.5.2.min_my.css"/>
     <link rel="stylesheet" href="../css/LArea.css">
     <link rel="stylesheet" type="text/css" href="../css/service.css?3">
     <link rel="stylesheet" type="text/css" href="../css/cars.css">
+    <script src="../libs/jquery-3.1.1.min.js"></script>
+    <script src="../js/common/config.js"></script>
+    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script>
+    <script src="../libs/LArea.js"></script>
+    <script src="../libs/echarts.min.js"></script>
+    <script src="../js/cars/carsOption.js?v=3.0.1"></script>
 </head>
 <body>
     <div class="box">
@@ -28,7 +33,7 @@
 
         <!-- 车辆概况 car -->
         <section class="section-box" section-id="40">
-            <div class="wrap car">
+            <div class="wrap car clearTopGap">
                 <div class="cont-title">车辆概况</div>
                 <div class="doubleDatePicker">
                     开始<input type="text" id="appDateTime2" class="ddp-1" onfocus="this.blur();">
@@ -131,15 +136,6 @@
             </div>
         </section>
     </div>
-    <script src="../libs/jquery-3.1.1.min.js"></script>
-    <script src="../js/common/config.js"></script>
-    <script src="../libs/mobiscroll.custom-2.5.2.min.js"></script> <!-- 需要添加中文资源包-见service.js -->
-    <script src="../libs/LArea.js"></script>
-    <script src="../libs/echarts.min.js"></script>
-    <script src="../js/cars/carsOption.js"></script>
-    <script src="../js/common/common.js"></script>
-    <script src="../js/common/service.js"></script>
-    <script type="text/javascript" src='../js/cars/cars.js'></script>
-    <script type="text/javascript" src='../js/common/biMonitor.js'></script>
+    <script src='../js/common/biMonitor.js'></script>
 </body>
 </html>

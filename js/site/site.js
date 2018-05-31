@@ -280,7 +280,7 @@ $(function () {
     });
     // 网点车辆 日历控件监控
     $('#appDateTime6').bind('change', function() {
-        siteCar($('#appDateTime6').val(), 1);
+        isDateValid(6) && siteCar($('#appDateTime6').val(), 1);
         updateWeek(this);
     });
 

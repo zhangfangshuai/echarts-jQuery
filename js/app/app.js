@@ -3,36 +3,40 @@
  * Create: zhangfs by Atom - 2018/04/16
  */
 $(function () {
-    var DAUT_CACHE, DUR_CACHE;
-    var dautpage = 1, durpage = 1;
+    var DAUT_CACHE, DUR_CACHE, DC_CACHE;
+    var dautpage = 1, durpage = 1, dcpage = 1;
     var duaF_appOs = 1, duaT_appOs = 1, dur_appOs = 1;
     var cityVal = '';
 
     var weekAgo = getDaysOffset(-7),
         yesterday = getDaysOffset(-1);
-    for (let i of [1,2,3,4]) {
+    for (let i of [1,2,3,4,5,6]) {
         $('#appDateTime'+i).mobiscroll(APP.dateBar);
     }
     for (let i of [1,3]) {
         $('#appDateTime'+i).val(weekAgo);
     }
-    for (let i of [2,4]) {
+    for (let i of [2,4,5,6]) {
         $('#appDateTime'+i).val(yesterday);
     }
 
+    startingWeekYesterday(5);
+    startingWeekYesterday(6);
     // 获取城市列表，并初始化数据
     getCity(function(res, cityInit){
         cityVal = cityInit;
         buildAjax('get', 'dau/getAppVersions', {}, true, false, function(res) {
-            APP.appVersions = [];
+            APP.appVersions = [{'text':'全部','value':''}];
             for (let v of res.data) {
                 APP.appVersions.push({'text':v,'value':v});
             }
             triggerLArea('#dauf', '#dauf-val', APP.appVersions);
+            triggerLArea('#dauT', '#dauT-val', APP.appVersions);
             triggerLArea('#dur', '#dur-val', APP.appVersions);
             dauFunnel();
             dauTable();
             diffUserReport();
+            diffCity();
         })
     });
 
@@ -45,6 +49,7 @@ $(function () {
         dauFunnel();
         dauTable();
         diffUserReport();
+        diffCity();
         // getPrincipal(cityVal, []);
     });
 
@@ -65,56 +70,58 @@ $(function () {
     function dauFunnel() {
         let param = {
             cityId: cityVal,
-            appVersion: $('#dauf').val(),
+            appVersion: $('#dauT-val').val(),
+            dateId: $('#appDateTime6').val(),
             os: duaF_appOs
         }
         buildAjax('get', 'dau/getReportByPeople', param, true, false, function(res){
             let nums = res.data.nums,
                 userNum = res.data.userNum,
                 names = [];
-            for (let i of [0,1,2]) {
-                if (nums[i].value) {   // exclude null && 0
-                    $('.dauf'+i).html((nums[i+1].value/nums[i].value*100).toFixed(2)+'%');
-                    $('.dauf'+(i+3)).html((userNum[i+1].value/userNum[i].value*100).toFixed(2)+'%');
-                    $('.echarts').css('height', '5.2rem');
-                } else {
-                    Tip.success('用户漏斗数据异常!');
-                    dauOpenFunnel.hideLoading();
-                    dauStartFunnel.hideLoading();
-                    $('.echarts').css('height', '0.2rem');
-                    return;
-                }
-            };
             try {
                 for(let d of nums) {
                   names.push(d.name);
                 }
-                funnelOption.series[0].data = nums;
-                funnelOption.legend.data = names;
-                dauOpenFunnel.setOption(funnelOption);
+                var openOption = funnelOption;
+                openOption.series[0].data = nums;
+                openOption.legend.data = names;
+                dauOpenFunnel.setOption(openOption);
                 for(let d of userNum) {
                     names.push(d.name);
                 }
-                funnelOption.series[0].data = userNum;
-                funnelOption.legend.data = names;
-                dauStartFunnel.setOption(funnelOption);
+                var startOption = funnelOption;
+                startOption.series[0].data = userNum;
+                startOption.legend.data = names;
+                dauStartFunnel.setOption(startOption);
             } catch (e) {
-                console.log('用户漏斗数据异常!', e);
+                console.log('DAU漏斗无数据', e);
             }
             dauOpenFunnel.hideLoading();
             dauStartFunnel.hideLoading();
         }, false);
     }
-
+    // DAU漏斗 版本切换
     $('#dauf').bind('input propertychange', function() {
         $('#dauf-val').val() && dauFunnel();
     });
-
+    // DAU漏斗 系统切换
     $('.dauf-set').on('click', function() {
         $('.dauf-set').removeClass('active');
         $(this).addClass('active');
         duaF_appOs = $(this).attr('data');
         dauFunnel();
+    });
+    // DAU漏斗 时间监控
+    $('.dauf-predate, .dauf-nextdate').on('click',function() {
+        let id = this.parentNode.children[1].children[0].id;
+        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                               : $('#'+id).val(updateDate(this.parentNode, 1, true));
+        dauFunnel();
+    });
+    // DAU漏斗 日历控件监控
+    $('#appDateTime6').bind('change', function() {
+        isDateValid(6) && dauFunnel();
+        updateWeek(this);
     });
 
 
@@ -198,8 +205,7 @@ $(function () {
           str += "<li> <p>" + d.dateId + "</p>" +
               "<p>" + d.openappRegusers + "</p>" +
               "<p>" + d.openappAuditusers + "</p>" +
-              "<p>" + d.openappUsableusers + "</p>" +
-              "<p>" + nullHandle(d.openappOrderusers) + "</p> </li>"
+              "<p>" + d.openappUsableusers + "</p>  </li>"
         }
         $('.durVal').html(str);
     }
@@ -220,6 +226,57 @@ $(function () {
     })
     // 启动APP报表 分页控制
     $('.dur-prepage, .dur-nextpage').on('click', function(){
-        dur_appOs = pagingCtrl(this, dur_appOs, refDurUI);
+        dautpage = pagingCtrl(this, dautpage, refDurUI);
     });
+
+
+    /**
+     * 不同城市对比
+     */
+    function diffCity() {
+        let param = {
+            dateId: $('#appDateTime5').val()
+        };
+        buildAjax('get', 'dau/getDauCityList', param, true, false, function(res){
+            DC_CACHE = res.data;
+            dcpage = resetPaging('dc-nowpage');
+            $('.dc-allpage').html(Math.ceil(DC_CACHE.length / 10) == 0 ? 1 : Math.ceil(DC_CACHE.length / 10));
+            setDcUI(DC_CACHE.slice(0, 10));
+        });
+    }
+    let refDcUI = (p) => {
+        DC_CACHE ? setDcUI(DC_CACHE.slice(10 * (p - 1), 10 * p)) : diffCity();
+    }
+    let setDcUI = (data) => {
+        let str = '';
+        for (let d of data) {
+            str += "<li> <p>" + d.cityName + "</p>" +
+                "<p>" + d.dauUsers + "</p>" +
+                "<p>" + d.usableUsers + "</p>" +
+                "<p>" + d.openappUsablenum + "</p>" +
+                "<p>" + d.usableRate + "%</p>" +
+                "<p>" + d.pickupcarUsers + "</p>" +
+                "<p>" + d.returncarUsers + "</p>" +
+                "<p>" + d.downorderUsers + "</p>" +
+                "<p>" + d.orderRate + "%</p>  </li>"
+        }
+        $('.dcVal').html(str);
+    }
+    // 不同城市对比 时间监控
+    $('.dc-predate, .dc-nextdate').on('click',function() {
+        let id = this.parentNode.children[1].children[0].id;
+        this.classList[1].split('-')[1] == 'predate' ? $('#'+id).val(updateDate(this.parentNode, -1, true))
+                                               : $('#'+id).val(updateDate(this.parentNode, 1, true));
+        diffCity();
+    });
+    // 不同城市对比 日历控件监控
+    $('#appDateTime5').bind('change', function() {
+        isDateValid(5) && diffCity();
+        updateWeek(this);
+    });
+    // 不同城市对比 分页控制
+    $('.dc-prepage, .dc-nextpage').on('click', function(){
+        dcpage = pagingCtrl(this, dcpage, refDcUI);
+    });
+
 });
